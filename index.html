@@ -1390,6 +1390,7 @@ html, body { width: 100%; overflow-x: hidden; background: #fff; }
     icon.classList.remove('rotated');
     wm.textContent = 'PINILLOS';
     overlay.removeEventListener('touchmove', preventTouch);
+    if (!anySubPageOpen()) treesAbove.style.display = '';
     render();
   }
 
