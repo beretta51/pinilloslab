@@ -130,7 +130,7 @@ Hosted on GitHub Pages at [pinilloslab.com](https://pinilloslab.com)
 
 | Type  | Name | Value                          |
 |-------|------|--------------------------------|
-| CNAME | www  | yourusername.github.io         |
+| CNAME | www  | beretta51.github.io            |
 | A     | @    | 185.199.108.153                |
 | A     | @    | 185.199.109.153                |
 | A     | @    | 185.199.110.153                |
