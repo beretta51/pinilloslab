@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trovelo Blog — Pinillos</title>
+<meta name="description" content="Updates, tips, and news about Trovelo — the private, offline trip planner for iPhone.">
+<link rel="canonical" href="https://pinilloslab.com/blog/trovelo/">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --yellow: #F1F332; --black: #000; }
+html, body { width: 100%; background: #fff; }
+
+/* ── NAV BAR ── */
+.blog-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--yellow);
+  border-bottom: 3px solid var(--black);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blog-nav-brand {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  text-decoration: none;
+}
+.blog-nav-back {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.blog-nav-back:hover { opacity: 0.7; }
+
+/* ── HEADER ── */
+.blog-header {
+  padding: 48px 28px 40px;
+}
+.blog-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(32px, 9vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #000;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.blog-title span {
+  font-weight: 400;
+  color: #aaa;
+}
+.blog-subtitle {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #888;
+  line-height: 1.5;
+}
+
+/* ── POST LIST ── */
+.blog-posts {
+  padding: 0 28px 80px;
+  display: flex;
+  flex-direction: column;
+}
+.blog-post-item {
+  display: block;
+  text-decoration: none;
+  padding: 28px 0;
+  border-top: 1px solid #eee;
+  -webkit-tap-highlight-color: transparent;
+}
+.blog-post-item:last-child {
+  border-bottom: 1px solid #eee;
+}
+.blog-post-item:active {
+  opacity: 0.6;
+}
+.blog-post-date {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+}
+.blog-post-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #000;
+  margin-bottom: 8px;
+}
+.blog-post-excerpt {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: #888;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.blog-post-tag {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 4px 10px;
+  background: #f5f5f0;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── FOOTER ── */
+.blog-footer {
+  background: #000;
+  padding: 40px 28px;
+}
+.blog-footer-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  color: #555;
+}
+.blog-footer-text a {
+  color: #888;
+  text-decoration: none;
+}
+.blog-footer-text a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<nav class="blog-nav">
+  <a href="/" class="blog-nav-brand">PINILLOS</a>
+  <a href="/" class="blog-nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8l5 5" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back
+  </a>
+</nav>
+
+<header class="blog-header">
+  <h1 class="blog-title">TROVELO <span>BLOG</span></h1>
+  <p class="blog-subtitle">Updates, tips, and news about the private trip planner for iPhone.</p>
+</header>
+
+<main class="blog-posts">
+
+  <!-- POST ITEM — duplicate this block for each new post -->
+  <a href="smart-activity-cards" class="blog-post-item">
+    <div class="blog-post-date">April 14, 2026</div>
+    <h2 class="blog-post-title">How Smart Activity Cards Organize Your Entire Trip</h2>
+    <p class="blog-post-excerpt">Flights, hotels, restaurants, transport — just type naturally and Trovelo turns it into a structured itinerary automatically.</p>
+    <span class="blog-post-tag">Tips</span>
+  </a>
+
+  <a href="dual-currency-budget" class="blog-post-item">
+    <div class="blog-post-date">April 10, 2026</div>
+    <h2 class="blog-post-title">Track Your Travel Budget in Two Currencies at Once</h2>
+    <p class="blog-post-excerpt">Trovelo's dual currency system with live exchange rates makes it easy to know exactly what you're spending — at home and abroad.</p>
+    <span class="blog-post-tag">Tips</span>
+  </a>
+
+  <a href="why-offline-first" class="blog-post-item">
+    <div class="blog-post-date">April 5, 2026</div>
+    <h2 class="blog-post-title">Why Trovelo Is 100% Offline and Why That Matters</h2>
+    <p class="blog-post-excerpt">No accounts, no servers, no subscription. Here's why we believe your travel data should never leave your phone.</p>
+    <span class="blog-post-tag">News</span>
+  </a>
+
+  <a href="v2-release" class="blog-post-item">
+    <div class="blog-post-date">March 28, 2026</div>
+    <h2 class="blog-post-title">Trovelo 2.0 — Lock Screen Widgets, Interactive Maps, and More</h2>
+    <p class="blog-post-excerpt">The biggest update yet brings your trip to the lock screen, a redesigned map view, and dozens of improvements under the hood.</p>
+    <span class="blog-post-tag">Update</span>
+  </a>
+  <!-- END POST ITEM -->
+
+</main>
+
+<footer class="blog-footer">
+  <p class="blog-footer-text">© 2026 Pinillos · <a href="/">Home</a></p>
+</footer>
+
+</body>
+</html>

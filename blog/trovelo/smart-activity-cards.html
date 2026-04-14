@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ✏️ EDIT THESE FOR EACH POST -->
+<title>How Smart Activity Cards Organize Your Entire Trip — Trovelo Blog</title>
+<meta name="description" content="Flights, hotels, restaurants, transport — just type naturally and Trovelo turns it into a structured itinerary automatically.">
+<link rel="canonical" href="https://pinilloslab.com/blog/trovelo/smart-activity-cards">
+<!-- END EDIT -->
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --yellow: #F1F332; --black: #000; }
+html, body { width: 100%; background: #fff; }
+
+/* ── NAV BAR ── */
+.blog-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--yellow);
+  border-bottom: 3px solid var(--black);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.blog-nav-brand {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  text-decoration: none;
+}
+.blog-nav-back {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.blog-nav-back:hover { opacity: 0.7; }
+
+/* ── POST HEADER ── */
+.post-header {
+  padding: 48px 28px 32px;
+}
+.post-tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #f5f5f0;
+  border-radius: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+}
+.post-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(28px, 7vw, 40px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: #000;
+  margin-bottom: 16px;
+}
+.post-date {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #aaa;
+  letter-spacing: 0.02em;
+}
+
+/* ── POST BODY ── */
+.post-body {
+  padding: 0 28px 80px;
+}
+.post-body p {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.post-body p strong {
+  font-weight: 700;
+  color: #000;
+}
+.post-body h2 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(22px, 5.5vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #000;
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+.post-body h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(18px, 4.5vw, 22px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #000;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+.post-body ul, .post-body ol {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  color: #333;
+  line-height: 1.7;
+  margin-bottom: 24px;
+  padding-left: 24px;
+}
+.post-body li {
+  margin-bottom: 8px;
+}
+.post-body img {
+  width: 100%;
+  border-radius: 14px;
+  margin: 24px 0;
+}
+.post-body blockquote {
+  border-left: 4px solid var(--yellow);
+  padding: 16px 20px;
+  margin: 24px 0;
+  background: #f5f5f0;
+  border-radius: 0 14px 14px 0;
+}
+.post-body blockquote p {
+  color: #555;
+  margin-bottom: 0;
+}
+
+/* ── CTA ── */
+.post-cta {
+  margin: 40px 0;
+  padding: 28px 24px;
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  border-radius: 18px;
+  text-align: center;
+}
+.post-cta-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #000;
+  margin-bottom: 8px;
+}
+.post-cta-sub {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 16px;
+}
+.post-cta-link {
+  display: inline-block;
+  padding: 12px 28px;
+  background: #000;
+  color: #fff;
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.post-cta-link:active { opacity: 0.8; }
+
+/* ── BACK LINK ── */
+.post-back {
+  display: block;
+  padding: 24px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #888;
+  text-decoration: none;
+}
+.post-back:hover { color: #000; }
+
+/* ── FOOTER ── */
+.blog-footer {
+  background: #000;
+  padding: 40px 28px;
+}
+.blog-footer-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  color: #555;
+}
+.blog-footer-text a {
+  color: #888;
+  text-decoration: none;
+}
+.blog-footer-text a:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<nav class="blog-nav">
+  <a href="/" class="blog-nav-brand">PINILLOS</a>
+  <a href="/blog/trovelo/" class="blog-nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path d="M10 3L5 8l5 5" stroke="#000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    All posts
+  </a>
+</nav>
+
+<!-- ✏️ EDIT POST CONTENT BELOW -->
+
+<header class="post-header">
+  <span class="post-tag">Tips</span>
+  <h1 class="post-title">How Smart Activity Cards Organize Your Entire Trip</h1>
+  <span class="post-date">April 14, 2026</span>
+</header>
+
+<article class="post-body">
+
+  <p>Planning a trip usually means juggling notes, screenshots, and spreadsheets. <strong>Trovelo takes a different approach</strong> — you just type what you're doing, and the app structures everything for you.</p>
+
+  <h2>What Are Smart Activity Cards?</h2>
+
+  <p>Every activity in your itinerary lives on its own card. Whether it's a flight, a hotel check-in, a dinner reservation, or a museum visit, each card captures the details that matter: time, location, cost, and notes.</p>
+
+  <p>The magic is in how they're created. <strong>Just type naturally</strong> — "Dinner at La Piazzetta, 8pm, €45 per person" — and Trovelo automatically categorizes it, extracts the time and cost, and slots it into the right day.</p>
+
+  <h2>Built for Real Trips</h2>
+
+  <p>Smart Activity Cards support every type of travel moment:</p>
+
+  <ul>
+    <li><strong>Flights</strong> — departure, arrival, airline, terminal</li>
+    <li><strong>Hotels</strong> — check-in/out dates, confirmation number</li>
+    <li><strong>Restaurants</strong> — time, cuisine, budget</li>
+    <li><strong>Transport</strong> — trains, buses, taxis, rentals</li>
+    <li><strong>Expenses</strong> — tracked in dual currency automatically</li>
+  </ul>
+
+  <p>Everything shows up on an interactive map so you can see your day at a glance and optimize your route.</p>
+
+  <blockquote>
+    <p>"I stopped using Google Docs for trip planning the moment I tried Trovelo. It just makes sense." — App Store review</p>
+  </blockquote>
+
+  <h2>Privacy by Design</h2>
+
+  <p>All your trip data stays on your iPhone. No accounts, no servers, no tracking. <strong>Your itinerary is yours alone.</strong></p>
+
+  <div class="post-cta">
+    <p class="post-cta-title">Try Trovelo Free</p>
+    <p class="post-cta-sub">Plan your next trip privately. Pro is a one-time $6.99.</p>
+    <a href="https://apps.apple.com/app/id6760258252" class="post-cta-link">Download on the App Store</a>
+  </div>
+
+  <a href="/blog/trovelo/" class="post-back">← Back to all posts</a>
+
+</article>
+<!-- END POST CONTENT -->
+
+<footer class="blog-footer">
+  <p class="blog-footer-text">© 2026 Pinillos · <a href="/">Home</a> · <a href="/blog/trovelo/">Trovelo Blog</a></p>
+</footer>
+
+</body>
+</html>

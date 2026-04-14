@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Eduardo Pinillos — Building Things That Matter</title>
+<meta name="description" content="From startups to indie apps, I&#39;ve been shipping products since 2008. Currently building Trovelo, Dimmly, Percha, and Solid — privacy-first, native tools built with care.">
+<meta name="author" content="Eduardo Pinillos">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://pinilloslab.com/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE0IiBmaWxsPSIjRjFGMzMyIi8+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE5LDgpIHNjYWxlKDAuMjcpIj4KPHBhdGggZmlsbD0iIzAwMCIgZD0iTTUxLjI3LDQuNzdMNzkuNzcsNTEuODZjLjc2LDEuMjcuMzUsMi45Mi0xLjkyLDMuNjktLjQyLjI1LS45LjM4LTEuMzguMzhMMjAuMDksNTUuOTZjLTEuODYsMC0zLjM2LTEuNS0zLjM2LTMuMzYsMC0uNjEuMTctMS4yMS40OC0xLjczTDQ1LjUyLDQuNzdjLjk2LTEuMjcsMi42MS0xLjY1LDMuODktLjkyLjQ3LjI4Ljg2LjY3LDEuMTQsMS4xNGgwWiIvPgo8cGF0aCBmaWxsPSIjMDAwIiBkPSJNNTEuMjIsMjcuNjZMOTMuOTEsOTguMmMuNzYsMS4yNy4zNSwyLjkyLTEuNTYsMy42OS0uNDIuMjUtLjkuMzgtMS4zOC4zOEw1Ljk0LDEwMy4zYy0xLjg2LDAtMy4zNi0xLjUtMy4zNi0zLjM2LDAtLjYxLjE3LTEuMjEuNDgtMS43M0w0NS40NywyNy42N2MuOTYtMS4yNywyLjYxLTEuNjUsMy44OS0uOTIuNDcuMjguODYuNjcsMS4xNCwxLjE0aDBaIi8+CjxyZWN0IHg9IjQwLjE3IiB5PSI2OC4zNyIgd2lkdGg9IjE2LjQzIiBoZWlnaHQ9Ijg0LjYzIiByeD0iOC4yMSIgZmlsbD0iIzAwMCIvPgo8L2c+Cjwvc3ZnPg==">
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE0IiBmaWxsPSIjRjFGMzMyIi8+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDE5LDgpIHNjYWxlKDAuMjcpIj4KPHBhdGggZmlsbD0iIzAwMCIgZD0iTTUxLjI3LDQuNzdMNzkuNzcsNTEuODZjLjc2LDEuMjcuMzUsMi45Mi0xLjkyLDMuNjktLjQyLjI1LS45LjM4LTEuMzguMzhMMjAuMDksNTUuOTZjLTEuODYsMC0zLjM2LTEuNS0zLjM2LTMuMzYsMC0uNjEuMTctMS4yMS40OC0xLjczTDQ1LjUyLDQuNzdjLjk2LTEuMjcsMi42MS0xLjY1LDMuODktLjkyLjQ3LjI4Ljg2LjY3LDEuMTQsMS4xNGgwWiIvPgo8cGF0aCBmaWxsPSIjMDAwIiBkPSJNNTEuMjIsMjcuNjZMOTMuOTEsOTguMmMuNzYsMS4yNy4zNSwyLjkyLTEuNTYsMy42OS0uNDIuMjUtLjkuMzgtMS4zOC4zOEw1Ljk0LDEwMy4zYy0xLjg2LDAtMy4zNi0xLjUtMy4zNi0zLjM2LDAtLjYxLjE3LTEuMjEuNDgtMS43M0w0NS40NywyNy42N2MuOTYtMS4yNywyLjYxLTEuNjUsMy44OS0uOTIuNDcuMjguODYuNjcsMS4xNCwxLjE0aDBaIi8+CjxyZWN0IHg9IjQwLjE3IiB5PSI2OC4zNyIgd2lkdGg9IjE2LjQzIiBoZWlnaHQ9Ijg0LjYzIiByeD0iOC4yMSIgZmlsbD0iIzAwMCIvPgo8L2c+Cjwvc3ZnPg==">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Eduardo Pinillos — Building Things That Matter">
+<meta property="og:description" content="From startups to indie apps — building products that respect your privacy and feel like they belong on your device.">
+<meta property="og:url" content="https://pinilloslab.com/">
+<meta property="og:site_name" content="Pinillos">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Eduardo Pinillos — Building Things That Matter">
+<meta name="twitter:description" content="From startups to indie apps — building products that respect your privacy and feel like they belong on your device.">
+
+<!-- Theme color -->
+<meta name="theme-color" content="#F1F332">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root { --yellow: #F1F332; --black: #000; }
+html, body { width: 100%; overflow-x: hidden; background: #fff; }
+
+/* The pill is always fixed — JS moves it from center to top */
+#pill {
+  position: fixed;
+  background: var(--yellow);
+  border: 5px solid var(--black);
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: auto;
+  z-index: 300;
+  overflow: visible;
+}
+
+#trees-above {
+  position: fixed;
+  pointer-events: none;
+  z-index: 299;
+  transform: translateX(-50%);
+}
+
+.pill-wordmark {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  white-space: nowrap;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.pill-icon { height: auto; flex-shrink: 0; display: block; }
+
+/* spacer so page is scrollable */
+#spacer { height: 100vh; }
+
+/* ── FOOTER ── */
+#home-footer { display: block; }
+.footer-yellow {
+  background: var(--yellow);
+  padding: 40px 28px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.footer-black {
+  background: #000;
+  padding: 40px 28px 56px;
+}
+.footer-link {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(36px, 9vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #000;
+  text-decoration: none;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+}
+.footer-contact { color: #fff; }
+
+/* ── HOME CONTENT ── */
+#home-content {
+  padding: 48px 28px 80px;
+  background: #fff;
+}
+.home-headline {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+.home-line-light {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(32px, 9vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #000;
+  text-transform: uppercase;
+}
+.home-line-bold {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(32px, 9vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #000;
+  text-transform: uppercase;
+}
+.home-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(32px, 9vw, 48px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+
+/* ── CONTACT PAGE ── */
+#contact-page {
+  background: #fff;
+}
+
+.contact-header-block {
+  padding: 88px 28px 32px;
+}
+.contact-tagline {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #000;
+  margin-bottom: 8px;
+}
+.contact-sub {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  color: #888;
+  line-height: 1.5;
+}
+
+.contact-form {
+  padding: 0 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-input {
+  width: 100%;
+  padding: 16px 18px;
+  background: #f5f5f0;
+  border: none;
+  border-radius: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  color: #000;
+  outline: none;
+  -webkit-appearance: none;
+  resize: none;
+}
+.contact-input::placeholder { color: #aaa; }
+.contact-input:focus { background: #eeeee9; }
+.contact-textarea { min-height: 120px; }
+
+.contact-submit {
+  width: 100%;
+  padding: 18px;
+  background: #F1F332;
+  border: 3px solid #000;
+  border-radius: 999px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  color: #000;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.contact-submit:active { transform: scale(0.97); background: #e8ea20; }
+
+.contact-success {
+  display: none;
+  text-align: center;
+  padding: 32px 28px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #000;
+}
+
+.contact-divider {
+  height: 1px;
+  background: #eee;
+  margin: 32px 28px;
+}
+
+.contact-socials {
+  padding: 0 28px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contact-social-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: #f5f5f0;
+  border-radius: 14px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.contact-social-btn:active { background: #eeeee9; }
+.contact-social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.contact-social-icon.email { background: #F1F332; }
+.contact-social-icon.twitter { background: #000; }
+.contact-social-icon.linkedin { background: #0077B5; }
+.contact-social-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+}
+.contact-social-handle {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  color: #888;
+  margin-top: 1px;
+}
+
+
+/* ── PRIVACY POLICY PAGES ── */
+.privacy-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  margin-bottom: 24px;
+  background: none;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #888;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.privacy-back:active { color: #000; }
+.privacy-content {
+  padding: 88px 28px 80px;
+}
+.privacy-updated {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #aaa;
+  letter-spacing: 0.02em;
+  margin-bottom: 32px;
+}
+.privacy-heading {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(20px, 5vw, 24px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #000;
+  margin-top: 32px;
+  margin-bottom: 12px;
+}
+.privacy-heading:first-of-type {
+  margin-top: 0;
+}
+.privacy-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.privacy-text strong {
+  font-weight: 700;
+  color: #333;
+}
+.privacy-list {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.privacy-list li {
+  margin-bottom: 8px;
+}
+.privacy-list li strong {
+  font-weight: 700;
+  color: #333;
+}
+.privacy-subheading {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+.privacy-link {
+  color: #000;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+/* ── APP PAGES ── */
+.app-page {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 80;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.app-page.open { transform: translateX(0); }
+
+.app-screens {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  padding: 80px 20px 24px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.app-screens::-webkit-scrollbar { display: none; }
+
+.app-card {
+  flex-shrink: 0;
+  width: 72vw;
+  max-width: 300px;
+  border-radius: 32px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+.app-card-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.iphone-svg { width: 100%; height: auto; display: block; }
+
+.app-store-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 8px 0 28px;
+}
+.app-store-link { display: block; }
+
+.app-info-section {
+  padding: 0 28px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.app-info-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 18px 20px;
+  background: #f5f5f0;
+  border: none;
+  border-radius: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.app-info-btn:active { background: #e8e8e3; }
+.app-info-btn-arrow {
+  font-size: 18px;
+  color: #999;
+}
+
+.app-description {
+  padding: 0 28px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.app-desc-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #aaa;
+  text-transform: uppercase;
+}
+.app-desc-text strong {
+  font-weight: 800;
+  color: #000;
+}
+#about-page {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  z-index: 80;
+  transform: translateX(100%);
+  transition: transform 0.45s cubic-bezier(0.4,0,0.2,1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+#about-page.open {
+  transform: translateX(0);
+}
+
+.about-avatar-section {
+  padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.about-avatar-section > div svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* scrolling ticker */
+.about-ticker-wrap {
+  background: #000;
+  overflow: hidden;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+}
+.about-ticker {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+}
+.about-ticker span {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 28px;
+  color: #fff;
+  letter-spacing: 0.04em;
+  padding-right: 16px;
+}
+
+.about-body {
+  padding: 40px 28px 80px;
+}
+.about-bio {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #000;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+.about-bio strong {
+  font-weight: 800;
+}
+.about-education {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 36px;
+  padding: 24px;
+  background: #f5f5f0;
+  border-radius: 14px;
+}
+.about-edu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.about-edu-degree {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(18px, 4.5vw, 22px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+.about-edu-school {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #888;
+}
+.about-exp {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #aaa;
+  line-height: 1.3;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+.about-awards-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 16px;
+}
+.about-awards {
+  display: flex;
+  flex-direction: column;
+}
+.about-award-item {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid #eee;
+}
+.about-award-item:last-child { border-bottom: none; }
+.about-award-year {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  color: #aaa;
+  min-width: 40px;
+  flex-shrink: 0;
+}
+.about-award-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(16px, 4vw, 19px);
+  font-weight: 400;
+  color: #888;
+  line-height: 1.35;
+}
+.about-award-text strong {
+  font-weight: 800;
+  color: #111;
+}
+.about-award-highlight .about-award-year {
+  color: #000;
+}
+
+#menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--yellow);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 100px 32px 56px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.4,0,0.2,1);
+}
+#menu-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.menu-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.menu-nav a {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(36px, 9vw, 52px);
+  font-weight: 800;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  display: block;
+  transform: translateY(16px);
+  opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+#menu-overlay.open .menu-nav a { transform: translateY(0); opacity: 1; }
+#menu-overlay.open .menu-nav a:nth-child(1) { transition-delay: 0.05s; }
+#menu-overlay.open .menu-nav a:nth-child(2) { transition-delay: 0.10s; }
+#menu-overlay.open .menu-nav a:nth-child(3) { transition-delay: 0.15s; }
+#menu-overlay.open .menu-nav a:nth-child(4) { transition-delay: 0.20s; }
+#menu-overlay.open .menu-nav a:nth-child(5) { transition-delay: 0.25s; }
+#menu-overlay.open .menu-nav a:nth-child(6) { transition-delay: 0.30s; }
+.menu-contact {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: clamp(36px, 9vw, 52px);
+  font-weight: 800;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(16px);
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1) 0.35s,
+              opacity   0.4s cubic-bezier(0.4,0,0.2,1) 0.35s;
+}
+#menu-overlay.open .menu-contact { opacity: 1; transform: translateY(0); }
+
+/* pine icon rotation */
+#pill-icon {
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  transform-origin: center center;
+  transform-box: fill-box;
+}
+#pill-icon.rotated { transform: rotate(180deg); }
+
+
+
+#scroll-hint {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  z-index: 400;
+}
+#scroll-hint span {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #bbb;
+  font-family: -apple-system, sans-serif;
+}
+.hint-arrow { animation: bob 1.8s ease-in-out infinite; }
+@keyframes bob {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(6px); }
+}
+</style>
+</head>
+<body>
+
+<div id="spacer"></div>
+
+<div id="home-content">
+  <h1 class="home-headline">
+    <span class="home-line-light">HI, I'M EDU.</span>
+    <span class="home-line-light">AND I LIKE</span>
+    <span class="home-line-bold">TO BUILD THINGS.</span>
+  </h1>
+  <p class="home-body">FROM STARTUPS TO APPS, I'VE BEEN SHIPPING SINCE 2008. I'M CURRENTLY FOCUSED ON BUILDING PRIVACY-FIRST, NATIVE TOOLS BUILT WITH CARE — AND ALWAYS EXPLORING WHAT'S NEXT.</p>
+</div>
+
+<footer id="home-footer">
+  <div class="footer-yellow">
+    <a href="#" class="footer-link" id="footer-about">ABOUT ME</a>
+    <a href="#" class="footer-link" id="footer-trovelo">TROVELO</a>
+    <a href="#" class="footer-link" id="footer-dimmly">DIMMLY</a>
+    <a href="#" class="footer-link" id="footer-percha">PERCHA</a>
+    <a href="#" class="footer-link" id="footer-solid">SOLID</a>
+  </div>
+  <div class="footer-black">
+    <a href="#" class="footer-link footer-contact" id="footer-contact">CONTACT</a>
+  </div>
+</footer>
+
+<!-- Trees above pill -->
+<div id="trees-above">
+  <svg id="trees-svg" viewBox="0 0 242 207" xmlns="http://www.w3.org/2000/svg" style="display:block;">
+    <g fill="#000">
+      <g transform="translate(168,86)">
+        <path d="M37.808.38c.38.227.698.544.926.924L61.379 38.993c.764 1.273.353 2.924-1.92 3.688-.418.251-.897.384-1.384.384L52.773 43.065 72.625 76.106c.765 1.273.353 2.924-1.92 3.689-.418.251-.896.384-1.384.384L42.953 80.178l.001 33.266c0 3.607-2.924 6.53-6.531 6.53-3.607 0-6.531-2.923-6.531-6.53L29.891 80.178H2.688C1.203 80.179 0 78.975 0 77.491c0-.485.131-.961.38-1.378L20.104 43.065h-6.17c-1.484 0-2.688-1.204-2.688-2.688 0-.485.131-.961.38-1.377L34.122 1.31C34.883.036 36.533-.38 37.808.38z"/>
+      </g>
+      <g transform="translate(0,86)">
+        <path d="M37.808.38c.38.227.698.544.926.924L61.379 38.993c.764 1.273.353 2.924-1.92 3.688-.418.251-.897.384-1.384.384L52.773 43.065 72.625 76.106c.765 1.273.353 2.924-1.92 3.689-.418.251-.896.384-1.384.384L42.953 80.178l.001 33.266c0 3.607-2.924 6.53-6.531 6.53-3.607 0-6.531-2.923-6.531-6.53L29.891 80.178H2.688C1.203 80.179 0 78.975 0 77.491c0-.485.131-.961.38-1.378L20.104 43.065h-6.17c-1.484 0-2.688-1.204-2.688-2.688 0-.485.131-.961.38-1.377L34.122 1.31C34.883.036 36.533-.38 37.808.38z"/>
+      </g>
+      <g transform="translate(57,0)">
+        <path d="M65.239.657c.645.387 1.185.926 1.574 1.57l39.11 64.758c1.315 2.179.616 5.011-1.562 6.327-.719.434-1.543.668-2.382.668L91.071 73.975l34.26 56.727c1.315 2.178.615 5.01-1.563 6.326-.718.434-1.542.668-2.382.668L74.125 137.692l.001 57.053c0 6.224-5.046 11.27-11.27 11.27-6.224 0-11.27-5.046-11.27-11.27L51.585 137.692H4.608C2.063 137.692 0 135.629 0 133.084c0-.835.227-1.654.657-2.37L34.697 73.975H24.016c-2.545 0-4.608-2.063-4.608-4.608 0-.835.227-1.654.657-2.37L58.917 2.238C60.226.056 63.057-.652 65.239.657z"/>
+      </g>
+    </g>
+  </svg>
+</div>
+
+<!-- The pill -->
+<div id="pill">
+  <span class="pill-wordmark" id="pill-wm">PINILLOS</span>
+  <svg class="pill-icon" id="pill-icon" viewBox="0 0 97 153" xmlns="http://www.w3.org/2000/svg">
+    <g fill="#000">
+      <path d="M51.2707512,4.76587203 L79.7681033,51.8566079 C80.7288559,53.4442132 80.2206914,55.5100655 78.633086,56.4708181 C78.1083861,56.7883446 77.5067865,56.9562044 76.8934895,56.9562044 L20.0862284,56.9562044 C18.2305516,56.9562044 16.7262284,55.4518811 16.7262284,53.5962044 C16.7262284,52.9862373 16.8922715,52.3877759 17.2065497,51.8650052 L45.5164588,4.77426936 C46.4725737,3.18386673 48.536934,2.66967492 50.1273366,3.62578982 C50.5954791,3.9072267 50.9879492,4.29855299 51.2707512,4.76587203 Z"/>
+      <path d="M51.2240752,27.6600326 L93.9139366,98.2033232 C94.8746892,99.7909285 94.3665247,101.856781 92.7789194,102.817533 C92.2542195,103.13506 91.6526198,103.30292 91.0393229,103.30292 L5.94039506,103.30292 C4.0847183,103.30292 2.58039506,101.798596 2.58039506,99.9429197 C2.58039506,99.3329526 2.74643821,98.7344912 3.06071635,98.2117205 L45.4697827,27.6684299 C46.4258976,26.0780273 48.490258,25.5638355 50.0806606,26.5199504 C50.5488031,26.8013873 50.9412732,27.1927136 51.2240752,27.6600326 Z"/>
+      <rect x="40.172371" y="68.3736264" width="16.4285458" height="84.6263736" rx="8.21427291"/>
+    </g>
+  </svg>
+</div>
+
+<!-- ABOUT ME PAGE -->
+<div id="about-page">
+  <div class="about-avatar-section">
+    <div style="width:85%;max-width:320px;margin:0 auto;display:flex;justify-content:center;"><img src="images/avatar.svg" alt="Eduardo Pinillos" style="width:100%;height:auto;display:block;"></div>
+  </div>
+
+  <div class="about-ticker-wrap">
+    <div class="about-ticker" id="about-ticker">
+      <span>HOLA</span><span>•</span>
+      <span>HELLO</span><span>•</span>
+      <span>OLÁ</span><span>•</span>
+      <span>CIAO</span><span>•</span>
+      <span>SALUT</span><span>•</span>
+      <span>HALLO</span><span>•</span>
+      <span>KONICHIWA</span><span>•</span>
+      <span>NǏ HǍO</span><span>•</span>
+      <span>HOLA</span><span>•</span>
+      <span>HELLO</span><span>•</span>
+      <span>OLÁ</span><span>•</span>
+      <span>CIAO</span><span>•</span>
+      <span>SALUT</span><span>•</span>
+      <span>HALLO</span><span>•</span>
+      <span>KONICHIWA</span><span>•</span>
+      <span>NǏ HǍO</span><span>•</span>
+    </div>
+  </div>
+
+  <div class="about-body">
+    <p class="about-bio">BORN IN <strong>LIMA</strong>, BASED IN <strong>EUROPE</strong>. I'VE SPENT THE LAST <strong>17 YEARS</strong> TURNING IDEAS INTO <strong>PRODUCTS</strong> — FROM <strong>VENTURE-BACKED STARTUPS</strong> TO <strong>INDIE APPS</strong> I BUILD FROM MY DESK. I BELIEVE THE BEST SOFTWARE RESPECTS YOUR <strong>PRIVACY</strong> AND FEELS LIKE IT BELONGS ON <strong>YOUR DEVICE</strong>.</p>
+
+    <div class="about-education">
+      <div class="about-edu-item">
+        <span class="about-edu-degree">Master in Marketing</span>
+        <span class="about-edu-school">EADA Barcelona</span>
+      </div>
+      <div class="about-edu-item">
+        <span class="about-edu-degree">Communication Sciences</span>
+        <span class="about-edu-school">University of Lima</span>
+      </div>
+    </div>
+
+    <p class="about-exp">20+ years launching products, mobile apps, and digital campaigns across 3 continents.</p>
+
+    <div class="about-awards">
+      <p class="about-awards-title">Recognition</p>
+      <div class="about-award-item">
+        <span class="about-award-year">2025</span>
+        <span class="about-award-text"><strong>Winner</strong> — HackerNoon, Startup of the Year, Food &amp; Beverages (USA)</span>
+      </div>
+      <div class="about-award-item">
+        <span class="about-award-year">2019</span>
+        <span class="about-award-text"><strong>Winner</strong> — Best Startup, Finnovista Mexico</span>
+      </div>
+      <div class="about-award-item">
+        <span class="about-award-year">2018</span>
+        <span class="about-award-text"><strong>Winner</strong> — Startup Peru</span>
+      </div>
+      <div class="about-award-item">
+        <span class="about-award-year">2015</span>
+        <span class="about-award-text"><strong>Winner</strong> — Modev, Washington DC</span>
+      </div>
+      <div class="about-award-item">
+        <span class="about-award-year">2013</span>
+        <span class="about-award-text"><strong>Winner</strong> — Creatividad Empresarial</span>
+      </div>
+      <div class="about-award-item">
+        <span class="about-award-year">2012</span>
+        <span class="about-award-text"><strong>Finalist</strong> — Alpha Program, Web Summit Dublin</span>
+      </div>
+      <div class="about-award-item">
+        <span class="about-award-year">2012</span>
+        <span class="about-award-text"><strong>Finalist</strong> — Festival of Media Miami LATAM</span>
+      </div>
+      <div class="about-award-item about-award-highlight">
+        <span class="about-award-year">2012</span>
+        <span class="about-award-text"><strong>Winner</strong> — Startup World TNW, San Francisco</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TROVELO PAGE -->
+<div id="trovelo-page" class="app-page">
+  <div class="app-screens">
+    <div class="app-card">
+      <img src="images/image_2.webp" alt="Trovelo screenshot 1" class="app-card-img" />
+    </div>
+    <div class="app-card">
+      <img src="images/image_3.webp" alt="Trovelo screenshot 2" class="app-card-img" />
+    </div>
+    <div class="app-card">
+      <img src="images/image_4.webp" alt="Trovelo screenshot 3" class="app-card-img" />
+    </div>
+    <div class="app-card">
+      <img src="images/image_5.webp" alt="Trovelo screenshot 4" class="app-card-img" />
+    </div>
+    <div class="app-card">
+      <img src="images/image_6.webp" alt="Trovelo screenshot 5" class="app-card-img" />
+    </div>
+    <div class="app-card">
+      <img src="images/image_7.webp" alt="Trovelo screenshot 6" class="app-card-img" />
+    </div>
+  </div>
+
+  <div class="app-store-wrap">
+    <a href="https://apps.apple.com/app/id6760258252" target="_blank" class="app-store-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="53" viewBox="0 0 119.66407 40">
+        <g><g><g>
+          <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z" fill="#a6a6a6"/>
+          <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z"/>
+          <g><g><g>
+            <path d="M24.76888,20.30068a4.94881,4.94881,0,0,1,2.35656-4.15206,5.06566,5.06566,0,0,0-3.99116-2.15768c-1.67924-.17626-3.30719,1.00483-4.1629,1.00483-.87227,0-2.18977-.98733-3.6085-.95814a5.31529,5.31529,0,0,0-4.47292,2.72787c-1.934,3.34842-.49141,8.26947,1.3612,10.97608.9269,1.32535,2.01018,2.8058,3.42763,2.7533,1.38706-.05753,1.9051-.88448,3.5794-.88448,1.65876,0,2.14479.88448,3.591.8511,1.48838-.02416,2.42613-1.33124,3.32051-2.66914a10.962,10.962,0,0,0,1.51842-3.09251A4.78205,4.78205,0,0,1,24.76888,20.30068Z" fill="#fff"/>
+            <path d="M22.03725,12.21089a4.87248,4.87248,0,0,0,1.11452-3.49062,4.95746,4.95746,0,0,0-3.20758,1.65961,4.63634,4.63634,0,0,0-1.14371,3.36139A4.09905,4.09905,0,0,0,22.03725,12.21089Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M42.30227,27.13965h-4.7334l-1.13672,3.35645H34.42727l4.4834-12.418h2.083l4.4834,12.418H43.438ZM38.0591,25.59082h3.752l-1.84961-5.44727h-.05176Z" fill="#fff"/>
+            <path d="M55.15969,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H48.4302v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.645,21.34766,55.15969,23.16406,55.15969,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30227,29.01563,53.24953,27.81934,53.24953,25.96973Z" fill="#fff"/>
+            <path d="M65.12453,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H58.395v1.50586h.03418A3.21162,3.21162,0,0,1,61.312,21.34766C63.60988,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26711,29.01563,63.21438,27.81934,63.21438,25.96973Z" fill="#fff"/>
+            <path d="M71.71047,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51855-3.61426,2.624,0,4.42285,1.47168,4.4834,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60645,1.626,3.60645,3.44238,0,2.32324-1.85059,3.77832-4.79395,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z" fill="#fff"/>
+            <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z" fill="#fff"/>
+            <path d="M86.065,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72609,30.6084,86.065,28.82617,86.065,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40039,1.16211-2.40039,3.10742c0,1.96191.89453,3.10645,2.40039,3.10645S92.76027,27.93164,92.76027,25.96973Z" fill="#fff"/>
+            <path d="M96.18606,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z" fill="#fff"/>
+            <path d="M109.3843,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10207,25.13477Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z" fill="#fff"/>
+            <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z" fill="#fff"/>
+            <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z" fill="#fff"/>
+            <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M59.09377,8.437h.88867v6.26074h-.88867Z" fill="#fff"/>
+            <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z" fill="#fff"/>
+            <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z" fill="#fff"/>
+            <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z" fill="#fff"/>
+            <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z" fill="#fff"/>
+            <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z" fill="#fff"/>
+            <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z" fill="#fff"/>
+            <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z" fill="#fff"/>
+          </g>
+        </g></g></g>
+      </svg>
+    </a>
+  </div>
+
+  <div class="app-description">
+    <p class="app-desc-text">TROVELO IS A <strong>PRIVATE, OFFLINE TRIP PLANNER</strong> FOR iPHONE. YOU CREATE TRIPS WITH DATES AND DESTINATION, THEN BUILD YOUR ITINERARY DAY BY DAY USING <strong>SMART ACTIVITY CARDS</strong> — FLIGHTS, HOTELS, RESTAURANTS, TRANSPORT, EXPENSES AND MORE.</p>
+    <p class="app-desc-text">JUST TYPE NATURALLY AND THE APP <strong>ORGANIZES EVERYTHING AUTOMATICALLY</strong>. IT ALSO TRACKS YOUR BUDGET IN <strong>DUAL CURRENCY</strong> WITH LIVE EXCHANGE RATES, SHOWS ALL YOUR PLANS ON AN <strong>INTERACTIVE MAP</strong>, AND INCLUDES <strong>LOCK SCREEN WIDGETS</strong> TO KEEP YOUR TRIP AT A GLANCE.</p>
+    <p class="app-desc-text"><strong>100% ON-DEVICE.</strong> NO ACCOUNTS, NO SERVERS, NO SUBSCRIPTION. YOUR DATA NEVER LEAVES YOUR PHONE. FREE TO DOWNLOAD, <strong>PRO IS A ONE-TIME $6.99</strong>.</p>
+  </div>
+
+  <div class="app-info-section">
+    <button class="app-info-btn send-feedback-btn">
+      <span>Send Feedback</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <button class="app-info-btn privacy-btn" data-privacy="trovelo">
+      <span>Privacy Policy</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <a href="/blog/trovelo/" class="app-info-btn">
+      <span>Blog</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </a>
+  </div>
+</div>
+
+
+<!-- DIMMLY PAGE -->
+<div id="dimmly-page" class="app-page">
+  <div class="app-screens">
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#f5f0e8,#e8e0d4);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 1</div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#f5f0e8,#e8e0d4);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 2</div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#f5f0e8,#e8e0d4);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 3</div>
+    </div>
+  </div>
+
+  <div class="app-store-wrap">
+    <a href="https://apps.apple.com/app/id6761221806" target="_blank" class="app-store-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="53" viewBox="0 0 119.66407 40">
+        <g><g><g>
+          <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z" fill="#a6a6a6"/>
+          <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z"/>
+          <g><g><g>
+            <path d="M24.76888,20.30068a4.94881,4.94881,0,0,1,2.35656-4.15206,5.06566,5.06566,0,0,0-3.99116-2.15768c-1.67924-.17626-3.30719,1.00483-4.1629,1.00483-.87227,0-2.18977-.98733-3.6085-.95814a5.31529,5.31529,0,0,0-4.47292,2.72787c-1.934,3.34842-.49141,8.26947,1.3612,10.97608.9269,1.32535,2.01018,2.8058,3.42763,2.7533,1.38706-.05753,1.9051-.88448,3.5794-.88448,1.65876,0,2.14479.88448,3.591.8511,1.48838-.02416,2.42613-1.33124,3.32051-2.66914a10.962,10.962,0,0,0,1.51842-3.09251A4.78205,4.78205,0,0,1,24.76888,20.30068Z" fill="#fff"/>
+            <path d="M22.03725,12.21089a4.87248,4.87248,0,0,0,1.11452-3.49062,4.95746,4.95746,0,0,0-3.20758,1.65961,4.63634,4.63634,0,0,0-1.14371,3.36139A4.09905,4.09905,0,0,0,22.03725,12.21089Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M42.30227,27.13965h-4.7334l-1.13672,3.35645H34.42727l4.4834-12.418h2.083l4.4834,12.418H43.438ZM38.0591,25.59082h3.752l-1.84961-5.44727h-.05176Z" fill="#fff"/>
+            <path d="M55.15969,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H48.4302v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.645,21.34766,55.15969,23.16406,55.15969,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30227,29.01563,53.24953,27.81934,53.24953,25.96973Z" fill="#fff"/>
+            <path d="M65.12453,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H58.395v1.50586h.03418A3.21162,3.21162,0,0,1,61.312,21.34766C63.60988,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26711,29.01563,63.21438,27.81934,63.21438,25.96973Z" fill="#fff"/>
+            <path d="M71.71047,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51855-3.61426,2.624,0,4.42285,1.47168,4.4834,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60645,1.626,3.60645,3.44238,0,2.32324-1.85059,3.77832-4.79395,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z" fill="#fff"/>
+            <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z" fill="#fff"/>
+            <path d="M86.065,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72609,30.6084,86.065,28.82617,86.065,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40039,1.16211-2.40039,3.10742c0,1.96191.89453,3.10645,2.40039,3.10645S92.76027,27.93164,92.76027,25.96973Z" fill="#fff"/>
+            <path d="M96.18606,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z" fill="#fff"/>
+            <path d="M109.3843,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10207,25.13477Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z" fill="#fff"/>
+            <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z" fill="#fff"/>
+            <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z" fill="#fff"/>
+            <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M59.09377,8.437h.88867v6.26074h-.88867Z" fill="#fff"/>
+            <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z" fill="#fff"/>
+            <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z" fill="#fff"/>
+            <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z" fill="#fff"/>
+            <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z" fill="#fff"/>
+            <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z" fill="#fff"/>
+            <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z" fill="#fff"/>
+            <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z" fill="#fff"/>
+          </g>
+        </g></g></g>
+      </svg>
+    </a>
+  </div>
+
+  <div class="app-description">
+    <p class="app-desc-text">DIMMLY IS A <strong>TASK MANAGER AND HABIT TRACKER</strong> FOR iPHONE THAT KEEPS EVERYTHING IN ONE PLACE WITHOUT THE COMPLEXITY. TASKS, DAILY HABITS, ALARMS, NOTES — ALL IN THE <strong>SAME LIST</strong>, NO SEPARATE SECTIONS OR APPS NEEDED.</p>
+    <p class="app-desc-text">ADDING TASKS IS INSTANT — <strong>PULL DOWN, TYPE, DONE.</strong> SET HOW MANY TIMES PER DAY YOU WANT TO DO SOMETHING AND TRACK PROGRESS WITH <strong>DOT INDICATORS</strong> RIGHT ON THE CARD. ADD <strong>BIG NOTES</strong> OR <strong>CHECKLISTS</strong> INSIDE ANY TASK, SET ALARMS, PIN YOUR MOST USED LISTS, AND <strong>IMPORT LISTS</strong> INSTANTLY BY PASTING TEXT.</p>
+    <p class="app-desc-text">FREE FOR 5 FULLY-FEATURED LISTS. <strong>UNLIMITED LISTS FOR A ONE-TIME $6.99</strong> — NO SUBSCRIPTION, EVER.</p>
+  </div>
+
+  <div class="app-info-section">
+    <button class="app-info-btn send-feedback-btn">
+      <span>Send Feedback</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <button class="app-info-btn privacy-btn" data-privacy="dimmly">
+      <span>Privacy Policy</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <a href="/blog/dimmly/" class="app-info-btn">
+      <span>Blog</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </a>
+  </div>
+</div>
+
+<!-- PERCHA PAGE -->
+<div id="percha-page" class="app-page">
+  <div class="app-screens">
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#f0e8f5,#e0d4e8);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 1</div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#f0e8f5,#e0d4e8);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 2</div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#f0e8f5,#e0d4e8);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 3</div>
+    </div>
+  </div>
+
+  <div class="app-store-wrap">
+    <a href="https://apps.apple.com/app/id6761848999" target="_blank" class="app-store-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="53" viewBox="0 0 119.66407 40">
+        <g><g><g>
+          <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z" fill="#a6a6a6"/>
+          <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z"/>
+          <g><g><g>
+            <path d="M24.76888,20.30068a4.94881,4.94881,0,0,1,2.35656-4.15206,5.06566,5.06566,0,0,0-3.99116-2.15768c-1.67924-.17626-3.30719,1.00483-4.1629,1.00483-.87227,0-2.18977-.98733-3.6085-.95814a5.31529,5.31529,0,0,0-4.47292,2.72787c-1.934,3.34842-.49141,8.26947,1.3612,10.97608.9269,1.32535,2.01018,2.8058,3.42763,2.7533,1.38706-.05753,1.9051-.88448,3.5794-.88448,1.65876,0,2.14479.88448,3.591.8511,1.48838-.02416,2.42613-1.33124,3.32051-2.66914a10.962,10.962,0,0,0,1.51842-3.09251A4.78205,4.78205,0,0,1,24.76888,20.30068Z" fill="#fff"/>
+            <path d="M22.03725,12.21089a4.87248,4.87248,0,0,0,1.11452-3.49062,4.95746,4.95746,0,0,0-3.20758,1.65961,4.63634,4.63634,0,0,0-1.14371,3.36139A4.09905,4.09905,0,0,0,22.03725,12.21089Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M42.30227,27.13965h-4.7334l-1.13672,3.35645H34.42727l4.4834-12.418h2.083l4.4834,12.418H43.438ZM38.0591,25.59082h3.752l-1.84961-5.44727h-.05176Z" fill="#fff"/>
+            <path d="M55.15969,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H48.4302v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.645,21.34766,55.15969,23.16406,55.15969,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30227,29.01563,53.24953,27.81934,53.24953,25.96973Z" fill="#fff"/>
+            <path d="M65.12453,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H58.395v1.50586h.03418A3.21162,3.21162,0,0,1,61.312,21.34766C63.60988,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26711,29.01563,63.21438,27.81934,63.21438,25.96973Z" fill="#fff"/>
+            <path d="M71.71047,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51855-3.61426,2.624,0,4.42285,1.47168,4.4834,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60645,1.626,3.60645,3.44238,0,2.32324-1.85059,3.77832-4.79395,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z" fill="#fff"/>
+            <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z" fill="#fff"/>
+            <path d="M86.065,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72609,30.6084,86.065,28.82617,86.065,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40039,1.16211-2.40039,3.10742c0,1.96191.89453,3.10645,2.40039,3.10645S92.76027,27.93164,92.76027,25.96973Z" fill="#fff"/>
+            <path d="M96.18606,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z" fill="#fff"/>
+            <path d="M109.3843,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10207,25.13477Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z" fill="#fff"/>
+            <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z" fill="#fff"/>
+            <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z" fill="#fff"/>
+            <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M59.09377,8.437h.88867v6.26074h-.88867Z" fill="#fff"/>
+            <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z" fill="#fff"/>
+            <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z" fill="#fff"/>
+            <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z" fill="#fff"/>
+            <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z" fill="#fff"/>
+            <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z" fill="#fff"/>
+            <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z" fill="#fff"/>
+            <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z" fill="#fff"/>
+          </g>
+        </g></g></g>
+      </svg>
+    </a>
+  </div>
+
+  <div class="app-description">
+    <p class="app-desc-text">PERCHA IS AN iOS APP THAT <strong>INTELLIGENTLY SUGGESTS OUTFITS</strong> BASED ON WEATHER, YOUR STYLE PREFERENCES, AND WHICH PIECES YOU WEAR LEAST. IT USES <strong>AI TO UNDERSTAND COLOR HARMONY</strong> AND OUTFIT BALANCE.</p>
+    <p class="app-desc-text">FEATURES A QUICK <strong>VISUAL OUTFIT BUILDER</strong> WITH REAL-TIME PREVIEW, AND TRACKS YOUR <strong>WARDROBE ANALYTICS</strong> TO HELP YOU GET THE MOST OUT OF YOUR CLOTHES.</p>
+    <p class="app-desc-text"><strong>EVERYTHING WORKS ON-DEVICE</strong> WITH AUTOMATIC <strong>iCLOUD SYNC</strong>.</p>
+  </div>
+
+  <div class="app-info-section">
+    <button class="app-info-btn send-feedback-btn">
+      <span>Send Feedback</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <button class="app-info-btn privacy-btn" data-privacy="percha">
+      <span>Privacy Policy</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <a href="/blog/percha/" class="app-info-btn">
+      <span>Blog</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </a>
+  </div>
+</div>
+
+<!-- SOLID PAGE -->
+<div id="solid-page" class="app-page">
+  <div class="app-screens">
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#e8e8e8,#d4d4d4);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 1</div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#e8e8e8,#d4d4d4);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 2</div>
+    </div>
+    <div class="app-card">
+      <div class="app-card-img" style="width:100%;height:500px;background:linear-gradient(135deg,#e8e8e8,#d4d4d4);display:flex;align-items:center;justify-content:center;font-size:14px;color:#888;">Screenshot 3</div>
+    </div>
+  </div>
+
+  <div class="app-store-wrap">
+    <a href="https://apps.apple.com/app/id6761683203" target="_blank" class="app-store-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="160" height="53" viewBox="0 0 119.66407 40">
+        <g><g><g>
+          <path d="M110.13477,0H9.53468c-.3667,0-.729,0-1.09473.002-.30615.002-.60986.00781-.91895.0127A13.21476,13.21476,0,0,0,5.5171.19141a6.66509,6.66509,0,0,0-1.90088.627A6.43779,6.43779,0,0,0,1.99757,1.99707,6.25844,6.25844,0,0,0,.81935,3.61816a6.60119,6.60119,0,0,0-.625,1.90332,12.993,12.993,0,0,0-.1792,2.002C.00587,7.83008.00489,8.1377,0,8.44434V31.5586c.00489.3105.00587.6113.01515.9219a12.99232,12.99232,0,0,0,.1792,2.0019,6.58756,6.58756,0,0,0,.625,1.9043A6.20778,6.20778,0,0,0,1.99757,38.001a6.27445,6.27445,0,0,0,1.61865,1.1787,6.70082,6.70082,0,0,0,1.90088.6308,13.45514,13.45514,0,0,0,2.0039.1768c.30909.0068.6128.0107.91895.0107C8.80567,40,9.168,40,9.53468,40H110.13477c.3594,0,.7246,0,1.084-.002.3047,0,.6172-.0039.9219-.0107a13.279,13.279,0,0,0,2-.1768,6.80432,6.80432,0,0,0,1.9082-.6308,6.27742,6.27742,0,0,0,1.6172-1.1787,6.39482,6.39482,0,0,0,1.1816-1.6143,6.60413,6.60413,0,0,0,.6191-1.9043,13.50643,13.50643,0,0,0,.1856-2.0019c.0039-.3106.0039-.6114.0039-.9219.0078-.3633.0078-.7246.0078-1.0938V9.53613c0-.36621,0-.72949-.0078-1.09179,0-.30664,0-.61426-.0039-.9209a13.5071,13.5071,0,0,0-.1856-2.002,6.6177,6.6177,0,0,0-.6191-1.90332,6.46619,6.46619,0,0,0-2.7988-2.7998,6.76754,6.76754,0,0,0-1.9082-.627,13.04394,13.04394,0,0,0-2-.17676c-.3047-.00488-.6172-.01074-.9219-.01269-.3594-.002-.7246-.002-1.084-.002Z" fill="#a6a6a6"/>
+          <path d="M8.44483,39.125c-.30468,0-.602-.0039-.90429-.0107a12.68714,12.68714,0,0,1-1.86914-.1631,5.88381,5.88381,0,0,1-1.65674-.5479,5.40573,5.40573,0,0,1-1.397-1.0166,5.32082,5.32082,0,0,1-1.02051-1.3965,5.72186,5.72186,0,0,1-.543-1.6572,12.41351,12.41351,0,0,1-.1665-1.875c-.00634-.2109-.01464-.9131-.01464-.9131V8.44434S.88185,7.75293.8877,7.5498a12.37039,12.37039,0,0,1,.16553-1.87207,5.7555,5.7555,0,0,1,.54346-1.6621A5.37349,5.37349,0,0,1,2.61183,2.61768,5.56543,5.56543,0,0,1,4.01417,1.59521a5.82309,5.82309,0,0,1,1.65332-.54394A12.58589,12.58589,0,0,1,7.543.88721L8.44532.875H111.21387l.9131.0127a12.38493,12.38493,0,0,1,1.8584.16259,5.93833,5.93833,0,0,1,1.6709.54785,5.59374,5.59374,0,0,1,2.415,2.41993,5.76267,5.76267,0,0,1,.5352,1.64892,12.995,12.995,0,0,1,.1738,1.88721c.0029.2832.0029.5874.0029.89014.0079.375.0079.73193.0079,1.09179V30.4648c0,.3633,0,.7178-.0079,1.0752,0,.3252,0,.6231-.0039.9297a12.73126,12.73126,0,0,1-.1709,1.8535,5.739,5.739,0,0,1-.54,1.67,5.48029,5.48029,0,0,1-1.0156,1.3857,5.4129,5.4129,0,0,1-1.3994,1.0225,5.86168,5.86168,0,0,1-1.668.5498,12.54218,12.54218,0,0,1-1.8692.1631c-.2929.0068-.5996.0107-.8974.0107l-1.084.002Z"/>
+          <g><g><g>
+            <path d="M24.76888,20.30068a4.94881,4.94881,0,0,1,2.35656-4.15206,5.06566,5.06566,0,0,0-3.99116-2.15768c-1.67924-.17626-3.30719,1.00483-4.1629,1.00483-.87227,0-2.18977-.98733-3.6085-.95814a5.31529,5.31529,0,0,0-4.47292,2.72787c-1.934,3.34842-.49141,8.26947,1.3612,10.97608.9269,1.32535,2.01018,2.8058,3.42763,2.7533,1.38706-.05753,1.9051-.88448,3.5794-.88448,1.65876,0,2.14479.88448,3.591.8511,1.48838-.02416,2.42613-1.33124,3.32051-2.66914a10.962,10.962,0,0,0,1.51842-3.09251A4.78205,4.78205,0,0,1,24.76888,20.30068Z" fill="#fff"/>
+            <path d="M22.03725,12.21089a4.87248,4.87248,0,0,0,1.11452-3.49062,4.95746,4.95746,0,0,0-3.20758,1.65961,4.63634,4.63634,0,0,0-1.14371,3.36139A4.09905,4.09905,0,0,0,22.03725,12.21089Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M42.30227,27.13965h-4.7334l-1.13672,3.35645H34.42727l4.4834-12.418h2.083l4.4834,12.418H43.438ZM38.0591,25.59082h3.752l-1.84961-5.44727h-.05176Z" fill="#fff"/>
+            <path d="M55.15969,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H48.4302v1.50586h.03418a3.21162,3.21162,0,0,1,2.88281-1.60059C53.645,21.34766,55.15969,23.16406,55.15969,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C52.30227,29.01563,53.24953,27.81934,53.24953,25.96973Z" fill="#fff"/>
+            <path d="M65.12453,25.96973c0,2.81348-1.50586,4.62109-3.77832,4.62109a3.0693,3.0693,0,0,1-2.84863-1.584h-.043v4.48438h-1.8584V21.44238H58.395v1.50586h.03418A3.21162,3.21162,0,0,1,61.312,21.34766C63.60988,21.34766,65.12453,23.16406,65.12453,25.96973Zm-1.91016,0c0-1.833-.94727-3.03809-2.39258-3.03809-1.41992,0-2.375,1.23047-2.375,3.03809,0,1.82422.95508,3.0459,2.375,3.0459C62.26711,29.01563,63.21438,27.81934,63.21438,25.96973Z" fill="#fff"/>
+            <path d="M71.71047,27.03613c.1377,1.23145,1.334,2.04,2.96875,2.04,1.56641,0,2.69336-.80859,2.69336-1.91895,0-.96387-.67969-1.541-2.28906-1.93652l-1.60937-.3877c-2.28027-.55078-3.33887-1.61719-3.33887-3.34766,0-2.14258,1.86719-3.61426,4.51855-3.61426,2.624,0,4.42285,1.47168,4.4834,3.61426h-1.876c-.1123-1.23926-1.13672-1.9873-2.63379-1.9873s-2.52148.75684-2.52148,1.8584c0,.87793.6543,1.39453,2.25488,1.79l1.36816.33594c2.54785.60254,3.60645,1.626,3.60645,3.44238,0,2.32324-1.85059,3.77832-4.79395,3.77832-2.75391,0-4.61328-1.4209-4.7334-3.667Z" fill="#fff"/>
+            <path d="M83.34621,19.2998v2.14258h1.72168v1.47168H83.34621v4.99121c0,.77539.34473,1.13672,1.10156,1.13672a5.80752,5.80752,0,0,0,.61133-.043v1.46289a5.10351,5.10351,0,0,1-1.03223.08594c-1.833,0-2.54785-.68848-2.54785-2.44434V22.91406H80.16262V21.44238H81.479V19.2998Z" fill="#fff"/>
+            <path d="M86.065,25.96973c0-2.84863,1.67773-4.63867,4.29395-4.63867,2.625,0,4.29492,1.79,4.29492,4.63867,0,2.85645-1.66113,4.63867-4.29492,4.63867C87.72609,30.6084,86.065,28.82617,86.065,25.96973Zm6.69531,0c0-1.9541-.89551-3.10742-2.40137-3.10742s-2.40039,1.16211-2.40039,3.10742c0,1.96191.89453,3.10645,2.40039,3.10645S92.76027,27.93164,92.76027,25.96973Z" fill="#fff"/>
+            <path d="M96.18606,21.44238h1.77246v1.541h.043a2.1594,2.1594,0,0,1,2.17773-1.63574,2.86616,2.86616,0,0,1,.63672.06934v1.73828a2.59794,2.59794,0,0,0-.835-.1123,1.87264,1.87264,0,0,0-1.93652,2.083v5.37012h-1.8584Z" fill="#fff"/>
+            <path d="M109.3843,27.83691c-.25,1.64355-1.85059,2.77148-3.89844,2.77148-2.63379,0-4.26855-1.76465-4.26855-4.5957,0-2.83984,1.64355-4.68164,4.19043-4.68164,2.50488,0,4.08008,1.7207,4.08008,4.46582v.63672h-6.39453v.1123a2.358,2.358,0,0,0,2.43555,2.56445,2.04834,2.04834,0,0,0,2.09082-1.27344Zm-6.28223-2.70215h4.52637a2.1773,2.1773,0,0,0-2.2207-2.29785A2.292,2.292,0,0,0,103.10207,25.13477Z" fill="#fff"/>
+          </g></g>
+          <g>
+            <path d="M37.82619,8.731a2.63964,2.63964,0,0,1,2.80762,2.96484c0,1.90625-1.03027,3.002-2.80762,3.002H35.67092V8.731Zm-1.22852,5.123h1.125a1.87588,1.87588,0,0,0,1.96777-2.146,1.881,1.881,0,0,0-1.96777-2.13379h-1.125Z" fill="#fff"/>
+            <path d="M41.68068,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C44.57522,13.99463,45.01369,13.42432,45.01369,12.44434Z" fill="#fff"/>
+            <path d="M51.57326,14.69775h-.92187l-.93066-3.31641h-.07031l-.92676,3.31641h-.91309l-1.24121-4.50293h.90137l.80664,3.436h.06641l.92578-3.436h.85254l.92578,3.436h.07031l.80273-3.436h.88867Z" fill="#fff"/>
+            <path d="M53.85354,10.19482H54.709v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915h-.88867V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M59.09377,8.437h.88867v6.26074h-.88867Z" fill="#fff"/>
+            <path d="M61.21779,12.44434a2.13346,2.13346,0,1,1,4.24756,0,2.1338,2.1338,0,1,1-4.24756,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C64.11232,13.99463,64.5508,13.42432,64.5508,12.44434Z" fill="#fff"/>
+            <path d="M66.4009,13.42432c0-.81055.60352-1.27783,1.6748-1.34424l1.21973-.07031v-.38867c0-.47559-.31445-.74414-.92187-.74414-.49609,0-.83984.18213-.93848.50049h-.86035c.09082-.77344.81836-1.26953,1.83984-1.26953,1.12891,0,1.76563.562,1.76563,1.51318v3.07666h-.85547v-.63281h-.07031a1.515,1.515,0,0,1-1.35254.707A1.36026,1.36026,0,0,1,66.4009,13.42432Zm2.89453-.38477v-.37646l-1.09961.07031c-.62012.0415-.90137.25244-.90137.64941,0,.40527.35156.64111.835.64111A1.0615,1.0615,0,0,0,69.29543,13.03955Z" fill="#fff"/>
+            <path d="M71.34816,12.44434c0-1.42285.73145-2.32422,1.86914-2.32422a1.484,1.484,0,0,1,1.38086.79h.06641V8.437h.88867v6.26074h-.85156v-.71143h-.07031a1.56284,1.56284,0,0,1-1.41406.78564C72.0718,14.772,71.34816,13.87061,71.34816,12.44434Zm.918,0c0,.95508.4502,1.52979,1.20313,1.52979.749,0,1.21191-.583,1.21191-1.52588,0-.93848-.46777-1.52979-1.21191-1.52979C72.72121,10.91846,72.26613,11.49707,72.26613,12.44434Z" fill="#fff"/>
+            <path d="M79.23,12.44434a2.13323,2.13323,0,1,1,4.24707,0,2.13358,2.13358,0,1,1-4.24707,0Zm3.333,0c0-.97607-.43848-1.54687-1.208-1.54687-.77246,0-1.207.5708-1.207,1.54688,0,.98389.43457,1.55029,1.207,1.55029C82.12453,13.99463,82.563,13.42432,82.563,12.44434Z" fill="#fff"/>
+            <path d="M84.66945,10.19482h.85547v.71533h.06641a1.348,1.348,0,0,1,1.34375-.80225,1.46456,1.46456,0,0,1,1.55859,1.6748v2.915H87.605V12.00586c0-.72363-.31445-1.0835-.97168-1.0835a1.03294,1.03294,0,0,0-1.0752,1.14111v2.63428h-.88867Z" fill="#fff"/>
+            <path d="M93.51516,9.07373v1.1416h.97559v.74854h-.97559V13.2793c0,.47168.19434.67822.63672.67822a2.96657,2.96657,0,0,0,.33887-.02051v.74023a2.9155,2.9155,0,0,1-.4834.04541c-.98828,0-1.38184-.34766-1.38184-1.21582v-2.543h-.71484v-.74854h.71484V9.07373Z" fill="#fff"/>
+            <path d="M95.70461,8.437h.88086v2.48145h.07031a1.3856,1.3856,0,0,1,1.373-.80664,1.48339,1.48339,0,0,1,1.55078,1.67871v2.90723H98.69v-2.688c0-.71924-.335-1.0835-.96289-1.0835a1.05194,1.05194,0,0,0-1.13379,1.1416v2.62988h-.88867Z" fill="#fff"/>
+            <path d="M104.76125,13.48193a1.828,1.828,0,0,1-1.95117,1.30273A2.04531,2.04531,0,0,1,100.73,12.46045a2.07685,2.07685,0,0,1,2.07617-2.35254c1.25293,0,2.00879.856,2.00879,2.27V12.688h-3.17969v.0498a1.1902,1.1902,0,0,0,1.19922,1.29,1.07934,1.07934,0,0,0,1.07129-.5459Zm-3.126-1.45117h2.27441a1.08647,1.08647,0,0,0-1.1084-1.1665A1.15162,1.15162,0,0,0,101.63527,12.03076Z" fill="#fff"/>
+          </g>
+        </g></g></g>
+      </svg>
+    </a>
+  </div>
+
+  <div class="app-description">
+    <p class="app-desc-text">SOLID IS A <strong>GYM TRACKER</strong> THAT GETS OUT OF YOUR WAY. NO AI COACH, NO SOCIAL FEED, NO SUBSCRIPTION. JUST YOUR ROUTINE, YOUR SETS, AND A <strong>REST TIMER</strong>.</p>
+    <p class="app-desc-text"><strong>YOUR DATA STAYS ON YOUR PHONE. FOREVER.</strong></p>
+  </div>
+
+  <div class="app-info-section">
+    <button class="app-info-btn send-feedback-btn">
+      <span>Send Feedback</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <button class="app-info-btn privacy-btn" data-privacy="solid">
+      <span>Privacy Policy</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </button>
+    <a href="/blog/solid/" class="app-info-btn">
+      <span>Blog</span>
+      <span class="app-info-btn-arrow">&#8594;</span>
+    </a>
+  </div>
+</div>
+
+<!-- TROVELO PRIVACY POLICY PAGE -->
+<div id="trovelo-privacy-page" class="app-page">
+  <div class="privacy-content">
+    <button class="privacy-back" id="trovelo-privacy-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Trovelo
+    </button>
+    <p class="privacy-updated">Last updated: March 15, 2026</p>
+    
+    <h2 class="privacy-heading">Overview</h2>
+    <p class="privacy-text">Trovelo is a travel planning app designed with privacy at its core. We do not collect, store, or share any of your personal data.</p>
+    
+    <h2 class="privacy-heading">Data Storage</h2>
+    <p class="privacy-text">All information you enter in Trovelo — including trip names, destinations, dates, activities, expenses, notes, and any other content — is stored exclusively on your device using Apple's native on-device storage. Your data never leaves your iPhone.</p>
+    
+    <h2 class="privacy-heading">No Data Collection</h2>
+    <p class="privacy-text">Trovelo does not collect any personal information. Specifically:</p>
+    <ul class="privacy-list">
+      <li>We do not collect your name, email, or any identifying information</li>
+      <li>We do not use analytics or crash reporting tools</li>
+      <li>We do not use advertising or third-party tracking</li>
+      <li>We do not have servers or databases that store your information</li>
+      <li>We do not share any data with third parties</li>
+    </ul>
+    
+    <h2 class="privacy-heading">Third-Party Services</h2>
+    <p class="privacy-text">Trovelo uses the following Apple-provided services, which are governed by Apple's own privacy policy:</p>
+    <ul class="privacy-list">
+      <li><strong>MapKit</strong> — used to search for places when planning trips. Searches are processed by Apple Maps.</li>
+      <li><strong>Open-Meteo</strong> — used to display weather forecasts. Only your trip's city name is sent to retrieve weather data. Open-Meteo is a free, open-source weather API that does not store personal data.</li>
+    </ul>
+    
+    <h2 class="privacy-heading">Data Deletion</h2>
+    <p class="privacy-text">Since all data is stored locally on your device, you can delete all Trovelo data at any time by deleting the app from your iPhone. No data remains on any server because none was ever sent.</p>
+    
+    <h2 class="privacy-heading">Children's Privacy</h2>
+    <p class="privacy-text">Trovelo does not collect any data from anyone, including children under 13.</p>
+    
+    <h2 class="privacy-heading">Changes to This Policy</h2>
+    <p class="privacy-text">If we update this privacy policy, we will update the "Last updated" date at the top of this page.</p>
+    
+    <h2 class="privacy-heading">Contact</h2>
+    <p class="privacy-text">If you have any questions about this privacy policy, please contact us at:<br><a href="mailto:beretta51@gmail.com" class="privacy-link">beretta51@gmail.com</a></p>
+  </div>
+</div>
+
+
+<!-- DIMMLY PRIVACY POLICY PAGE -->
+<div id="dimmly-privacy-page" class="app-page">
+  <div class="privacy-content">
+    <button class="privacy-back" id="dimmly-privacy-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Dimmly
+    </button>
+    <p class="privacy-updated">Last updated: April 14, 2026</p>
+
+    <h2 class="privacy-heading">Overview</h2>
+    <p class="privacy-text">Dimmly is a task and habit tracker designed with privacy at its core. We do not collect, store, or share any of your personal data.</p>
+
+    <h2 class="privacy-heading">Data Storage</h2>
+    <p class="privacy-text">All information you enter in Dimmly — including lists, tasks, habits, streaks, alarms, and any other content — is stored exclusively on your device using Apple's native on-device storage. Your data never leaves your iPhone. We have no servers and no access to your data.</p>
+
+    <h2 class="privacy-heading">Analytics and Tracking</h2>
+    <p class="privacy-text">Dimmly does not use any analytics frameworks, tracking pixels, or third-party SDKs that collect user data. We do not track your usage, behavior, or any personal information.</p>
+
+    <h2 class="privacy-heading">Third-Party Services</h2>
+    <p class="privacy-text">Dimmly uses Apple's StoreKit for in-app purchases. These transactions are handled entirely by Apple and subject to Apple's own privacy policy. We do not receive or store any payment information.</p>
+
+    <h2 class="privacy-heading">Children's Privacy</h2>
+    <p class="privacy-text">Dimmly does not knowingly collect any personal information from anyone, including children under the age of 13. Since all data is stored locally on your device and we have no access to it, no data collection occurs.</p>
+
+    <h2 class="privacy-heading">Data Deletion</h2>
+    <p class="privacy-text">Since all data is stored on your device, you can delete it at any time by removing tasks, lists, or by deleting the app entirely. We cannot recover your data once deleted because we never had access to it.</p>
+
+    <h2 class="privacy-heading">Disclaimer of Liability</h2>
+    <p class="privacy-text">Dimmly is provided "as is" without warranty of any kind. We are not responsible for any data loss resulting from device failure, app deletion, or any other cause. You are solely responsible for backing up your device.</p>
+
+    <h2 class="privacy-heading">Changes to This Policy</h2>
+    <p class="privacy-text">If we update this privacy policy, we will update the "Last updated" date at the top of this page.</p>
+
+    <h2 class="privacy-heading">Contact</h2>
+    <p class="privacy-text">If you have any questions about this privacy policy, please contact us at:<br><a href="mailto:beretta51@gmail.com" class="privacy-link">beretta51@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- PERCHA PRIVACY POLICY PAGE -->
+<div id="percha-privacy-page" class="app-page">
+  <div class="privacy-content">
+    <button class="privacy-back" id="percha-privacy-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Percha
+    </button>
+    <p class="privacy-updated">Last updated: March 15, 2026</p>
+
+    <h2 class="privacy-heading">Overview</h2>
+    <p class="privacy-text">Percha is designed with privacy in mind. The app works entirely on your device — no account is required and no personal data is sent to external servers.</p>
+
+    <h2 class="privacy-heading">Data We Collect</h2>
+    <p class="privacy-text">Percha does not collect, transmit, or share any personal data. All information you enter (clothing items, photos, outfits) is stored locally on your device using Apple's SwiftData framework and is never uploaded anywhere.</p>
+
+    <h2 class="privacy-heading">Permissions</h2>
+    <h3 class="privacy-subheading">Camera</h3>
+    <p class="privacy-text">Used only to photograph your clothing items. Photos are saved locally on your device and are never transmitted.</p>
+    <h3 class="privacy-subheading">Photo Library</h3>
+    <p class="privacy-text">Used only to import existing photos of your clothing. Access is granted only when you choose to import a photo.</p>
+    <h3 class="privacy-subheading">Location (When In Use)</h3>
+    <p class="privacy-text">Used only to fetch local weather data to power outfit suggestions. Your location is sent directly to Apple's WeatherKit service and is never stored or shared by Percha.</p>
+
+    <h2 class="privacy-heading">Third-Party Services</h2>
+    <p class="privacy-text">Percha uses Apple WeatherKit to provide weather-based outfit suggestions. This service is governed by Apple's own privacy policy. No other third-party services are used.</p>
+
+    <h2 class="privacy-heading">Data Deletion</h2>
+    <p class="privacy-text">All your data is stored on your device. You can delete it at any time by uninstalling the app.</p>
+
+    <h2 class="privacy-heading">Contact</h2>
+    <p class="privacy-text">If you have any questions about this privacy policy, please contact us at:<br><a href="mailto:beretta51@gmail.com" class="privacy-link">beretta51@gmail.com</a></p>
+  </div>
+</div>
+
+<!-- SOLID PRIVACY POLICY PAGE -->
+<div id="solid-privacy-page" class="app-page">
+  <div class="privacy-content">
+    <button class="privacy-back" id="solid-privacy-back">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Solid
+    </button>
+    <p class="privacy-updated">Last updated: March 15, 2026</p>
+
+    <h2 class="privacy-heading">Overview</h2>
+    <p class="privacy-text">Solid is designed with privacy in mind. The app works entirely on your device — no account is required and no personal data is sent to external servers.</p>
+
+    <h2 class="privacy-heading">No Data Collection</h2>
+    <p class="privacy-text">Solid does not collect, store, transmit, or share any personal data. All information you enter in the app — including your workout plans, exercise history, and session data — is stored exclusively on your device using Apple's on-device storage frameworks.</p>
+
+    <h2 class="privacy-heading">No Accounts</h2>
+    <p class="privacy-text">Solid does not require you to create an account. There is no sign-in, no registration, and no user profile.</p>
+
+    <h2 class="privacy-heading">No Third-Party Services</h2>
+    <p class="privacy-text">Solid does not integrate any third-party analytics, advertising SDKs, or tracking services. No data is ever sent to external servers.</p>
+
+    <h2 class="privacy-heading">On-Device Processing</h2>
+    <p class="privacy-text">Any intelligent features in the app (such as exercise parsing) run entirely on your device using Apple's on-device frameworks. No text or input is sent to external servers.</p>
+
+    <h2 class="privacy-heading">Data Deletion</h2>
+    <p class="privacy-text">Since all data lives on your device, you can delete it at any time by uninstalling the app. Solid does not retain any information after uninstallation.</p>
+
+    <h2 class="privacy-heading">Contact</h2>
+    <p class="privacy-text">If you have any questions about this privacy policy, please contact us at:<br><a href="mailto:beretta51@gmail.com" class="privacy-link">beretta51@gmail.com</a></p>
+  </div>
+</div>
+<!-- CONTACT PAGE -->
+<div id="contact-page" class="app-page">
+  <div class="contact-header-block">
+    <p class="contact-tagline">Let's talk.</p>
+    <p class="contact-sub">Drop me a message or find me on the internet.</p>
+  </div>
+
+  <div class="contact-form" id="contact-form-wrap">
+    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="6eeb1d9a-017f-4b08-a5a1-0a563425adad">
+      <input type="hidden" name="subject" value="New message from pinilloslab.com">
+      <input type="hidden" name="redirect" value="false">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <input class="contact-input" type="text" name="name" placeholder="Your name" required>
+        <input class="contact-input" type="email" name="email" placeholder="Your email" required>
+        <textarea class="contact-input contact-textarea" name="message" placeholder="Your message" required></textarea>
+        <button type="submit" class="contact-submit">Send message</button>
+      </div>
+    </form>
+    <div class="contact-success" id="contact-success">
+      ✓ Message sent. I'll get back to you soon.
+    </div>
+  </div>
+
+  <div class="contact-divider"></div>
+
+  <div class="contact-socials">
+    <a href="https://www.linkedin.com/in/eduardopinillos/" target="_blank" class="contact-social-btn">
+      <div class="contact-social-icon linkedin">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+          <circle cx="4" cy="4" r="2" fill="white"/>
+        </svg>
+      </div>
+      <div>
+        <div class="contact-social-label">LinkedIn</div>
+        <div class="contact-social-handle">Eduardo Pinillos</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- FULLSCREEN MENU -->
+<div id="menu-overlay">
+  <nav class="menu-nav">
+    <a href="#" id="menu-home">HOME</a>
+    <a href="#">ABOUT ME</a>
+    <a href="#">TROVELO</a>
+    <a href="#">DIMMLY</a>
+    <a href="#">PERCHA</a>
+    <a href="#">SOLID</a>
+  </nav>
+  <a href="#" class="menu-contact">CONTACT</a>
+</div>
+
+<div id="scroll-hint">
+  <span>scroll</span>
+  <svg class="hint-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+    <path d="M8 2v12M3 9l5 5 5-5" stroke="#ccc" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+
+<script>
+(function () {
+  var pill       = document.getElementById('pill');
+  var wm         = document.getElementById('pill-wm');
+  var icon       = document.getElementById('pill-icon');
+  var treesAbove = document.getElementById('trees-above');
+  var treesSvg   = document.getElementById('trees-svg');
+  var hint       = document.getElementById('scroll-hint');
+  var overlay    = document.getElementById('menu-overlay');
+
+  // ── menu toggle ──
+  var menuOpen = false;
+  var aboutOpen = false;
+  var troveloOpen = false;
+  var dimmlyOpen = false;
+  var perchaOpen = false;
+  var solidOpen = false;
+  var troveloPrivacyOpen = false;
+  var dimmlyPrivacyOpen = false;
+  var perchaPrivacyOpen = false;
+  var solidPrivacyOpen = false;
+  var contactOpen = false;
+  var lockedScrollY = 0;
+
+  function anySubPageOpen() { return menuOpen || aboutOpen || troveloOpen || dimmlyOpen || perchaOpen || solidOpen || troveloPrivacyOpen || dimmlyPrivacyOpen || perchaPrivacyOpen || solidPrivacyOpen || contactOpen; }
+
+  function preventTouch(e) { e.preventDefault(); }
+
+  function openMenu() {
+    menuOpen = true;
+    lockedScrollY = window.scrollY || window.pageYOffset;
+    overlay.classList.add('open');
+    icon.classList.add('rotated');
+    hint.style.opacity = '0';
+    wm.textContent = 'MENU';
+    overlay.addEventListener('touchmove', preventTouch, { passive: false });
+  }
+
+  function closeMenu() {
+    menuOpen = false;
+    overlay.classList.remove('open');
+    icon.classList.remove('rotated');
+    wm.textContent = 'PINILLOS';
+    overlay.removeEventListener('touchmove', preventTouch);
+    render();
+  }
+
+  icon.addEventListener('click', function (e) {
+    e.stopPropagation();
+    if (aboutOpen)   { closeAbout(true);                              openMenu(); return; }
+    if (troveloOpen) { troveloOpen = false; closeAppPage(troveloPage, true); openMenu(); return; }
+    if (dimmlyOpen) { dimmlyOpen = false; closeAppPage(dimmlyPage, true); openMenu(); return; }
+    if (perchaOpen) { perchaOpen = false; closeAppPage(perchaPage, true); openMenu(); return; }
+    if (solidOpen) { solidOpen = false; closeAppPage(solidPage, true); openMenu(); return; }
+    if (troveloPrivacyOpen) { troveloPrivacyOpen = false; closeAppPage(troveloPrivacyPage, true); openMenu(); return; }
+    if (dimmlyPrivacyOpen) { dimmlyPrivacyOpen = false; closeAppPage(dimmlyPrivacyPage, true); openMenu(); return; }
+    if (perchaPrivacyOpen) { perchaPrivacyOpen = false; closeAppPage(perchaPrivacyPage, true); openMenu(); return; }
+    if (solidPrivacyOpen) { solidPrivacyOpen = false; closeAppPage(solidPrivacyPage, true); openMenu(); return; }
+    if (contactOpen) { contactOpen = false; closeAppPage(contactPage, true); openMenu(); return; }
+    menuOpen ? closeMenu() : openMenu();
+  });
+
+  overlay.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() { closeMenu(); });
+  });
+
+  // ── about page ──
+  var aboutPage   = document.getElementById('about-page');
+  var aboutTicker = document.getElementById('about-ticker');
+
+  function openAbout() {
+    lockedScrollY = window.scrollY || window.pageYOffset;
+    if (lockedScrollY < S.morphRange) lockedScrollY = S.morphRange;
+    aboutOpen = true;  // set BEFORE closeMenu so render() freezes immediately
+    closeMenu();
+    aboutPage.classList.add('open');
+    aboutPage.scrollTop = 0;
+    aboutTicker.style.transform = 'translateX(' + (window.innerWidth / 2) + 'px)';
+    pill.style.background = '#DEDEDD';
+    pill.style.borderColor = '#000';
+    wm.textContent = 'ABOUT ME';
+    icon.style.opacity = '1';
+    treesAbove.style.display = 'none';
+  }
+
+  function closeAbout(silent) {
+    aboutOpen = false;
+    aboutPage.classList.remove('open');
+    pill.style.background = 'var(--yellow)';
+    pill.style.borderColor = 'var(--black)';
+    if (!silent) { wm.textContent = 'PINILLOS'; treesAbove.style.display = ''; }
+  }
+
+  function closeAppPage(pageEl, silent) {
+    pageEl.classList.remove('open');
+    pill.style.background = 'var(--yellow)';
+    pill.style.borderColor = 'var(--black)';
+    if (!silent) { wm.textContent = 'PINILLOS'; treesAbove.style.display = ''; }
+  }
+
+  aboutPage.addEventListener('scroll', function() {
+    var sy = aboutPage.scrollTop;
+    var startOffset = window.innerWidth / 2;
+    aboutTicker.style.transform = 'translateX(' + (startOffset - sy * 0.6) + 'px)';
+  });
+
+  // ── app pages ──
+  var troveloPage = document.getElementById('trovelo-page');
+  var dimmlyPage = document.getElementById('dimmly-page');
+  var perchaPage = document.getElementById('percha-page');
+  var solidPage = document.getElementById('solid-page');
+  var troveloPrivacyPage = document.getElementById('trovelo-privacy-page');
+  var dimmlyPrivacyPage = document.getElementById('dimmly-privacy-page');
+  var perchaPrivacyPage = document.getElementById('percha-privacy-page');
+  var solidPrivacyPage = document.getElementById('solid-privacy-page');
+  var contactPage = document.getElementById('contact-page');
+
+  // contact form submit
+  var contactForm = document.getElementById('contact-form');
+  var contactSuccess = document.getElementById('contact-success');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(contactForm);
+      fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+        .then(function(res) { return res.json(); })
+        .then(function(json) {
+          if (json.success) {
+            contactForm.style.display = 'none';
+            contactSuccess.style.display = 'block';
+          }
+        })
+        .catch(function() {});
+    });
+  }
+
+  function openAppPage(pageEl, title, flagSetter) {
+    lockedScrollY = window.scrollY || window.pageYOffset;
+    // Force pill to header state even if scroll is at top
+    if (lockedScrollY < S.morphRange) lockedScrollY = S.morphRange;
+    if (flagSetter) flagSetter(true);
+    closeMenu();
+    pageEl.classList.add('open');
+    pageEl.scrollTop = 0;
+    pill.style.background = '#fff';
+    pill.style.borderColor = '#000';
+    wm.textContent = title;
+    icon.style.opacity = '1';
+    treesAbove.style.display = 'none';
+    render();
+    return true;
+  }
+
+  // wire menu links
+  var menuLinks = overlay.querySelectorAll('a');
+  // HOME — close menu, go back to landing
+  document.getElementById('menu-home').addEventListener('click', function(e) {
+    e.preventDefault();
+    closeMenu();
+  });
+  // ABOUT ME
+  menuLinks[1].addEventListener('click', function(e) {
+    e.preventDefault();
+    openAbout();
+  });
+  // TROVELO
+  menuLinks[2].addEventListener('click', function(e) {
+    e.preventDefault();
+    troveloOpen = openAppPage(troveloPage, 'TROVELO', function(v){ troveloOpen = v; });
+  });
+  // DIMMLY
+  menuLinks[3].addEventListener('click', function(e) {
+    e.preventDefault();
+    dimmlyOpen = openAppPage(dimmlyPage, 'DIMMLY', function(v){ dimmlyOpen = v; });
+  });
+  // PERCHA
+  menuLinks[4].addEventListener('click', function(e) {
+    e.preventDefault();
+    perchaOpen = openAppPage(perchaPage, 'PERCHA', function(v){ perchaOpen = v; });
+  });
+  // SOLID
+  menuLinks[5].addEventListener('click', function(e) {
+    e.preventDefault();
+    solidOpen = openAppPage(solidPage, 'SOLID', function(v){ solidOpen = v; });
+  });
+  // CONTACT
+  var contactLink = overlay.querySelector('.menu-contact');
+  if (contactLink) {
+    contactLink.addEventListener('click', function(e) {
+      e.preventDefault();
+      contactOpen = openAppPage(contactPage, 'CONTACT', function(v){ contactOpen = v; });
+    });
+  }
+
+  // init position
+  aboutTicker.style.transform = 'translateX(' + (window.innerWidth / 2) + 'px)';
+
+  var MARGIN = 16;
+
+  function getStates() {
+    var vw = window.innerWidth;
+    var vh = window.innerHeight;
+    var heroW   = Math.min(vw - 48, 300);
+    var heroH   = 70;
+    var hdrW    = vw - MARGIN * 2;
+    var hdrH    = 48;
+    return {
+      vh: vh,
+      // morph happens over first 60% of viewport height of scroll
+      morphRange: vh * 0.4,
+      HERO: {
+        cx: vw / 2,
+        cy: vh / 2,
+        w: heroW, h: heroH,
+        border: 5, px: 26,
+        wmSize: 55,
+        iconW: 0, iconOp: 0,
+        treesW: Math.min(vw * 0.52, 140), treesOp: 1
+      },
+      HDR: {
+        cx: MARGIN + hdrW / 2,
+        cy: 12 + hdrH / 2,
+        w: hdrW, h: hdrH,
+        border: 3, px: 18,
+        wmSize: 20,
+        iconW: 18, iconOp: 1,
+        treesW: 0, treesOp: 0
+      }
+    };
+  }
+
+  var S = getStates();
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function ease(t) {
+    t = Math.max(0, Math.min(1, t));
+    return t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2, 3)/2;
+  }
+
+  function render() {
+    var rawScroll = window.scrollY || window.pageYOffset;
+    // When menu or any subpage is open, freeze pill at full header state
+    var scrollY = anySubPageOpen() ? lockedScrollY : rawScroll;
+    // clamp t to [0,1] — once morph is done pill stays at HDR values
+    var t = ease(Math.min(1, scrollY / S.morphRange));
+    var H = S.HERO, D = S.HDR;
+
+    var cx     = lerp(H.cx,     D.cx,     t);
+    var cy     = lerp(H.cy,     D.cy,     t);
+    var w      = lerp(H.w,      D.w,      t);
+    var h      = lerp(H.h,      D.h,      t);
+    var brd    = lerp(H.border, D.border, t);
+    var px     = lerp(H.px,     D.px,     t);
+    var wmW    = lerp(H.wmSize,  D.wmSize,  t);
+    var iconW  = lerp(H.iconW,  D.iconW,  t);    var iconOp = lerp(H.iconOp, D.iconOp, t);
+    var treesW = lerp(H.treesW, D.treesW, t);
+    var treesOp= lerp(H.treesOp,D.treesOp,t);
+
+    // pill is position:fixed, so cx/cy are viewport coords — always correct
+    pill.style.left        = cx + 'px';
+    pill.style.top         = cy + 'px';
+    pill.style.width       = w  + 'px';
+    pill.style.height      = h  + 'px';
+    pill.style.borderWidth = brd + 'px';
+    pill.style.paddingLeft = px + 'px';
+    pill.style.paddingRight= px + 'px';
+
+    wm.style.fontSize  = wmW + 'px';
+    icon.style.width   = iconW + 'px';
+    icon.style.height  = (iconW * 153/97) + 'px';
+    icon.style.opacity = iconOp;
+
+    // trees: sit just above the pill
+    var pillTop = cy - h / 2;
+    var treesH  = treesW * (207 / 242);
+    treesAbove.style.left    = cx + 'px';
+    treesAbove.style.top     = (pillTop - treesH + 8) + 'px';
+    treesSvg.style.width     = treesW + 'px';
+    treesAbove.style.opacity = treesOp;
+
+    hint.style.opacity = (anySubPageOpen() || rawScroll > 20) ? '0' : '1';
+  }
+
+  // ── send feedback buttons ──
+  document.querySelectorAll('.send-feedback-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      // close whichever app page is open
+      if (troveloOpen) { troveloOpen = false; closeAppPage(troveloPage, true); }
+      if (dimmlyOpen)  { dimmlyOpen = false; closeAppPage(dimmlyPage, true); }
+      if (perchaOpen)  { perchaOpen = false; closeAppPage(perchaPage, true); }
+      if (solidOpen)   { solidOpen = false; closeAppPage(solidPage, true); }
+      contactOpen = openAppPage(contactPage, 'CONTACT', function(v){ contactOpen = v; });
+    });
+  });
+
+  // ── privacy policy buttons ──
+  var troveloPrivacyBack = document.getElementById('trovelo-privacy-back');
+  if (troveloPrivacyBack) {
+    troveloPrivacyBack.addEventListener('click', function(e) {
+      e.preventDefault();
+      troveloPrivacyOpen = false;
+      closeAppPage(troveloPrivacyPage, true);
+      troveloOpen = openAppPage(troveloPage, 'TROVELO', function(v){ troveloOpen = v; });
+    });
+  }
+
+  var dimmlyPrivacyBack = document.getElementById('dimmly-privacy-back');
+  if (dimmlyPrivacyBack) {
+    dimmlyPrivacyBack.addEventListener('click', function(e) {
+      e.preventDefault();
+      dimmlyPrivacyOpen = false;
+      closeAppPage(dimmlyPrivacyPage, true);
+      dimmlyOpen = openAppPage(dimmlyPage, 'DIMMLY', function(v){ dimmlyOpen = v; });
+    });
+  }
+
+  var perchaPrivacyBack = document.getElementById('percha-privacy-back');
+  if (perchaPrivacyBack) {
+    perchaPrivacyBack.addEventListener('click', function(e) {
+      e.preventDefault();
+      perchaPrivacyOpen = false;
+      closeAppPage(perchaPrivacyPage, true);
+      perchaOpen = openAppPage(perchaPage, 'PERCHA', function(v){ perchaOpen = v; });
+    });
+  }
+
+  var solidPrivacyBack = document.getElementById('solid-privacy-back');
+  if (solidPrivacyBack) {
+    solidPrivacyBack.addEventListener('click', function(e) {
+      e.preventDefault();
+      solidPrivacyOpen = false;
+      closeAppPage(solidPrivacyPage, true);
+      solidOpen = openAppPage(solidPage, 'SOLID', function(v){ solidOpen = v; });
+    });
+  }
+
+  document.querySelectorAll('.privacy-btn').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      var app = btn.getAttribute('data-privacy');
+      // close whichever app page is open
+      if (troveloOpen) { troveloOpen = false; closeAppPage(troveloPage, true); }
+      if (dimmlyOpen)  { dimmlyOpen = false; closeAppPage(dimmlyPage, true); }
+      if (perchaOpen)  { perchaOpen = false; closeAppPage(perchaPage, true); }
+      if (solidOpen)   { solidOpen = false; closeAppPage(solidPage, true); }
+      if (app === 'trovelo') {
+        troveloPrivacyOpen = openAppPage(troveloPrivacyPage, 'PRIVACY', function(v){ troveloPrivacyOpen = v; });
+      } else if (app === 'dimmly') {
+        dimmlyPrivacyOpen = openAppPage(dimmlyPrivacyPage, 'PRIVACY', function(v){ dimmlyPrivacyOpen = v; });
+      } else if (app === 'percha') {
+        perchaPrivacyOpen = openAppPage(perchaPrivacyPage, 'PRIVACY', function(v){ perchaPrivacyOpen = v; });
+      } else if (app === 'solid') {
+        solidPrivacyOpen = openAppPage(solidPrivacyPage, 'PRIVACY', function(v){ solidPrivacyOpen = v; });
+      }
+    });
+  });
+
+  // ── footer links ──
+  var footerAbout   = document.getElementById('footer-about');
+  var footerTrovelo = document.getElementById('footer-trovelo');
+  var footerDimmly  = document.getElementById('footer-dimmly');
+  var footerPercha  = document.getElementById('footer-percha');
+  var footerSolid   = document.getElementById('footer-solid');
+  var footerContact = document.getElementById('footer-contact');
+  if (footerAbout)   footerAbout.addEventListener('click',   function(e){ e.preventDefault(); openAbout(); });
+  if (footerTrovelo) footerTrovelo.addEventListener('click', function(e){ e.preventDefault(); troveloOpen = openAppPage(troveloPage, 'TROVELO', function(v){ troveloOpen = v; }); });
+  if (footerDimmly)  footerDimmly.addEventListener('click',  function(e){ e.preventDefault(); dimmlyOpen = openAppPage(dimmlyPage, 'DIMMLY', function(v){ dimmlyOpen = v; }); });
+  if (footerPercha)  footerPercha.addEventListener('click',  function(e){ e.preventDefault(); perchaOpen = openAppPage(perchaPage, 'PERCHA', function(v){ perchaOpen = v; }); });
+  if (footerSolid)   footerSolid.addEventListener('click',   function(e){ e.preventDefault(); solidOpen = openAppPage(solidPage, 'SOLID', function(v){ solidOpen = v; }); });
+  if (footerContact) footerContact.addEventListener('click', function(e){ e.preventDefault(); contactOpen = openAppPage(contactPage, 'CONTACT', function(v){ contactOpen = v; }); });
+  window.addEventListener('resize', function () { S = getStates(); render(); });
+  window.addEventListener('scroll', render, { passive: true });
+  render();
+})();
+</script>
+</body>
+</html>
