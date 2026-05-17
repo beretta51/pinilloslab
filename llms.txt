@@ -1,0 +1,72 @@
+# Pinillos Lab
+
+> Personal studio and app portfolio of Eduardo Pinillos, an independent product builder shipping iOS and Mac apps alone, slow, on purpose. Born in Lima (1983), currently based in Portugal.
+
+Pinillos Lab is the home of six small software products, all built and maintained by one person without a team, investors, or subscriptions-by-default. The work emphasises privacy, on-device processing, and quiet design.
+
+- Home: https://pinilloslab.com/
+- About: https://pinilloslab.com/about
+- Contact: https://pinilloslab.com/contact
+
+## About Eduardo Pinillos
+
+- Independent product builder since 2008
+- Born in Lima, Peru; currently based in Portugal
+- Previously worked with venture-backed teams in Madrid and Barcelona
+- Education: Master in Marketing (EADA Business School, Barcelona), Communication Sciences (University of Lima)
+- Selected recognition: Winner — Startup of the Year, HackerNoon (2025); Winner — Best Startup, Finnovista (2019); Winner — Startup Peru (2018); Winner — Modev, Washington DC (2015); Winner — Startup World, TNW, San Francisco (2012)
+- Website: https://pinilloslab.com
+- LinkedIn: https://www.linkedin.com/in/eduardopinillos/
+- Contact: beretta51@gmail.com
+
+## Apps
+
+### Trovelo — Private travel planner (iOS)
+The private travel planner built for people who actually travel. Plan trips day by day, track every expense in dual currency, keep your entire itinerary in your pocket. No account required, no tracking.
+- Page: https://pinilloslab.com/trovelo
+- App Store: https://apps.apple.com/app/id6760258252
+- Platform: iOS
+- Category: Travel, Privacy-first
+
+### Dimmly — Task manager & habit tracker (iOS, macOS)
+A task manager and habit tracker that fits your day. Color-coded lists for work, routines, groceries, or anything else. Set alarms, track daily habits with streaks, add notes and checklists inside tasks, keep score during game nights with the built-in Scoreboard. Free for 5 lists; one-time upgrade for unlimited.
+- Page: https://pinilloslab.com/dimmly
+- App Store: https://apps.apple.com/app/id6761221806
+- Platform: iOS, macOS
+- Category: Productivity
+
+### Percha — Wardrobe OS (iOS)
+A quiet wardrobe OS. See what you own, what you wear, what you don't. Works entirely on-device — no account is required and no personal data is sent to external servers. Photos and item data live in your local storage and iCloud (if enabled).
+- Page: https://pinilloslab.com/percha
+- App Store: https://apps.apple.com/app/id6761848999
+- Platform: iOS
+- Category: Lifestyle
+
+### Solid — Gym tracker (iOS)
+A gym tracker that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer. All data stays on device unless iCloud sync is enabled.
+- Page: https://pinilloslab.com/solid
+- App Store: https://apps.apple.com/app/id6761683203
+- Platform: iOS
+- Category: Health & Fitness
+
+### Gridborne — Turn-based strategy game (iOS)
+A turn-based strategy game played on a 7×7 grid. Quiet rules, deep tactics. Built for short, satisfying matches. Offline single-player against an AI opponent, with Game Center leaderboards and achievements.
+- Page: https://pinilloslab.com/gridborne
+- App Store: https://apps.apple.com/app/id6761489335
+- Platform: iOS
+- Category: Games / Strategy
+
+### Wealth Square — Net worth tracker (macOS, in development)
+A native Mac app for tracking your net worth. Currently in development — not yet released.
+- Page: https://pinilloslab.com/wealth-square
+- Platform: macOS
+- Category: Finance
+- Status: Coming soon
+
+## Philosophy
+
+- Solo development, no team, no investors
+- Privacy-first: on-device processing, no analytics SDKs, no ads
+- One-time purchases preferred over subscriptions
+- Quiet, deliberate design over hype-driven feature lists
+- Shipping slowly and finishing things

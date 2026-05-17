@@ -1,9 +1,173 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pinillos — Independent product builder</title>
+<title>Pinillos Lab — Independent product builder · iOS & Mac apps</title>
+
+<!-- ─── SEO & sharing ──────────────────────────────────────────────── -->
+<meta name="description" content="Pinillos Lab is the personal studio of Eduardo Pinillos, an independent product builder shipping iOS and Mac apps: Trovelo (travel planner), Dimmly (tasks & habits), Percha (wardrobe OS), Solid (gym tracker), Gridborne (strategy game), Wealth Square (net-worth tracker).">
+<meta name="keywords" content="Eduardo Pinillos, Pinillos Lab, independent app developer, indie iOS apps, Mac apps, Trovelo, Dimmly, Percha, Solid, Gridborne, Wealth Square, privacy-first apps, solo developer, Portugal">
+<meta name="author" content="Eduardo Pinillos">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://pinilloslab.com/">
+
+<!-- Open Graph (Facebook, LinkedIn, WhatsApp, iMessage, Slack…) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://pinilloslab.com/">
+<meta property="og:title" content="Pinillos Lab — Independent product builder">
+<meta property="og:description" content="Eduardo Pinillos builds iOS and Mac apps on his own — Trovelo, Dimmly, Percha, Solid, Gridborne, Wealth Square. Alone, slow, on purpose.">
+<meta property="og:image" content="https://pinilloslab.com/images/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="Pinillos Lab">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pinillos Lab — Independent product builder">
+<meta name="twitter:description" content="Eduardo Pinillos builds iOS and Mac apps on his own. Alone, slow, on purpose.">
+<meta name="twitter:image" content="https://pinilloslab.com/images/og.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F1F332'/%3E%3Ctext x='16' y='22' font-family='-apple-system,sans-serif' font-weight='800' font-size='18' text-anchor='middle' fill='%23000'%3EP%3C/text%3E%3C/svg%3E">
+
+<!-- ─── Structured data (schema.org JSON-LD) ───────────────────────── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://pinilloslab.com/#eduardo",
+      "name": "Eduardo Pinillos",
+      "givenName": "Eduardo",
+      "familyName": "Pinillos",
+      "jobTitle": "Independent Product Builder",
+      "description": "Independent product builder shipping iOS and Mac apps alone, slow, on purpose. Born in Lima, currently based in Portugal.",
+      "url": "https://pinilloslab.com/",
+      "image": "https://pinilloslab.com/images/avatar.jpg",
+      "birthPlace": { "@type": "Place", "name": "Lima, Peru" },
+      "nationality": "Peruvian",
+      "homeLocation": { "@type": "Place", "name": "Portugal" },
+      "alumniOf": [
+        { "@type": "EducationalOrganization", "name": "EADA Business School", "address": "Barcelona, Spain" },
+        { "@type": "EducationalOrganization", "name": "University of Lima", "address": "Lima, Peru" }
+      ],
+      "award": [
+        "Winner — Startup of the Year, Food & Beverages, HackerNoon (2025)",
+        "Winner — Best Startup, Finnovista (2019)",
+        "Winner — Startup Peru (2018)",
+        "Winner — Modev, Washington DC (2015)",
+        "Winner — Creatividad Empresarial, Lima (2013)",
+        "Winner — Startup World, TNW, San Francisco (2012)"
+      ],
+      "sameAs": [
+        "https://www.linkedin.com/in/eduardopinillos/",
+        "https://github.com/beretta51"
+      ],
+      "knowsAbout": ["iOS development", "macOS development", "Product design", "Indie software", "Privacy-first apps"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://pinilloslab.com/#website",
+      "url": "https://pinilloslab.com/",
+      "name": "Pinillos Lab",
+      "description": "Personal studio and app portfolio of Eduardo Pinillos.",
+      "publisher": { "@id": "https://pinilloslab.com/#eduardo" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "ItemList",
+      "name": "Apps by Pinillos Lab",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "MobileApplication",
+            "name": "Trovelo",
+            "description": "Private travel planner for iOS. Plan trips day by day, track expenses in dual currency, keep your itinerary in your pocket. No accounts, no tracking.",
+            "operatingSystem": "iOS",
+            "applicationCategory": "TravelApplication",
+            "url": "https://apps.apple.com/app/id6760258252",
+            "author": { "@id": "https://pinilloslab.com/#eduardo" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Dimmly",
+            "description": "Task manager and habit tracker for iOS and macOS. Color-coded lists, alarms, streaks, notes, checklists, and a built-in Scoreboard. Free for 5 lists, one-time upgrade for unlimited.",
+            "operatingSystem": "iOS, macOS",
+            "applicationCategory": "ProductivityApplication",
+            "url": "https://apps.apple.com/app/id6761221806",
+            "author": { "@id": "https://pinilloslab.com/#eduardo" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "MobileApplication",
+            "name": "Percha",
+            "description": "Wardrobe OS for iOS. See what you own, what you wear, what you don't. Works entirely on-device — no account required.",
+            "operatingSystem": "iOS",
+            "applicationCategory": "LifestyleApplication",
+            "url": "https://apps.apple.com/app/id6761848999",
+            "author": { "@id": "https://pinilloslab.com/#eduardo" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "MobileApplication",
+            "name": "Solid",
+            "description": "Gym tracker for iOS that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer.",
+            "operatingSystem": "iOS",
+            "applicationCategory": "HealthApplication",
+            "url": "https://apps.apple.com/app/id6761683203",
+            "author": { "@id": "https://pinilloslab.com/#eduardo" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "MobileApplication",
+            "name": "Gridborne",
+            "description": "Turn-based strategy game played on a 7x7 grid. Quiet rules, deep tactics. Built for short, satisfying matches. Offline single-player with Game Center leaderboards.",
+            "operatingSystem": "iOS",
+            "applicationCategory": "GameApplication",
+            "url": "https://apps.apple.com/app/id6761489335",
+            "author": { "@id": "https://pinilloslab.com/#eduardo" }
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "SoftwareApplication",
+            "name": "Wealth Square",
+            "description": "Native Mac app for tracking net worth. Currently in development.",
+            "operatingSystem": "macOS",
+            "applicationCategory": "FinanceApplication",
+            "author": { "@id": "https://pinilloslab.com/#eduardo" }
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <link rel="preload" as="image" href="images/trovelo.png">
 <link rel="preload" as="image" href="images/dimmly.png">
 <link rel="preload" as="image" href="images/percha.png">
@@ -2856,23 +3020,26 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
     if (menuOpen) closeMenu();
     if (aboutOpen) closeAbout();
     if (appPageOpen) closeApp(appPageOpen);
+    if (window.location.pathname !== '/') router.push('/');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
   // about page
   const aboutPage = document.getElementById('about-page');
   const aboutTicker = document.getElementById('about-ticker');
-  function openAbout() {
+  function openAbout(fromRoute) {
     lockedScrollY = window.scrollY;
     aboutOpen = true;
     closeMenu();
     aboutPage.classList.add('open');
     aboutPage.scrollTop = 0;
     aboutTicker.style.transform = `translateX(${window.innerWidth / 2}px)`;
+    if (!fromRoute) router.push('/about');
   }
-  function closeAbout() {
+  function closeAbout(fromRoute) {
     aboutOpen = false;
     aboutPage.classList.remove('open');
+    if (!fromRoute) router.push('/');
   }
   aboutPage.addEventListener('scroll', () => {
     const sy = aboutPage.scrollTop;
@@ -2892,17 +3059,180 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
     contact: document.getElementById('contact-page'),
     privacy: document.getElementById('privacy-page')
   };
-  function openApp(key, title) {
+  function openApp(key, title, fromRoute) {
     lockedScrollY = window.scrollY;
     appPageOpen = key;
     closeMenu();
     appPages[key].classList.add('open');
     appPages[key].scrollTop = 0;
+    if (!fromRoute && router.keyToPath(key)) router.push(router.keyToPath(key));
   }
-  function closeApp(key) {
+  function closeApp(key, fromRoute) {
     appPages[key].classList.remove('open');
     appPageOpen = null;
+    // Don't navigate when closing privacy — it returns the user to the app
+    // they came from (handled separately by the privacy-back wiring).
+    if (!fromRoute && key !== 'privacy') router.push('/');
   }
+
+  // ═══════════════════════════ ROUTER (History API) ═══════════════════════════
+  // Maps URL paths to UI state. Updates page title, meta description, canonical,
+  // and Open Graph tags on each navigation so individual app URLs are crawlable
+  // and shareable. GitHub Pages serves a `404.html` that redirects unknown paths
+  // back here with `?p=<original-path>`, which we restore via replaceState.
+  const router = (() => {
+    const SITE = 'https://pinilloslab.com';
+    const DEFAULT_TITLE = 'Pinillos Lab — Independent product builder · iOS & Mac apps';
+    const DEFAULT_DESC = 'Pinillos Lab is the personal studio of Eduardo Pinillos, an independent product builder shipping iOS and Mac apps: Trovelo (travel planner), Dimmly (tasks & habits), Percha (wardrobe OS), Solid (gym tracker), Gridborne (strategy game), Wealth Square (net-worth tracker).';
+
+    const APP_NAMES = {
+      trovelo: 'Trovelo',
+      dimmly: 'Dimmly',
+      percha: 'Percha',
+      solid: 'Solid',
+      gridborne: 'Gridborne',
+      wealthsquare: 'Wealth Square',
+      contact: 'Contact'
+    };
+    const KEY_TO_PATH = {
+      trovelo: '/trovelo',
+      dimmly: '/dimmly',
+      percha: '/percha',
+      solid: '/solid',
+      gridborne: '/gridborne',
+      wealthsquare: '/wealth-square',
+      contact: '/contact'
+    };
+    const PATH_TO_KEY = Object.fromEntries(Object.entries(KEY_TO_PATH).map(([k, v]) => [v, k]));
+
+    const ROUTES = {
+      '/': {
+        title: DEFAULT_TITLE,
+        description: DEFAULT_DESC
+      },
+      '/about': {
+        title: 'About — Eduardo Pinillos · Independent product builder',
+        description: 'Eduardo Pinillos is an independent product builder based in Portugal, born in Lima. Building iOS and Mac apps alone, slow, on purpose since 2008.'
+      },
+      '/trovelo': {
+        title: 'Trovelo — Private travel planner for iOS · Pinillos Lab',
+        description: 'Trovelo is the private travel planner for iOS. Plan trips day by day, track every expense in dual currency, keep your entire itinerary in your pocket. No account required.'
+      },
+      '/dimmly': {
+        title: 'Dimmly — Task manager & habit tracker for iOS and Mac · Pinillos Lab',
+        description: 'Dimmly is a task manager and habit tracker for iOS and macOS. Color-coded lists, alarms, streaks, notes, checklists, and a built-in Scoreboard.'
+      },
+      '/percha': {
+        title: 'Percha — Wardrobe OS for iOS · Pinillos Lab',
+        description: 'Percha is a quiet wardrobe OS for iOS. See what you own, what you wear, what you don\u2019t. Works entirely on-device, no account required.'
+      },
+      '/solid': {
+        title: 'Solid — Minimal gym tracker for iOS · Pinillos Lab',
+        description: 'Solid is a gym tracker for iOS that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer.'
+      },
+      '/gridborne': {
+        title: 'Gridborne — Turn-based strategy game for iOS · Pinillos Lab',
+        description: 'Gridborne is a turn-based strategy game played on a 7\u00d77 grid. Quiet rules, deep tactics. Built for short, satisfying matches.'
+      },
+      '/wealth-square': {
+        title: 'Wealth Square — Native Mac net-worth tracker (coming soon) · Pinillos Lab',
+        description: 'Wealth Square is a native Mac app for tracking net worth. Currently in development \u2014 not ready to show yet.'
+      },
+      '/contact': {
+        title: 'Contact — Pinillos Lab',
+        description: 'Get in touch with Eduardo Pinillos. Drop a few lines about a product idea, collaboration, or feedback.'
+      }
+    };
+
+    function ensureMeta(selector, attr, value) {
+      let el = document.head.querySelector(selector);
+      if (!el) {
+        el = document.createElement('meta');
+        const m = selector.match(/\[(\w+)="([^"]+)"\]/);
+        if (m) el.setAttribute(m[1], m[2]);
+        document.head.appendChild(el);
+      }
+      el.setAttribute(attr, value);
+    }
+
+    function updateMeta(path) {
+      const r = ROUTES[path] || ROUTES['/'];
+      const fullUrl = SITE + path;
+      document.title = r.title;
+      ensureMeta('meta[name="description"]', 'content', r.description);
+      // canonical
+      let canon = document.head.querySelector('link[rel="canonical"]');
+      if (!canon) {
+        canon = document.createElement('link');
+        canon.setAttribute('rel', 'canonical');
+        document.head.appendChild(canon);
+      }
+      canon.setAttribute('href', fullUrl);
+      // Open Graph
+      ensureMeta('meta[property="og:url"]', 'content', fullUrl);
+      ensureMeta('meta[property="og:title"]', 'content', r.title);
+      ensureMeta('meta[property="og:description"]', 'content', r.description);
+      ensureMeta('meta[name="twitter:title"]', 'content', r.title);
+      ensureMeta('meta[name="twitter:description"]', 'content', r.description);
+    }
+
+    function normalize(p) {
+      if (!p) return '/';
+      if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+      return ROUTES[p] ? p : '/';
+    }
+
+    function applyPath(path, replace) {
+      const target = normalize(path);
+      // Close everything first
+      if (aboutOpen) closeAbout(true);
+      if (appPageOpen) closeApp(appPageOpen, true);
+      // Open target
+      if (target === '/about') {
+        openAbout(true);
+      } else if (PATH_TO_KEY[target]) {
+        openApp(PATH_TO_KEY[target], APP_NAMES[PATH_TO_KEY[target]], true);
+      }
+      updateMeta(target);
+      // If the current URL doesn't match the normalized target (e.g. trailing
+      // slash, unknown path), tidy it.
+      if (window.location.pathname !== target) {
+        window.history.replaceState({}, '', target + window.location.search + window.location.hash);
+      }
+    }
+
+    function push(path) {
+      const target = normalize(path);
+      if (window.location.pathname === target) return;
+      window.history.pushState({}, '', target);
+      updateMeta(target);
+    }
+
+    function init() {
+      // 404.html fallback: when GitHub Pages serves a missing path, it loads
+      // 404.html which redirects back here with ?p=<original-path>. Restore.
+      const params = new URLSearchParams(window.location.search);
+      const redirected = params.get('p');
+      if (redirected) {
+        const cleanSearch = (() => {
+          params.delete('p');
+          const s = params.toString();
+          return s ? '?' + s : '';
+        })();
+        window.history.replaceState({}, '', redirected + cleanSearch + window.location.hash);
+      }
+      applyPath(window.location.pathname, true);
+      window.addEventListener('popstate', () => applyPath(window.location.pathname, true));
+    }
+
+    return {
+      push,
+      keyToPath: (k) => KEY_TO_PATH[k],
+      pathToKey: (p) => PATH_TO_KEY[p],
+      init,
+      updateMeta
+    };
+  })();
 
   // privacy policy content per app
   const PRIVACY_DEFAULT_DATE = 'May 2026';
@@ -3081,7 +3411,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
   }
 
   // wire menu links
-  document.getElementById('menu-home').addEventListener('click', e => { e.preventDefault(); closeMenu(); });
+  document.getElementById('menu-home').addEventListener('click', e => { e.preventDefault(); closeMenu(); if (window.location.pathname !== '/') router.push('/'); });
   document.getElementById('menu-about').addEventListener('click', e => { e.preventDefault(); openAbout(); });
   document.getElementById('menu-trovelo').addEventListener('click', e => { e.preventDefault(); openApp('trovelo', 'Trovelo'); });
   document.getElementById('menu-dimmly').addEventListener('click', e => { e.preventDefault(); openApp('dimmly', 'Dimmly'); });
@@ -3128,6 +3458,9 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
       else if (appPageOpen) closeApp(appPageOpen);
     }
   });
+
+  // Initialize router after all event listeners are wired
+  router.init();
 
   // ═══════════════════════════ HEADER SCROLLED STATE ═══════════════════════════
   function render() {
