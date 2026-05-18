@@ -3075,6 +3075,46 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
     if (!fromRoute && key !== 'privacy') router.push('/');
   }
 
+  // Privacy is shown via the shared #privacy-page surface, but each app has
+  // its own deep-linkable URL (/{app}/privacy). openPrivacyFor swaps in the
+  // right content, opens the page, and pushes the URL when invoked by a click.
+  const PRIVACY_APP_NAMES = {
+    trovelo: 'Trovelo',
+    dimmly: 'Dimmly',
+    percha: 'Percha',
+    solid: 'Solid',
+    gridborne: 'Gridborne'
+  };
+  let lastAppBeforePrivacy = null;
+  let cameToPrivacyViaLink = false;
+  function openPrivacyFor(appKey, fromRoute) {
+    const name = PRIVACY_APP_NAMES[appKey];
+    if (!name) return;
+    document.getElementById('privacy-app-name').textContent = name;
+    const backName = document.getElementById('privacy-back-name');
+    if (backName) backName.textContent = name;
+    renderPrivacy(name);
+    lastAppBeforePrivacy = appKey;
+    // Close anything else that's open
+    if (aboutOpen) closeAbout(true);
+    if (appPageOpen && appPageOpen !== 'privacy') {
+      appPages[appPageOpen].classList.remove('open');
+    }
+    // Open privacy
+    lockedScrollY = window.scrollY;
+    appPageOpen = 'privacy';
+    closeMenu();
+    appPages.privacy.classList.add('open');
+    appPages.privacy.scrollTop = 0;
+    if (!fromRoute) {
+      cameToPrivacyViaLink = true;
+      const path = router.keyToPrivacyPath(appKey);
+      if (path) router.push(path);
+    } else {
+      cameToPrivacyViaLink = false;
+    }
+  }
+
   // ═══════════════════════════ ROUTER (History API) ═══════════════════════════
   // Maps URL paths to UI state. Updates page title, meta description, canonical,
   // and Open Graph tags on each navigation so individual app URLs are crawlable
@@ -3104,6 +3144,18 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
       contact: '/contact'
     };
     const PATH_TO_KEY = Object.fromEntries(Object.entries(KEY_TO_PATH).map(([k, v]) => [v, k]));
+
+    // Privacy policy routes: /{app}/privacy. These open the shared privacy
+    // page with the right app's content and a back-link to /{app}. Apple
+    // (App Store Connect) requires a direct, deep-linkable URL per app.
+    const PRIVACY_PATH_TO_KEY = {
+      '/trovelo/privacy': 'trovelo',
+      '/dimmly/privacy': 'dimmly',
+      '/percha/privacy': 'percha',
+      '/solid/privacy': 'solid',
+      '/gridborne/privacy': 'gridborne'
+    };
+    const KEY_TO_PRIVACY_PATH = Object.fromEntries(Object.entries(PRIVACY_PATH_TO_KEY).map(([p, k]) => [k, p]));
 
     const ROUTES = {
       '/': {
@@ -3141,6 +3193,26 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
       '/contact': {
         title: 'Contact — Pinillos Lab',
         description: 'Get in touch with Eduardo Pinillos. Drop a few lines about a product idea, collaboration, or feedback.'
+      },
+      '/trovelo/privacy': {
+        title: 'Trovelo — Privacy policy · Pinillos Lab',
+        description: 'Privacy policy for Trovelo. No accounts, no tracking, no analytics. Your travel data stays on your device and syncs privately through your iCloud account.'
+      },
+      '/dimmly/privacy': {
+        title: 'Dimmly — Privacy policy · Pinillos Lab',
+        description: 'Privacy policy for Dimmly. No accounts, no tracking, no analytics. Your tasks and habits stay on your device and sync privately through your iCloud account.'
+      },
+      '/percha/privacy': {
+        title: 'Percha — Privacy policy · Pinillos Lab',
+        description: 'Privacy policy for Percha. No accounts, no tracking, no analytics. Your wardrobe data stays on your device and syncs privately through your iCloud account.'
+      },
+      '/solid/privacy': {
+        title: 'Solid — Privacy policy · Pinillos Lab',
+        description: 'Privacy policy for Solid. No accounts, no tracking, no analytics. Your workout data stays on your device and syncs privately through your iCloud account.'
+      },
+      '/gridborne/privacy': {
+        title: 'Gridborne — Privacy policy · Pinillos Lab',
+        description: 'Privacy policy for Gridborne. No data collection, no tracking. The game runs entirely on your device, offline.'
       }
     };
 
@@ -3190,6 +3262,8 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
       // Open target
       if (target === '/about') {
         openAbout(true);
+      } else if (PRIVACY_PATH_TO_KEY[target]) {
+        openPrivacyFor(PRIVACY_PATH_TO_KEY[target], true);
       } else if (PATH_TO_KEY[target]) {
         openApp(PATH_TO_KEY[target], APP_NAMES[PATH_TO_KEY[target]], true);
       }
@@ -3229,6 +3303,8 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
       push,
       keyToPath: (k) => KEY_TO_PATH[k],
       pathToKey: (p) => PATH_TO_KEY[p],
+      keyToPrivacyPath: (k) => KEY_TO_PRIVACY_PATH[k],
+      privacyPathToKey: (p) => PRIVACY_PATH_TO_KEY[p],
       init,
       updateMeta
     };
@@ -3262,7 +3338,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
         { h: 'Data deletion', p: 'You can delete all Trovelo data at any time by deleting the app. Your iCloud data can be deleted from Settings &rsaquo; Apple ID &rsaquo; iCloud &rsaquo; Manage Storage. No data remains on Trovelo servers because none was ever sent.' },
         { h: 'Children\u2019s privacy', p: 'Trovelo does not collect any data from anyone, including children under 13.' },
         { h: 'Changes to this policy', p: 'If we update this privacy policy, we will update the "Last updated" date at the top of this page.' },
-        { h: 'Contact', p: 'If you have any questions, please contact us at <a href="mailto:beretta51@gmail.com">beretta51@gmail.com</a>.' }
+        { h: 'Contact', p: 'If you have any questions, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
       ]
     },
     Gridborne: {
@@ -3273,7 +3349,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
         { h: 'Local data', p: 'Game preferences and statistics are stored locally on your device using standard device storage. This data never leaves your device and is not accessible to us.' },
         { h: 'Children\u2019s privacy', p: 'We do not knowingly collect personal information from children. Since our app does not collect any data, it is safe for users of all ages.' },
         { h: 'Changes to this privacy policy', p: 'We may update our Privacy Policy from time to time. Changes will be posted on this page with an updated date.' },
-        { h: 'Contact us', p: 'If you have any questions about this Privacy Policy, contact us at <a href="mailto:beretta51@gmail.com">beretta51@gmail.com</a>.' }
+        { h: 'Contact us', p: 'If you have any questions about this Privacy Policy, contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
       ]
     },
     Percha: {
@@ -3306,7 +3382,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
             '<strong>Local deletion</strong> — all data on your device is deleted when you uninstall the app.',
             '<strong>iCloud deletion</strong> — data synced to iCloud can be deleted by signing out of iCloud or removing Percha from iCloud settings in System Preferences. Apple retains backups according to their standard data retention policies.'
           ] },
-        { h: 'Contact', p: 'If you have any questions about this privacy policy, please contact us at <a href="mailto:beretta51@gmail.com">beretta51@gmail.com</a>.' }
+        { h: 'Contact', p: 'If you have any questions about this privacy policy, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
       ]
     },
     Solid: {
@@ -3318,7 +3394,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
         { h: 'On-device processing', p: 'Any intelligent features in the app (such as exercise parsing) run entirely on your device using Apple\u2019s on-device frameworks. No text or input is sent to external servers.' },
         { h: 'iCloud sync', p: 'If you enable iCloud sync, your data is stored in your personal iCloud account and governed by Apple\u2019s privacy policy. Solid never has access to your iCloud data — syncing happens directly between your devices through Apple\u2019s infrastructure.' },
         { h: 'Data deletion', p: 'To delete your data, disable iCloud sync in Settings and uninstall the app. If iCloud sync was enabled, you can also delete the app\u2019s data from iCloud Drive in your iPhone Settings &rsaquo; Apple ID &rsaquo; iCloud &rsaquo; Manage Storage. Solid does not retain any information after deletion.' },
-        { h: 'Contact', p: 'If you have any questions about this privacy policy, please contact us at <a href="mailto:beretta51@gmail.com">beretta51@gmail.com</a>.' }
+        { h: 'Contact', p: 'If you have any questions about this privacy policy, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
       ]
     },
     Dimmly: {
@@ -3341,7 +3417,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
         { h: 'Analytics and tracking', p: 'Dimmly contains no third-party analytics, no advertising SDKs, no crash reporting services, and no tracking. The app does not collect device identifiers, location, contacts, photos, or any other personal information.' },
         { h: 'Children', p: 'Dimmly is not directed to children under 13 and does not knowingly collect personal information from anyone, regardless of age.' },
         { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date.' },
-        { h: 'Contact', p: 'Questions? Email <a href="mailto:beretta51@gmail.com">beretta51@gmail.com</a>.' }
+        { h: 'Contact', p: 'Questions? Email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
       ]
     }
   };
@@ -3353,7 +3429,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
         { h: 'What we collect', p: `Nothing identifiable. ${name} stores everything you create locally on your device. We don\u2019t have a server that sees your activity, your library, or your taste.` },
         { h: 'iCloud sync', p: 'If you enable iCloud sync, your data is encrypted and synced through your private Apple iCloud container. We never see it. Apple never opens it.' },
         { h: 'Crash reports', p: 'Apple\u2019s standard crash reports are sent to us only if you\u2019ve opted in via iOS Settings &rsaquo; Privacy &rsaquo; Analytics. They contain no personal information.' },
-        { h: 'Email contact', p: 'If you email us at <a href="mailto:beretta51@gmail.com">beretta51@gmail.com</a>, we\u2019ll keep that email so we can answer you. We don\u2019t add it to any list. There is no list.' },
+        { h: 'Email contact', p: 'If you email us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>, we\u2019ll keep that email so we can answer you. We don\u2019t add it to any list. There is no list.' },
         { h: 'Changes', p: 'If anything material changes, we\u2019ll update this page and note the date at the top.' }
       ]
     };
@@ -3380,32 +3456,37 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
     container.innerHTML = html;
   }
 
-  // privacy policy links
-  let lastAppBeforePrivacy = null;
+  // privacy policy links — navigate to /{app}/privacy via the router so the
+  // URL is shareable and the policy is directly deep-linkable.
   document.querySelectorAll('.privacy-link').forEach(el => {
     el.addEventListener('click', e => {
       e.preventDefault();
       const name = el.dataset.app || 'Trovelo';
-      document.getElementById('privacy-app-name').textContent = name;
-      const backName = document.getElementById('privacy-back-name');
-      if (backName) backName.textContent = name;
-      renderPrivacy(name);
-      // remember which app we came from
-      lastAppBeforePrivacy = appPageOpen;
-      // close current app, open privacy
-      if (appPageOpen) appPages[appPageOpen].classList.remove('open');
-      openApp('privacy', 'Privacy');
+      const appKey = (name || '').toLowerCase();
+      if (PRIVACY_APP_NAMES[appKey]) openPrivacyFor(appKey, false);
     });
   });
-  // back button on privacy page
+  // back button on privacy page — return to /{app}. Use history.back() if
+  // we got here from a click on the same tab (so we don't pile up entries);
+  // otherwise push the parent app route so direct landings work too.
   const privacyBack = document.getElementById('privacy-back');
   if (privacyBack) {
     privacyBack.addEventListener('click', e => {
       e.preventDefault();
-      closeApp('privacy');
-      if (lastAppBeforePrivacy && appPages[lastAppBeforePrivacy]) {
-        appPageOpen = lastAppBeforePrivacy;
-        appPages[lastAppBeforePrivacy].classList.add('open');
+      const appKey = lastAppBeforePrivacy;
+      if (cameToPrivacyViaLink) {
+        cameToPrivacyViaLink = false;
+        window.history.back();
+        return;
+      }
+      // Close privacy and route to the parent app (or home if unknown).
+      appPages.privacy.classList.remove('open');
+      appPageOpen = null;
+      if (appKey && router.keyToPath(appKey)) {
+        router.push(router.keyToPath(appKey));
+        openApp(appKey, PRIVACY_APP_NAMES[appKey] || '', true);
+      } else {
+        router.push('/');
       }
     });
   }
