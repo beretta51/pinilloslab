@@ -2,7 +2,7 @@
 
 > Personal studio and app portfolio of Eduardo Pinillos, an independent product builder shipping iOS and Mac apps alone, slow, on purpose. Born in Lima (1983), currently based in Portugal.
 
-Pinillos Lab is the home of six small software products, all built and maintained by one person without a team, investors, or subscriptions-by-default. The work emphasises privacy, on-device processing, and quiet design.
+Pinillos Lab is the home of seven small software products, all built and maintained by one person without a team, investors, or subscriptions-by-default. The work emphasises privacy, on-device processing, and quiet design.
 
 - Home: https://pinilloslab.com/
 - About: https://pinilloslab.com/about
@@ -62,6 +62,13 @@ A native Mac app for tracking your net worth. Currently in development — not y
 - Platform: macOS
 - Category: Finance
 - Status: Coming soon
+
+### Dummo — Screen recording to promo video (iOS, macOS)
+Turn a plain screen recording into a polished promo video. Wrap it in a realistic device frame (iPhone 17 Pro, iPhone 17, iPhone 16 Pro, iPhone 16, MacBook Pro), design the canvas with backgrounds and stickers, drop animated tap indicators, and let the auto-zoom director choreograph pan-and-zoom moves from your taps. Add an intro and outro, then export ready-made sizes for App Store previews, Instagram Stories, Reels, and Posts. Projects sync across devices over iCloud; on the Mac you can connect Claude to edit a project for you. No data is collected. Free, with a one-time Dummo Pro upgrade ($14.99 lifetime) for custom stickers, fonts, colors, Claude editing on Mac, and watermark-free exports.
+- Page: https://pinilloslab.com/dummo
+- App Store: https://apps.apple.com/app/id6779711252
+- Platform: iOS, macOS
+- Category: Photo & Video
 
 ## Philosophy
 

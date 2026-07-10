@@ -49,6 +49,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://pinilloslab.com/dummo</loc>
+    <lastmod>2026-07-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://pinilloslab.com/contact</loc>
     <lastmod>2026-05-17</lastmod>
     <changefreq>yearly</changefreq>
@@ -81,6 +87,12 @@
   <url>
     <loc>https://pinilloslab.com/gridborne/privacy</loc>
     <lastmod>2026-05-18</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://pinilloslab.com/dummo/privacy</loc>
+    <lastmod>2026-07-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
