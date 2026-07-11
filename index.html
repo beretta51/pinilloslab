@@ -1305,6 +1305,94 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   opacity: 0.7;
 }
 
+/* ─── ABOUT V2: tinta con scroll + retrato + sello + odómetros ─── */
+.about-lead {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+@media (min-width: 768px) { .about-lead { grid-template-columns: 1fr 320px; gap: 64px; } }
+.about-lead .about-bio-big { margin-bottom: 0; }
+
+/* la frase se entinta palabra a palabra conforme scrolleas (reversible) */
+.w-ink {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(10, 10, 10, 0.35);
+  transition: color 0.35s ease, -webkit-text-stroke-color 0.35s ease;
+}
+.w-ink.inked {
+  color: var(--ink);
+  -webkit-text-stroke-color: rgba(10, 10, 10, 0);
+}
+
+/* retrato: pegatina en gris que revela color cuando la frase está entintada (o hover) */
+.about-photo {
+  margin: 0;
+  justify-self: center;
+  transform: rotate(-3deg);
+}
+@media (min-width: 768px) { .about-photo { justify-self: end; } }
+.about-photo img {
+  display: block;
+  width: min(64vw, 300px);
+  height: auto;
+  filter: grayscale(1) contrast(1.05) drop-shadow(0 24px 40px rgba(0, 0, 0, 0.28));
+  transform: scale(0.97);
+  transition: filter 0.6s ease, transform 0.6s var(--ease-out-expo);
+}
+.about-photo.lit img, .about-photo:hover img {
+  filter: grayscale(0) contrast(1) drop-shadow(0 24px 40px rgba(0, 0, 0, 0.28));
+  transform: scale(1);
+}
+.about-photo figcaption {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.55);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* sello circular que gira con la inercia del scroll */
+.about-stamp {
+  position: absolute;
+  top: 44px;
+  right: 52px;
+  width: 116px;
+  height: 116px;
+  pointer-events: none;
+}
+@media (max-width: 767px) { .about-stamp { top: 96px; right: 22px; width: 84px; height: 84px; } }
+.about-stamp svg { width: 100%; height: 100%; display: block; will-change: transform; }
+.about-stamp .stamp-text {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  fill: var(--ink);
+}
+.about-stamp .stamp-star { font-size: 36px; fill: var(--ink); }
+
+/* odómetros: los dígitos ruedan como un cuentakilómetros al entrar en viewport */
+.odo { display: inline-flex; }
+.odo-digit { display: inline-block; height: 1em; overflow: hidden; }
+.odo-col {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.odo-col span { display: block; height: 1em; line-height: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .w-ink { color: var(--ink); -webkit-text-stroke-color: transparent; transition: none; }
+  .about-photo img { filter: none; transform: none; }
+  .about-stamp svg { transform: none !important; }
+  .odo-col { transition: none; }
+}
+
 /* ─────────────────────────────── FOOTER ─────────────────────────────── */
 #footer {
   background: var(--ink);
@@ -2550,9 +2638,24 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 <!-- ═══════════════════════════ ABOUT STRIP ═══════════════════════════ -->
 <section id="about-strip" data-screen-label="04 About">
   <div class="about-eyebrow reveal"><span>About · 04</span></div>
-  <h2 class="about-bio-big reveal">
-    Born in <strong>Lima</strong>, based in <em>Europe</em>. Seventeen years turning <strong>ideas</strong> into things people <em>actually&nbsp;use</em>.
-  </h2>
+
+  <div class="about-stamp" id="about-stamp" aria-hidden="true">
+    <svg viewBox="0 0 120 120">
+      <defs><path id="stamp-circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+      <text class="stamp-text"><textPath href="#stamp-circ">Pinillos Lab · since 2008 · Lima → Europe ·&#160;</textPath></text>
+      <text x="60" y="60" text-anchor="middle" dominant-baseline="central" class="stamp-star">✻</text>
+    </svg>
+  </div>
+
+  <div class="about-lead">
+    <h2 class="about-bio-big" id="about-bio">
+      Born in <strong>Lima</strong>, based in <em>Europe</em>. Seventeen years turning <strong>ideas</strong> into things people <em>actually&nbsp;use</em>.
+    </h2>
+    <figure class="about-photo" id="about-photo">
+      <img src="images/edu.png" alt="Edu Pinillos" loading="lazy" width="640" height="576">
+      <figcaption>Edu · the human behind the lab</figcaption>
+    </figure>
+  </div>
 
   <div class="about-numbers">
     <div class="about-number reveal">
@@ -4362,30 +4465,95 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       });
   });
 
-  // ═══════════════════════════ COUNT-UP NUMBERS ═══════════════════════════
-  const numIo = new IntersectionObserver((entries) => {
+  // ═══════════════════════════ ODOMETER NUMBERS ═══════════════════════════
+  // Los dígitos ruedan en columnas tipo cuentakilómetros: una vuelta completa
+  // (0-9) y aterrizan en su dígito, con stagger por columna.
+  const odoIo = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        const target = parseInt(e.target.dataset.count, 10);
-        let cur = 0;
-        const orig = e.target.innerHTML;
-        const start = performance.now();
-        const dur = 1100;
-        function step(now) {
-          const t = Math.min(1, (now - start) / dur);
-          const eased = 1 - Math.pow(1 - t, 3);
-          cur = Math.floor(target * eased);
-          if (target >= 100) e.target.innerHTML = cur + (orig.includes('k') ? '<span style="font-size:0.5em;">k+</span>' : '');
-          else e.target.textContent = String(cur).padStart(2, '0');
-          if (t < 1) requestAnimationFrame(step);
-          else e.target.innerHTML = orig;
-        }
-        requestAnimationFrame(step);
-        numIo.unobserve(e.target);
-      }
+      if (!e.isIntersecting) return;
+      e.target.querySelectorAll('.odo-col').forEach((col, i) => {
+        setTimeout(() => {
+          col.style.transform = `translateY(-${col.children.length - 1}em)`;
+        }, i * 120);
+      });
+      odoIo.unobserve(e.target);
     });
-  }, { threshold: 0.5 });
-  document.querySelectorAll('[data-count]').forEach(el => numIo.observe(el));
+  }, { threshold: 0.6 });
+
+  document.querySelectorAll('.about-number-val').forEach(val => {
+    // el primer nodo de texto son los dígitos; los sufijos ("k+") se conservan
+    const textNode = Array.from(val.childNodes).find(n => n.nodeType === Node.TEXT_NODE && n.textContent.trim());
+    if (!textNode) return;
+    const digits = textNode.textContent.trim();
+    const wrap = document.createElement('span');
+    wrap.className = 'odo';
+    for (const d of digits) {
+      const digitEl = document.createElement('span');
+      digitEl.className = 'odo-digit';
+      const col = document.createElement('span');
+      col.className = 'odo-col';
+      const target = parseInt(d, 10) || 0;
+      for (let k = 0; k <= 10 + target; k++) {
+        const s = document.createElement('span');
+        s.textContent = k % 10;
+        col.appendChild(s);
+      }
+      digitEl.appendChild(col);
+      wrap.appendChild(digitEl);
+    }
+    val.replaceChild(wrap, textNode);
+    odoIo.observe(val);
+  });
+
+  // ═══════════════════════════ ABOUT V2 — TINTA + SELLO ═══════════════════════════
+  const bioEl = document.getElementById('about-bio');
+  if (bioEl) {
+    // trocear la frase en palabras conservando <strong>/<em>
+    const inkWords = [];
+    (function splitInk(node) {
+      Array.from(node.childNodes).forEach(child => {
+        if (child.nodeType === Node.TEXT_NODE) {
+          const frag = document.createDocumentFragment();
+          child.textContent.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            const s = document.createElement('span');
+            s.className = 'w-ink';
+            s.textContent = part;
+            frag.appendChild(s);
+            inkWords.push(s);
+          });
+          node.replaceChild(frag, child);
+        } else if (child.nodeType === Node.ELEMENT_NODE) {
+          splitInk(child);
+        }
+      });
+    })(bioEl);
+
+    const aboutPhoto = document.getElementById('about-photo');
+    const stampSvg = document.querySelector('#about-stamp svg');
+    const aboutReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let stampRot = 0, stampVel = 0, stampLastY = window.scrollY;
+
+    function aboutTick() {
+      // tinta ligada al scroll, reversible: entra al 90% del viewport, completa al 35%
+      const r = bioEl.getBoundingClientRect();
+      const vh = window.innerHeight || 1;
+      const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.55)));
+      const n = Math.round(p * inkWords.length);
+      inkWords.forEach((w, i) => w.classList.toggle('inked', i < n));
+      if (aboutPhoto) aboutPhoto.classList.toggle('lit', p > 0.75);
+
+      // sello: giro constante + empujón por velocidad de scroll, con inercia
+      const sy = window.scrollY;
+      stampVel += ((sy - stampLastY) - stampVel) * 0.1;
+      stampLastY = sy;
+      stampRot += 0.15 + stampVel * 0.06;
+      if (stampSvg) stampSvg.style.transform = `rotate(${stampRot.toFixed(2)}deg)`;
+      requestAnimationFrame(aboutTick);
+    }
+    if (!aboutReduced) requestAnimationFrame(aboutTick);
+  }
 
 })();
 </script>
