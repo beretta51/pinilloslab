@@ -1292,7 +1292,19 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 /* hero: el nombre es una tarea */
 .dim-hero-name { display: flex; align-items: center; gap: 0.22em; }
 .dim-check { display: inline-flex; color: var(--paper); flex-shrink: 0; }
-.dim-hero-check { width: 0.62em; height: 0.62em; }
+.dim-hero-icon {
+  display: inline-flex;
+  width: 0.72em;
+  height: 0.72em;
+  flex-shrink: 0;
+}
+.dim-hero-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 26%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
 .dim-check svg { width: 100%; height: 100%; display: block; }
 .dim-check .tick {
   stroke: #FF7A00;
@@ -1313,8 +1325,7 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
   pointer-events: none;
 }
 /* entrada: check → tachado → destachado (el twist) → bandas en cascada */
-#dimmly-page.open .dim-hero-check svg { animation: dimCheckPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
-#dimmly-page.open .dim-hero-check .tick { animation: dimTickDraw 0.35s ease 0.5s both; }
+#dimmly-page.open .dim-hero-icon img { animation: dimCheckPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 #dimmly-page.open .dim-strike { animation: dimStrike 1.5s ease 0.75s both; }
 #dimmly-page.open .dim-name-wrap { animation: dimNameDip 1.5s ease 0.75s both; }
 @keyframes dimCheckPop { from { transform: scale(0.3) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
@@ -1457,12 +1468,10 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .dim-progress b { color: #FF7A00; font-weight: 700; }
 
 @media (prefers-reduced-motion: reduce) {
-  #dimmly-page.open .dim-hero-check svg,
-  #dimmly-page.open .dim-hero-check .tick,
+  #dimmly-page.open .dim-hero-icon img,
   #dimmly-page.open .dim-strike,
   #dimmly-page.open .dim-name-wrap,
   #dimmly-page.open .dim-bands span { animation: none; }
-  #dimmly-page.open .dim-hero-check .tick { stroke-dashoffset: 0; }
   #dimmly-page.open .dim-strike { transform: scaleX(1); opacity: 0; }
   #dimmly-page.open .dim-bands span { transform: scaleX(1); }
   .dim-task .dim-check .tick, .dim-task-label::after { transition: none; }
@@ -3267,8 +3276,8 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   <div class="app-hero">
     <div class="app-num">— 02 / 07</div>
     <h1 class="app-name dim-hero-name">
-      <span class="dim-check dim-hero-check" aria-hidden="true">
-        <svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="dim-hero-icon" aria-hidden="true">
+        <img src="images/dimmly.png" alt="" width="512" height="512">
       </span>
       <span class="dim-name-wrap">Dimmly<span class="dim-strike" aria-hidden="true"></span></span>
     </h1>
