@@ -46,7 +46,7 @@
       "jobTitle": "Independent Product Builder",
       "description": "Independent product builder shipping iOS and Mac apps alone, slow, on purpose. Born in Lima, currently based in Portugal.",
       "url": "https://pinilloslab.com/",
-      "image": "https://pinilloslab.com/images/avatar.jpg",
+      "image": "https://pinilloslab.com/images/edu.webp",
       "birthPlace": { "@type": "Place", "name": "Lima, Peru" },
       "nationality": "Peruvian",
       "homeLocation": { "@type": "Place", "name": "Portugal" },
@@ -1994,21 +1994,15 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   border-top: 1px solid var(--ink);
   padding-top: 24px;
 }
-@media (min-width: 768px) {
-  .about-hero-meta { grid-template-columns: repeat(3, 1fr); }
-}
 .ahm-cell { display: flex; flex-direction: column; gap: 6px; }
 .ahm-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
 .ahm-value { font-family: var(--display); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); }
-.ahm-avatar-cell { justify-self: start; align-items: flex-start; }
-.ahm-avatar { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; object-position: center 30%; background: var(--paper-dark); border: 1px solid var(--ink); display: block; }
 
 /* ───── About mobile fixes ───── */
 @media (max-width: 767px) {
   .about-hero-name { font-size: clamp(64px, 22vw, 120px); margin-bottom: 24px; }
   .about-hero-tagline { font-size: clamp(20px, 5.5vw, 28px); margin-bottom: 48px; }
-  .about-hero-meta { grid-template-columns: auto 1fr 1fr; gap: 16px 20px; align-items: center; }
-  .ahm-avatar { width: 64px; height: 64px; }
+  .about-hero-meta { grid-template-columns: 1fr 1fr; gap: 16px 20px; align-items: center; }
   .ahm-value { font-size: 15px; }
   .ahm-label { font-size: 10px; }
 
@@ -3069,9 +3063,6 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         </p>
 
         <div class="about-hero-meta">
-          <div class="ahm-cell ahm-avatar-cell">
-            <img src="images/avatar.jpg" alt="Eduardo Pinillos" class="ahm-avatar">
-          </div>
           <div class="ahm-cell">
             <div class="ahm-label">— Now</div>
             <div class="ahm-value">Portugal</div>
