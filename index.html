@@ -2787,7 +2787,9 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   <button id="footer-cta" aria-expanded="false" aria-controls="footer-form-wrap">
     <span>Let's&nbsp;build&nbsp;it.</span>
     <span class="fcta-arrow">
-      <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- viewBox holgado: la flecha estirada en hover (shaft x1.55 + head +44) cabe
+           entera, porque Safari recorta el SVG aunque tenga overflow visible -->
+      <svg viewBox="0 0 140 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <line class="shaft" x1="0" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="12"/>
         <path class="head" d="M52 14 L88 50 L52 86" stroke="currentColor" stroke-width="12" fill="none" stroke-linejoin="miter"/>
       </svg>
