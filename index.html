@@ -415,7 +415,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
    tight-fit names wrap or shrink so nothing overflows the viewport. */
 @media (max-width: 767px) {
   /* Hero: keep kinetic readable, allow scroll, but pull top meta in */
-  #hero-counter { top: 18px; right: 22px; font-size: 10px; }
   #hero-meta { padding: 0 22px; bottom: 24px; font-size: 10px; }
 
   /* Intro section — section paddings */
@@ -993,18 +992,6 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   animation: blink 2s ease-in-out infinite;
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-#hero-counter {
-  position: absolute;
-  top: 24px;
-  right: 28px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  z-index: 5;
-}
 
 /* ─────────────────────────────── INTRO SECTION ─────────────────────────────── */
 #intro {
@@ -2999,10 +2986,6 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 
 <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
 <section id="hero" data-screen-label="01 Hero">
-  <div id="hero-counter">
-    <span id="visit-counter">N° 0001</span>
-  </div>
-
   <div id="kinetic-bg">
     <div class="kinetic-row" data-speed="-0.6">
       <span>PINILLOS</span><span>LAB</span><span>—</span><span>SINCE</span><span>2008</span><span>·</span>
@@ -3898,7 +3881,6 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
     document.querySelector('.cursor-dot').style.display = TWEAKS.cursorStyle === 'magnetic' ? '' : 'none';
     document.querySelector('.cursor-ring').style.display = TWEAKS.cursorStyle === 'magnetic' ? '' : 'none';
     document.body.style.cursor = TWEAKS.cursorStyle === 'magnetic' ? 'none' : '';
-    document.getElementById('hero-counter').style.display = TWEAKS.showCounter ? '' : 'none';
     document.body.dataset.logo = TWEAKS.logoVariant || 'current';
 
     // hero variant
@@ -4507,7 +4489,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       updated: 'July 11, 2026',
       sections: [
         { h: 'Overview', p: 'This website does not use cookies, analytics, advertising, or any kind of tracking. There is nothing to accept and nothing to opt out of.' },
-        { h: 'What stays on your device', p: 'The site keeps two small pieces of functional data in your browser\u2019s local storage: a flag so the intro animation plays only once per session, and a local visit counter shown in the header. Neither is transmitted anywhere, neither identifies you, and both stay on your device.' },
+        { h: 'What stays on your device', p: 'The site keeps one small piece of functional data in your browser\u2019s session storage: a flag so the intro animation plays only once per session. It is not transmitted anywhere, it does not identify you, and it disappears when you close the browser.' },
         { h: 'Contact form', p: 'If you send a message through the contact form, your name, email address and message are delivered to me via Web3Forms (web3forms.com), which acts as a form-processing service. I use that information solely to reply to you. It is never sold, shared, or added to any mailing list.' },
         { h: 'Hosting', p: 'The site is hosted on GitHub Pages. Like any web host, GitHub may keep standard server logs (including IP addresses) for security and operational purposes. See GitHub\u2019s privacy statement for details.' },
         { h: 'Fonts & third parties', p: 'All fonts are self-hosted on this domain. Loading this site makes no requests to Google or any other third party.' },
@@ -4795,15 +4777,8 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   tickClock();
   setInterval(tickClock, 1000);
 
-  // visit counter (synthetic, persistent)
-  function getCounter() {
-    let n = parseInt(localStorage.getItem('pinillos_visits') || '0', 10);
-    n = n + 1;
-    localStorage.setItem('pinillos_visits', n);
-    return n;
-  }
-  const visitNum = 1247 + getCounter();
-  document.getElementById('visit-counter').textContent = 'N° ' + String(visitNum).padStart(4, '0');
+  // limpieza: el contador de visitas se eliminó; borra la clave antigua si existe
+  try { localStorage.removeItem('pinillos_visits'); } catch (e) {}
 
   // ═══════════════════════════ REVEAL ON SCROLL ═══════════════════════════
   const io = new IntersectionObserver((entries) => {
