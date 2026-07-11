@@ -1367,14 +1367,14 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 }
 @media (max-width: 767px) { .about-stamp { top: 96px; right: 22px; width: 84px; height: 84px; } }
 .about-stamp svg { width: 100%; height: 100%; display: block; will-change: transform; }
-.about-stamp .stamp-text {
+.about-stamp .stamp-text, .about-slam .stamp-text {
   font-family: var(--mono);
   font-size: 10.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   fill: var(--ink);
 }
-.about-stamp .stamp-star { font-size: 36px; fill: var(--ink); }
+.about-stamp .stamp-star, .about-slam .stamp-star { font-size: 36px; fill: var(--ink); }
 
 /* odómetros: los dígitos ruedan como un cuentakilómetros al entrar en viewport */
 .odo { display: inline-flex; }
@@ -1838,6 +1838,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   transform: translateX(100%);
   transition: transform 0.6s var(--ease-out-expo);
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 #about-page.open { transform: translateX(0); }
@@ -2045,42 +2046,147 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 }
 .about-story-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--ink); }
 
+/* Cada etapa es un "capítulo de pasaporte": año gigante fantasma que se rellena
+   de amarillo al cruzar el viewport, línea que sube, y sello de lugar que se
+   estampa con rebote. Todo conducido por scroll → idéntico en desktop y móvil. */
 .story-stage {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 24px;
-  padding: 32px 0;
+  position: relative;
+  padding: 64px 0;
   border-top: 1px solid var(--ink-faint);
-  align-items: baseline;
 }
 .story-stage:last-child { border-bottom: none; }
-@media (min-width: 768px) {
-  .story-stage { grid-template-columns: 120px 1fr; gap: 48px; padding: 44px 0; }
-}
 .story-year {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  padding-top: 12px;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(88px, 18vw, 220px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-variation-settings: "opsz" 96;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(10, 10, 10, 0.3);
+  transition: color 0.5s ease, -webkit-text-stroke-color 0.5s ease;
+  margin-bottom: 24px;
+  user-select: none;
+}
+.story-stage.lit .story-year {
+  color: var(--yellow);
+  -webkit-text-stroke-color: var(--ink);
 }
 .story-line {
   font-family: var(--display);
   font-weight: 400;
-  font-size: clamp(28px, 4.2vw, 56px);
+  font-size: clamp(26px, 4vw, 52px);
   line-height: 1.05;
   letter-spacing: -0.02em;
   color: var(--ink);
   font-variation-settings: "opsz" 96;
   text-wrap: pretty;
+  max-width: 820px;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.5s ease 0.1s, transform 0.6s var(--ease-out-expo) 0.1s;
 }
+@media (min-width: 768px) { .story-line { margin-left: 120px; } }
+.story-stage.lit .story-line { opacity: 1; transform: none; }
 .story-line strong { font-weight: 800; }
 .story-line em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.story-stage:hover .story-line em,
-.story-stage:hover .story-line strong { color: var(--ink); }
-.story-stage { transition: background 0.4s ease; }
-.story-stage:hover { background: linear-gradient(90deg, var(--paper-dark) 0%, transparent 80%); }
+/* sello de lugar tipo pasaporte */
+.story-stamp {
+  position: absolute;
+  top: 72px;
+  right: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+  padding: 8px 14px;
+  background: var(--paper);
+  opacity: 0;
+  transform: rotate(14deg) scale(2.6);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
+  pointer-events: none;
+}
+.story-stage:nth-child(odd) .story-stamp { --stamp-tilt: -5deg; }
+.story-stage:nth-child(even) .story-stamp { --stamp-tilt: 4deg; }
+.story-stage.lit .story-stamp { opacity: 1; transform: rotate(var(--stamp-tilt, -5deg)) scale(1); }
+@media (max-width: 767px) {
+  .story-stamp { top: auto; bottom: 100%; margin-bottom: -40px; font-size: 10px; padding: 6px 10px; }
+}
+
+/* ─── ABOUT PAGE V2: hero con retrato + sello que se estampa al abrir ─── */
+.ah-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: end;
+}
+@media (min-width: 900px) { .ah-grid { grid-template-columns: 1fr 340px; gap: 64px; } }
+.ah-photo {
+  margin: 0;
+  position: relative;
+  justify-self: center;
+  transform: rotate(3deg);
+}
+@media (min-width: 900px) { .ah-photo { justify-self: end; } }
+.ah-photo img {
+  display: block;
+  width: min(70vw, 320px);
+  height: auto;
+  filter: drop-shadow(0 24px 40px rgba(0, 0, 0, 0.25));
+}
+.about-slam {
+  position: absolute;
+  top: -30px;
+  right: -14px;
+  width: 118px;
+  height: 118px;
+  opacity: 0;
+  pointer-events: none;
+}
+@media (max-width: 899px) { .about-slam { width: 92px; height: 92px; top: -22px; right: -8px; } }
+.about-slam svg { width: 100%; height: 100%; display: block; }
+/* se estampa de golpe cuando la página termina de deslizarse */
+#about-page.open .about-slam {
+  animation: slamIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.75s forwards;
+}
+@keyframes slamIn {
+  0%   { opacity: 0; transform: scale(3) rotate(28deg); }
+  55%  { opacity: 1; }
+  100% { opacity: 1; transform: scale(1) rotate(-12deg); }
+}
+#about-page.open .about-hero { animation: heroShake 0.28s linear 1.12s; }
+@keyframes heroShake {
+  25% { transform: translate(1px, -2px); }
+  50% { transform: translate(-2px, 1px); }
+  75% { transform: translate(1px, 1px); }
+}
+
+/* premios: desfile escalonado; los ganadores llevan chip amarillo inclinado */
+.about-award-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: padding-left 0.4s var(--ease-out-expo), opacity 0.5s ease, transform 0.6s var(--ease-out-expo);
+}
+.about-award-item.shown { opacity: 1; transform: translateY(0); }
+.about-award-item.highlight .about-award-year {
+  display: inline-block;
+  background: var(--yellow);
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  padding: 3px 8px;
+  font-weight: 700;
+  transform: rotate(-3deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .story-year { color: var(--yellow); -webkit-text-stroke-color: var(--ink); }
+  .story-line, .story-stamp, .about-award-item { opacity: 1; transform: none; transition: none; }
+  #about-page.open .about-slam { animation: none; opacity: 1; transform: rotate(-12deg); }
+  #about-page.open .about-hero { animation: none; }
+}
 
 .about-meta-grid {
   display: grid;
@@ -2951,27 +3057,42 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       <span>b. Lima 1983</span>
     </div>
 
-    <h1 class="about-hero-name">
-      <span class="ah-name-row">Pinil<span class="ah-italic">l</span>os</span>
-    </h1>
+    <div class="ah-grid">
+      <div class="ah-left">
+        <h1 class="about-hero-name">
+          <span class="ah-name-row">Pinil<span class="ah-italic">l</span>os</span>
+        </h1>
 
-    <p class="about-hero-tagline">
-      <em>Independent maker</em> of small, useful things.<br>
-      Portugal &amp; everywhere with Wi‑Fi.
-    </p>
+        <p class="about-hero-tagline">
+          <em>Independent maker</em> of small, useful things.<br>
+          Portugal &amp; everywhere with Wi‑Fi.
+        </p>
 
-    <div class="about-hero-meta">
-      <div class="ahm-cell ahm-avatar-cell">
-        <img src="images/avatar.jpg" alt="Eduardo Pinillos" class="ahm-avatar">
+        <div class="about-hero-meta">
+          <div class="ahm-cell ahm-avatar-cell">
+            <img src="images/avatar.jpg" alt="Eduardo Pinillos" class="ahm-avatar">
+          </div>
+          <div class="ahm-cell">
+            <div class="ahm-label">— Now</div>
+            <div class="ahm-value">Portugal</div>
+          </div>
+          <div class="ahm-cell">
+            <div class="ahm-label">— Since</div>
+            <div class="ahm-value">2008 · 17 yrs</div>
+          </div>
+        </div>
       </div>
-      <div class="ahm-cell">
-        <div class="ahm-label">— Now</div>
-        <div class="ahm-value">Portugal</div>
-      </div>
-      <div class="ahm-cell">
-        <div class="ahm-label">— Since</div>
-        <div class="ahm-value">2008 · 17 yrs</div>
-      </div>
+
+      <figure class="ah-photo">
+        <img src="images/edu.webp" alt="Edu Pinillos" loading="lazy" width="818" height="818">
+        <div class="about-slam" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs><path id="slam-circ" d="M60,60 m-46,0 a46,46 0 1,1 92,0 a46,46 0 1,1 -92,0"/></defs>
+            <text class="stamp-text"><textPath href="#slam-circ">Pinillos Lab · est. 2008 · Lima → Europe ·&#160;</textPath></text>
+            <text x="60" y="60" text-anchor="middle" dominant-baseline="central" class="stamp-star">✻</text>
+          </svg>
+        </div>
+      </figure>
     </div>
   </header>
 
@@ -2994,6 +3115,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       <div class="about-story-eyebrow"><span>Story · in five stages</span></div>
 
       <div class="story-stage">
+        <span class="story-stamp">Lima · Perú</span>
         <div class="story-year">2008</div>
         <div class="story-line">
           Started in <strong>Lima</strong>, building <em>digital things</em> when nobody in the room knew what that meant.
@@ -3001,6 +3123,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       </div>
 
       <div class="story-stage">
+        <span class="story-stamp">San Francisco · USA</span>
         <div class="story-year">2012</div>
         <div class="story-line">
           Won <em>Startup&nbsp;World</em> in <strong>San Francisco</strong>. Realised software could travel further than I could.
@@ -3008,6 +3131,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       </div>
 
       <div class="story-stage">
+        <span class="story-stamp">Madrid — Barcelona</span>
         <div class="story-year">2015</div>
         <div class="story-line">
           Crossed the ocean. <strong>Madrid</strong>, <strong>Barcelona</strong> — venture-backed teams, big rooms, fast nights.
@@ -3015,6 +3139,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       </div>
 
       <div class="story-stage">
+        <span class="story-stamp">On my own</span>
         <div class="story-year">2022</div>
         <div class="story-line">
           Got tired of <em>committee design</em>. Quit to make things <strong>alone</strong>, the way I wanted to.
@@ -3022,6 +3147,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       </div>
 
       <div class="story-stage">
+        <span class="story-stamp">Portugal ✻</span>
         <div class="story-year">Now</div>
         <div class="story-line">
 <strong>Portugal</strong>, small desk by a window. Shipping <em>Trovelo</em>, <em>Dimmly</em>, <em>Wealth&nbsp;Square</em> — alone, slow, on purpose.
@@ -4553,6 +4679,41 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       requestAnimationFrame(aboutTick);
     }
     if (!aboutReduced) requestAnimationFrame(aboutTick);
+  }
+
+  // ═══════════════════════════ ABOUT PAGE V2 — CAPÍTULOS + PREMIOS ═══════════════════════════
+  // La página /about es un overlay con scroll propio; getBoundingClientRect da
+  // coordenadas de viewport igualmente, así que un rAF sirve para ambos mundos.
+  const aboutPageEl = document.getElementById('about-page');
+  const storyStages = Array.from(document.querySelectorAll('.story-stage'));
+  if (aboutPageEl && storyStages.length) {
+    function stagesTick() {
+      if (aboutPageEl.classList.contains('open')) {
+        const vh = window.innerHeight || 1;
+        storyStages.forEach(st => {
+          const r = st.getBoundingClientRect();
+          // se enciende al cruzar el 78% del viewport, se apaga si vuelve a salir
+          st.classList.toggle('lit', r.top < vh * 0.78 && r.bottom > vh * 0.15);
+        });
+      }
+      requestAnimationFrame(stagesTick);
+    }
+    requestAnimationFrame(stagesTick);
+  }
+
+  // premios: aparición escalonada al entrar en viewport
+  const awardRows = Array.from(document.querySelectorAll('.about-award-item'));
+  if (awardRows.length) {
+    awardRows.forEach((row, i) => { row.style.transitionDelay = (i * 70) + 'ms'; });
+    const awardsIo = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('shown');
+          awardsIo.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    awardRows.forEach(row => awardsIo.observe(row));
   }
 
 })();
