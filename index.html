@@ -4653,10 +4653,12 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
     let stampRot = 0, stampVel = 0, stampLastY = window.scrollY;
 
     function aboutTick() {
-      // tinta ligada al scroll, reversible: entra al 90% del viewport, completa al 35%
+      // tinta ligada al scroll, reversible: empieza cuando el titular alcanza el
+      // 68% del viewport y completa al 23% — así el pintado ocurre a la vista,
+      // no nada más asomar por abajo
       const r = bioEl.getBoundingClientRect();
       const vh = window.innerHeight || 1;
-      const p = Math.min(1, Math.max(0, (vh * 0.9 - r.top) / (vh * 0.55)));
+      const p = Math.min(1, Math.max(0, (vh * 0.68 - r.top) / (vh * 0.45)));
       const n = Math.round(p * inkWords.length);
       inkWords.forEach((w, i) => w.classList.toggle('inked', i < n));
       if (aboutPhoto) aboutPhoto.classList.toggle('lit', p > 0.75);
@@ -4683,8 +4685,9 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         const vh = window.innerHeight || 1;
         storyStages.forEach(st => {
           const r = st.getBoundingClientRect();
-          // se enciende al cruzar el 78% del viewport, se apaga si vuelve a salir
-          st.classList.toggle('lit', r.top < vh * 0.78 && r.bottom > vh * 0.15);
+          // se enciende cuando el capítulo llega a media pantalla (no nada más
+          // asomar por abajo), se apaga si vuelve a salir
+          st.classList.toggle('lit', r.top < vh * 0.5 && r.bottom > vh * 0.12);
         });
       }
       requestAnimationFrame(stagesTick);
