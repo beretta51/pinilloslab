@@ -1273,6 +1273,201 @@ html.touch-ui .award-mini {
 html.touch-ui .award-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
 html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: scale(1) rotate(var(--mini-rot, 0deg)); }
 
+/* ═══════════ DIMMLY TAKEOVER — dark, bandas de color, tareas y dimmer ═══════════ */
+#dimmly-page {
+  background: #0A0A0A;
+  color: var(--paper);
+  --dim: 1;
+}
+#dimmly-page .app-num { color: rgba(242, 239, 230, 0.5); }
+#dimmly-page .app-name { color: var(--paper); }
+#dimmly-page .app-tagline { color: rgba(242, 239, 230, 0.72); }
+#dimmly-page .app-action { border-color: rgba(242, 239, 230, 0.25); color: var(--paper); }
+#dimmly-page .app-action:hover { border-color: #FF7A00; color: #FF7A00; }
+/* el dimmer atenúa todo lo que tiene color, como en la app */
+#dimmly-page .app-card-img,
+#dimmly-page .dim-bands,
+#dimmly-page .dim-chip { filter: brightness(var(--dim)); transition: filter 0.15s linear; }
+
+/* hero: el nombre es una tarea */
+.dim-hero-name { display: flex; align-items: center; gap: 0.22em; }
+.dim-check { display: inline-flex; color: var(--paper); flex-shrink: 0; }
+.dim-hero-check { width: 0.62em; height: 0.62em; }
+.dim-check svg { width: 100%; height: 100%; display: block; }
+.dim-check .tick {
+  stroke: #FF7A00;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+}
+.dim-name-wrap { position: relative; display: inline-block; }
+.dim-strike {
+  position: absolute;
+  left: -0.04em;
+  right: -0.04em;
+  top: 0.56em;
+  height: 0.07em;
+  background: #FF7A00;
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+/* entrada: check → tachado → destachado (el twist) → bandas en cascada */
+#dimmly-page.open .dim-hero-check svg { animation: dimCheckPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+#dimmly-page.open .dim-hero-check .tick { animation: dimTickDraw 0.35s ease 0.5s both; }
+#dimmly-page.open .dim-strike { animation: dimStrike 1.5s ease 0.75s both; }
+#dimmly-page.open .dim-name-wrap { animation: dimNameDip 1.5s ease 0.75s both; }
+@keyframes dimCheckPop { from { transform: scale(0.3) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes dimTickDraw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
+@keyframes dimStrike {
+  0%   { transform: scaleX(0); opacity: 1; }
+  28%  { transform: scaleX(1); opacity: 1; }
+  72%  { transform: scaleX(1); opacity: 1; }
+  84%  { transform: scaleX(1); opacity: 0; }
+  100% { transform: scaleX(1); opacity: 0; }
+}
+@keyframes dimNameDip {
+  0%   { opacity: 1; }
+  28%  { opacity: 0.5; }
+  72%  { opacity: 0.5; }
+  88%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+.dim-bands { display: flex; flex-direction: column; gap: 6px; margin: 28px 0 36px; max-width: 560px; }
+.dim-bands span {
+  display: block;
+  height: 12px;
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+#dimmly-page.open .dim-bands span { animation: dimBandIn 0.6s var(--ease-out-expo) both; }
+#dimmly-page.open .dim-bands span:nth-child(1) { animation-delay: 2.15s; }
+#dimmly-page.open .dim-bands span:nth-child(2) { animation-delay: 2.23s; }
+#dimmly-page.open .dim-bands span:nth-child(3) { animation-delay: 2.31s; }
+#dimmly-page.open .dim-bands span:nth-child(4) { animation-delay: 2.39s; }
+#dimmly-page.open .dim-bands span:nth-child(5) { animation-delay: 2.47s; }
+@keyframes dimBandIn { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* dimmer interactivo */
+.dim-dimmer { display: flex; align-items: center; gap: 16px; margin: 0 0 40px; max-width: 560px; }
+.dim-dimmer-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 230, 0.6);
+  white-space: nowrap;
+}
+.dim-dimmer-sun { color: #FFB300; font-size: 16px; }
+#dim-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #2A2A2A, #FF9500);
+  outline: none;
+  cursor: pointer;
+}
+#dim-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2.5px solid #0A0A0A;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+#dim-slider::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2.5px solid #0A0A0A;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* tareas: cada screen se completa al cruzar el centro */
+#dimmly-page .app-card.dim-task { aspect-ratio: auto; display: flex; flex-direction: column; }
+#dimmly-page .dim-task .app-card-img { width: 100%; height: auto; flex: 1; object-fit: cover; }
+.dim-task-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+}
+.dim-task .dim-check { width: 26px; height: 26px; color: rgba(242, 239, 230, 0.85); }
+.dim-task .dim-check .tick { transition: stroke-dashoffset 0.35s ease; }
+.dim-task-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 230, 0.85);
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dim-task-label::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: 1.5px;
+  background: #FF7A00;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.dim-chip {
+  width: 52px;
+  height: 16px;
+  border-radius: 999px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+.dim-task.done .dim-check .tick { stroke-dashoffset: 0; }
+.dim-task.done .dim-task-label::after { transform: scaleX(1); }
+.dim-task.done .dim-task-label { color: rgba(242, 239, 230, 0.5); }
+.dim-task img { border-radius: 18px; }
+
+/* contador sticky */
+.dim-progress {
+  position: sticky;
+  top: 96px;
+  z-index: 5;
+  width: fit-content;
+  margin: 0 28px 0 auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 230, 0.6);
+  background: rgba(10, 10, 10, 0.82);
+  border: 1px solid rgba(242, 239, 230, 0.2);
+  border-radius: 999px;
+  padding: 8px 14px;
+  backdrop-filter: blur(6px);
+}
+@media (min-width: 768px) { .dim-progress { margin-right: 56px; } }
+.dim-progress b { color: #FF7A00; font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  #dimmly-page.open .dim-hero-check svg,
+  #dimmly-page.open .dim-hero-check .tick,
+  #dimmly-page.open .dim-strike,
+  #dimmly-page.open .dim-name-wrap,
+  #dimmly-page.open .dim-bands span { animation: none; }
+  #dimmly-page.open .dim-hero-check .tick { stroke-dashoffset: 0; }
+  #dimmly-page.open .dim-strike { transform: scaleX(1); opacity: 0; }
+  #dimmly-page.open .dim-bands span { transform: scaleX(1); }
+  .dim-task .dim-check .tick, .dim-task-label::after { transition: none; }
+}
+
 /* ─── MOBILE SCROLL-SPOTLIGHT: en táctil el scroll es el cursor ───
    La fila que cruza el centro del viewport recibe .active (misma banda amarilla
    que el hover de desktop) y su icono aparece dentro de la fila con un pop.
@@ -3071,18 +3266,92 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 <div id="dimmly-page" class="app-page">
   <div class="app-hero">
     <div class="app-num">— 02 / 07</div>
-    <h1 class="app-name">Dimmly</h1>
+    <h1 class="app-name dim-hero-name">
+      <span class="dim-check dim-hero-check" aria-hidden="true">
+        <svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="dim-name-wrap">Dimmly<span class="dim-strike" aria-hidden="true"></span></span>
+    </h1>
+    <div class="dim-bands" aria-hidden="true">
+      <span style="background:linear-gradient(90deg,#FF6A00,#FF9500);"></span>
+      <span style="background:linear-gradient(90deg,#FF9500,#FFB300);"></span>
+      <span style="background:linear-gradient(90deg,#1FB4CE,#0AA7C4);"></span>
+      <span style="background:linear-gradient(90deg,#0E62A8,#0B4F9E);"></span>
+      <span style="background:linear-gradient(90deg,#12358C,#1F2E6E);"></span>
+    </div>
+    <div class="dim-dimmer">
+      <span class="dim-dimmer-label">— Dim it down</span>
+      <input type="range" id="dim-slider" min="35" max="100" value="100" aria-label="Dim the page colors">
+      <span class="dim-dimmer-sun" aria-hidden="true">☀</span>
+    </div>
     <p class="app-tagline">Dimmly is the task manager and habit tracker that actually fits your day. Create color coded lists for work, routines, groceries or anything else. Set alarms, track daily habits with streaks, add notes and checklists inside tasks, and keep score during game nights with the built in Scoreboard. Free for 5 lists, one-time upgrade for unlimited. Available on iOS and Mac.</p>
   </div>
+  <div class="dim-progress" aria-hidden="true"><b id="dim-count">0</b> / 8 done</div>
   <div class="app-screens">
-    <div class="app-card"><img src="images/dimmly-1.webp" alt="Dimmly · screen 1" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/dimmly-2.webp" alt="Dimmly · screen 2" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/dimmly-3.webp" alt="Dimmly · screen 3" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/dimmly-4.webp" alt="Dimmly · screen 4" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/dimmly-5.webp" alt="Dimmly · screen 5" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/dimmly-6.webp" alt="Dimmly · screen 6" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/dimmly-7.webp" alt="Dimmly · screen 7" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/dimmly-8.webp" alt="Dimmly · screen 8" class="app-card-img" loading="lazy"></div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">Color-coded lists</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#FF6A00,#FF9500,#1FB4CE,#0E62A8,#12358C);"></span>
+      </div>
+      <img src="images/dimmly-1.webp" alt="Dimmly · Color-coded lists" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">Tasks & checklists</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#0AA7C4,#0B6FB0,#FF8A00,#FF6A00);"></span>
+      </div>
+      <img src="images/dimmly-2.webp" alt="Dimmly · Tasks & checklists" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">Habit streaks</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#7A0E3C,#C21E50,#FF4E42,#FF8A00);"></span>
+      </div>
+      <img src="images/dimmly-3.webp" alt="Dimmly · Habit streaks" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">Game scoreboard</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#0A57C2,#0B3E8C,#1F2E6E);"></span>
+      </div>
+      <img src="images/dimmly-4.webp" alt="Dimmly · Game scoreboard" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">Dim it down</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#FF7A00,#FFB300,#0FA7C4,#0B4F9E);"></span>
+      </div>
+      <img src="images/dimmly-5.webp" alt="Dimmly · Dim it down" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">Paste & go</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#6B4EF0,#8A6BFF);"></span>
+      </div>
+      <img src="images/dimmly-6.webp" alt="Dimmly · Paste & go" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">Pick a color. Name it.</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#FFC400,#FF7A00,#E8348C,#7A1FA8);"></span>
+      </div>
+      <img src="images/dimmly-7.webp" alt="Dimmly · Pick a color. Name it." class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card dim-task">
+      <div class="dim-task-row">
+        <span class="dim-check" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><rect x="2" y="2" width="28" height="28" rx="9" stroke="currentColor" stroke-width="2.5"/><path class="tick" d="M9 17l5 5 9-12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="dim-task-label">iCloud sync · iPhone + Mac</span>
+        <span class="dim-chip" style="background:linear-gradient(90deg,#FF8A00,#FF6A00,#8A56D8,#5B2EA8);"></span>
+      </div>
+      <img src="images/dimmly-8.webp" alt="Dimmly · iCloud sync · iPhone + Mac" class="app-card-img" loading="lazy">
+    </div>
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6761221806" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
@@ -4766,6 +5035,40 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       requestAnimationFrame(aboutTick);
     }
     if (!aboutReduced) requestAnimationFrame(aboutTick);
+  }
+
+  // ═══════════════════════════ DIMMLY TAKEOVER — dimmer + tareas por scroll ═══════════════════════════
+  const dimmlyPageEl = document.getElementById('dimmly-page');
+  if (dimmlyPageEl) {
+    // el slider "Dim it down" atenúa los colores de toda la página, como en la app
+    const dimSlider = document.getElementById('dim-slider');
+    if (dimSlider) {
+      dimSlider.addEventListener('input', () => {
+        dimmlyPageEl.style.setProperty('--dim', (dimSlider.value / 100).toFixed(2));
+      });
+    }
+    // cada screen es una tarea: se marca al cruzar el 55% del viewport (reversible)
+    const dimTasks = Array.from(dimmlyPageEl.querySelectorAll('.dim-task'));
+    const dimCount = document.getElementById('dim-count');
+    if (dimTasks.length) {
+      function dimmlyTick() {
+        if (dimmlyPageEl.classList.contains('open')) {
+          // la tira de screens es horizontal: una tarea se completa cuando el
+          // centro de su card cruza el centro del viewport al swipear
+          const midX = (window.innerWidth || 1) / 2;
+          let done = 0;
+          dimTasks.forEach(t => {
+            const r = t.getBoundingClientRect();
+            const isDone = (r.left + r.width / 2) < midX + r.width * 0.2;
+            t.classList.toggle('done', isDone);
+            if (isDone) done++;
+          });
+          if (dimCount && dimCount.textContent !== String(done)) dimCount.textContent = done;
+        }
+        requestAnimationFrame(dimmlyTick);
+      }
+      requestAnimationFrame(dimmlyTick);
+    }
   }
 
   // ═══════════════════════════ ABOUT PAGE V2 — CAPÍTULOS + PREMIOS ═══════════════════════════
