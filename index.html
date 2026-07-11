@@ -1373,6 +1373,185 @@ html.touch-ui .award-mini {
 html.touch-ui .award-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
 html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: scale(1) rotate(var(--mini-rot, 0deg)); }
 
+/* ═══════════ SOLID TAKEOVER — negro + volt, la pesa cae ═══════════ */
+#solid-page {
+  background: #050505;
+  color: #fff;
+  --volt: #D6F324;
+}
+#solid-page .app-num { color: rgba(255, 255, 255, 0.45); }
+#solid-page .app-name { color: #fff; }
+#solid-page .app-tagline { color: rgba(255, 255, 255, 0.68); }
+#solid-page .app-action {
+  background: #141414;
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+#solid-page .app-action:hover {
+  background: var(--volt);
+  border-color: var(--volt);
+  color: #050505;
+}
+
+/* hero: el nombre cae como una pesa y el suelo tiembla */
+.solid-hero-name { display: flex; align-items: center; gap: 0.22em; overflow: visible; }
+.solid-hero-icon {
+  display: inline-flex;
+  width: 0.72em;
+  height: 0.72em;
+  flex-shrink: 0;
+}
+.solid-hero-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 26%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+.solid-drop { display: inline-block; transform-origin: center bottom; }
+#solid-page.open .solid-drop { animation: solidDrop 1.05s cubic-bezier(0.6, 0, 0.8, 0.4) 0.55s both; }
+#solid-page.open .solid-hero-icon img { animation: dimCheckPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1.55s both; }
+#solid-page.open .app-hero { animation: solidQuake 0.32s linear 1.32s; }
+@keyframes solidDrop {
+  0%   { transform: translateY(-72vh); }
+  68%  { transform: translateY(0) scale(1, 1); }
+  76%  { transform: translateY(0) scale(1.09, 0.78); }
+  86%  { transform: translateY(0) scale(0.97, 1.06); }
+  94%  { transform: translateY(0) scale(1.02, 0.98); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes solidQuake {
+  20% { transform: translate(2px, -3px); }
+  40% { transform: translate(-3px, 2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(-1px, -1px); }
+}
+/* la barra-suelo volt que recibe el golpe */
+.solid-bar {
+  height: 14px;
+  max-width: 560px;
+  border-radius: 999px;
+  background: var(--volt);
+  margin: 18px 0 32px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  box-shadow: 0 0 34px rgba(214, 243, 36, 0.35);
+}
+#solid-page.open .solid-bar { animation: solidBarSlam 0.5s cubic-bezier(0.22, 1, 0.36, 1) 1.32s both; }
+@keyframes solidBarSlam {
+  0%   { transform: scaleX(0); }
+  60%  { transform: scaleX(1.02) scaleY(1.35); }
+  100% { transform: scaleX(1) scaleY(1); }
+}
+.solid-motto {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(24px, 3.6vw, 40px);
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+  color: #fff;
+  font-variation-settings: "opsz" 96;
+}
+.solid-motto b { color: var(--volt); }
+#solid-page.open .solid-motto,
+#solid-page.open .solid-rest { animation: introFadeIn 0.5s ease 1.75s both; }
+/* chip de descanso que cuenta y suelta el GO */
+.solid-rest {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--volt);
+  color: #050505;
+  border-radius: 18px;
+  padding: 12px 20px;
+  margin-bottom: 40px;
+}
+.solid-rest-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.solid-rest-time {
+  font-family: var(--mono);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* sets: cada screen es un ejercicio con 4 barras que se rellenan */
+#solid-page .app-card.solid-set { aspect-ratio: auto; display: flex; flex-direction: column; background: #101010; }
+#solid-page .solid-set .app-card-img { width: 100%; height: auto; flex: 1; object-fit: cover; }
+.solid-set-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+}
+.solid-set-label {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 0.3s ease;
+}
+.solid-set-bars { display: flex; gap: 5px; flex-shrink: 0; }
+.solid-set-bars i {
+  width: 26px;
+  height: 7px;
+  border-radius: 999px;
+  background: #2a2a2a;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+.solid-set.done .solid-set-label { color: var(--volt); }
+.solid-set.done .solid-set-bars i {
+  background: var(--volt);
+  box-shadow: 0 0 10px rgba(214, 243, 36, 0.5);
+}
+.solid-set.done .solid-set-bars i:nth-child(1) { transition-delay: 0s; }
+.solid-set.done .solid-set-bars i:nth-child(2) { transition-delay: 0.12s; }
+.solid-set.done .solid-set-bars i:nth-child(3) { transition-delay: 0.24s; }
+.solid-set.done .solid-set-bars i:nth-child(4) { transition-delay: 0.36s; }
+
+/* contador sticky */
+.solid-progress {
+  position: sticky;
+  top: 96px;
+  z-index: 5;
+  width: fit-content;
+  margin: 0 28px 0 auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #050505;
+  background: var(--volt);
+  border-radius: 999px;
+  padding: 8px 14px;
+  box-shadow: 0 6px 22px rgba(214, 243, 36, 0.25);
+}
+@media (min-width: 768px) { .solid-progress { margin-right: 56px; } }
+.solid-progress b { font-weight: 700; }
+
+@media (prefers-reduced-motion: reduce) {
+  #solid-page.open .solid-drop,
+  #solid-page.open .solid-hero-icon img,
+  #solid-page.open .app-hero,
+  #solid-page.open .solid-bar,
+  #solid-page.open .solid-motto,
+  #solid-page.open .solid-rest { animation: none; }
+  #solid-page.open .solid-bar { transform: scaleX(1); }
+  .solid-set-bars i { transition: none; }
+}
+
 /* ═══════════ DIMMLY TAKEOVER — dark, bandas de color, tareas y dimmer ═══════════ */
 #dimmly-page {
   background: #0A0A0A;
@@ -3500,15 +3679,55 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 <div id="solid-page" class="app-page">
   <div class="app-hero">
     <div class="app-num">— 04 / 07</div>
-    <h1 class="app-name">Solid</h1>
+    <h1 class="app-name solid-hero-name">
+      <span class="solid-hero-icon" aria-hidden="true"><img src="images/solid.png" alt="" width="512" height="512"></span>
+      <span class="solid-drop">Solid</span>
+    </h1>
+    <div class="solid-bar" aria-hidden="true"></div>
+    <p class="solid-motto">no noise. <b>just gym.</b></p>
+    <div class="solid-rest" aria-hidden="true">
+      <span class="solid-rest-label">Rest</span>
+      <span class="solid-rest-time" id="solid-rest-time">00:25</span>
+    </div>
     <p class="app-tagline">Solid is a gym tracker that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer.</p>
   </div>
+  <div class="solid-progress" aria-hidden="true"><b id="solid-count">0</b> / 5 logged</div>
   <div class="app-screens">
-    <div class="app-card"><img src="images/solid-1.webp" alt="Solid · screen 1" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/solid-2.webp" alt="Solid · screen 2" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/solid-3.webp" alt="Solid · screen 3" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/solid-4.webp" alt="Solid · screen 4" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/solid-5.webp" alt="Solid · screen 5" class="app-card-img" loading="lazy"></div>
+    <div class="app-card solid-set">
+      <div class="solid-set-row">
+        <span class="solid-set-label">no noise · just gym</span>
+        <span class="solid-set-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </div>
+      <img src="images/solid-1.webp" alt="Solid · no noise · just gym" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card solid-set">
+      <div class="solid-set-row">
+        <span class="solid-set-label">rest · go</span>
+        <span class="solid-set-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </div>
+      <img src="images/solid-2.webp" alt="Solid · rest · go" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card solid-set">
+      <div class="solid-set-row">
+        <span class="solid-set-label">swipe · log</span>
+        <span class="solid-set-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </div>
+      <img src="images/solid-3.webp" alt="Solid · swipe · log" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card solid-set">
+      <div class="solid-set-row">
+        <span class="solid-set-label">set · done</span>
+        <span class="solid-set-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </div>
+      <img src="images/solid-4.webp" alt="Solid · set · done" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card solid-set">
+      <div class="solid-set-row">
+        <span class="solid-set-label">show · up</span>
+        <span class="solid-set-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      </div>
+      <img src="images/solid-5.webp" alt="Solid · show · up" class="app-card-img" loading="lazy">
+    </div>
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6761683203" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
@@ -5195,6 +5414,49 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         requestAnimationFrame(dimmlyTick);
       }
       requestAnimationFrame(dimmlyTick);
+    }
+  }
+
+  // ═══════════════════════════ SOLID TAKEOVER — sets por swipe + rest timer ═══════════════════════════
+  const solidPageEl = document.getElementById('solid-page');
+  if (solidPageEl) {
+    // sets que se completan al cruzar el centro (tira horizontal, como Dimmly)
+    const solidSets = Array.from(solidPageEl.querySelectorAll('.solid-set'));
+    const solidCount = document.getElementById('solid-count');
+    if (solidSets.length) {
+      function solidTick() {
+        if (solidPageEl.classList.contains('open')) {
+          const midX = (window.innerWidth || 1) / 2;
+          let done = 0;
+          solidSets.forEach(t => {
+            const r = t.getBoundingClientRect();
+            const isDone = (r.left + r.width / 2) < midX + r.width * 0.2;
+            t.classList.toggle('done', isDone);
+            if (isDone) done++;
+          });
+          if (solidCount && solidCount.textContent !== String(done)) solidCount.textContent = done;
+        }
+        requestAnimationFrame(solidTick);
+      }
+      requestAnimationFrame(solidTick);
+    }
+    // rest timer del hero: cuenta atrás desde 0:25 y suelta el GO; se reinicia al cerrar
+    const restTime = document.getElementById('solid-rest-time');
+    if (restTime) {
+      let restLeft = 25;
+      setInterval(() => {
+        if (solidPageEl.classList.contains('open')) {
+          if (restLeft > 0) {
+            restLeft--;
+            restTime.textContent = '00:' + String(restLeft).padStart(2, '0');
+          } else {
+            restTime.textContent = 'GO';
+          }
+        } else if (restLeft !== 25) {
+          restLeft = 25;
+          restTime.textContent = '00:25';
+        }
+      }, 1000);
     }
   }
 
