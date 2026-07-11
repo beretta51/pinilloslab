@@ -1373,6 +1373,158 @@ html.touch-ui .award-mini {
 html.touch-ui .award-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
 html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: scale(1) rotate(var(--mini-rot, 0deg)); }
 
+/* ═══════════ TROVELO TAKEOVER — lavanda, ruta punteada, trip cards ═══════════ */
+#trovelo-page {
+  background: #B4A8F0;
+  color: var(--ink);
+  --trov-sun: #FFC838;
+  --trov-deep: #2E2566;
+}
+#trovelo-page .app-hero { position: relative; overflow: hidden; }
+#trovelo-page .app-num { color: rgba(46, 37, 102, 0.65); position: relative; z-index: 2; }
+#trovelo-page .app-tagline { color: #3A3072; position: relative; z-index: 2; }
+#trovelo-page .app-action { border-color: var(--trov-deep); }
+#trovelo-page .app-action:hover { background: var(--trov-deep); color: var(--trov-sun); }
+
+/* nubes flotando (del lenguaje de sus screenshots) */
+.trov-cloud {
+  position: absolute;
+  width: 130px;
+  height: 42px;
+  background: #fff;
+  border-radius: 999px;
+  opacity: 0.92;
+  z-index: 1;
+  filter: drop-shadow(0 10px 24px rgba(46, 37, 102, 0.14));
+}
+.trov-cloud::before,
+.trov-cloud::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+}
+.trov-cloud::before { width: 52px; height: 52px; top: -26px; left: 22px; }
+.trov-cloud::after { width: 38px; height: 38px; top: -18px; left: 64px; }
+.trov-cloud.c1 { top: 84px; right: 8%; transform: scale(1.05); animation: trovDrift 11s ease-in-out infinite alternate; }
+.trov-cloud.c2 { top: 46%; left: -26px; transform: scale(0.72); animation: trovDrift 14s ease-in-out infinite alternate-reverse; }
+.trov-cloud.c3 { bottom: 40px; right: 22%; transform: scale(0.55); opacity: 0.75; animation: trovDrift 9s ease-in-out infinite alternate; }
+@keyframes trovDrift { from { translate: 0 0; } to { translate: 26px -6px; } }
+#trovelo-page.open .trov-cloud { animation-play-state: running; }
+
+/* la ruta del itinerario */
+.trov-route {
+  position: absolute;
+  top: 88px;
+  left: 28px;
+  width: min(calc(100% - 56px), 660px);
+  height: auto;
+  z-index: 1;
+  overflow: visible;
+}
+.trov-dots { stroke-dasharray: 0.001 0.022; }
+.trov-reveal-path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+#trovelo-page.open .trov-reveal-path { animation: trovDraw 1.1s ease 0.55s both; }
+@keyframes trovDraw { to { stroke-dashoffset: 0; } }
+.trov-plane { opacity: 0; }
+#trovelo-page.open .trov-plane { animation: introFadeIn 0.15s ease 0.55s both; }
+
+/* el nombre aterriza con rebote al final de la ruta */
+.trov-hero-name {
+  display: flex;
+  align-items: center;
+  gap: 0.22em;
+  position: relative;
+  z-index: 2;
+}
+.trov-hero-icon { display: inline-flex; width: 0.72em; height: 0.72em; flex-shrink: 0; }
+.trov-hero-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 26%;
+  box-shadow: 0 10px 30px rgba(46, 37, 102, 0.35);
+}
+#trovelo-page.open .trov-hero-name { animation: trovLand 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s both; }
+@keyframes trovLand {
+  0%   { opacity: 0; transform: scale(0.4) translateY(-36px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+#trovelo-page.open .app-tagline { animation: introFadeIn 0.5s ease 1.95s both; }
+
+/* trip cards: rotadas como tarjetas de viaje, se enderezan al llegar su día */
+#trovelo-page .app-card.trov-card {
+  aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(46, 37, 102, 0.22);
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#trovelo-page .trov-card .app-card-img { width: 100%; height: auto; flex: 1; object-fit: cover; }
+#trovelo-page .trov-card:nth-child(odd) { transform: rotate(3deg) translateY(10px); }
+#trovelo-page .trov-card:nth-child(even) { transform: rotate(-2.5deg) translateY(4px); }
+#trovelo-page .trov-card.done,
+#trovelo-page .trov-card:hover { transform: rotate(0deg) translateY(-6px); }
+.trov-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+}
+.trov-chip {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--trov-deep);
+  background: #EFEBFF;
+  border-radius: 999px;
+  padding: 6px 12px;
+}
+.trov-chip-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #E3DDFA;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+#trovelo-page .trov-card.done .trov-chip-dot {
+  background: var(--trov-sun);
+  box-shadow: 0 0 10px rgba(255, 200, 56, 0.7);
+}
+
+/* contador de día */
+.trov-progress {
+  position: sticky;
+  top: 96px;
+  z-index: 5;
+  width: fit-content;
+  margin: 0 28px 0 auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--trov-deep);
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 14px;
+  box-shadow: 0 8px 26px rgba(46, 37, 102, 0.22);
+}
+@media (min-width: 768px) { .trov-progress { margin-right: 56px; } }
+.trov-progress b { color: #0A0A0A; }
+
+@media (prefers-reduced-motion: reduce) {
+  .trov-cloud { animation: none !important; }
+  #trovelo-page.open .trov-reveal-path { animation: none; stroke-dashoffset: 0; }
+  #trovelo-page.open .trov-plane { animation: none; opacity: 1; }
+  #trovelo-page.open .trov-hero-name,
+  #trovelo-page.open .app-tagline { animation: none; }
+  #trovelo-page .app-card.trov-card { transform: none !important; transition: none; }
+}
+
 /* ═══════════ SOLID TAKEOVER — negro + volt, la pesa cae ═══════════ */
 #solid-page {
   background: #050505;
@@ -3520,17 +3672,71 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 <!-- Trovelo -->
 <div id="trovelo-page" class="app-page">
   <div class="app-hero">
+    <div class="trov-cloud c1" aria-hidden="true"></div>
+    <div class="trov-cloud c2" aria-hidden="true"></div>
+    <div class="trov-cloud c3" aria-hidden="true"></div>
+    <svg class="trov-route" viewBox="0 0 640 240" fill="none" aria-hidden="true">
+      <defs>
+        <mask id="trov-reveal">
+          <path class="trov-reveal-path" d="M16,200 C120,60 260,240 380,110 S560,40 624,72" pathLength="1" stroke="#fff" stroke-width="26" fill="none" stroke-linecap="round"/>
+        </mask>
+      </defs>
+      <path class="trov-dots" d="M16,200 C120,60 260,240 380,110 S560,40 624,72" pathLength="1" stroke="rgba(255,255,255,0.95)" stroke-width="6" fill="none" stroke-linecap="round" mask="url(#trov-reveal)"/>
+      <circle class="trov-plane" r="9" fill="#FFC838" stroke="#0A0A0A" stroke-width="2.5">
+        <animateMotion id="trov-plane-motion" dur="1.1s" begin="indefinite" fill="freeze" path="M16,200 C120,60 260,240 380,110 S560,40 624,72"/>
+      </circle>
+    </svg>
     <div class="app-num">— 01 / 07</div>
-    <h1 class="app-name">Trovelo</h1>
+    <h1 class="app-name trov-hero-name">
+      <span class="trov-hero-icon" aria-hidden="true"><img src="images/trovelo.png" alt="" width="512" height="512"></span>
+      <span>Trovelo</span>
+    </h1>
     <p class="app-tagline">Trovelo is the private travel planner built for people who actually travel. Plan your trips day by day, track every expense in dual currency, and keep your entire itinerary in your pocket.</p>
   </div>
+  <div class="trov-progress" aria-hidden="true">Day <b id="trov-day">1</b> of 6</div>
   <div class="app-screens">
-    <div class="app-card"><img src="images/trovelo-1.jpg" alt="Trovelo · screen 1" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/trovelo-2.webp" alt="Trovelo · screen 2" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/trovelo-3.webp" alt="Trovelo · screen 3" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/trovelo-4.webp" alt="Trovelo · screen 4" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/trovelo-5.webp" alt="Trovelo · screen 5" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/trovelo-6.webp" alt="Trovelo · screen 6" class="app-card-img" loading="lazy"></div>
+    <div class="app-card trov-card">
+      <div class="trov-card-row">
+        <span class="trov-chip">Day 1</span>
+        <span class="trov-chip-dot" aria-hidden="true"></span>
+      </div>
+      <img src="images/trovelo-1.jpg" alt="Trovelo · day 1" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card trov-card">
+      <div class="trov-card-row">
+        <span class="trov-chip">Day 2</span>
+        <span class="trov-chip-dot" aria-hidden="true"></span>
+      </div>
+      <img src="images/trovelo-2.webp" alt="Trovelo · day 2" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card trov-card">
+      <div class="trov-card-row">
+        <span class="trov-chip">Day 3</span>
+        <span class="trov-chip-dot" aria-hidden="true"></span>
+      </div>
+      <img src="images/trovelo-3.webp" alt="Trovelo · day 3" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card trov-card">
+      <div class="trov-card-row">
+        <span class="trov-chip">Day 4</span>
+        <span class="trov-chip-dot" aria-hidden="true"></span>
+      </div>
+      <img src="images/trovelo-4.webp" alt="Trovelo · day 4" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card trov-card">
+      <div class="trov-card-row">
+        <span class="trov-chip">Day 5</span>
+        <span class="trov-chip-dot" aria-hidden="true"></span>
+      </div>
+      <img src="images/trovelo-5.webp" alt="Trovelo · day 5" class="app-card-img" loading="lazy">
+    </div>
+    <div class="app-card trov-card">
+      <div class="trov-card-row">
+        <span class="trov-chip">Day 6</span>
+        <span class="trov-chip-dot" aria-hidden="true"></span>
+      </div>
+      <img src="images/trovelo-6.webp" alt="Trovelo · day 6" class="app-card-img" loading="lazy">
+    </div>
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6760258252" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
@@ -5428,6 +5634,44 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         requestAnimationFrame(dimmlyTick);
       }
       requestAnimationFrame(dimmlyTick);
+    }
+  }
+
+  // ═══════════════════════════ TROVELO TAKEOVER — ruta + trip cards ═══════════════════════════
+  const trovPageEl = document.getElementById('trovelo-page');
+  if (trovPageEl) {
+    // el puntito recorre la ruta cada vez que se abre la página (SMIL, escala con el viewBox)
+    const trovPlaneMotion = document.getElementById('trov-plane-motion');
+    const trovReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function trovFly() {
+      if (trovPageEl.classList.contains('open') && trovPlaneMotion && !trovReduced) {
+        setTimeout(() => { try { trovPlaneMotion.beginElement(); } catch (e) {} }, 550);
+      }
+    }
+    const trovMo = new MutationObserver(trovFly);
+    trovMo.observe(trovPageEl, { attributes: true, attributeFilter: ['class'] });
+    trovFly(); // deep links: la página puede estar abierta antes de llegar aquí
+
+    // trip cards: cada día se endereza al cruzar el centro; contador "Day N of 6"
+    const trovCards = Array.from(trovPageEl.querySelectorAll('.trov-card'));
+    const trovDay = document.getElementById('trov-day');
+    if (trovCards.length) {
+      function trovTick() {
+        if (trovPageEl.classList.contains('open')) {
+          const midX = (window.innerWidth || 1) / 2;
+          let done = 0;
+          trovCards.forEach(t => {
+            const r = t.getBoundingClientRect();
+            const isDone = (r.left + r.width / 2) < midX + r.width * 0.2;
+            t.classList.toggle('done', isDone);
+            if (isDone) done++;
+          });
+          const day = String(Math.max(1, done));
+          if (trovDay && trovDay.textContent !== day) trovDay.textContent = day;
+        }
+        requestAnimationFrame(trovTick);
+      }
+      requestAnimationFrame(trovTick);
     }
   }
 
