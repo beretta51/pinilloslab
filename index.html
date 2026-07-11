@@ -562,6 +562,218 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
 .pill-menu-btn.open .label-open { display: inline; }
 @media (max-width: 480px) { .pill-menu-btn .label-default, .pill-menu-btn .label-open { display: none; } .pill-menu-btn.open .label-open { display: none; } }
 
+/* ─────────────────────────────── INTRO COVER — sello de imprenta ─────────────────────────────── */
+/* Solo se muestra en la home, una vez por sesión (gate en el script inline junto al markup). */
+#cover {
+  position: fixed;
+  inset: 0;
+  background: var(--ink);
+  z-index: 9600;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+html.intro-run #cover {
+  display: flex;
+  animation: coverWipe 0.65s cubic-bezier(0.83, 0, 0.17, 1) 2.1s forwards;
+}
+@keyframes coverWipe { to { transform: translateY(-101%); } }
+.stamp {
+  position: absolute;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(70px, 13vw, 200px);
+  letter-spacing: -0.05em;
+  color: var(--yellow);
+  opacity: 0;
+  font-variation-settings: "opsz" 96;
+}
+.stamp.s2 { color: var(--paper); }
+.stamp.s3 {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  -webkit-text-stroke: 1.5px var(--yellow);
+  color: transparent;
+  letter-spacing: -0.02em;
+}
+/* cada palabra se estampa y desaparece — pasos duros, sin fades blandos */
+html.intro-run .stamp.s1 { animation: stampCycle 2.1s steps(1, end) forwards; }
+html.intro-run .stamp.s2 { animation: stampCycle2 2.1s steps(1, end) forwards; }
+html.intro-run .stamp.s3 { animation: stampCycle3 2.1s steps(1, end) forwards; }
+@keyframes stampCycle  { 0%,7%  { opacity: 0; } 8%,30%  { opacity: 1; } 31%,100% { opacity: 0; } }
+@keyframes stampCycle2 { 0%,31% { opacity: 0; } 32%,54% { opacity: 1; } 55%,100% { opacity: 0; } }
+@keyframes stampCycle3 { 0%,55% { opacity: 0; } 56%,78% { opacity: 1; } 79%,100% { opacity: 0; } }
+#cover-flash {
+  position: absolute;
+  inset: 0;
+  background: var(--yellow);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(70px, 13vw, 200px);
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 96;
+}
+html.intro-run #cover-flash { animation: coverFlash 2.1s steps(1, end) forwards; }
+@keyframes coverFlash { 0%,84% { opacity: 0; } 85%,100% { opacity: 1; } }
+#cover .cover-meta {
+  position: absolute;
+  bottom: 28px; left: 28px; right: 28px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 230, 0.45);
+}
+/* entrada del hero tras la cortina: opacity en la fila, translateY en los tracks
+   (el transform de la fila lo pisa el marquee cada frame) */
+html.intro-run .kinetic-row { opacity: 0; animation: introFadeIn 0.5s linear forwards; }
+html.intro-run .kinetic-row .k-track { animation: introRiseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+html.intro-run .kinetic-row:nth-child(1), html.intro-run .kinetic-row:nth-child(1) .k-track { animation-delay: 2.25s; }
+html.intro-run .kinetic-row:nth-child(2), html.intro-run .kinetic-row:nth-child(2) .k-track { animation-delay: 2.37s; }
+html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(3) .k-track { animation-delay: 2.49s; }
+@keyframes introFadeIn { to { opacity: 1; } }
+@keyframes introRiseIn { from { transform: translateY(12vh); } to { transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  html.intro-run #cover { display: none; }
+  html.intro-run .kinetic-row { opacity: 1; animation: none; }
+  html.intro-run .kinetic-row .k-track { animation: none; }
+}
+
+/* ─────────────────────────────── FOCO LÍQUIDO + LETRAS REACTIVAS ─────────────────────────────── */
+/* Amarillo con multiply por encima de la tinta: negro se queda negro, crema se vuelve amarillo. */
+.hero-blob {
+  position: absolute;
+  top: 0; left: 0;
+  width: 46vw;
+  max-width: 640px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--yellow) 0%, var(--yellow) 42%, rgba(241, 243, 50, 0) 68%);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 3;
+  will-change: transform;
+  transform: translate(-50%, -50%) translate(50vw, 50vh);
+}
+.hero-blob.b2 { width: 24vw; max-width: 330px; opacity: 0.85; }
+#kinetic-bg .kinetic-row { position: relative; }
+.kinetic-row .k-l {
+  display: inline-block;
+  padding: 0;
+  font-variation-settings: "opsz" 96, "wght" 800, "wdth" 100;
+}
+@media (prefers-reduced-motion: reduce) { .hero-blob { display: none; } }
+
+/* ─────────────────────────────── FOOTER: CTA FLECHA + FORM INLINE ─────────────────────────────── */
+#footer .footer-headline { margin-bottom: 0; }
+#footer-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18em;
+  background: none;
+  border: none;
+  padding: 0;
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(64px, 14vw, 240px);
+  letter-spacing: -0.05em;
+  line-height: 0.85;
+  font-variation-settings: "opsz" 96;
+  cursor: pointer;
+  transition: color 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+#footer-cta:hover { color: var(--yellow); }
+.fcta-arrow { display: inline-flex; align-items: center; will-change: transform; transition: transform 0.3s ease; }
+#footer-cta svg { height: 0.72em; overflow: visible; display: block; }
+#footer-cta .shaft { transform-origin: left center; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+#footer-cta .head { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+#footer-cta:hover .shaft { transform: scaleX(1.55); }
+#footer-cta:hover .head { transform: translateX(44px); }
+#footer-cta[aria-expanded="true"] .fcta-arrow { transform: rotate(90deg) !important; }
+#footer-form-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  margin-bottom: 80px;
+  position: relative;
+  z-index: 1;
+}
+#footer-form-wrap.open { grid-template-rows: 1fr; }
+#footer-form-wrap .ff-inner { overflow: hidden; }
+#footer-form, .ff-success { padding-top: 64px; max-width: 720px; }
+#footer-form {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.45s ease 0.15s, transform 0.45s ease 0.15s;
+}
+#footer-form-wrap.open #footer-form { opacity: 1; transform: none; }
+.ff-field {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(242, 239, 230, 0.18);
+}
+.ff-field label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(242, 239, 230, 0.45);
+  min-width: 88px;
+}
+.ff-field input, .ff-field textarea {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+  resize: none;
+}
+.ff-field input::placeholder, .ff-field textarea::placeholder { color: rgba(242, 239, 230, 0.25); }
+.ff-field:focus-within { border-bottom-color: var(--yellow); }
+.ff-field:focus-within label { color: var(--yellow); }
+#ff-send {
+  margin-top: 40px;
+  background: var(--yellow);
+  color: var(--ink);
+  border: none;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  padding: 20px 40px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+#ff-send:hover { background: #fff; transform: scale(1.04); }
+#ff-send:disabled { opacity: 0.6; cursor: default; transform: none; }
+.ff-success { display: none; font-family: var(--display); font-weight: 700; font-size: 28px; }
+.ff-success em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+@media (max-width: 767px) {
+  #footer-cta { font-size: clamp(48px, 14vw, 80px); }
+  #footer-form-wrap { margin-bottom: 56px; }
+  #footer-form, .ff-success { padding-top: 40px; }
+  .ff-field input, .ff-field textarea { font-size: 18px; }
+  .ff-field label { min-width: 60px; }
+}
+
 /* ─────────────────────────────── KINETIC HERO ─────────────────────────────── */
 #hero {
   height: 100vh;
@@ -2105,6 +2317,33 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
 </head>
 <body>
 
+<!-- ═══════════════════════════ INTRO COVER · sello de imprenta ═══════════════════════════ -->
+<div id="cover">
+  <span class="stamp s1">PINILLOS</span>
+  <span class="stamp s2">LAB</span>
+  <span class="stamp s3">since 2008</span>
+  <div id="cover-flash">PINILLOS&nbsp;LAB</div>
+  <div class="cover-meta"><span>Pinilloslab.com</span><span>Portfolio · 2026</span></div>
+</div>
+<script>
+(function () {
+  // gate síncrono (antes del primer paint): solo en la home, una vez por sesión
+  var cover = document.getElementById('cover');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var params = new URLSearchParams(window.location.search);
+  var isHome = (window.location.pathname === '/' || window.location.pathname === '/index.html') && !params.get('p');
+  var seen = false;
+  try { seen = sessionStorage.getItem('plab-intro') === '1'; } catch (e) {}
+  if (!isHome || seen || reduced) { cover.remove(); return; }
+  try { sessionStorage.setItem('plab-intro', '1'); } catch (e) {}
+  document.documentElement.classList.add('intro-run');
+  cover.addEventListener('click', function () { cover.remove(); });
+  cover.addEventListener('animationend', function (e) {
+    if (e.animationName === 'coverWipe') setTimeout(function () { cover.remove(); }, 50);
+  });
+})();
+</script>
+
 <!-- Custom cursor -->
 <div class="cursor-dot"></div>
 <div class="cursor-ring"></div>
@@ -2127,6 +2366,10 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
       <span>APPS</span><span>·</span><span>WEBS</span><span>·</span><span>PRODUCTS</span><span>·</span><span>APPS</span><span>·</span><span>WEBS</span><span>·</span><span>PRODUCTS</span><span>·</span>
     </div>
   </div>
+
+  <!-- foco líquido: persigue al cursor (o deriva solo) por encima de la tinta -->
+  <div class="hero-blob b1" id="hero-blob-1"></div>
+  <div class="hero-blob b2" id="hero-blob-2"></div>
 
   <div id="hero-meta">
     <div class="col">
@@ -2288,16 +2531,46 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
     <span>EDUARDO&nbsp;·&nbsp;PINILLOS&nbsp;·&nbsp;EDUARDO&nbsp;·&nbsp;PINILLOS&nbsp;·&nbsp;</span>
   </div>
 
-  <h2 class="footer-headline">
-    Got an <em>idea</em>?<br>
-    <a href="#" id="footer-contact-link">Let's&nbsp;build&nbsp;it. →</a>
-  </h2>
+  <h2 class="footer-headline">Got an <em>idea</em>?</h2>
+  <button id="footer-cta" aria-expanded="false" aria-controls="footer-form-wrap">
+    <span>Let's&nbsp;build&nbsp;it.</span>
+    <span class="fcta-arrow">
+      <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <line class="shaft" x1="0" y1="50" x2="80" y2="50" stroke="currentColor" stroke-width="12"/>
+        <path class="head" d="M52 14 L88 50 L52 86" stroke="currentColor" stroke-width="12" fill="none" stroke-linejoin="miter"/>
+      </svg>
+    </span>
+  </button>
+
+  <div id="footer-form-wrap">
+    <div class="ff-inner">
+      <form id="footer-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="6eeb1d9a-017f-4b08-a5a1-0a563425adad">
+        <input type="hidden" name="subject" value="New message from pinilloslab.com (footer)">
+        <input type="hidden" name="redirect" value="false">
+        <div class="ff-field">
+          <label for="ff-name">Name</label>
+          <input id="ff-name" type="text" name="name" placeholder="Ada Lovelace" autocomplete="name" required>
+        </div>
+        <div class="ff-field">
+          <label for="ff-email">Email</label>
+          <input id="ff-email" type="email" name="email" placeholder="ada@analytical.engine" autocomplete="email" required>
+        </div>
+        <div class="ff-field">
+          <label for="ff-message">The idea</label>
+          <textarea id="ff-message" name="message" rows="3" placeholder="The more unreasonable, the better." required></textarea>
+        </div>
+        <button id="ff-send" type="submit">Send it →</button>
+      </form>
+      <div class="ff-success" id="footer-form-success">Message <em>received</em>.<br>I'll get back to you soon.</div>
+    </div>
+  </div>
 
   <div class="footer-grid">
     <div>
       <div class="footer-col-label">— Get in touch</div>
       <div class="footer-col-value">
-        <a href="#" id="footer-contact-email-link">Open contact form →</a>
+        <a href="#" id="footer-contact-email-link">Start your idea →</a>
       </div>
     </div>
     <div>
@@ -2976,13 +3249,69 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
     row.innerHTML = '';
     row.appendChild(trackA);
     row.appendChild(trackB);
+    // Split the bold rows into per-letter spans so the ink can dodge the cursor.
+    // The serif outline row keeps its ligatures (and its ✻ separators) intact.
+    let letters = [];
+    if (!row.classList.contains('alt')) {
+      row.querySelectorAll('.k-track > span').forEach(word => {
+        const text = word.textContent;
+        word.textContent = '';
+        for (const ch of text) {
+          const l = document.createElement('span');
+          l.className = 'k-l';
+          l.textContent = ch;
+          word.appendChild(l);
+        }
+      });
+      letters = Array.from(row.querySelectorAll('.k-l')).map(el => ({ el, cx: 0, cur: 0 }));
+    }
     // Measure width of one track (includes its trailing whitespace via padding-right on spans)
     const halfWidth = trackA.getBoundingClientRect().width;
     const speed = parseFloat(row.dataset.speed || 0);
-    rowState.push({ row, halfWidth, speed, x: 0 });
+    rowState.push({ row, halfWidth, speed, x: 0, letters });
   });
 
-  function animateKinetic() {
+  // ── force field: real cursor, or a "ghost cursor" wave when idle/touch ──
+  const heroEl = document.getElementById('hero');
+  const heroBlob1 = document.getElementById('hero-blob-1');
+  const heroBlob2 = document.getElementById('hero-blob-2');
+  const kineticReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let fieldR = 340; // influence radius — re-measured (innerWidth can be 0 at load)
+  let fmx = 0, fmy = 0, frealX = -9999, frealY = -9999, fLastMove = 0;
+  let b1x = 0, b1y = 0, b2x = 0, b2y = 0, blobInited = false;
+  heroEl.addEventListener('mousemove', e => { frealX = e.clientX; frealY = e.clientY; fLastMove = performance.now(); });
+  heroEl.addEventListener('mouseleave', () => { frealX = -9999; fLastMove = 0; });
+  function fieldPos(t) {
+    const idle = (performance.now() - fLastMove) > 2500 || frealX === -9999;
+    if (!idle) return [frealX, frealY];
+    const r = heroEl.getBoundingClientRect();
+    return [
+      r.left + r.width * (0.5 + 0.45 * Math.sin(t * 0.00045)),
+      r.top + r.height * (0.5 + 0.28 * Math.sin(t * 0.0011))
+    ];
+  }
+
+  function animateKinetic(t) {
+    t = t || 0;
+    if (!kineticReduced) {
+      const [fx, fy] = fieldPos(t);
+      fmx += (fx - fmx) * 0.14;
+      fmy += (fy - fmy) * 0.14;
+
+      // liquid spotlight: two blobs chasing with different inertias
+      const hr = heroEl.getBoundingClientRect();
+      if (!blobInited && hr.width > 0) {
+        fmx = hr.left + hr.width / 2;  fmy = hr.top + hr.height / 2;
+        b1x = b2x = hr.width / 2;      b1y = b2y = hr.height / 2;
+        blobInited = true;
+      }
+      const hx = fmx - hr.left, hy = fmy - hr.top;
+      b1x += (hx - b1x) * 0.09;  b1y += (hy - b1y) * 0.09;
+      b2x += (hx - b2x) * 0.16;  b2y += (hy - b2y) * 0.16;
+      heroBlob1.style.transform = `translate(-50%, -50%) translate(${b1x}px, ${b1y}px)`;
+      heroBlob2.style.transform = `translate(-50%, -50%) translate(${b2x}px, ${b2y}px)`;
+    }
+
     rowState.forEach(s => {
       // Move at a base speed; sign is taken from data-speed (negative = leftward).
       s.x -= s.speed * 0.6; // 0.6 = base px / frame multiplier
@@ -2993,18 +3322,50 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
         // Apply as negative offset so content scrolls continuously.
         s.row.style.transform = `translate3d(${-s.x}px, 0, 0)`;
       }
+      if (kineticReduced || !s.letters || !s.letters.length) return;
+
+      // the ink dodges the cursor: wght 800→250, wdth 100→75, slight vertical push
+      const rect = s.row.getBoundingClientRect();
+      const cy = rect.top + rect.height / 2;
+      const dy = fmy - cy;
+      const rowNear = Math.abs(dy) < fieldR;
+      for (const L of s.letters) {
+        let target = 0;
+        if (rowNear) {
+          const d = Math.hypot(fmx - (rect.left + L.cx), dy);
+          if (d < fieldR) {
+            const lin = 1 - d / fieldR;
+            target = lin * lin * (3 - 2 * lin); // smoothstep
+          }
+        }
+        L.cur += (target - L.cur) * 0.22;
+        if (L.cur < 0.004 && target === 0) {
+          if (L.cur !== 0) { L.cur = 0; L.el.style.fontVariationSettings = ''; L.el.style.transform = ''; }
+          continue;
+        }
+        const wght = 800 - 550 * L.cur;
+        const wdth = 100 - 25 * L.cur;
+        const lift = -0.06 * L.cur * Math.sign(dy || 1) * rect.height;
+        L.el.style.fontVariationSettings = `"opsz" 96, "wght" ${wght.toFixed(0)}, "wdth" ${wdth.toFixed(1)}`;
+        L.el.style.transform = `translateY(${lift.toFixed(1)}px)`;
+      }
     });
     requestAnimationFrame(animateKinetic);
   }
-  animateKinetic();
+  requestAnimationFrame(animateKinetic);
 
-  // Re-measure on resize so the seam stays exact.
-  window.addEventListener('resize', () => {
+  // Re-measure on resize (and once fonts load) so the seam and letter offsets stay exact.
+  function measureKinetic() {
+    fieldR = Math.min(340, Math.max(220, (window.innerWidth || 1200) * 0.3));
     rowState.forEach(s => {
       const trackA = s.row.firstElementChild;
       if (trackA) s.halfWidth = trackA.getBoundingClientRect().width;
+      s.letters.forEach(L => { L.cx = L.el.offsetLeft + L.el.offsetWidth / 2; });
     });
-  });
+  }
+  measureKinetic();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureKinetic);
+  window.addEventListener('resize', measureKinetic);
 
   // mouse-driven speed shift on hero — moving cursor right speeds rows up subtly
   const hero = document.getElementById('hero');
@@ -3605,7 +3966,6 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
 
   // footer links
   document.getElementById('footer-about-link').addEventListener('click', e => { e.preventDefault(); openAbout(); });
-  document.getElementById('footer-contact-link').addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
   document.getElementById('footer-trovelo-link').addEventListener('click', e => { e.preventDefault(); openApp('trovelo', 'Trovelo'); });
   document.getElementById('footer-dimmly-link').addEventListener('click', e => { e.preventDefault(); openApp('dimmly', 'Dimmly'); });
   document.getElementById('footer-percha-link').addEventListener('click', e => { e.preventDefault(); openApp('percha', 'Percha'); });
@@ -3614,7 +3974,7 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
   document.getElementById('footer-dummo-link').addEventListener('click', e => { e.preventDefault(); openApp('dummo', 'Dummo'); });
   document.getElementById('footer-wealthsquare-link').addEventListener('click', e => { e.preventDefault(); openApp('wealthsquare', 'Wealth Square'); });
   const footerContactEmail = document.getElementById('footer-contact-email-link');
-  if (footerContactEmail) footerContactEmail.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
+  if (footerContactEmail) footerContactEmail.addEventListener('click', e => { e.preventDefault(); openFooterForm(true); });
 
   // ESC closes everything
   window.addEventListener('keydown', (e) => {
@@ -3844,6 +4204,62 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
         .catch(() => {});
     });
   }
+
+  // ═══════════════════════════ FOOTER CTA — flecha magnética + form inline ═══════════════════════════
+  const footerCta = document.getElementById('footer-cta');
+  const footerArrow = footerCta.querySelector('.fcta-arrow');
+  const footerFormWrap = document.getElementById('footer-form-wrap');
+  const footerSection = document.getElementById('footer');
+
+  footerSection.addEventListener('mousemove', e => {
+    const r = footerCta.getBoundingClientRect();
+    const cx = r.right - r.height * 0.35, cy = r.top + r.height / 2;
+    const dx = e.clientX - cx, dy = e.clientY - cy;
+    const pull = Math.max(0, 1 - Math.hypot(dx, dy) / 420);
+    if (footerCta.getAttribute('aria-expanded') !== 'true') {
+      footerArrow.style.transform = `translate(${dx * 0.06 * pull}px, ${dy * 0.1 * pull}px)`;
+    }
+  });
+  footerSection.addEventListener('mouseleave', () => { footerArrow.style.transform = ''; });
+
+  function openFooterForm(focus) {
+    footerFormWrap.classList.add('open');
+    footerCta.setAttribute('aria-expanded', 'true');
+    footerArrow.style.transform = '';
+    if (focus) setTimeout(() => document.getElementById('ff-name').focus(), 500);
+  }
+  footerCta.addEventListener('click', () => {
+    if (footerFormWrap.classList.contains('open')) {
+      footerFormWrap.classList.remove('open');
+      footerCta.setAttribute('aria-expanded', 'false');
+    } else {
+      openFooterForm(true);
+    }
+  });
+
+  const footerForm = document.getElementById('footer-form');
+  footerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(footerForm);
+    const sendBtn = document.getElementById('ff-send');
+    sendBtn.disabled = true;
+    sendBtn.textContent = 'Sending…';
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+      .then(r => r.json())
+      .then(j => {
+        if (j.success) {
+          footerForm.style.display = 'none';
+          document.getElementById('footer-form-success').style.display = 'block';
+        } else {
+          sendBtn.disabled = false;
+          sendBtn.textContent = 'Send it →';
+        }
+      })
+      .catch(() => {
+        sendBtn.disabled = false;
+        sendBtn.textContent = 'Send it →';
+      });
+  });
 
   // ═══════════════════════════ COUNT-UP NUMBERS ═══════════════════════════
   const numIo = new IntersectionObserver((entries) => {
