@@ -189,9 +189,122 @@
 <link rel="preload" as="image" href="images/gridborne.png">
 <link rel="preload" as="image" href="images/dummo.png">
 <link rel="preload" as="image" href="images/wealthsquare.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap">
+<!-- Fuentes auto-hospedadas (sin conexión a Google — RGPD friendly) -->
+<link rel="preload" as="font" type="font/woff2" href="fonts/bricolage-grotesque-normal-200-800-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic-400-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/jetbrains-mono-normal-400-latin.woff2" crossorigin>
+<style>
+/* Bricolage Grotesque · latin-ext */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url(fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Bricolage Grotesque · latin */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url(fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Instrument Serif · latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Instrument Serif · latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Instrument Serif · latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrument-serif-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Instrument Serif · latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrument-serif-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* JetBrains Mono · latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* JetBrains Mono · latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* JetBrains Mono · latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* JetBrains Mono · latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* JetBrains Mono · latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* JetBrains Mono · latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
 
 <script>
 window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
@@ -3142,6 +3255,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         <a href="#" id="footer-gridborne-link">Gridborne</a>
         <a href="#" id="footer-dummo-link">Dummo</a>
         <a href="#" id="footer-wealthsquare-link">Wealth Square</a>
+        <a href="#" id="footer-privacy-link">Privacy</a>
       </div>
     </div>
   </div>
@@ -4137,6 +4251,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   // its own deep-linkable URL (/{app}/privacy). openPrivacyFor swaps in the
   // right content, opens the page, and pushes the URL when invoked by a click.
   const PRIVACY_APP_NAMES = {
+    site: 'Pinilloslab.com',
     trovelo: 'Trovelo',
     dimmly: 'Dimmly',
     percha: 'Percha',
@@ -4210,6 +4325,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
     // page with the right app's content and a back-link to /{app}. Apple
     // (App Store Connect) requires a direct, deep-linkable URL per app.
     const PRIVACY_PATH_TO_KEY = {
+      '/privacy': 'site',
       '/trovelo/privacy': 'trovelo',
       '/dimmly/privacy': 'dimmly',
       '/percha/privacy': 'percha',
@@ -4259,6 +4375,10 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       '/contact': {
         title: 'Contact — Pinillos Lab',
         description: 'Get in touch with Eduardo Pinillos. Drop a few lines about a product idea, collaboration, or feedback.'
+      },
+      '/privacy': {
+        title: 'Privacy — Pinilloslab.com',
+        description: 'Privacy policy for pinilloslab.com. No cookies, no analytics, no trackers. Fonts self-hosted; contact form messages processed only to reply.'
       },
       '/trovelo/privacy': {
         title: 'Trovelo — Privacy policy · Pinillos Lab',
@@ -4383,6 +4503,17 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   // privacy policy content per app
   const PRIVACY_DEFAULT_DATE = 'May 2026';
   const APP_PRIVACY = {
+    'Pinilloslab.com': {
+      updated: 'July 11, 2026',
+      sections: [
+        { h: 'Overview', p: 'This website does not use cookies, analytics, advertising, or any kind of tracking. There is nothing to accept and nothing to opt out of.' },
+        { h: 'What stays on your device', p: 'The site keeps two small pieces of functional data in your browser\u2019s local storage: a flag so the intro animation plays only once per session, and a local visit counter shown in the header. Neither is transmitted anywhere, neither identifies you, and both stay on your device.' },
+        { h: 'Contact form', p: 'If you send a message through the contact form, your name, email address and message are delivered to me via Web3Forms (web3forms.com), which acts as a form-processing service. I use that information solely to reply to you. It is never sold, shared, or added to any mailing list.' },
+        { h: 'Hosting', p: 'The site is hosted on GitHub Pages. Like any web host, GitHub may keep standard server logs (including IP addresses) for security and operational purposes. See GitHub\u2019s privacy statement for details.' },
+        { h: 'Fonts & third parties', p: 'All fonts are self-hosted on this domain. Loading this site makes no requests to Google or any other third party.' },
+        { h: 'Contact', p: 'Questions about this policy? Use the contact form on the home page.' }
+      ]
+    },
     Trovelo: {
       updated: 'April 20, 2026',
       sections: [
@@ -4622,6 +4753,8 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   document.getElementById('footer-gridborne-link').addEventListener('click', e => { e.preventDefault(); openApp('gridborne', 'Gridborne'); });
   document.getElementById('footer-dummo-link').addEventListener('click', e => { e.preventDefault(); openApp('dummo', 'Dummo'); });
   document.getElementById('footer-wealthsquare-link').addEventListener('click', e => { e.preventDefault(); openApp('wealthsquare', 'Wealth Square'); });
+  const footerPrivacy = document.getElementById('footer-privacy-link');
+  if (footerPrivacy) footerPrivacy.addEventListener('click', e => { e.preventDefault(); openPrivacyFor('site'); });
   const footerContactEmail = document.getElementById('footer-contact-email-link');
   if (footerContactEmail) footerContactEmail.addEventListener('click', e => { e.preventDefault(); openFooterForm(true); });
 
