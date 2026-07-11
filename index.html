@@ -1190,7 +1190,7 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 .award-preview {
   position: fixed;
   pointer-events: none;
-  width: 260px;
+  width: 240px;
   z-index: 9000;
   opacity: 0;
   transform: translate(0, -50%) scale(0.85);
@@ -1199,7 +1199,7 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 .award-preview.show { opacity: 1; transform: translate(0, -50%) scale(1); }
 .award-preview-inner {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   border: 1.5px solid var(--ink);
   border-radius: 12px;
   overflow: hidden;
@@ -1247,6 +1247,31 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   .award-preview { display: none; }
 }
 html.touch-ui .award-preview { display: none; }
+/* móvil: la foto del premio hace pop en la fila que cruza el centro al scrollear
+   (mismo patrón que los iconos de apps del home, pero más discreta) */
+.award-mini { display: none; }
+html.touch-ui .about-award-item { position: relative; }
+html.touch-ui .award-mini {
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 58px;
+  height: 58px;
+  margin-top: -29px;
+  border-radius: 12px;
+  border: 1.5px solid var(--ink);
+  overflow: hidden;
+  background: var(--yellow);
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.3) rotate(calc(var(--mini-rot, 0deg) - 12deg));
+  transition: opacity 0.22s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+html.touch-ui .award-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
+html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: scale(1) rotate(var(--mini-rot, 0deg)); }
 
 /* ─── MOBILE SCROLL-SPOTLIGHT: en táctil el scroll es el cursor ───
    La fila que cruza el centro del viewport recibe .active (misma banda amarilla
@@ -4812,6 +4837,51 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
           awardPreview.style.top = e.clientY + 'px';
         }
       });
+    }
+
+    // móvil (touch-ui): mini-foto que hace pop en la fila más cercana al centro
+    // del viewport al scrollear — la imagen se carga solo la primera vez que
+    // su fila se activa, para no descargar las 8 fotos de golpe.
+    if (document.documentElement.classList.contains('touch-ui')) {
+      const aboutPageMini = document.getElementById('about-page');
+      const miniRows = awardRows.filter(r => r.dataset.award);
+      miniRows.forEach((row, i) => {
+        const mini = document.createElement('span');
+        mini.className = 'award-mini';
+        const rot = (i % 2 ? -1 : 1) * (3 + Math.random() * 6);
+        mini.style.setProperty('--mini-rot', rot.toFixed(1) + 'deg');
+        row.appendChild(mini);
+      });
+      let miniActive = null;
+      function awardsMiniTick() {
+        if (aboutPageMini && aboutPageMini.classList.contains('open')) {
+          const vh = window.innerHeight || 1;
+          let best = null, bestD = Infinity;
+          miniRows.forEach(row => {
+            const r = row.getBoundingClientRect();
+            if (r.bottom < 0 || r.top > vh) return;
+            const d = Math.abs(r.top + r.height / 2 - vh / 2);
+            if (d < bestD) { bestD = d; best = row; }
+          });
+          if (best && bestD > vh / 2) best = null;
+          if (best !== miniActive) {
+            if (miniActive) miniActive.classList.remove('mini-lit');
+            miniActive = best;
+            if (miniActive) {
+              miniActive.classList.add('mini-lit');
+              const mini = miniActive.querySelector('.award-mini');
+              if (mini && !mini.firstChild) {
+                const img = document.createElement('img');
+                img.alt = '';
+                img.src = 'images/awards/' + miniActive.dataset.award + '.webp';
+                mini.appendChild(img);
+              }
+            }
+          }
+        }
+        requestAnimationFrame(awardsMiniTick);
+      }
+      requestAnimationFrame(awardsMiniTick);
     }
   }
 
