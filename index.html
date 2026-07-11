@@ -1186,6 +1186,52 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   .project-preview { display: none; }
 }
 
+/* ─── MOBILE SCROLL-SPOTLIGHT: en táctil el scroll es el cursor ───
+   La fila que cruza el centro del viewport recibe .active (misma banda amarilla
+   que el hover de desktop) y su icono aparece dentro de la fila con un pop.
+   html.touch-ui lo pone el JS cuando (hover:none)/(pointer:coarse) — o ?touch=1 para probar. */
+.p-icon { display: none; }
+html.touch-ui .p-icon {
+  display: block;
+  position: absolute;
+  right: 72px;
+  top: 50%;
+  width: 60px;
+  height: 60px;
+  margin-top: -30px;
+  border-radius: 30%;
+  overflow: hidden;
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.3) rotate(-10deg);
+  transition: opacity 0.25s ease, transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.15) inset,
+    0 16px 40px rgba(0,0,0,0.35),
+    0 4px 12px rgba(0,0,0,0.18);
+  pointer-events: none;
+}
+html.touch-ui .p-icon svg { width: 100%; height: 100%; display: block; will-change: transform; }
+html.touch-ui .project-row.active .p-icon { opacity: 1; transform: scale(1) rotate(0deg); }
+html.touch-ui .project-preview { display: none; }
+/* En touch-ui manda solo el spotlight: el :hover (ratón en emuladores, sticky-hover
+   de iOS tras un tap) no debe encender filas — si no, aparecen dos amarillas a la vez. */
+html.touch-ui .project-row:hover:not(.active)::before { transform: translateY(101%); }
+html.touch-ui .project-row:hover:not(.active) { color: inherit; }
+html.touch-ui .project-row:hover:not(.active) .p-meta { color: var(--ink-faint); }
+html.touch-ui .project-row:hover:not(.active) .p-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: -0.04em;
+}
+html.touch-ui .project-row:hover:not(.active) .p-name em { color: var(--ink-faint); }
+html.touch-ui .project-row:hover:not(.active) .p-arrow {
+  background: none;
+  color: inherit;
+  transform: none;
+}
+
 /* ─────────────────────────────── ABOUT SECTION (inline preview) ─────────────────────────────── */
 #about-strip {
   background: var(--yellow);
@@ -4174,6 +4220,55 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
       preview.style.top = e.clientY + 'px';
     }
   });
+
+  // ═══════════════════════════ MOBILE SCROLL-SPOTLIGHT ═══════════════════════════
+  // En táctil no hay hover: la fila más cercana al centro del viewport se enciende
+  // sola al scrollear (.active) y su icono aparece dentro de la fila. La velocidad
+  // del scroll inclina el icono para darle peso físico.
+  const touchUi = window.matchMedia('(hover: none), (pointer: coarse)').matches
+    || new URLSearchParams(window.location.search).has('touch');
+  if (touchUi) {
+    document.documentElement.classList.add('touch-ui');
+    const spotRows = Array.from(document.querySelectorAll('.project-row'));
+    spotRows.forEach(row => {
+      const icon = document.createElement('span');
+      icon.className = 'p-icon';
+      icon.innerHTML = APP_ICONS[row.dataset.project] || '';
+      row.appendChild(icon);
+    });
+    let spotActive = null;
+    let spotLastY = window.scrollY;
+    let spotTilt = 0;
+    function spotlightTick() {
+      const y = window.scrollY;
+      const v = y - spotLastY;
+      spotLastY = y;
+      spotTilt += (Math.max(-14, Math.min(14, v * 0.6)) - spotTilt) * 0.12;
+
+      const mid = window.innerHeight / 2;
+      let best = null, bestD = Infinity;
+      spotRows.forEach(row => {
+        const r = row.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > window.innerHeight) return;
+        const d = Math.abs(r.top + r.height / 2 - mid);
+        if (d < bestD) { bestD = d; best = row; }
+      });
+      // fuera de la lista (hero, footer…) nada queda encendido
+      if (best && bestD > mid) best = null;
+
+      if (best !== spotActive) {
+        if (spotActive) spotActive.classList.remove('active');
+        spotActive = best;
+        if (spotActive) spotActive.classList.add('active');
+      }
+      if (spotActive) {
+        const svg = spotActive.querySelector('.p-icon svg');
+        if (svg) svg.style.transform = `rotate(${spotTilt.toFixed(1)}deg)`;
+      }
+      requestAnimationFrame(spotlightTick);
+    }
+    requestAnimationFrame(spotlightTick);
+  }
 
   // ═══════════════════════════ MAGNETIC BUTTONS ═══════════════════════════
   document.querySelectorAll('.contact-submit, .app-action, .footer-headline a').forEach(el => {
