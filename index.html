@@ -1186,6 +1186,68 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   .project-preview { display: none; }
 }
 
+/* ─── AWARD PREVIEW: foto del premio persiguiendo al cursor en /about ─── */
+.award-preview {
+  position: fixed;
+  pointer-events: none;
+  width: 260px;
+  z-index: 9000;
+  opacity: 0;
+  transform: translate(0, -50%) scale(0.85);
+  transition: opacity 0.3s ease, transform 0.5s var(--ease-out-expo);
+}
+.award-preview.show { opacity: 1; transform: translate(0, -50%) scale(1); }
+.award-preview-inner {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 1.5px solid var(--ink);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.15) inset,
+    0 24px 60px rgba(0, 0, 0, 0.35),
+    0 6px 16px rgba(0, 0, 0, 0.18);
+}
+.award-preview-inner img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* placeholder hasta que exista images/awards/<key>.webp */
+.award-ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--yellow);
+}
+.award-ph-year {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 44px;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-variation-settings: "opsz" 96;
+}
+.award-ph-loc {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(10, 10, 10, 0.65);
+}
+@media (hover: none), (pointer: coarse) {
+  .award-preview { display: none; }
+}
+html.touch-ui .award-preview { display: none; }
+
 /* ─── MOBILE SCROLL-SPOTLIGHT: en táctil el scroll es el cursor ───
    La fila que cruza el centro del viewport recibe .active (misma banda amarilla
    que el hover de desktop) y su icono aparece dentro de la fila con un pop.
@@ -2735,6 +2797,11 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   </div>
 </section>
 
+<!-- foto flotante de los premios (persigue al cursor en /about, como los iconos del home) -->
+<div class="award-preview" id="award-preview">
+  <div class="award-preview-inner" id="award-preview-inner"></div>
+</div>
+
 <!-- ═══════════════════════════ ABOUT STRIP ═══════════════════════════ -->
 <section id="about-strip" data-screen-label="04 About">
   <div class="about-eyebrow reveal"><span>About · 04</span></div>
@@ -3165,42 +3232,42 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 
     <div class="about-awards-title"><span>Recognition · 08</span></div>
     <div class="about-awards">
-      <div class="about-award-item highlight">
+      <div data-award="award-2025-hackernoon" class="about-award-item highlight">
         <span class="about-award-year">2025</span>
         <span class="about-award-text">Winner — <em>Startup of the Year</em>, Food &amp; Beverages</span>
         <span class="about-award-loc">HackerNoon · USA</span>
       </div>
-      <div class="about-award-item highlight">
+      <div data-award="award-2019-finnovista" class="about-award-item highlight">
         <span class="about-award-year">2019</span>
         <span class="about-award-text">Winner — Best Startup</span>
         <span class="about-award-loc">Finnovista · Mexico</span>
       </div>
-      <div class="about-award-item highlight">
+      <div data-award="award-2018-startup-peru" class="about-award-item highlight">
         <span class="about-award-year">2018</span>
         <span class="about-award-text">Winner — Startup Peru</span>
         <span class="about-award-loc">Lima · Peru</span>
       </div>
-      <div class="about-award-item highlight">
+      <div data-award="award-2015-modev" class="about-award-item highlight">
         <span class="about-award-year">2015</span>
         <span class="about-award-text">Winner — Modev</span>
         <span class="about-award-loc">Washington DC · USA</span>
       </div>
-      <div class="about-award-item highlight">
+      <div data-award="award-2013-creatividad" class="about-award-item highlight">
         <span class="about-award-year">2013</span>
         <span class="about-award-text">Winner — Creatividad Empresarial</span>
         <span class="about-award-loc">Lima · Peru</span>
       </div>
-      <div class="about-award-item">
+      <div data-award="award-2012-websummit" class="about-award-item">
         <span class="about-award-year">2012</span>
         <span class="about-award-text">Finalist — Alpha · Web Summit</span>
         <span class="about-award-loc">Dublin · IE</span>
       </div>
-      <div class="about-award-item">
+      <div data-award="award-2012-fom-latam" class="about-award-item">
         <span class="about-award-year">2012</span>
         <span class="about-award-text">Finalist — Festival of Media LATAM</span>
         <span class="about-award-loc">Miami · USA</span>
       </div>
-      <div class="about-award-item highlight">
+      <div data-award="award-2012-startup-world" class="about-award-item highlight">
         <span class="about-award-year">2012</span>
         <span class="about-award-text">Winner — <em>Startup World</em>, TNW</span>
         <span class="about-award-loc">San Francisco · USA</span>
@@ -4710,6 +4777,42 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       });
     }, { threshold: 0.3 });
     awardRows.forEach(row => awardsIo.observe(row));
+
+    // hover: foto del premio siguiendo al cursor. Muestra un placeholder con
+    // año + lugar; si existe images/awards/<data-award>.webp lo cubre solo
+    // (basta con soltar los ficheros con esos nombres, sin tocar código).
+    const awardPreview = document.getElementById('award-preview');
+    const awardPreviewInner = document.getElementById('award-preview-inner');
+    if (awardPreview && !document.documentElement.classList.contains('touch-ui')) {
+      awardRows.forEach(row => {
+        row.addEventListener('mouseenter', () => {
+          const year = (row.querySelector('.about-award-year') || {}).textContent || '';
+          const loc = (row.querySelector('.about-award-loc') || {}).textContent || '';
+          awardPreviewInner.innerHTML = '';
+          const ph = document.createElement('div');
+          ph.className = 'award-ph';
+          ph.innerHTML = '<span class="award-ph-year">' + year.trim() + '</span>' +
+                         '<span class="award-ph-loc">' + loc.trim() + '</span>';
+          awardPreviewInner.appendChild(ph);
+          if (row.dataset.award) {
+            const img = document.createElement('img');
+            img.alt = '';
+            img.addEventListener('error', () => img.remove());
+            img.src = 'images/awards/' + row.dataset.award + '.webp';
+            awardPreviewInner.appendChild(img);
+          }
+          awardPreviewInner.style.transform = 'rotate(' + (Math.random() * 8 - 4).toFixed(1) + 'deg)';
+          awardPreview.classList.add('show');
+        });
+        row.addEventListener('mouseleave', () => awardPreview.classList.remove('show'));
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (awardPreview.classList.contains('show')) {
+          awardPreview.style.left = (e.clientX + 44) + 'px';
+          awardPreview.style.top = e.clientY + 'px';
+        }
+      });
+    }
   }
 
 })();
