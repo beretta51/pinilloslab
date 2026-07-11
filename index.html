@@ -4938,31 +4938,84 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       ]
     },
     Trovelo: {
-      updated: 'April 20, 2026',
+      updated: 'July 11, 2026',
       sections: [
-        { h: 'Overview', p: 'Trovelo is a travel planning app designed with privacy at its core. We do not collect, store, or share any of your personal data on Trovelo servers.' },
-        { h: 'Data storage', p: 'All information you enter in Trovelo is stored on your device and, if you are signed into iCloud, synced privately through your personal iCloud account via Apple\u2019s CloudKit. Your data is never stored on Trovelo servers — it belongs to you.' },
-        { h: 'No data collection', p: 'Trovelo does not collect any personal information. Specifically:',
+        { h: 'Summary', p: 'Trovelo is a travel-planning app built privacy-first. We operate <strong>no servers</strong>: the developer never receives, collects, stores, sells, or monetizes your personal data. Everything you create in Trovelo lives on your device and — if you use iCloud — in your own private iCloud account. A small number of features send limited, feature-specific data directly from your device to external services (described in full below), and one optional feature (Connect with Claude, on Mac) lets <em>you</em> share your trip data with an AI assistant of your choosing. Nothing ever passes through infrastructure we control, because we have none. This policy explains exactly what data the app handles, where it goes, the legal bases for any processing, and your rights — including your rights under the EU/EEA General Data Protection Regulation (GDPR) and the UK GDPR.' },
+        { h: '1. Who is responsible (data controller)', p: 'Trovelo is developed and published by <strong>Eduardo Pinillos</strong> (independent developer). Contact: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Because Trovelo has no servers, the developer does not hold or have access to any of your data. To the limited extent that the app causes personal data (such as your IP address or a place-name search) to be transmitted to the service providers listed in Section 5, the developer acts as the data controller for determining that such transmissions occur, and this policy serves as the transparency notice required by Articles 13–14 GDPR. Apple, Pexels, and other providers act as independent controllers of the data they receive, under their own privacy policies.' },
+        { h: '2. Our privacy model',
           list: [
-            'We do not collect your name, email, or any identifying information',
-            'We do not use analytics or crash reporting tools',
-            'We do not use advertising or third-party tracking',
-            'We do not have Trovelo servers or databases that store your information',
-            'We do not share any data with third parties'
+            '<strong>No Trovelo servers or databases exist.</strong> There is nothing for us to access, leak, or hand over.',
+            '<strong>No accounts.</strong> Trovelo has no sign-up, login, or user profile.',
+            '<strong>No analytics, no tracking, no advertising.</strong> The app contains no analytics SDKs, crash reporters, ad networks, fingerprinting, or third-party trackers of any kind.',
+            '<strong>No sale or sharing of personal data</strong>, ever, for any purpose.'
           ] },
-        { h: 'Third-party services', p: 'Trovelo uses the following external services:',
+        { h: '3. Data stored on your device and in your iCloud', p: 'Everything you enter in Trovelo is stored locally on your device and, if you are signed in to iCloud, synced through Apple CloudKit <strong>inside your personal, private iCloud account</strong>. This may include:',
           list: [
-            '<strong>Apple CloudKit</strong> — used to sync your trips across your Apple devices via your private iCloud account. Governed by Apple\u2019s Privacy Policy.',
-            '<strong>MapKit</strong> — used to search for places when planning trips. Searches are processed by Apple Maps. Governed by Apple\u2019s Privacy Policy.',
-            '<strong>Pexels</strong> — used to fetch cover photos for trips and cards based on destination or place name. Only the search term (e.g. "Tokyo") is sent to Pexels. No personal data is transmitted. Governed by Pexels\u2019 Privacy Policy.',
-            '<strong>Open-Meteo</strong> — used to display weather forecasts. Only your trip\u2019s city name is sent. Open-Meteo is a free, open-source weather API that does not store personal data.',
-            '<strong>iTunes Search API</strong> — used to check for app updates. No personal data is transmitted.'
+            'Trips: names, destinations, dates, colors, cover photos',
+            'Itinerary cards: titles, notes, times, categories, places (names, addresses, coordinates), links, phone numbers',
+            'Expenses and budgets: amounts and currencies',
+            'Flight details: flight numbers, airports, times, terminals, gates',
+            'Packing lists and templates',
+            'Visited places (\u201cSpots\u201d): countries and cities you mark or that are suggested from your photo library (see Section 9)',
+            'Attached documents and photos (see Section 10)'
+          ],
+          p2: 'iCloud sync is provided by Apple under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple\u2019s Privacy Policy</a> and your agreement with Apple. Trovelo cannot read, access, or recover data in your iCloud account. If you disable iCloud for Trovelo, data stays only on your device. Trovelo\u2019s widget shows a snapshot of your trips stored in a shared container on your device only.' },
+        { h: '4. Data we do not collect', p: 'We do not collect your name, email address, contacts, identifiers, usage statistics, crash logs, advertising data, or any other personal information. We have no means of identifying you.' },
+        { h: '5. Features that contact external services', p: 'Some features need the internet. These requests go <strong>directly from your device to the provider</strong> — never through Trovelo servers. As with any internet request, the provider technically receives your IP address and standard request metadata, which it processes under its own privacy policy. Trovelo sends the minimum data each feature needs:',
+          list: [
+            '<strong>Cover photos for trips and cards</strong> — Pexels: a place-name search term only (e.g. \u201cTokyo\u201d). <a href="https://www.pexels.com/privacy-policy/" target="_blank" rel="noopener">Pexels Privacy Policy</a>',
+            '<strong>Currency conversion for expenses</strong> — an open-source exchange-rate dataset served via the jsDelivr CDN (with a Cloudflare Pages fallback): a currency code only (e.g. \u201ceur\u201d), never amounts or trip data. <a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> · <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a>',
+            '<strong>Place search, maps, geocoding, and travel-time estimates</strong> — Apple Maps (MapKit): the place names you search, and place coordinates for routing/geocoding. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a>',
+            '<strong>Importing a shared map link</strong> (e.g. pasting a Google Maps link) — Google, only when you import such a link: the link you chose to import, so it can be resolved to a place. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>',
+            '<strong>iCloud sync and trip-share links</strong> — Apple CloudKit: your trip data, within your private iCloud account. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a>',
+            '<strong>Trovelo Pro purchase</strong> — Apple App Store: handled entirely by Apple; Trovelo never sees payment details (Section 11). <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a>'
+          ],
+          p2: 'Trovelo never sends your identity, your trip contents, your expenses, or your documents to any of these providers. Photo and currency requests contain no personal content beyond the technical metadata inherent to any web request. <strong>Legal bases (GDPR):</strong> these transmissions are necessary to perform the features you actively use (Art. 6(1)(b) GDPR) and pursue our legitimate interest in providing app functionality without operating our own data-collecting servers (Art. 6(1)(f)). You can avoid them entirely by not using the relevant feature or by using the app offline.' },
+        { h: '6. Connect with Claude (optional AI integration, Mac only)', p: 'The Mac version of Trovelo Pro can expose your trips to an AI assistant (such as Anthropic\u2019s Claude) through a <strong>local connection that exists only on your Mac</strong> (a loopback server on 127.0.0.1, protected by a secret token). Trovelo itself never sends anything to Anthropic or any AI provider. You should understand clearly:',
+          list: [
+            'The feature is <strong>off by default</strong> and requires your explicit activation and acknowledgement.',
+            'Once you connect an AI client, <strong>anything it reads through the connection — trip names, places, dates, notes, prices, visited spots — becomes part of your conversation with that AI provider</strong> and is processed under <em>its</em> privacy policy (for Claude, <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic\u2019s Privacy Policy</a>). Anthropic (or any AI provider you connect) acts as an independent controller of that data.',
+            'You can restrict the connection to <strong>view-only</strong>, rotate the access token, or turn the feature off at any time in Settings.',
+            'Do not connect an AI client if your trips contain information you do not want processed by that provider.'
+          ],
+          p2: '<strong>Legal basis (GDPR):</strong> your consent (Art. 6(1)(a)), given when you enable the feature; withdrawable at any time by turning it off.' },
+        { h: '7. Sharing trips with others', p: 'If you use <strong>Share Trip</strong>, Trovelo creates a read-only link through your iCloud account. <strong>Anyone who has that link can view the shared trip\u2019s full contents</strong> (itinerary, places, notes, prices). Share links only with people you trust, and avoid sharing trips containing sensitive attachments. You can stop sharing at any time, which revokes the link. Sharing is performed by Apple CloudKit through your iCloud account; Trovelo servers are not involved (none exist). You can also export trips as files or videos. Once you export or share something outside the app, its further distribution is under your control, not Trovelo\u2019s.' },
+        { h: '8. Location data', p: 'If you grant location permission, your position is used <strong>only on-device</strong> to show you on the map and improve nearby place suggestions. It is used while you view the map, never in the background, never stored, and never transmitted to the developer or third parties (standard Apple Maps requests aside, per Section 5). Location permission is optional; the app works without it.' },
+        { h: '9. Photo library scanning (visited places)', p: 'The optional \u201cscan my photos\u201d feature reads <strong>only the GPS location tags</strong> of your photos, entirely on-device, to suggest countries and cities you have visited. Your photos\u2019 image content is never read, uploaded, or analyzed. Location clusters are converted to place names using Apple\u2019s geocoding service (coordinates are sent to Apple for this, per Section 5). You choose whether to grant photo access, and you can revoke it in system Settings at any time.' },
+        { h: '10. Documents and sensitive data', p: 'You may attach documents to trips — for example boarding passes, insurance PDFs, passport scans, or vaccination records. These attachments:',
+          list: [
+            'are stored on your device and, if iCloud is enabled, in your private iCloud account,',
+            'are never sent to the developer or any third party by Trovelo,',
+            'may include data that is sensitive (identity documents, health-related documents). <strong>You</strong> decide what to attach. Consider the sensitivity of a document before attaching it to a trip you plan to share (Section 7) or expose to an AI client (Section 6).'
           ] },
-        { h: 'Location data', p: 'Your device location is used only on-device to show your position on the map and improve place search results. It is never stored, never shared, and never transmitted to Trovelo or any third party.' },
-        { h: 'Data deletion', p: 'You can delete all Trovelo data at any time by deleting the app. Your iCloud data can be deleted from Settings &rsaquo; Apple ID &rsaquo; iCloud &rsaquo; Manage Storage. No data remains on Trovelo servers because none was ever sent.' },
-        { h: 'Children\u2019s privacy', p: 'Trovelo does not collect any data from anyone, including children under 13.' },
-        { h: 'Changes to this policy', p: 'If we update this privacy policy, we will update the "Last updated" date at the top of this page.' },
-        { h: 'Contact', p: 'If you have any questions, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
+        { h: '11. Purchases', p: 'Trovelo Pro is a one-time purchase processed entirely by Apple through the App Store using StoreKit. Trovelo never receives or stores your payment details, billing address, or Apple ID. Purchase entitlement is verified on-device.' },
+        { h: '12. Diagnostics', p: 'Trovelo does not use any crash-reporting or analytics service. The app can locally record Apple\u2019s standard, anonymous performance metrics (launch time, memory, hang rate) on your device only, auto-deleted after 14 days. This data <strong>never leaves your device</strong> unless you personally choose to export and send it to us for troubleshooting.' },
+        { h: '13. Data retention and deletion', p: 'We retain nothing, so there is nothing for us to delete. You are in full control:',
+          list: [
+            '<strong>Delete individual items</strong> (trips, cards, documents, spots) at any time inside the app.',
+            '<strong>Delete everything on-device</strong> by deleting the app.',
+            '<strong>Delete iCloud data</strong> in System Settings › [your name] › iCloud › Manage Account Storage › Trovelo, or by deleting your trips in-app before removing the app (deletions sync).',
+            '<strong>Revoke shared links</strong> with \u201cStop Sharing\u201d on any shared trip.',
+            'Data you shared with an AI provider (Section 6) is governed by that provider\u2019s retention rules and deletion tools.'
+          ] },
+        { h: '14. Your rights (EEA, UK, and Switzerland)', p: 'Under the GDPR / UK GDPR you have rights of access, rectification, erasure, restriction, portability, and objection, and the right to withdraw consent at any time. Because your data is stored only on your own device and in your own iCloud account:',
+          list: [
+            '<strong>Access, rectification, erasure, restriction:</strong> you exercise these directly and immediately in the app — you hold the data, not us. We could not access it even on request.',
+            '<strong>Portability:</strong> Trovelo includes a built-in export that produces your trips in a structured, machine-readable format (.trovelo JSON files).',
+            '<strong>Withdrawal of consent:</strong> turn off the relevant permission (location, photos) in system Settings, or disable the Claude connection in Trovelo\u2019s settings.',
+            '<strong>Complaints:</strong> you have the right to lodge a complaint with your local data-protection supervisory authority (in the EU, see <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener">edpb.europa.eu</a>; in the UK, the ICO).'
+          ],
+          p2: 'For data held by Apple, Anthropic, Pexels, or other providers listed above, please direct requests to them as independent controllers; we have no access to that data. You are not subject to any automated decision-making or profiling by Trovelo. Providing personal data to Trovelo is never a statutory or contractual requirement — every field in the app is optional.' },
+        { h: '15. International data transfers', p: 'The developer transfers no data internationally, because the developer receives no data. Requests your device makes to providers in Section 5 may reach servers outside your country (for example, Pexels in the United States); those providers are responsible for their own transfer safeguards (such as the EU–US Data Privacy Framework or Standard Contractual Clauses) as described in their privacy policies. iCloud data residency is managed by Apple per your Apple ID region.' },
+        { h: '16. Users outside the EU', p: 'The same privacy model applies to every user worldwide. In particular:',
+          list: [
+            '<strong>California (CCPA/CPRA):</strong> Trovelo does not collect, sell, or share personal information as defined by the CCPA, and the developer does not meet the CCPA\u2019s thresholds for a covered \u201cbusiness.\u201d There is nothing to opt out of.',
+            '<strong>Brazil (LGPD), Canada (PIPEDA), Australia (Privacy Act), and other jurisdictions:</strong> the developer collects and holds no personal data; the rights described in Section 14 are honored for all users regardless of location, through the same in-app mechanisms.'
+          ] },
+        { h: '17. Children\u2019s privacy', p: 'Trovelo does not knowingly collect data from anyone, including children. Since no data ever reaches the developer, no children\u2019s data can be collected. The app requires no account and shows no ads.' },
+        { h: '18. Security', p: 'Your data is protected by the built-in encryption of iOS and macOS (data protection at rest) and by Apple\u2019s encryption of iCloud data in transit and at rest. The optional Claude connection is restricted to your own machine (localhost) and protected by a randomly generated secret token that you can rotate. No security measure is absolute; we recommend using a device passcode and two-factor authentication on your Apple ID.' },
+        { h: '19. Changes to this policy', p: 'If we change this policy, we will update the \u201cLast updated\u201d date above and, for material changes (such as any new external service), describe the change in the app\u2019s release notes. Continued use after an update constitutes acceptance of the revised policy. We will never retroactively weaken the core commitment of this policy — no collection of your data on Trovelo servers — without your explicit consent.' },
+        { h: '20. Contact', p: 'Questions or privacy requests: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. We answer data-protection inquiries within 30 days.' }
       ]
     },
     Gridborne: {
@@ -5096,6 +5149,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         s.list.forEach(li => { html += `<li>${li}</li>`; });
         html += '</ul>';
       }
+      if (s.p2) html += `<p>${s.p2}</p>`;
       html += '</section>';
     });
     container.innerHTML = html;
