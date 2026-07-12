@@ -1373,6 +1373,152 @@ html.touch-ui .award-mini {
 html.touch-ui .award-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
 html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: scale(1) rotate(var(--mini-rot, 0deg)); }
 
+/* ═══════════ GRIDBORNE TAKEOVER — el tablero se despliega ═══════════ */
+#gridborne-page {
+  background: #141828;
+  color: #EDEFF8;
+  --grid-gold: #FFB915;
+  --grid-green: #3E9B3E;
+}
+#gridborne-page .app-hero { position: relative; overflow: hidden; }
+#gridborne-page .app-num { color: rgba(237, 239, 248, 0.5); position: relative; z-index: 2; }
+#gridborne-page .app-tagline { color: #C7CCE2; position: relative; z-index: 2; }
+#gridborne-page .app-action {
+  background: #1D2338;
+  border-color: rgba(237, 239, 248, 0.22);
+  color: #EDEFF8;
+}
+#gridborne-page .app-action:hover {
+  background: var(--grid-gold);
+  border-color: var(--grid-gold);
+  color: #141828;
+}
+
+/* tablero 7x7 que se materializa en onda diagonal */
+.grid-board {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 5px;
+  padding: 12px;
+  z-index: 0;
+  pointer-events: none;
+}
+.grid-board i {
+  display: block;
+  border-radius: 6px;
+  background: #7CB544;
+  opacity: 0;
+}
+.grid-board i:nth-child(even) { background: #8FC653; }
+#gridborne-page.open .grid-board i {
+  animation: gridTileIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0.5s) both;
+}
+@keyframes gridTileIn {
+  from { opacity: 0; transform: scale(0.2); }
+  to   { opacity: 0.16; transform: scale(1); }
+}
+
+/* el nombre entra como logo de juego: dorado, con golpe */
+.grid-hero-name {
+  display: flex;
+  align-items: center;
+  gap: 0.22em;
+  position: relative;
+  z-index: 2;
+  /* "Gridborne" es largo: cabe con el icono al lado en cualquier ancho */
+  font-size: clamp(52px, 11.5vw, 150px);
+}
+.grid-hero-icon { display: inline-flex; width: 0.72em; height: 0.72em; flex-shrink: 0; }
+.grid-hero-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 26%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+.grid-name-slam {
+  display: inline-block;
+  color: var(--grid-gold);
+  -webkit-text-stroke: 2px #241B10;
+  text-shadow: 0 5px 0 #8A5E00, 0 14px 30px rgba(0, 0, 0, 0.55);
+}
+#gridborne-page.open .grid-name-slam { animation: gridSlam 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s both; }
+#gridborne-page.open .grid-hero-icon img { animation: dimCheckPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 1.85s both; }
+#gridborne-page.open .app-hero { animation: solidQuake 0.28s linear 1.72s; }
+@keyframes gridSlam {
+  0%   { opacity: 0; transform: scale(2.4) rotate(-3deg); }
+  60%  { opacity: 1; transform: scale(0.94) rotate(0.5deg); }
+  80%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+#gridborne-page.open .app-tagline { animation: introFadeIn 0.5s ease 2.1s both; }
+
+/* cartas de unidad: borde azul, etiqueta verde al desplegarse */
+#gridborne-page .app-card.grid-unit {
+  border: 3px solid #2E5FA8;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: scale(0.97);
+}
+#gridborne-page .grid-unit.done {
+  border-color: var(--grid-gold);
+  box-shadow: 0 0 26px rgba(255, 185, 21, 0.35);
+  transform: scale(1);
+}
+.grid-tag {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #5A6178;
+  border: 2px solid #33394E;
+  border-radius: 9px;
+  padding: 5px 12px;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.grid-unit.done .grid-tag { background: var(--grid-green); border-color: #21641F; }
+
+/* contador estilo botón del juego */
+.grid-progress {
+  position: sticky;
+  top: 96px;
+  z-index: 5;
+  width: fit-content;
+  margin: 0 28px 0 auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  background: var(--grid-green);
+  border: 2px solid #21641F;
+  border-radius: 12px;
+  padding: 8px 14px;
+  box-shadow: 0 4px 0 #21641F, 0 10px 24px rgba(0, 0, 0, 0.4);
+}
+@media (min-width: 768px) { .grid-progress { margin-right: 56px; } }
+.grid-progress b { color: var(--grid-gold); }
+.grid-progress.ready { background: var(--grid-gold); border-color: #8A5E00; box-shadow: 0 4px 0 #8A5E00, 0 10px 24px rgba(0, 0, 0, 0.4); color: #241B10; }
+
+@media (prefers-reduced-motion: reduce) {
+  #gridborne-page.open .grid-board i { animation: none; opacity: 0.16; transform: scale(1); }
+  #gridborne-page.open .grid-name-slam,
+  #gridborne-page.open .grid-hero-icon img,
+  #gridborne-page.open .app-hero,
+  #gridborne-page.open .app-tagline { animation: none; }
+  #gridborne-page .app-card.grid-unit { transition: none; transform: none; }
+}
+
 /* ═══════════ PERCHA TAKEOVER — atelier lila, perchas que se balancean ═══════════ */
 #percha-page { --percha-lila: #B79FF0; }
 #percha-page .app-hero {
@@ -4343,15 +4489,32 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 <!-- Gridborne -->
 <div id="gridborne-page" class="app-page">
   <div class="app-hero">
+    <div class="grid-board" aria-hidden="true"><i style="--d:0.500s"></i><i style="--d:0.545s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.545s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.995s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.995s"></i><i style="--d:1.040s"></i></div>
     <div class="app-num">— 05 / 07</div>
-    <h1 class="app-name">Gridborne</h1>
+    <h1 class="app-name grid-hero-name">
+      <span class="grid-hero-icon" aria-hidden="true"><img src="images/gridborne.png" alt="" width="512" height="512"></span>
+      <span class="grid-name-slam">Gridborne</span>
+    </h1>
     <p class="app-tagline">A turn-based strategy game played on a 7x7 grid. Quiet rules, deep tactics. Built for short, satisfying matches.</p>
   </div>
+  <div class="grid-progress" aria-hidden="true" id="grid-progress">⚔&#xFE0E; <b id="grid-units">1</b> / 4 units placed</div>
   <div class="app-screens">
-    <div class="app-card"><img src="images/gridborne-4.webp" alt="Gridborne · screen 1" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/gridborne-1.webp" alt="Gridborne · screen 2" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/gridborne-2.webp" alt="Gridborne · screen 3" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/gridborne-3.webp" alt="Gridborne · screen 4" class="app-card-img" loading="lazy"></div>
+    <div class="app-card grid-unit">
+      <img src="images/gridborne-4.webp" alt="Gridborne · unit 1" class="app-card-img" loading="lazy">
+      <span class="grid-tag">Unit 01</span>
+    </div>
+    <div class="app-card grid-unit">
+      <img src="images/gridborne-1.webp" alt="Gridborne · unit 2" class="app-card-img" loading="lazy">
+      <span class="grid-tag">Unit 02</span>
+    </div>
+    <div class="app-card grid-unit">
+      <img src="images/gridborne-2.webp" alt="Gridborne · unit 3" class="app-card-img" loading="lazy">
+      <span class="grid-tag">Unit 03</span>
+    </div>
+    <div class="app-card grid-unit">
+      <img src="images/gridborne-3.webp" alt="Gridborne · unit 4" class="app-card-img" loading="lazy">
+      <span class="grid-tag">Unit 04</span>
+    </div>
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6761489335" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
@@ -5905,6 +6068,40 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         requestAnimationFrame(dimmlyTick);
       }
       requestAnimationFrame(dimmlyTick);
+    }
+  }
+
+  // ═══════════════════════════ GRIDBORNE TAKEOVER — unidades desplegadas ═══════════════════════════
+  const gridPageEl = document.getElementById('gridborne-page');
+  if (gridPageEl) {
+    const gridUnits = Array.from(gridPageEl.querySelectorAll('.grid-unit'));
+    const gridProgress = document.getElementById('grid-progress');
+    if (gridUnits.length && gridProgress) {
+      let gridLast = -1;
+      function gridTick() {
+        if (gridPageEl.classList.contains('open')) {
+          const midX = (window.innerWidth || 1) / 2;
+          let done = 0;
+          gridUnits.forEach(t => {
+            const r = t.getBoundingClientRect();
+            const isDone = (r.left + r.width / 2) < midX + r.width * 0.2;
+            t.classList.toggle('done', isDone);
+            if (isDone) done++;
+          });
+          if (done !== gridLast) {
+            gridLast = done;
+            if (done >= gridUnits.length) {
+              gridProgress.classList.add('ready');
+              gridProgress.innerHTML = '⚔\uFE0E ready to battle!';
+            } else {
+              gridProgress.classList.remove('ready');
+              gridProgress.innerHTML = '⚔\uFE0E <b>' + Math.max(1, done) + '</b> / ' + gridUnits.length + ' units placed';
+            }
+          }
+        }
+        requestAnimationFrame(gridTick);
+      }
+      requestAnimationFrame(gridTick);
     }
   }
 
