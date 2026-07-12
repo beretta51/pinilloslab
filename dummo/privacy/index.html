@@ -36,7 +36,7 @@
 <p class="updated">Last updated: July 12, 2026</p>
 
 <h2>Summary</h2>
-<p>Dummo is a device-mockup video studio for macOS and iOS, built privacy-first. The developer operates <strong>no servers</strong>: he never receives, collects, stores, sells, or monetizes your personal data. Everything you create in Dummo — your imported screen recordings, projects, and exported videos — lives on your device and, if you use iCloud, in your own private iCloud account. A small number of features send limited, feature-specific data directly from your device to external services (described in full below). One optional feature, <strong>Edit with Claude</strong> (Mac only), lets <em>you</em> expose your open project — including frames and on-screen text read from your recording — to an AI assistant of your choosing. Nothing passes through infrastructure the developer controls, because he has none.</p>
+<p>Dummo is a device-mockup video studio for macOS and iOS, built privacy-first. The developer operates <strong>no servers</strong>: he never receives, collects, stores, sells, or monetizes your personal data. Everything you create in Dummo — your imported screen recordings, projects, and exported videos — lives on your device and, if you use iCloud, in your own private iCloud account. A small number of features send limited, feature-specific data directly from your device to external services (described in full below). One optional feature (AI editing, Mac only) lets <em>you</em> expose your open project — including frames and on-screen text read from your recording — to an AI assistant of your choosing (Anthropic's Claude today, or another compatible AI client you connect). Nothing passes through infrastructure the developer controls, because he has none.</p>
 <p>This policy explains exactly what data the app handles, where it goes, the legal bases for any processing, and your rights — including your rights under the EU/EEA General Data Protection Regulation (GDPR) and the UK GDPR. It describes the app's behavior as implemented in its source code.</p>
 
 <h2>1. Who is responsible (Data Controller)</h2>
@@ -49,7 +49,7 @@ Contact: <strong>hi@pinilloslab.com</strong></p>
 <ul>
 <li><strong>No Dummo servers or databases exist.</strong> There is nothing for the developer to access, leak, or hand over.</li>
 <li><strong>No accounts.</strong> Dummo has no sign-up, login, or user profile. It requires no account to use any feature.</li>
-<li><strong>No analytics, no tracking, no advertising.</strong> The app contains no analytics SDKs, crash reporters, ad networks, fingerprinting, or third-party trackers. Its only third-party code dependency is the open-source Model Context Protocol SDK used for the optional Claude connection (Section 6); it contains no data-collection code.</li>
+<li><strong>No analytics, no tracking, no advertising.</strong> The app contains no analytics SDKs, crash reporters, ad networks, fingerprinting, or third-party trackers. Its only third-party code dependency is the open-source Model Context Protocol SDK used for the optional AI connection (Section 6); it contains no data-collection code.</li>
 <li><strong>No sale or sharing of personal data</strong>, for any purpose.</li>
 </ul>
 
@@ -61,7 +61,7 @@ Contact: <strong>hi@pinilloslab.com</strong></p>
 <li><strong>Overlays you add</strong>: text overlays, captions, stickers, and their positions and styling.</li>
 <li><strong>Assets you import</strong>: custom backgrounds, custom stickers, and custom fonts.</li>
 <li><strong>Exported videos</strong> you choose to save.</li>
-<li><strong>App preferences</strong>: your default device, orientation, background and export preset, and the settings for the optional Claude connection.</li>
+<li><strong>App preferences</strong>: your default device, orientation, background and export preset, and the settings for the optional AI connection.</li>
 </ul>
 <p>To synchronize across your devices, Dummo copies the <strong>bytes</strong> of your projects (including the imported video files), backgrounds, stickers, and fonts into your <strong>private</strong> iCloud database (container <code>iCloud.com.eduardopinillos.Dummo</code>), using SwiftData backed by CloudKit. iCloud sync is provided by Apple under <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a> and your agreement with Apple. The developer cannot read, access, or recover data in your iCloud account. If you are not signed in to iCloud, your data stays only on your device.</p>
 <p><strong>Important:</strong> a screen recording can show anything that was on your screen when you made it — messages, emails, names, account balances, notifications, or other personal or sensitive information. Whatever is visible in the clips you import is stored by Dummo as described above. You decide what to record and import (see Section 7).</p>
@@ -79,12 +79,12 @@ Contact: <strong>hi@pinilloslab.com</strong></p>
 <tr><td>Dummo Pro purchase and restore</td><td>Apple App Store / StoreKit</td><td>Handled entirely by Apple; Dummo never sees payment details (Section 10)</td><td><a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy</a></td></tr>
 </table>
 </div>
-<p>Dummo does not send your identity, your project contents, your videos, or your overlays to Google. A font download contains no personal content beyond the technical metadata inherent to any web request. Aside from these, the only other outbound activity Dummo can initiate is the optional Claude connection described in Section 6, which you must switch on yourself.</p>
+<p>Dummo does not send your identity, your project contents, your videos, or your overlays to Google. A font download contains no personal content beyond the technical metadata inherent to any web request. Aside from these, the only other outbound activity Dummo can initiate is the optional AI connection described in Section 6, which you must switch on yourself.</p>
 <p><strong>Legal bases (GDPR).</strong> These transmissions are necessary to perform the features you actively use (Art. 6(1)(b) GDPR) and pursue the developer's legitimate interest in providing app functionality without operating his own data-collecting servers (Art. 6(1)(f)). You can avoid them entirely by not using the relevant feature or by using the app offline; font download is optional and only occurs when you choose to download a specific font.</p>
 
-<h2>6. Edit with Claude (optional AI integration, Mac only)</h2>
-<p>The Mac version of Dummo Pro can let an AI assistant (such as Anthropic's Claude) read and edit the project you have open, through a <strong>local connection that exists only on your Mac</strong>. Understand this feature clearly before enabling it, because it is the one way that content from your recordings can leave your machine.</p>
-<p><strong>How the connection works.</strong> When you switch it on, Dummo starts a small server that listens <strong>only on 127.0.0.1 (loopback, your machine only, default port 31201)</strong> and is protected by a randomly generated bearer token. It is never exposed to your local network or the internet. Dummo itself never sends anything to Anthropic or any AI provider — it only opens this local endpoint. An AI client on the same Mac (Claude Code or the Claude desktop app) connects to it and calls the app's tools.</p>
+<h2>6. Editing with an AI assistant (optional, Mac only)</h2>
+<p>The Mac version of Dummo Pro can let an AI assistant read and edit the project you have open, through a <strong>local connection that exists only on your Mac</strong>. Understand this feature clearly before enabling it, because it is the one way that content from your recordings can leave your machine.</p>
+<p><strong>How the connection works.</strong> When you switch it on, Dummo starts a small server that speaks the open <strong>Model Context Protocol (MCP)</strong> standard and listens <strong>only on 127.0.0.1 (loopback, your machine only, default port 31201)</strong>, protected by a randomly generated bearer token. It is never exposed to your local network or the internet. Dummo itself never sends anything to any AI provider — it only opens this local endpoint. An AI client running on the same Mac connects to it and calls the app's tools. Today the feature is designed around Anthropic's Claude (Claude Code and the Claude desktop app), and the app includes one-click setup for it; because the endpoint uses an open standard, you may instead point another MCP-compatible AI client of your choosing at it.</p>
 <p><strong>What the AI client can read — and what then reaches the AI provider.</strong> Once connected, the AI client can, through the tools Dummo exposes, read:</p>
 <ul>
 <li>The <strong>names and basic metadata of all your saved projects</strong> (not just the open one).</li>
@@ -92,18 +92,18 @@ Contact: <strong>hi@pinilloslab.com</strong></p>
 <li><strong>Frames sampled from your imported recording</strong> — reduced-resolution JPEG images (down-scaled, longest side ≈ 512 px) taken from the video so the model can "see" the screen.</li>
 <li><strong>Text recognized on-screen by optical character recognition (OCR)</strong> run locally on your recording's frames — for example when it reads a button label or a title to place a caption or a tap.</li>
 </ul>
-<p><strong>Anything the AI client reads through this connection becomes part of your conversation with that AI provider and is processed under <em>its</em> privacy policy</strong> (for Claude, <a href="https://www.anthropic.com/legal/privacy">Anthropic's Privacy Policy</a>). Because a frame or OCR result can contain any personal information visible in your recording (names, emails, messages, balances, and so on), that information can reach the AI provider when you use these features. Anthropic (or any AI provider you connect) acts as an independent controller of the data it receives. The audio of your recording and the full-resolution video file are <strong>not</strong> transmitted through this connection.</p>
+<p><strong>Whatever the AI client reads through this connection becomes part of your session with the AI provider you chose, and is processed under <em>that provider's</em> privacy policy.</strong> If you use Anthropic's Claude, see <a href="https://www.anthropic.com/legal/privacy">Anthropic's Privacy Policy</a>; if you connect a different AI client, that provider's own privacy policy governs instead. Because a frame or OCR result can contain any personal information visible in your recording (names, emails, messages, balances, and so on), that information can reach whichever AI provider you connect when you use these features. That provider acts as an independent controller of the data it receives. The audio of your recording and the full-resolution video file are <strong>not</strong> transmitted through this connection.</p>
 <p><strong>Your controls.</strong></p>
 <ul>
 <li>The feature is <strong>off by default</strong> and requires Dummo Pro plus your explicit activation.</li>
 <li>You can put the connection in <strong>read-only</strong> mode so the AI cannot edit your project.</li>
-<li>You can <strong>rotate the access token</strong> at any time (which disconnects already-configured clients), change the port, or turn the feature off entirely, in Settings › Claude.</li>
+<li>You can <strong>rotate the access token</strong> at any time (which disconnects already-configured clients), change the port, or turn the feature off entirely, in the app's settings.</li>
 <li>Do not connect an AI client if your open project contains information you do not want processed by that provider.</li>
 </ul>
 <p><strong>Legal basis (GDPR):</strong> your consent (Art. 6(1)(a)), given when you enable the feature; withdrawable at any time by turning it off.</p>
 
 <h2>7. Your recordings and other content you import</h2>
-<p>Dummo works on screen recordings and other media that <strong>you</strong> create outside the app and import into it. The app does <strong>not</strong> record your screen, camera, or microphone; it has no screen-capture, camera, or audio-recording code and requests no such permissions. It only reads the media files you choose to import (through the system photo picker or file picker) and, on the frames of those files, can run local frame sampling and OCR for the editing features and the optional Claude connection.</p>
+<p>Dummo works on screen recordings and other media that <strong>you</strong> create outside the app and import into it. The app does <strong>not</strong> record your screen, camera, or microphone; it has no screen-capture, camera, or audio-recording code and requests no such permissions. It only reads the media files you choose to import (through the system photo picker or file picker) and, on the frames of those files, can run local frame sampling and OCR for the editing features and the optional AI connection.</p>
 <p>Because your recordings may contain personal or sensitive information visible on screen, consider what a clip shows before you import it, sync it via iCloud (Section 3), export it (Section 8), or expose it to an AI client (Section 6).</p>
 
 <h2>8. Exporting and sharing</h2>
@@ -124,7 +124,7 @@ Contact: <strong>hi@pinilloslab.com</strong></p>
 <li><strong>Delete individual items</strong> (projects, imported videos, overlays, assets) at any time inside the app.</li>
 <li><strong>Delete everything on-device</strong> by deleting the app.</li>
 <li><strong>Delete iCloud data</strong> in System Settings › [your name] › iCloud › Manage Account Storage › Dummo, or by deleting your projects in-app before removing the app (deletions sync).</li>
-<li><strong>Revoke the Claude connection</strong> by turning it off or rotating its token in Settings (Section 6).</li>
+<li><strong>Revoke the AI connection</strong> by turning it off or rotating its token in Settings (Section 6).</li>
 <li>Data you shared with an AI provider (Section 6) is governed by that provider's retention rules and deletion tools.</li>
 </ul>
 
@@ -133,13 +133,13 @@ Contact: <strong>hi@pinilloslab.com</strong></p>
 <ul>
 <li><strong>Access, rectification, erasure, restriction:</strong> you exercise these directly and immediately in the app — you hold the data, not the developer, who could not access it even on request.</li>
 <li><strong>Portability:</strong> your projects are stored in structured project files and can be exported as standard video files; your data is not locked into a proprietary cloud.</li>
-<li><strong>Withdrawal of consent:</strong> turn off Photos access in system Settings, or disable the Claude connection in Dummo's settings.</li>
+<li><strong>Withdrawal of consent:</strong> turn off Photos access in system Settings, or disable the AI connection in Dummo's settings.</li>
 <li><strong>Complaints:</strong> you have the right to lodge a complaint with your local data-protection supervisory authority (in the EU, see <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en">edpb.europa.eu</a>; in the UK, the ICO).</li>
 </ul>
 <p>For data held by Apple, Google, Anthropic, or any AI provider you connect, please direct requests to them as independent controllers; the developer has no access to that data. You are not subject to any automated decision-making or profiling by Dummo. Providing personal data to Dummo is never a statutory or contractual requirement — the app needs no personal data to function.</p>
 
 <h2>14. International data transfers</h2>
-<p>The developer transfers no data internationally, because he receives no data. Requests your device makes to the providers in Section 5 may reach servers outside your country (for example, Google in the United States); those providers are responsible for their own transfer safeguards (such as the EU–US Data Privacy Framework or Standard Contractual Clauses) as described in their privacy policies. If you use the Claude connection (Section 6), any data the AI client transmits is transferred and safeguarded by that provider. iCloud data residency is managed by Apple according to your Apple ID region.</p>
+<p>The developer transfers no data internationally, because he receives no data. Requests your device makes to the providers in Section 5 may reach servers outside your country (for example, Google in the United States); those providers are responsible for their own transfer safeguards (such as the EU–US Data Privacy Framework or Standard Contractual Clauses) as described in their privacy policies. If you use the AI connection (Section 6), any data the AI client transmits is transferred and safeguarded by that provider. iCloud data residency is managed by Apple according to your Apple ID region.</p>
 
 <h2>15. Users outside the EU</h2>
 <p>The same privacy model applies to every user worldwide. In particular:</p>
@@ -149,13 +149,13 @@ Contact: <strong>hi@pinilloslab.com</strong></p>
 </ul>
 
 <h2>16. Children's privacy</h2>
-<p>Dummo is rated 4+ and shows no ads. It does not knowingly collect data from anyone, including children, because no data reaches the developer at all. The app requires no account. If you let a child use the app, note that the export, sharing, and optional Claude features (Sections 6–8) can move content off the device; supervise their use accordingly.</p>
+<p>Dummo is rated 4+ and shows no ads. It does not knowingly collect data from anyone, including children, because no data reaches the developer at all. The app requires no account. If you let a child use the app, note that the export, sharing, and optional AI-editing features (Sections 6–8) can move content off the device; supervise their use accordingly.</p>
 
 <h2>17. Security</h2>
-<p>Your data is protected by the built-in encryption of iOS and macOS (data protection at rest) and, for iCloud sync, by Apple's encryption of iCloud data in transit and at rest. Your imported recordings and projects are stored in the app's sandboxed container; Dummo does not add its own encryption layer on top of the operating system's, so their protection at rest is the protection your device provides (we recommend enabling FileVault on Mac and a device passcode). The optional Claude connection is restricted to your own machine (loopback) and protected by a randomly generated token you can rotate. No security measure is absolute; we recommend using a device passcode, FileVault, and two-factor authentication on your Apple ID.</p>
+<p>Your data is protected by the built-in encryption of iOS and macOS (data protection at rest) and, for iCloud sync, by Apple's encryption of iCloud data in transit and at rest. Your imported recordings and projects are stored in the app's sandboxed container; Dummo does not add its own encryption layer on top of the operating system's, so their protection at rest is the protection your device provides (we recommend enabling FileVault on Mac and a device passcode). The optional AI connection is restricted to your own machine (loopback) and protected by a randomly generated token you can rotate. No security measure is absolute; we recommend using a device passcode, FileVault, and two-factor authentication on your Apple ID.</p>
 
 <h2>18. The local network server</h2>
-<p>To provide the optional Claude connection (Section 6), Dummo declares the macOS "network server" capability and runs a local HTTP server bound exclusively to 127.0.0.1. This server is <strong>off unless you enable the Claude connection</strong>, is reachable only from your own machine, and requires a bearer token. It is not used for analytics, telemetry, or any communication with the developer.</p>
+<p>To provide the optional AI connection (Section 6), Dummo declares the macOS "network server" capability and runs a local HTTP server bound exclusively to 127.0.0.1. This server is <strong>off unless you enable the AI connection</strong>, is reachable only from your own machine, and requires a bearer token. It is not used for analytics, telemetry, or any communication with the developer.</p>
 
 <h2>19. Changes to this policy</h2>
 <p>If this policy changes, the developer will update the "Last updated" date above and, for material changes (such as any new external service), describe the change in the app's release notes. Continued use after an update constitutes acceptance of the revised policy. The core commitment of this policy — no collection of your data on developer-operated servers — will not be retroactively weakened without your explicit consent.</p>
