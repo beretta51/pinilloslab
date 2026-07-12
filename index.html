@@ -1373,6 +1373,175 @@ html.touch-ui .award-mini {
 html.touch-ui .award-mini img { width: 100%; height: 100%; object-fit: cover; display: block; }
 html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: scale(1) rotate(var(--mini-rot, 0deg)); }
 
+/* ═══════════ PERCHA TAKEOVER — atelier lila, perchas que se balancean ═══════════ */
+#percha-page { --percha-lila: #B79FF0; }
+#percha-page .app-hero {
+  background: var(--percha-lila);
+  border-radius: 0 0 34px 34px;
+  color: #fff;
+  position: relative;
+  padding-bottom: 72px;
+}
+#percha-page .app-num { color: rgba(255, 255, 255, 0.7); }
+#percha-page .app-name { color: #fff; }
+#percha-page .app-tagline { color: rgba(255, 255, 255, 0.9); }
+#percha-page .app-action { border-color: var(--ink); }
+#percha-page .app-action:hover { background: var(--percha-lila); border-color: var(--percha-lila); color: #fff; }
+
+/* riel del armario */
+.percha-rail {
+  height: 9px;
+  max-width: 640px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 14px rgba(46, 20, 90, 0.18);
+  margin: 26px 0 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+#percha-page.open .percha-rail { animation: perchaRailIn 0.55s var(--ease-out-expo) 0.55s both; }
+@keyframes perchaRailIn { to { transform: scaleX(1); } }
+
+/* el nombre cuelga de la percha y se balancea hasta pararse */
+.percha-hang {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -5px;
+  transform-origin: 50% 5px;
+}
+#percha-page.open .percha-hang { animation: perchaSwingIn 2s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both; }
+@keyframes perchaSwingIn {
+  0%   { opacity: 0; transform: translateY(-34px) rotate(9deg); }
+  16%  { opacity: 1; transform: translateY(0) rotate(7deg); }
+  38%  { transform: rotate(-4.5deg); }
+  58%  { transform: rotate(2.6deg); }
+  76%  { transform: rotate(-1.2deg); }
+  90%  { transform: rotate(0.5deg); }
+  100% { transform: rotate(0deg); }
+}
+.percha-hanger { width: 96px; height: auto; color: #fff; display: block; }
+.percha-hero-name { display: flex; align-items: center; gap: 0.22em; margin-top: -4px; }
+.percha-hero-icon { display: inline-flex; width: 0.72em; height: 0.72em; flex-shrink: 0; }
+.percha-hero-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 26%;
+  box-shadow: 0 10px 28px rgba(46, 20, 90, 0.35);
+}
+
+/* la línea de corte con tijeras */
+.percha-cut {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 30px;
+  border-top: 3px dashed rgba(255, 255, 255, 0.9);
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+#percha-page.open .percha-cut { animation: perchaRailIn 0.9s ease 1.9s both; }
+.percha-scissors {
+  position: absolute;
+  top: -14px;
+  left: 0;
+  font-size: 22px;
+  transform: rotate(-8deg);
+}
+#percha-page.open .percha-scissors { animation: perchaCutRide 0.9s ease 1.9s both; }
+@keyframes perchaCutRide { from { left: 0; } to { left: calc(100% - 26px); } }
+#percha-page.open .app-tagline { animation: introFadeIn 0.5s ease 2.3s both; }
+
+/* looks colgados del riel: se balancean, y se asientan al llegar su turno */
+.percha-item {
+  flex-shrink: 0;
+  width: 72vw;
+  max-width: 280px;
+  position: relative;
+  padding-top: 34px;
+  transform-origin: 50% 6px;
+  animation: perchaSway 3.6s ease-in-out infinite alternate;
+}
+.percha-item:nth-child(even) { animation-duration: 4.3s; animation-delay: -1.8s; }
+@keyframes perchaSway {
+  from { transform: rotate(1.7deg); }
+  to   { transform: rotate(-1.7deg); }
+}
+.percha-item.done { animation: perchaSettle 0.9s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes perchaSettle {
+  0%   { transform: rotate(1.7deg); }
+  45%  { transform: rotate(-0.9deg); }
+  75%  { transform: rotate(0.4deg); }
+  100% { transform: rotate(0deg); }
+}
+.percha-mini-hanger {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 64px;
+  height: auto;
+  margin-left: -32px;
+  color: var(--ink);
+  z-index: 2;
+}
+.percha-item.done .percha-mini-hanger { color: var(--percha-lila); }
+#percha-page .percha-card { width: 100%; }
+.percha-chip {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 3;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1.5px dashed var(--ink);
+  border-radius: 999px;
+  padding: 6px 12px;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.percha-item.done .percha-chip {
+  background: var(--percha-lila);
+  border-color: var(--percha-lila);
+  border-style: solid;
+  color: #fff;
+}
+
+/* contador */
+.percha-progress {
+  position: sticky;
+  top: 96px;
+  z-index: 5;
+  width: fit-content;
+  margin: 0 28px 0 auto;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px dashed var(--ink);
+  border-radius: 999px;
+  padding: 8px 14px;
+}
+@media (min-width: 768px) { .percha-progress { margin-right: 56px; } }
+.percha-progress b { color: #7A5BD6; }
+
+@media (prefers-reduced-motion: reduce) {
+  #percha-page.open .percha-rail,
+  #percha-page.open .percha-cut { animation: none; transform: scaleX(1); }
+  #percha-page.open .percha-hang { animation: none; opacity: 1; }
+  #percha-page.open .percha-scissors { animation: none; left: calc(100% - 26px); }
+  #percha-page.open .app-tagline { animation: none; }
+  .percha-item { animation: none !important; transform: none !important; }
+}
+
 /* ═══════════ TROVELO TAKEOVER — lavanda, ruta punteada, trip cards ═══════════ */
 #trovelo-page {
   background: #B4A8F0;
@@ -3863,16 +4032,64 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 <div id="percha-page" class="app-page">
   <div class="app-hero">
     <div class="app-num">— 03 / 07</div>
-    <h1 class="app-name">Percha</h1>
+    <div class="percha-rail" aria-hidden="true"></div>
+    <div class="percha-hang">
+      <svg class="percha-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true">
+        <path d="M60 4 C50 4 46 12 49 18" stroke="currentColor" stroke-width="5" stroke-linecap="round" fill="none"/>
+        <path d="M60 18 L14 48 H106 L60 18 Z" stroke="currentColor" stroke-width="5" stroke-linejoin="round" fill="none"/>
+      </svg>
+      <h1 class="app-name percha-hero-name">
+        <span class="percha-hero-icon" aria-hidden="true"><img src="images/percha.png" alt="" width="512" height="512"></span>
+        <span>Percha</span>
+      </h1>
+    </div>
+    <div class="percha-cut" aria-hidden="true"><span class="percha-scissors">✂️</span></div>
     <p class="app-tagline">A quiet wardrobe OS. See what you own, what you wear, what you don't. In progress, in beta.</p>
   </div>
+  <div class="percha-progress" aria-hidden="true">Look <b id="percha-look">1</b> / 6</div>
   <div class="app-screens">
-    <div class="app-card"><img src="images/percha-1.webp" alt="Percha · screen 1" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/percha-2.webp" alt="Percha · screen 2" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/percha-3.webp" alt="Percha · screen 3" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/percha-4.webp" alt="Percha · screen 4" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/percha-5.webp" alt="Percha · screen 5" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="images/percha-6.webp" alt="Percha · screen 6" class="app-card-img" loading="lazy"></div>
+    <div class="percha-item">
+      <svg class="percha-mini-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M60 4 C50 4 46 12 49 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M60 18 L14 48 H106 L60 18 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" fill="none"/></svg>
+      <div class="app-card percha-card">
+        <span class="percha-chip">Look 01</span>
+        <img src="images/percha-1.webp" alt="Percha · look 1" class="app-card-img" loading="lazy">
+      </div>
+    </div>
+    <div class="percha-item">
+      <svg class="percha-mini-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M60 4 C50 4 46 12 49 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M60 18 L14 48 H106 L60 18 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" fill="none"/></svg>
+      <div class="app-card percha-card">
+        <span class="percha-chip">Look 02</span>
+        <img src="images/percha-2.webp" alt="Percha · look 2" class="app-card-img" loading="lazy">
+      </div>
+    </div>
+    <div class="percha-item">
+      <svg class="percha-mini-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M60 4 C50 4 46 12 49 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M60 18 L14 48 H106 L60 18 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" fill="none"/></svg>
+      <div class="app-card percha-card">
+        <span class="percha-chip">Look 03</span>
+        <img src="images/percha-3.webp" alt="Percha · look 3" class="app-card-img" loading="lazy">
+      </div>
+    </div>
+    <div class="percha-item">
+      <svg class="percha-mini-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M60 4 C50 4 46 12 49 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M60 18 L14 48 H106 L60 18 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" fill="none"/></svg>
+      <div class="app-card percha-card">
+        <span class="percha-chip">Look 04</span>
+        <img src="images/percha-4.webp" alt="Percha · look 4" class="app-card-img" loading="lazy">
+      </div>
+    </div>
+    <div class="percha-item">
+      <svg class="percha-mini-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M60 4 C50 4 46 12 49 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M60 18 L14 48 H106 L60 18 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" fill="none"/></svg>
+      <div class="app-card percha-card">
+        <span class="percha-chip">Look 05</span>
+        <img src="images/percha-5.webp" alt="Percha · look 5" class="app-card-img" loading="lazy">
+      </div>
+    </div>
+    <div class="percha-item">
+      <svg class="percha-mini-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true"><path d="M60 4 C50 4 46 12 49 18" stroke="currentColor" stroke-width="6" stroke-linecap="round" fill="none"/><path d="M60 18 L14 48 H106 L60 18 Z" stroke="currentColor" stroke-width="6" stroke-linejoin="round" fill="none"/></svg>
+      <div class="app-card percha-card">
+        <span class="percha-chip">Look 06</span>
+        <img src="images/percha-6.webp" alt="Percha · look 6" class="app-card-img" loading="lazy">
+      </div>
+    </div>
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6761848999" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
@@ -5688,6 +5905,31 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         requestAnimationFrame(dimmlyTick);
       }
       requestAnimationFrame(dimmlyTick);
+    }
+  }
+
+  // ═══════════════════════════ PERCHA TAKEOVER — looks colgados ═══════════════════════════
+  const perchaPageEl = document.getElementById('percha-page');
+  if (perchaPageEl) {
+    const perchaItems = Array.from(perchaPageEl.querySelectorAll('.percha-item'));
+    const perchaLook = document.getElementById('percha-look');
+    if (perchaItems.length) {
+      function perchaTick() {
+        if (perchaPageEl.classList.contains('open')) {
+          const midX = (window.innerWidth || 1) / 2;
+          let done = 0;
+          perchaItems.forEach(t => {
+            const r = t.getBoundingClientRect();
+            const isDone = (r.left + r.width / 2) < midX + r.width * 0.2;
+            t.classList.toggle('done', isDone);
+            if (isDone) done++;
+          });
+          const look = String(Math.max(1, done));
+          if (perchaLook && perchaLook.textContent !== look) perchaLook.textContent = look;
+        }
+        requestAnimationFrame(perchaTick);
+      }
+      requestAnimationFrame(perchaTick);
     }
   }
 
