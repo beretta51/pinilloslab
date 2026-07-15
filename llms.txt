@@ -5,8 +5,8 @@
 Pinillos Lab is the home of seven small software products, all built and maintained by one person without a team, investors, or subscriptions-by-default. The work emphasises privacy, on-device processing, and quiet design.
 
 - Home: https://pinilloslab.com/
-- About: https://pinilloslab.com/about
-- Contact: https://pinilloslab.com/contact
+- About: https://pinilloslab.com/about/
+- Contact: https://pinilloslab.com/contact/
 
 ## About Eduardo Pinillos
 
@@ -23,49 +23,49 @@ Pinillos Lab is the home of seven small software products, all built and maintai
 
 ### Trovelo — Private travel planner (iOS)
 The private travel planner built for people who actually travel. Plan trips day by day, track every expense in dual currency, keep your entire itinerary in your pocket. No account required, no tracking.
-- Page: https://pinilloslab.com/trovelo
+- Page: https://pinilloslab.com/trovelo/
 - App Store: https://apps.apple.com/app/id6760258252
 - Platform: iOS
 - Category: Travel, Privacy-first
 
 ### Dimmly — Task manager & habit tracker (iOS, macOS)
 A task manager and habit tracker that fits your day. Color-coded lists for work, routines, groceries, or anything else. Set alarms, track daily habits with streaks, add notes and checklists inside tasks, keep score during game nights with the built-in Scoreboard. Free for 5 lists; one-time upgrade for unlimited.
-- Page: https://pinilloslab.com/dimmly
+- Page: https://pinilloslab.com/dimmly/
 - App Store: https://apps.apple.com/app/id6761221806
 - Platform: iOS, macOS
 - Category: Productivity
 
 ### Percha — Wardrobe OS (iOS)
 A quiet wardrobe OS. See what you own, what you wear, what you don't. Works entirely on-device — no account is required and no personal data is sent to external servers. Photos and item data live in your local storage and iCloud (if enabled).
-- Page: https://pinilloslab.com/percha
+- Page: https://pinilloslab.com/percha/
 - App Store: https://apps.apple.com/app/id6761848999
 - Platform: iOS
 - Category: Lifestyle
 
 ### Solid — Gym tracker (iOS)
 A gym tracker that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer. All data stays on device unless iCloud sync is enabled.
-- Page: https://pinilloslab.com/solid
+- Page: https://pinilloslab.com/solid/
 - App Store: https://apps.apple.com/app/id6761683203
 - Platform: iOS
 - Category: Health & Fitness
 
 ### Gridborne — Turn-based strategy game (iOS)
 A turn-based strategy game played on a 7×7 grid. Quiet rules, deep tactics. Built for short, satisfying matches. Offline single-player against an AI opponent, with Game Center leaderboards and achievements.
-- Page: https://pinilloslab.com/gridborne
+- Page: https://pinilloslab.com/gridborne/
 - App Store: https://apps.apple.com/app/id6761489335
 - Platform: iOS
 - Category: Games / Strategy
 
 ### Wealth Square — Net worth tracker (macOS, in development)
 A native Mac app for tracking your net worth. Currently in development — not yet released.
-- Page: https://pinilloslab.com/wealth-square
+- Page: https://pinilloslab.com/wealth-square/
 - Platform: macOS
 - Category: Finance
 - Status: Coming soon
 
 ### Dummo — Screen recording to promo video (iOS, macOS)
 Turn a plain screen recording into a polished promo video. Wrap it in a realistic device frame (iPhone 17 Pro, iPhone 17, iPhone 16 Pro, iPhone 16, MacBook Pro), design the canvas with backgrounds and stickers, drop animated tap indicators, and let the auto-zoom director choreograph pan-and-zoom moves from your taps. Add an intro and outro, then export ready-made sizes for App Store previews, Instagram Stories, Reels, and Posts. Projects sync across devices over iCloud; on the Mac you can connect Claude to edit a project for you. No data is collected. Free, with a one-time Dummo Pro upgrade ($14.99 lifetime) for custom stickers, fonts, colors, Claude editing on Mac, and watermark-free exports.
-- Page: https://pinilloslab.com/dummo
+- Page: https://pinilloslab.com/dummo/
 - App Store: https://apps.apple.com/app/id6779711252
 - Platform: iOS, macOS
 - Category: Photo & Video
