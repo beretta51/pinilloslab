@@ -2223,6 +2223,16 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   color: inherit;
   transform: none;
 }
+/* Sin morph tipográfico en táctil: cambiar de fuente cambia el alto de la fila
+   (los nombres largos re-envuelven), la lista se desplaza y el spotlight entra
+   en bucle encendido/apagado — la pantalla "salta". El barrido amarillo, el
+   icono y la inversión de color no tocan el layout, así que se mantienen. */
+html.touch-ui .project-row.active .p-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-style: normal;
+  letter-spacing: -0.04em;
+}
 
 /* ─────────────────────────────── ABOUT SECTION (inline preview) ─────────────────────────────── */
 #about-strip {
@@ -5858,6 +5868,14 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
       });
       // fuera de la lista (hero, footer…) nada queda encendido
       if (best && bestD > mid) best = null;
+
+      // histéresis: la fila encendida solo cede si otra queda claramente más
+      // cerca del centro — evita el parpadeo cuando dos filas empatan.
+      if (best && spotActive && best !== spotActive) {
+        const rc = spotActive.getBoundingClientRect();
+        const dCur = Math.abs(rc.top + rc.height / 2 - mid);
+        if (dCur <= mid && bestD > dCur - 32) best = spotActive;
+      }
 
       if (best !== spotActive) {
         if (spotActive) spotActive.classList.remove('active');
