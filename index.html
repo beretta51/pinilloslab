@@ -824,66 +824,60 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 }
 #footer-form-wrap.open { grid-template-rows: 1fr; }
 #footer-form-wrap .ff-inner { overflow: hidden; }
-#footer-form, .ff-success { padding-top: 64px; max-width: 720px; }
-#footer-form {
+.ff-panel {
+  padding-top: 64px;
+  max-width: 960px;
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.45s ease 0.15s, transform 0.45s ease 0.15s;
 }
-#footer-form-wrap.open #footer-form { opacity: 1; transform: none; }
-.ff-field {
-  display: flex;
-  align-items: baseline;
-  gap: 20px;
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(242, 239, 230, 0.18);
-}
-.ff-field label {
+#footer-form-wrap.open .ff-panel { opacity: 1; transform: none; }
+.ff-reddit-label {
+  display: block;
   font-family: var(--mono);
   font-size: 11px;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: rgba(242, 239, 230, 0.45);
-  min-width: 88px;
+  margin-bottom: 20px;
 }
-.ff-field input, .ff-field textarea {
-  flex: 1;
-  background: none;
-  border: none;
-  outline: none;
-  color: #fff;
-  font-family: var(--display);
-  font-size: 24px;
-  font-weight: 500;
-  resize: none;
-}
-.ff-field input::placeholder, .ff-field textarea::placeholder { color: rgba(242, 239, 230, 0.25); }
-.ff-field:focus-within { border-bottom-color: var(--yellow); }
-.ff-field:focus-within label { color: var(--yellow); }
-#ff-send {
-  margin-top: 40px;
-  background: var(--yellow);
-  color: var(--ink);
-  border: none;
+.ff-reddit-link {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2em;
   font-family: var(--display);
   font-weight: 800;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-  padding: 20px 40px;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.25s ease, background 0.25s ease;
+  font-size: clamp(56px, 10vw, 160px);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--yellow);
+  font-variation-settings: "opsz" 96;
+  transition: color 0.25s ease;
 }
-#ff-send:hover { background: #fff; transform: scale(1.04); }
-#ff-send:disabled { opacity: 0.6; cursor: default; transform: none; }
-.ff-success { display: none; font-family: var(--display); font-weight: 700; font-size: 28px; }
-.ff-success em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.ff-reddit-link em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.ff-reddit-link .arr {
+  font-family: var(--mono);
+  font-size: 0.5em;
+  display: inline-block;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+.ff-reddit-link:hover { color: #fff; }
+.ff-reddit-link:hover .arr { transform: translate(12px, -12px); }
+.ff-reddit-sub {
+  margin-top: 28px;
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.5;
+  color: rgba(242, 239, 230, 0.6);
+  max-width: 560px;
+}
+.ff-reddit-sub strong { color: var(--yellow); font-weight: 700; }
 @media (max-width: 767px) {
   #footer-cta { font-size: clamp(48px, 14vw, 80px); }
   #footer-form-wrap { margin-bottom: 56px; }
-  #footer-form, .ff-success { padding-top: 40px; }
-  .ff-field input, .ff-field textarea { font-size: 18px; }
-  .ff-field label { min-width: 60px; }
+  .ff-panel { padding-top: 40px; }
+  .ff-reddit-link { font-size: clamp(44px, 13vw, 72px); }
+  .ff-reddit-sub { font-size: 16px; }
 }
 
 /* ─────────────────────────────── KINETIC HERO ─────────────────────────────── */
@@ -3906,25 +3900,11 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
 
   <div id="footer-form-wrap">
     <div class="ff-inner">
-      <form id="footer-form" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="6eeb1d9a-017f-4b08-a5a1-0a563425adad">
-        <input type="hidden" name="subject" value="New message from pinilloslab.com (footer)">
-        <input type="hidden" name="redirect" value="false">
-        <div class="ff-field">
-          <label for="ff-name">Name</label>
-          <input id="ff-name" type="text" name="name" placeholder="Ada Lovelace" autocomplete="name" required>
-        </div>
-        <div class="ff-field">
-          <label for="ff-email">Email</label>
-          <input id="ff-email" type="email" name="email" placeholder="ada@analytical.engine" autocomplete="email" required>
-        </div>
-        <div class="ff-field">
-          <label for="ff-message">The idea</label>
-          <textarea id="ff-message" name="message" rows="3" placeholder="The more unreasonable, the better." required></textarea>
-        </div>
-        <button id="ff-send" type="submit">Send it →</button>
-      </form>
-      <div class="ff-success" id="footer-form-success">Message <em>received</em>.<br>I'll get back to you soon.</div>
+      <div class="ff-panel">
+        <span class="ff-reddit-label">— The fast lane · I answer daily</span>
+        <a class="ff-reddit-link" id="ff-reddit-link" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><span>Reddit&nbsp;<em>me</em></span><span class="arr">↗</span></a>
+        <p class="ff-reddit-sub"><strong>u/beretta51</strong> — where I talk with the people who use my apps every day. No forms, no inbox: Reddit is where I answer fastest, by far.</p>
+      </div>
     </div>
   </div>
 
@@ -6004,7 +5984,7 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
     footerFormWrap.classList.add('open');
     footerCta.setAttribute('aria-expanded', 'true');
     footerArrow.style.transform = '';
-    if (focus) setTimeout(() => document.getElementById('ff-name').focus(), 500);
+    if (focus) setTimeout(() => document.getElementById('ff-reddit-link').focus({ preventScroll: true }), 500);
   }
   footerCta.addEventListener('click', () => {
     if (footerFormWrap.classList.contains('open')) {
@@ -6013,30 +5993,6 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
     } else {
       openFooterForm(true);
     }
-  });
-
-  const footerForm = document.getElementById('footer-form');
-  footerForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const data = new FormData(footerForm);
-    const sendBtn = document.getElementById('ff-send');
-    sendBtn.disabled = true;
-    sendBtn.textContent = 'Sending…';
-    fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
-      .then(r => r.json())
-      .then(j => {
-        if (j.success) {
-          footerForm.style.display = 'none';
-          document.getElementById('footer-form-success').style.display = 'block';
-        } else {
-          sendBtn.disabled = false;
-          sendBtn.textContent = 'Send it →';
-        }
-      })
-      .catch(() => {
-        sendBtn.disabled = false;
-        sendBtn.textContent = 'Send it →';
-      });
   });
 
   // ═══════════════════════════ ODOMETER NUMBERS ═══════════════════════════
