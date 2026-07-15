@@ -184,6 +184,28 @@ a { color: inherit; text-decoration: none; }
 .privacy-body strong { font-weight: 700; }
 .privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
 .privacy-body a:hover { color: var(--ink-soft); }
+.privacy-body a.reddit-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  max-width: 480px;
+  margin: 8px 0 4px;
+  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
+}
+.privacy-body a.reddit-cta:hover { background: var(--ink); color: var(--yellow); }
+.privacy-body a.reddit-cta .arr { font-family: var(--mono); }
+@media (max-width: 767px) {
+  .privacy-body a.reddit-cta { padding: 17px 20px; font-size: 15px; }
+}
 .privacy-body .privacy-updated {
   font-family: var(--mono);
   font-size: 11px;
@@ -217,7 +239,9 @@ a { color: inherit; text-decoration: none; }
 <div class="privacy-body">
   <section>
     <h3>Need help?</h3>
-    <p>Email <strong><a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a></strong> and I'll get back to you. Dimmly is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
+    <p><strong>Reddit is the best way to reach me.</strong> <strong>r/dimmly</strong> is where I talk with the people who use my apps every day — questions, bugs, ideas, anything — and it's where I answer fastest.</p>
+    <a class="reddit-cta" href="https://www.reddit.com/r/dimmly/" target="_blank" rel="noopener"><span>Write to me on r/dimmly</span><span class="arr">&#8599;</span></a>
+    <p>You can also message me directly at <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">u/beretta51</a>, or email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Dimmly is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
   </section>
 
   <section>
