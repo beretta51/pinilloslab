@@ -785,16 +785,14 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 }
 @media (prefers-reduced-motion: reduce) { .hero-blob { display: none; } }
 
-/* ─────────────────────────────── FOOTER: CTA FLECHA + FORM INLINE ─────────────────────────────── */
+/* ─────────────────────────────── FOOTER: CTA DIRECTO A REDDIT ─────────────────────────────── */
 #footer .footer-headline { margin-bottom: 0; }
 #footer-cta {
   display: inline-flex;
   align-items: center;
   gap: 0.18em;
-  background: none;
-  border: none;
   padding: 0;
-  color: #fff;
+  color: var(--yellow);
   font-family: var(--display);
   font-weight: 800;
   font-size: clamp(64px, 14vw, 240px);
@@ -806,80 +804,30 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   position: relative;
   z-index: 1;
 }
-#footer-cta:hover { color: var(--yellow); }
+#footer-cta em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+#footer-cta:hover { color: #fff; }
+#footer-cta:focus { outline: none; }
+#footer-cta:focus-visible { outline: 2px dashed var(--yellow); outline-offset: 12px; }
 .fcta-arrow { display: inline-flex; align-items: center; will-change: transform; transition: transform 0.3s ease; }
-#footer-cta svg { height: 0.72em; overflow: visible; display: block; }
+#footer-cta svg { height: 0.72em; overflow: visible; display: block; transform: rotate(-45deg); }
 #footer-cta .shaft { transform-origin: left center; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
 #footer-cta .head { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
 #footer-cta:hover .shaft { transform: scaleX(1.55); }
 #footer-cta:hover .head { transform: translateX(44px); }
-#footer-cta[aria-expanded="true"] .fcta-arrow { transform: rotate(90deg) !important; }
-#footer-form-wrap {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  margin-bottom: 80px;
-  position: relative;
-  z-index: 1;
-}
-#footer-form-wrap.open { grid-template-rows: 1fr; }
-#footer-form-wrap .ff-inner { overflow: hidden; }
-.ff-panel {
-  padding-top: 64px;
-  max-width: 960px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.45s ease 0.15s, transform 0.45s ease 0.15s;
-}
-#footer-form-wrap.open .ff-panel { opacity: 1; transform: none; }
-.ff-reddit-label {
-  display: block;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(242, 239, 230, 0.45);
-  margin-bottom: 20px;
-}
-.ff-reddit-link {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.2em;
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(56px, 10vw, 160px);
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  color: var(--yellow);
-  font-variation-settings: "opsz" 96;
-  transition: color 0.25s ease;
-}
-.ff-reddit-link em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.ff-reddit-link .arr {
-  font-family: var(--mono);
-  font-size: 0.5em;
-  display: inline-block;
-  transition: transform 0.35s var(--ease-out-expo);
-}
-.ff-reddit-link:hover { color: #fff; }
-.ff-reddit-link:hover .arr { transform: translate(12px, -12px); }
-.ff-reddit-link:focus { outline: none; }
-.ff-reddit-link:focus-visible { outline: 2px dashed var(--yellow); outline-offset: 12px; }
-.ff-reddit-sub {
-  margin-top: 28px;
+.footer-reddit-sub {
+  margin: 32px 0 80px;
   font-family: var(--display);
   font-size: 18px;
   line-height: 1.5;
   color: rgba(242, 239, 230, 0.6);
   max-width: 560px;
+  position: relative;
+  z-index: 1;
 }
-.ff-reddit-sub strong { color: var(--yellow); font-weight: 700; }
+.footer-reddit-sub strong { color: var(--yellow); font-weight: 700; }
 @media (max-width: 767px) {
   #footer-cta { font-size: clamp(48px, 14vw, 80px); }
-  #footer-form-wrap { margin-bottom: 56px; }
-  .ff-panel { padding-top: 40px; }
-  .ff-reddit-link { font-size: clamp(44px, 13vw, 72px); }
-  .ff-reddit-sub { font-size: 16px; }
+  .footer-reddit-sub { font-size: 16px; margin: 24px 0 56px; }
 }
 
 /* ─────────────────────────────── KINETIC HERO ─────────────────────────────── */
@@ -3888,8 +3836,8 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   </div>
 
   <h2 class="footer-headline">Got an <em>idea</em>?</h2>
-  <button id="footer-cta" aria-expanded="false" aria-controls="footer-form-wrap">
-    <span>Let's&nbsp;build&nbsp;it.</span>
+  <a id="footer-cta" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener" aria-label="Message me on Reddit — u/beretta51">
+    <span>Reddit&nbsp;<em>me</em>.</span>
     <span class="fcta-arrow">
       <!-- viewBox holgado: la flecha estirada en hover (shaft x1.55 + head +44) cabe
            entera, porque Safari recorta el SVG aunque tenga overflow visible -->
@@ -3898,23 +3846,15 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
         <path class="head" d="M52 14 L88 50 L52 86" stroke="currentColor" stroke-width="12" fill="none" stroke-linejoin="miter"/>
       </svg>
     </span>
-  </button>
+  </a>
 
-  <div id="footer-form-wrap">
-    <div class="ff-inner">
-      <div class="ff-panel">
-        <span class="ff-reddit-label">— The fast lane · I answer daily</span>
-        <a class="ff-reddit-link" id="ff-reddit-link" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><span>Reddit&nbsp;<em>me</em></span><span class="arr">↗</span></a>
-        <p class="ff-reddit-sub"><strong>u/beretta51</strong> — where I talk with the people who use my apps every day. No forms, no inbox: Reddit is where I answer fastest, by far.</p>
-      </div>
-    </div>
-  </div>
+  <p class="footer-reddit-sub"><strong>u/beretta51</strong> — where I talk with the people who use my apps every day. No forms, no inbox: Reddit is where I answer fastest, by far.</p>
 
   <div class="footer-grid">
     <div>
       <div class="footer-col-label">— Get in touch</div>
       <div class="footer-col-value">
-        <a href="#" id="footer-contact-email-link">Start your idea →</a>
+        <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener" id="footer-contact-email-link">Reddit me ↗</a>
       </div>
     </div>
     <div>
@@ -5688,8 +5628,6 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   document.getElementById('footer-wealthsquare-link').addEventListener('click', e => { e.preventDefault(); openApp('wealthsquare', 'Wealth Square'); });
   const footerPrivacy = document.getElementById('footer-privacy-link');
   if (footerPrivacy) footerPrivacy.addEventListener('click', e => { e.preventDefault(); openPrivacyFor('site'); });
-  const footerContactEmail = document.getElementById('footer-contact-email-link');
-  if (footerContactEmail) footerContactEmail.addEventListener('click', e => { e.preventDefault(); openFooterForm(true); });
 
   // ESC closes everything
   window.addEventListener('keydown', (e) => {
@@ -5965,10 +5903,9 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
     });
   }
 
-  // ═══════════════════════════ FOOTER CTA — flecha magnética + form inline ═══════════════════════════
+  // ═══════════════════════════ FOOTER CTA — flecha magnética, link directo a Reddit ═══════════════════════════
   const footerCta = document.getElementById('footer-cta');
   const footerArrow = footerCta.querySelector('.fcta-arrow');
-  const footerFormWrap = document.getElementById('footer-form-wrap');
   const footerSection = document.getElementById('footer');
 
   footerSection.addEventListener('mousemove', e => {
@@ -5976,26 +5913,9 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
     const cx = r.right - r.height * 0.35, cy = r.top + r.height / 2;
     const dx = e.clientX - cx, dy = e.clientY - cy;
     const pull = Math.max(0, 1 - Math.hypot(dx, dy) / 420);
-    if (footerCta.getAttribute('aria-expanded') !== 'true') {
-      footerArrow.style.transform = `translate(${dx * 0.06 * pull}px, ${dy * 0.1 * pull}px)`;
-    }
+    footerArrow.style.transform = `translate(${dx * 0.06 * pull}px, ${dy * 0.1 * pull}px)`;
   });
   footerSection.addEventListener('mouseleave', () => { footerArrow.style.transform = ''; });
-
-  function openFooterForm(focus) {
-    footerFormWrap.classList.add('open');
-    footerCta.setAttribute('aria-expanded', 'true');
-    footerArrow.style.transform = '';
-    if (focus) setTimeout(() => document.getElementById('ff-reddit-link').focus({ preventScroll: true }), 500);
-  }
-  footerCta.addEventListener('click', () => {
-    if (footerFormWrap.classList.contains('open')) {
-      footerFormWrap.classList.remove('open');
-      footerCta.setAttribute('aria-expanded', 'false');
-    } else {
-      openFooterForm(true);
-    }
-  });
 
   // ═══════════════════════════ ODOMETER NUMBERS ═══════════════════════════
   // Los dígitos ruedan en columnas tipo cuentakilómetros: una vuelta completa
