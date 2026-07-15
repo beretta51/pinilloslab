@@ -3360,8 +3360,26 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   color: var(--ink-soft);
   line-height: 1.4;
   max-width: 580px;
-  margin-bottom: 64px;
+  margin-bottom: 24px;
 }
+.contact-sub strong { color: var(--ink); font-weight: 700; }
+.contact-reddit {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  background: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  margin-bottom: 64px;
+  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
+}
+.contact-reddit:hover { background: var(--ink); color: var(--yellow); }
+.contact-reddit .arr { font-family: var(--mono); }
 
 .contact-form {
   padding: 0 28px 24px;
@@ -4571,7 +4589,8 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   <div class="contact-hero">
     <div class="contact-tag"><span>Contact · 07</span></div>
     <h1 class="contact-headline">Got an <em>idea</em>?<br><strong>Let's&nbsp;talk.</strong></h1>
-    <p class="contact-sub">Drop me a few lines. I read everything, I reply to most.</p>
+    <p class="contact-sub"><strong>Reddit is where I answer fastest</strong> — it's where I talk with the people who use my apps every day. Or drop me a few lines below; I read everything, I reply to most.</p>
+    <a class="contact-reddit" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><span>Message me on Reddit — u/beretta51</span><span class="arr">↗</span></a>
   </div>
 
   <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
@@ -4604,6 +4623,13 @@ html.touch-ui .project-row:hover:not(.active) .p-arrow {
   </div>
 
   <div class="contact-socials" style="display:none;">
+    <a class="contact-social" href="https://www.reddit.com/user/beretta51/" target="_blank">
+      <div>
+        <div class="contact-social-name">Reddit</div>
+        <div class="contact-social-handle">u/beretta51</div>
+      </div>
+      <span class="arr" style="font-family:var(--mono);">↗</span>
+    </a>
     <a class="contact-social" href="https://www.linkedin.com/in/eduardopinillos/" target="_blank">
       <div>
         <div class="contact-social-name">LinkedIn</div>
