@@ -7,54 +7,249 @@
 <meta name="description" content="Dummo support. Get help with importing recordings, Dummo Pro, iCloud sync, and connecting Claude on Mac.">
 <link rel="canonical" href="https://pinilloslab.com/dummo/support">
 <style>
-  :root { color-scheme: light dark; }
-  html, body { margin: 0; padding: 0; background: #F2EFE6; color: #0A0A0A;
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
-  @media (prefers-color-scheme: dark) {
-    html, body { background: #121212; color: #EDEDED; }
-    a { color: #EDEDED; }
-  }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 96px; }
-  h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 4px; }
-  .sub { font-size: 15px; color: #6E6E6E; margin: 0 0 32px; }
-  h2 { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; margin: 36px 0 10px; }
-  p, li { font-size: 15px; line-height: 1.6; }
-  a { color: #0A0A0A; text-decoration: underline; text-underline-offset: 2px; }
-  .home { display: inline-block; font-size: 14px; margin-bottom: 28px; text-decoration: none; opacity: .7; }
-  .home:hover { opacity: 1; }
-  .card { border: 1px solid #d8d4c8; border-radius: 12px; padding: 16px 18px; margin: 18px 0; }
-  @media (prefers-color-scheme: dark) { .card { border-color: #3a3a3a; } }
+/* Bricolage Grotesque · latin-ext */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Bricolage Grotesque · latin */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Instrument Serif italic · latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Instrument Serif italic · latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* JetBrains Mono · latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* JetBrains Mono · latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --yellow: #F1F332;
+  --black: #000;
+  --paper: #F2EFE6;
+  --paper-dark: #E8E4D6;
+  --ink: #0A0A0A;
+  --ink-soft: #6E6E6E;
+  --display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--yellow); color: var(--black); }
+
+.app-hero {
+  padding: 120px 28px 40px;
+  position: relative;
+  max-width: 872px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) { .app-hero { padding: 160px 56px 60px; } }
+
+.privacy-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  margin-bottom: 24px;
+  padding: 8px 14px 8px 10px;
+  background: var(--paper-dark);
+  border-radius: 999px;
+  transition: background 0.3s, color 0.3s, padding 0.3s var(--ease-out-expo);
+}
+.privacy-back:hover {
+  background: var(--ink);
+  color: var(--paper);
+  padding-left: 16px;
+}
+.privacy-back svg { transition: transform 0.3s var(--ease-out-expo); }
+.privacy-back:hover svg { transform: translateX(-2px); }
+
+.app-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+.app-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(72px, 16vw, 200px);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin-bottom: 24px;
+  font-variation-settings: "opsz" 96;
+}
+.app-name em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+.privacy-body {
+  padding: 0 28px 80px;
+  max-width: 760px;
+  margin: 0 auto;
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (min-width: 768px) { .privacy-body { padding: 0 56px 120px; } }
+.privacy-body section { display: flex; flex-direction: column; gap: 10px; }
+.privacy-body h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.privacy-body p { font-size: 17px; line-height: 1.55; }
+.privacy-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+}
+.privacy-body ul li {
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.privacy-body ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ink-soft);
+}
+.privacy-body strong { font-weight: 700; }
+.privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.privacy-body a:hover { color: var(--ink-soft); }
+.privacy-body .privacy-updated {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--paper-dark);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .app-hero { padding: 100px 22px 32px; }
+  .app-num { font-size: 10px; margin-bottom: 12px; }
+  .app-name { font-size: clamp(48px, 14vw, 72px); margin-bottom: 18px; word-break: keep-all; overflow-wrap: normal; hyphens: none; }
+  .app-name em { font-size: 0.55em; }
+  .privacy-back { font-size: 10px; padding: 7px 12px 7px 8px; margin-bottom: 18px; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-<a class="home" href="/">← pinilloslab.com</a>
-<h1>Dummo Support</h1>
-<p class="sub">Turn a plain screen recording into a polished promo video — a device frame, taps, auto-zoom, and export sizes for the App Store, Reels, and Stories.</p>
-
-<div class="card">
-<h2 style="margin-top:0">Need help?</h2>
-<p>Email <strong><a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a></strong> and I'll get back to you. Dummo is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
+<div class="app-hero">
+  <a href="/dummo" class="privacy-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <span>Back to Dummo</span>
+  </a>
+  <div class="app-num">— Support · Dummo</div>
+  <h1 class="app-name">Support<br><em>center</em></h1>
 </div>
 
-<h2>Getting started</h2>
-<ul>
-<li><strong>Import a recording.</strong> Make a screen recording on your iPhone or Mac, then drop it into a new Dummo project. Dummo does not record your screen itself — it works on the clips you bring in.</li>
-<li><strong>Dress it up.</strong> Wrap it in an iPhone, iPad, or MacBook frame over any color, gradient, or image; add tap indicators, text, stickers, and auto-zoom.</li>
-<li><strong>Export.</strong> Pick a preset (App Store preview, Reel, Story, or a standard ratio) and export. On iPhone you can save straight to Photos.</li>
-</ul>
+<div class="privacy-body">
+  <section>
+    <h3>Need help?</h3>
+    <p>Email <strong><a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a></strong> and I'll get back to you. Dummo is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
+  </section>
 
-<h2>Dummo Pro</h2>
-<p>Dummo is free. A one-time <strong>Dummo Pro</strong> purchase unlocks custom stickers, fonts, colors and gradients, connecting Claude on Mac, and watermark-free exports. Purchases are tied to your Apple Account — one purchase unlocks Pro on your Mac and iPhone. Use <em>Restore Purchases</em> in Settings if Pro doesn't show up on a new device, and <em>Redeem Code</em> if you have a promo code.</p>
+  <section>
+    <h3>Getting started</h3>
+    <ul>
+      <li><strong>Import a recording.</strong> Make a screen recording on your iPhone or Mac, then drop it into a new Dummo project. Dummo does not record your screen itself — it works on the clips you bring in.</li>
+      <li><strong>Dress it up.</strong> Wrap it in an iPhone, iPad, or MacBook frame over any color, gradient, or image; add tap indicators, text, stickers, and auto-zoom.</li>
+      <li><strong>Export.</strong> Pick a preset (App Store preview, Reel, Story, or a standard ratio) and export. On iPhone you can save straight to Photos.</li>
+    </ul>
+  </section>
 
-<h2>iCloud sync</h2>
-<p>Your projects, backgrounds, stickers, and fonts sync across your devices through your own private iCloud account whenever you're signed in to iCloud. There's nothing to configure. If something looks out of date, open Settings and tap <em>Sync now</em>.</p>
+  <section>
+    <h3>Dummo Pro</h3>
+    <p>Dummo is free. A one-time <strong>Dummo Pro</strong> purchase unlocks custom stickers, fonts, colors and gradients, connecting Claude on Mac, and watermark-free exports. Purchases are tied to your Apple Account — one purchase unlocks Pro on your Mac and iPhone. Use <em>Restore Purchases</em> in Settings if Pro doesn't show up on a new device, and <em>Redeem Code</em> if you have a promo code.</p>
+  </section>
 
-<h2>Editing with Claude (Mac)</h2>
-<p>On the Mac, Dummo Pro can let Claude read and edit your open project through a local connection on your own machine. It's off by default and you turn it on in Settings › Claude. To learn what it can access, see the <a href="/dummo/privacy">Privacy Policy</a>.</p>
+  <section>
+    <h3>iCloud sync</h3>
+    <p>Your projects, backgrounds, stickers, and fonts sync across your devices through your own private iCloud account whenever you're signed in to iCloud. There's nothing to configure. If something looks out of date, open Settings and tap <em>Sync now</em>.</p>
+  </section>
 
-<h2>Privacy</h2>
-<p>Dummo has no servers and collects no personal data. Read the full <a href="/dummo/privacy">Dummo Privacy Policy</a>.</p>
+  <section>
+    <h3>Editing with Claude (Mac)</h3>
+    <p>On the Mac, Dummo Pro can let Claude read and edit your open project through a local connection on your own machine. It’s off by default and you turn it on in Settings › Claude. To learn what it can access, see the <a href="/dummo/privacy">Privacy Policy</a>.</p>
+  </section>
+
+  <section>
+    <h3>Privacy</h3>
+    <p>Dummo has no servers and collects no personal data. Read the full <a href="/dummo/privacy">Dummo Privacy Policy</a>.</p>
+  </section>
+
+  <p class="privacy-updated">Dummo · <a href="/">pinilloslab.com</a></p>
 </div>
 </body>
 </html>
