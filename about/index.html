@@ -5907,15 +5907,30 @@ html.touch-ui .project-row.active .p-name {
         const d = Math.abs(r.top + r.height / 2 - mid);
         if (d < bestD) { bestD = d; best = row; }
       });
-      // fuera de la lista (hero, footer…) nada queda encendido
-      if (best && bestD > mid) best = null;
-
-      // histéresis: la fila encendida solo cede si otra queda claramente más
-      // cerca del centro — evita el parpadeo cuando dos filas empatan.
-      if (best && spotActive && best !== spotActive) {
+      // Histéresis doble contra el parpadeo en los bordes de la lista: una
+      // fila nueva solo se enciende bien dentro de la banda central (ENTER)
+      // y ganando por 32px a la encendida; la encendida solo se apaga al
+      // salir claramente (EXIT) o desaparecer del viewport. El hueco entre
+      // bandas absorbe el vaivén del scroll y los saltos de innerHeight al
+      // plegarse la barra de Safari en iOS — sin él, la última fila visible
+      // (Wealth Square/Dummo) entra en bucle encendido/apagado y el barrido
+      // amarillo "vibra".
+      const ENTER = mid - 80, EXIT = mid + 80;
+      let dCur = Infinity;
+      if (spotActive) {
         const rc = spotActive.getBoundingClientRect();
-        const dCur = Math.abs(rc.top + rc.height / 2 - mid);
-        if (dCur <= mid && bestD > dCur - 32) best = spotActive;
+        dCur = Math.abs(rc.top + rc.height / 2 - mid);
+        if (rc.bottom < 0 || rc.top > window.innerHeight || dCur > EXIT) dCur = Infinity;
+      }
+      // El margen de traspaso (72) debe superar el doble del salto de mid
+      // (±28px al plegarse la barra de iOS ⇒ ±56px en la diferencia entre
+      // dos filas adyacentes); con 32 el traspaso churneaba A→B→A.
+      if (best && bestD <= ENTER && bestD < dCur - 72) {
+        // la fila nueva gana: dentro de la banda y claramente más cerca
+      } else if (dCur < Infinity) {
+        best = spotActive; // la encendida sigue dentro — no cede
+      } else {
+        best = null; // nada suficientemente centrado (hero, footer…)
       }
 
       if (best !== spotActive) {
