@@ -7,7 +7,7 @@
 
 <!-- ─── SEO & sharing ──────────────────────────────────────────────── -->
 <meta name="description" content="Wealth Square is a native Mac app for tracking net worth. Currently in development — not ready to show yet.">
-<meta name="keywords" content="Eduardo Pinillos, Pinillos Lab, independent app developer, indie iOS apps, Mac apps, Trovelo, Dimmly, Percha, Solid, Gridborne, Dummo, Wealth Square, privacy-first apps, solo developer, Portugal">
+<meta name="keywords" content="Eduardo Pinillos, Pinillos Lab, independent app developer, indie iOS apps, Mac apps, Trovelo, Dimmly, Percha, Solid, Gridborne, Dummo, TakeKit, Wealth Square, privacy-first apps, solo developer, Portugal">
 <meta name="author" content="Eduardo Pinillos">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://pinilloslab.com/wealth-square/">
@@ -81,7 +81,7 @@
       "@type": "ItemList",
       "name": "Apps by Pinillos Lab",
       "itemListOrder": "https://schema.org/ItemListOrderAscending",
-      "numberOfItems": 7,
+      "numberOfItems": 8,
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -175,6 +175,19 @@
             "author": { "@id": "https://pinilloslab.com/#eduardo" },
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
           }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "MobileApplication",
+            "name": "TakeKit",
+            "description": "Teleprompter camera for iOS. Write your script, hit record, and read from an on-screen guide only you can see — the exported video is always clean. Speech-paced auto-scroll, takes grouped by script, clean crops for Reels, TikTok, Shorts. Free with a one-time TakeKit Pro upgrade.",
+            "operatingSystem": "iOS",
+            "applicationCategory": "MultimediaApplication",
+            "author": { "@id": "https://pinilloslab.com/#eduardo" },
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+          }
         }
       ]
     }
@@ -188,6 +201,7 @@
 <link rel="preload" as="image" href="/images/solid.png">
 <link rel="preload" as="image" href="/images/gridborne.png">
 <link rel="preload" as="image" href="/images/dummo.png">
+<link rel="preload" as="image" href="/images/takekit.png">
 <link rel="preload" as="image" href="/images/wealthsquare.png">
 <!-- Fuentes auto-hospedadas (sin conexión a Google — RGPD friendly) -->
 <link rel="preload" as="font" type="font/woff2" href="/fonts/bricolage-grotesque-normal-200-800-latin.woff2" crossorigin>
@@ -2828,6 +2842,98 @@ html.touch-ui .project-row.active .p-name {
 .app-action:hover { background: var(--ink); color: var(--yellow); }
 .app-action .arr { font-family: var(--mono); }
 
+/* ─────────────────────────────── TAKEKIT PAGE ─────────────────────────────── */
+#takekit-page { background: #0B0B0C; }
+#takekit-page .app-num { color: rgba(255, 255, 255, 0.45); }
+#takekit-page .app-name { color: #fff; }
+#takekit-page .app-tagline { color: rgba(255, 255, 255, 0.68); }
+#takekit-page .app-action {
+  background: transparent;
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #fff;
+}
+#takekit-page .app-action:hover { background: #FFB02E; border-color: #FFB02E; color: #0B0B0C; }
+/* REC pill — floats top-right like a camera HUD */
+.tk-rec {
+  position: absolute; top: 96px; right: 28px;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px; padding: 8px 14px;
+}
+@media (min-width: 768px) { .tk-rec { top: 140px; right: 56px; } }
+.tk-rec b { font-weight: 400; color: #fff; }
+.tk-rec-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #FF453A;
+  animation: tkBlink 1.1s steps(1) infinite;
+}
+@keyframes tkBlink { 50% { opacity: 0.15; } }
+.tk-motto {
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #FFB02E;
+  margin: -8px 0 28px;
+}
+.tk-motto em { font-family: var(--serif); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 15px; color: #fff; }
+/* Prompter — looping script scroll, faded top/bottom like the real guide */
+.tk-prompter {
+  position: relative;
+  max-width: 720px;
+  height: 150px;
+  overflow: hidden;
+  margin: 0 0 36px;
+  padding-left: 40px;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 30%, #000 70%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0, #000 30%, #000 70%, transparent 100%);
+}
+.tk-prompter-scroll {
+  display: flex; flex-direction: column;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(18px, 2.6vw, 26px); letter-spacing: -0.02em; line-height: 1.15;
+  color: rgba(255, 255, 255, 0.32);
+  animation: tkScroll 14s linear infinite;
+}
+.tk-prompter-scroll span { margin: 0 0 12px; }
+.tk-prompter-scroll span.on { color: #fff; }
+@keyframes tkScroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+.tk-prompter::after {
+  content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 2px;
+  background: #FFB02E; transform: translateY(-50%);
+}
+/* Take cards — text takes instead of screenshots */
+#takekit-page .app-card.tk-take {
+  aspect-ratio: auto;
+  width: 76vw; max-width: 300px;
+  min-height: 340px;
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex; flex-direction: column;
+  padding: 22px;
+}
+.tk-take-row {
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+.tk-take-row .tk-star { color: #FFB02E; letter-spacing: 0.06em; }
+.tk-take-title {
+  font-family: var(--display); font-weight: 700;
+  font-size: 24px; letter-spacing: -0.02em; line-height: 1.05;
+  color: #fff;
+  margin: auto 0 12px;
+}
+.tk-take-title em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.tk-take-desc {
+  font-family: var(--display); font-weight: 400;
+  font-size: 13px; line-height: 1.55;
+  color: rgba(255, 255, 255, 0.55);
+}
+@media (prefers-reduced-motion: reduce) {
+  .tk-prompter-scroll, .tk-rec-dot { animation: none; }
+}
+
 /* ─────────────────────────────── ABOUT PAGE ─────────────────────────────── */
 #about-page {
   position: fixed;
@@ -3763,7 +3869,7 @@ html.touch-ui .project-row.active .p-name {
 
   <div class="projects-list">
     <a class="project-row" data-project="trovelo" href="#">
-      <span class="p-num">01 / 07</span>
+      <span class="p-num">01 / 08</span>
       <h3 class="p-name">Trovelo <em>travel&nbsp;app</em></h3>
       <span class="p-tag">iOS · Privacy-first</span>
       <span class="p-arrow">
@@ -3773,7 +3879,7 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="dimmly" href="#">
-      <span class="p-num">02 / 07</span>
+      <span class="p-num">02 / 08</span>
       <h3 class="p-name">Dimmly <em>To‑do&nbsp;with&nbsp;a&nbsp;twist</em></h3>
       <span class="p-tag">iOS · Utility</span>
       <span class="p-arrow">
@@ -3783,7 +3889,7 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="percha" href="#">
-      <span class="p-num">03 / 07</span>
+      <span class="p-num">03 / 08</span>
       <h3 class="p-name">Percha <em>wardrobe&nbsp;OS</em></h3>
       <span class="p-tag">iOS · Lifestyle</span>
       <span class="p-arrow">
@@ -3793,7 +3899,7 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="solid" href="#">
-      <span class="p-num">04 / 07</span>
+      <span class="p-num">04 / 08</span>
       <h3 class="p-name">Solid <em>Minimal&nbsp;Gym&nbsp;Workout</em></h3>
       <span class="p-tag">iOS · Productivity</span>
       <span class="p-arrow">
@@ -3803,7 +3909,7 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="gridborne" href="#">
-      <span class="p-num">05 / 07</span>
+      <span class="p-num">05 / 08</span>
       <h3 class="p-name">Gridborne <em>strategy&nbsp;game</em></h3>
       <span class="p-tag">iOS · Game</span>
       <span class="p-arrow">
@@ -3813,7 +3919,7 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="wealthsquare" href="#">
-      <span class="p-num">06 / 07</span>
+      <span class="p-num">06 / 08</span>
       <h3 class="p-name">Wealth&nbsp;Square <em>networth&nbsp;tracking</em></h3>
       <span class="p-tag">macOS · Finance</span>
       <span class="p-arrow">
@@ -3823,9 +3929,19 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="dummo" href="#">
-      <span class="p-num">07 / 07</span>
+      <span class="p-num">07 / 08</span>
       <h3 class="p-name">Dummo <em>promo&nbsp;videos</em></h3>
       <span class="p-tag">iOS · macOS · Video</span>
+      <span class="p-arrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+          <path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </a>
+    <a class="project-row" data-project="takekit" href="#">
+      <span class="p-num">08 / 08</span>
+      <h3 class="p-name">TakeKit <em>teleprompter&nbsp;camera</em></h3>
+      <span class="p-tag">iOS · Video</span>
       <span class="p-arrow">
         <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
           <path d="M3 11L11 3M11 3H4.5M11 3V9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -3924,6 +4040,7 @@ html.touch-ui .project-row.active .p-name {
         <a href="#" id="footer-solid-link">Solid</a>
         <a href="#" id="footer-gridborne-link">Gridborne</a>
         <a href="#" id="footer-dummo-link">Dummo</a>
+        <a href="#" id="footer-takekit-link">TakeKit</a>
         <a href="#" id="footer-wealthsquare-link">Wealth Square</a>
         <a href="#" id="footer-privacy-link">Privacy</a>
       </div>
@@ -4010,7 +4127,8 @@ html.touch-ui .project-row.active .p-name {
       <a href="#" id="menu-gridborne"><span class="menu-num">07</span>Gridborne</a>
       <a href="#" id="menu-wealthsquare"><span class="menu-num">08</span>Wealth&nbsp;Square</a>
       <a href="#" id="menu-dummo"><span class="menu-num">09</span>Dummo</a>
-      <a href="#" id="menu-contact"><span class="menu-num">10</span>Contact</a>
+      <a href="#" id="menu-takekit"><span class="menu-num">10</span>TakeKit</a>
+      <a href="#" id="menu-contact"><span class="menu-num">11</span>Contact</a>
     </nav>
 
     <aside class="menu-aside">
@@ -4042,7 +4160,7 @@ html.touch-ui .project-row.active .p-name {
         <animateMotion id="trov-plane-motion" dur="1.1s" begin="indefinite" fill="freeze" path="M16,200 C120,60 260,240 380,110 S560,40 624,72"/>
       </circle>
     </svg>
-    <div class="app-num">— 01 / 07</div>
+    <div class="app-num">— 01 / 08</div>
     <h1 class="app-name trov-hero-name">
       <span class="trov-hero-icon" aria-hidden="true"><img src="/images/trovelo.png" alt="" width="512" height="512"></span>
       <span>Trovelo</span>
@@ -4121,7 +4239,7 @@ html.touch-ui .project-row.active .p-name {
 <!-- Dimmly -->
 <div id="dimmly-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 02 / 07</div>
+    <div class="app-num">— 02 / 08</div>
     <h1 class="app-name dim-hero-name">
       <span class="dim-hero-icon" aria-hidden="true">
         <img src="/images/dimmly.png" alt="" width="512" height="512">
@@ -4220,7 +4338,7 @@ html.touch-ui .project-row.active .p-name {
 <!-- Percha -->
 <div id="percha-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 03 / 07</div>
+    <div class="app-num">— 03 / 08</div>
     <div class="percha-rail" aria-hidden="true"></div>
     <div class="percha-hang">
       <svg class="percha-hanger" viewBox="0 0 120 60" fill="none" aria-hidden="true">
@@ -4291,7 +4409,7 @@ html.touch-ui .project-row.active .p-name {
 <!-- Solid -->
 <div id="solid-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 04 / 07</div>
+    <div class="app-num">— 04 / 08</div>
     <h1 class="app-name solid-hero-name">
       <span class="solid-hero-icon" aria-hidden="true"><img src="/images/solid.png" alt="" width="512" height="512"></span>
       <span class="solid-drop">Solid</span>
@@ -4535,7 +4653,7 @@ html.touch-ui .project-row.active .p-name {
 <div id="gridborne-page" class="app-page">
   <div class="app-hero">
     <div class="grid-board" aria-hidden="true"><i style="--d:0.500s"></i><i style="--d:0.545s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.545s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.995s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.995s"></i><i style="--d:1.040s"></i></div>
-    <div class="app-num">— 05 / 07</div>
+    <div class="app-num">— 05 / 08</div>
     <h1 class="app-name grid-hero-name">
       <span class="grid-hero-icon" aria-hidden="true"><img src="/images/gridborne.png" alt="" width="512" height="512"></span>
       <span class="grid-name-slam">Gridborne</span>
@@ -4572,7 +4690,7 @@ html.touch-ui .project-row.active .p-name {
 <!-- Wealth Square -->
 <div id="wealthsquare-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 06 / 07 · <span style="color:var(--ink);font-weight:500;">In&nbsp;the&nbsp;workshop</span></div>
+    <div class="app-num">— 06 / 08 · <span style="color:var(--ink);font-weight:500;">In&nbsp;the&nbsp;workshop</span></div>
     <h1 class="app-name">Wealth Square <em>soon</em></h1>
     <p class="app-tagline">A native Mac app for tracking your net worth. Quietly cooking — not ready to show yet.</p>
   </div>
@@ -4589,7 +4707,7 @@ html.touch-ui .project-row.active .p-name {
 <!-- Dummo -->
 <div id="dummo-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 07 / 07</div>
+    <div class="app-num">— 07 / 08</div>
     <h1 class="app-name">Dummo</h1>
     <p class="app-tagline">Dummo turns a plain screen recording into a polished promo video. Wrap it in a realistic device frame, drop animated taps exactly where the action happens, let the auto-zoom director choreograph the camera, and export sizes ready for the App Store, Instagram, and your landing page — all without opening a full editor.</p>
   </div>
@@ -4604,6 +4722,63 @@ html.touch-ui .project-row.active .p-name {
     <a href="#" class="app-action" id="dummo-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
     <a href="/dummo/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="#" class="app-action privacy-link" data-app="Dummo"><span>Privacy policy</span><span class="arr">→</span></a>
+  </div>
+</div>
+
+<!-- TakeKit -->
+<div id="takekit-page" class="app-page">
+  <div class="app-hero">
+    <div class="tk-rec" aria-hidden="true"><span class="tk-rec-dot"></span>REC <b>00:12</b></div>
+    <div class="app-num">— 08 / 08</div>
+    <h1 class="app-name">TakeKit</h1>
+    <p class="tk-motto">Stop memorizing <em>every line.</em></p>
+    <div class="tk-prompter" aria-hidden="true">
+      <div class="tk-prompter-scroll">
+        <span>Write your script.</span>
+        <span>Hit record.</span>
+        <span class="on">Read from a guide only you can see —</span>
+        <span>your exported video is always clean.</span>
+        <span>Say it like you mean it.</span>
+        <span>Write your script.</span>
+        <span>Hit record.</span>
+        <span class="on">Read from a guide only you can see —</span>
+        <span>your exported video is always clean.</span>
+        <span>Say it like you mean it.</span>
+      </div>
+    </div>
+    <p class="app-tagline">TakeKit is a teleprompter camera for creators, coaches, and founders. Write your script, hit record, and read from an on-screen guide that only you can see — the scroll follows your voice, the current line stays highlighted, and the guide is never in your exported video. No account, no subscription: pay once, own it.</p>
+  </div>
+  <div class="app-screens">
+    <div class="app-card tk-take">
+      <div class="tk-take-row"><span>Take 01 · 00:34</span></div>
+      <h3 class="tk-take-title">Read <em>while</em> you record</h3>
+      <p class="tk-take-desc">The guide scrolls automatically as you speak — speech recognition, fully on-device — or at a fixed speed with instant control. Eye-contact mode docks the text next to the front lens, so you appear to look straight at the camera.</p>
+    </div>
+    <div class="app-card tk-take">
+      <div class="tk-take-row"><span>Take 02 · 00:41</span></div>
+      <h3 class="tk-take-title">Built <em>for</em> takes</h3>
+      <p class="tk-take-desc">Record as many takes as you need, grouped by script. Resume from where you stopped, rename and compare attempts, watch the live mic meter so you never discover bad audio too late — and record front and back cameras at once on supported devices.</p>
+    </div>
+    <div class="app-card tk-take">
+      <div class="tk-take-row"><span>Take 03 · 00:29</span><span class="tk-star">★ best</span></div>
+      <h3 class="tk-take-title">Export <em>clean</em></h3>
+      <p class="tk-take-desc">Crop to 9:16, 16:9, 1:1, or 4:5 for Reels, TikTok, Shorts, and YouTube. Trim, then export in up to 1080p — the guide text is never in the video. Pro burns in auto-generated captions, timed word by word, and cuts silences and dead air.</p>
+    </div>
+    <div class="app-card tk-take">
+      <div class="tk-take-row"><span>Take 04 · 00:22</span></div>
+      <h3 class="tk-take-title">Yours, <em>privately</em></h3>
+      <p class="tk-take-desc">No account, no login — your scripts and takes sync privately through your own iCloud. Speech recognition runs on your iPhone; nothing is sent anywhere. Share text from any app straight into TakeKit as a new script.</p>
+    </div>
+    <div class="app-card tk-take">
+      <div class="tk-take-row"><span>Take 05 · 00:18</span></div>
+      <h3 class="tk-take-title">Pay once, <em>own it</em></h3>
+      <p class="tk-take-desc">Free for up to 5 scripts and 5 recordings with a small watermark. TakeKit Pro is a single one-time purchase — no subscription, no renewal, ever. Unlimited scripts and takes, speech-paced auto-scroll, captions, silence cutting, watermark-free export.</p>
+    </div>
+  </div>
+  <div class="app-actions">
+    <a href="#" class="app-action" id="takekit-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
+    <a href="/takekit/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
+    <a href="#" class="app-action privacy-link" data-app="TakeKit"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -5094,6 +5269,7 @@ html.touch-ui .project-row.active .p-name {
     gridborne: document.getElementById('gridborne-page'),
     wealthsquare: document.getElementById('wealthsquare-page'),
     dummo: document.getElementById('dummo-page'),
+    takekit: document.getElementById('takekit-page'),
     contact: document.getElementById('contact-page'),
     privacy: document.getElementById('privacy-page')
   };
@@ -5123,7 +5299,8 @@ html.touch-ui .project-row.active .p-name {
     percha: 'Percha',
     solid: 'Solid',
     gridborne: 'Gridborne',
-    dummo: 'Dummo'
+    dummo: 'Dummo',
+    takekit: 'TakeKit'
   };
   let lastAppBeforePrivacy = null;
   let cameToPrivacyViaLink = false;
@@ -5163,7 +5340,7 @@ html.touch-ui .project-row.active .p-name {
   const router = (() => {
     const SITE = 'https://pinilloslab.com';
     const DEFAULT_TITLE = 'Pinillos Lab — Independent product builder · iOS & Mac apps';
-    const DEFAULT_DESC = 'Pinillos Lab is the personal studio of Eduardo Pinillos, an independent product builder shipping iOS and Mac apps: Trovelo (travel planner), Dimmly (tasks & habits), Percha (wardrobe OS), Solid (gym tracker), Gridborne (strategy game), Wealth Square (net-worth tracker).';
+    const DEFAULT_DESC = 'Pinillos Lab is the personal studio of Eduardo Pinillos, an independent product builder shipping iOS and Mac apps: Trovelo (travel planner), Dimmly (tasks & habits), Percha (wardrobe OS), Solid (gym tracker), Gridborne (strategy game), Dummo (promo videos), TakeKit (teleprompter camera), Wealth Square (net-worth tracker).';
 
     const APP_NAMES = {
       trovelo: 'Trovelo',
@@ -5173,6 +5350,7 @@ html.touch-ui .project-row.active .p-name {
       gridborne: 'Gridborne',
       wealthsquare: 'Wealth Square',
       dummo: 'Dummo',
+      takekit: 'TakeKit',
       contact: 'Contact'
     };
     const KEY_TO_PATH = {
@@ -5183,6 +5361,7 @@ html.touch-ui .project-row.active .p-name {
       gridborne: '/gridborne',
       wealthsquare: '/wealth-square',
       dummo: '/dummo',
+      takekit: '/takekit',
       contact: '/contact'
     };
     const PATH_TO_KEY = Object.fromEntries(Object.entries(KEY_TO_PATH).map(([k, v]) => [v, k]));
@@ -5197,7 +5376,8 @@ html.touch-ui .project-row.active .p-name {
       '/percha/privacy': 'percha',
       '/solid/privacy': 'solid',
       '/gridborne/privacy': 'gridborne',
-      '/dummo/privacy': 'dummo'
+      '/dummo/privacy': 'dummo',
+      '/takekit/privacy': 'takekit'
     };
     const KEY_TO_PRIVACY_PATH = Object.fromEntries(Object.entries(PRIVACY_PATH_TO_KEY).map(([p, k]) => [k, p]));
 
@@ -5238,6 +5418,10 @@ html.touch-ui .project-row.active .p-name {
         title: 'Dummo \u2014 Turn screen recordings into promo videos for iOS and Mac \u00b7 Pinillos Lab',
         description: 'Dummo turns a plain screen recording into a polished promo video. Wrap it in a device frame, add taps and auto-zoom, then export App Store previews, Reels, and Stories. iOS and macOS.'
       },
+      '/takekit': {
+        title: 'TakeKit — Teleprompter camera for iOS · Pinillos Lab',
+        description: 'TakeKit is a teleprompter camera for creators, coaches, and founders. Write your script, hit record, and read from an on-screen guide only you can see — your exported video is always clean. No account, one-time Pro purchase.'
+      },
       '/contact': {
         title: 'Contact — Pinillos Lab',
         description: 'Get in touch with Eduardo Pinillos. Drop a few lines about a product idea, collaboration, or feedback.'
@@ -5269,6 +5453,10 @@ html.touch-ui .project-row.active .p-name {
       '/dummo/privacy': {
         title: 'Dummo — Privacy policy · Pinillos Lab',
         description: 'Privacy policy for Dummo. No data collected, no tracking, no analytics. Your recordings and projects stay on your device and sync privately through your iCloud account.'
+      },
+      '/takekit/privacy': {
+        title: 'TakeKit — Privacy policy · Pinillos Lab',
+        description: 'Privacy policy for TakeKit. No accounts, no tracking, no analytics. Speech recognition runs on your device; your scripts and takes stay on your device and sync privately through your iCloud account.'
       }
     };
 
@@ -5565,6 +5753,29 @@ html.touch-ui .project-row.active .p-name {
         { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date.' },
         { h: 'Contact', p: 'Questions? Email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
       ]
+    },
+    TakeKit: {
+      updated: 'July 2026',
+      sections: [
+        { h: 'Overview', p: 'TakeKit is a teleprompter camera built to be private by default. There are no accounts, no analytics, and no tracking. Your scripts and recordings stay on your device.' },
+        { h: 'What TakeKit stores', p: 'Everything you create in TakeKit — your scripts, recorded takes, take names and stars, trims, and export settings — is stored locally on your device. We, the developer, never see this content.' },
+        { h: 'Camera and microphone', p: 'TakeKit uses the camera and microphone only to record your takes, and only while you are recording. Recordings are saved to your device (and your private iCloud, if enabled) — they are never transmitted to the developer or any third party by the app.' },
+        { h: 'Speech recognition', p: 'The speech-paced auto-scroll feature uses Apple’s on-device speech recognition to follow your voice through the script. Recognition runs entirely on your iPhone: your voice and your script are never sent to the developer or to any server.' },
+        { h: 'iCloud sync', p: 'If you’re signed in to iCloud, TakeKit syncs your scripts and takes across your devices using Apple’s CloudKit private database. This means:',
+          list: [
+            'Your scripts and takes are stored in your own iCloud account, not on our servers.',
+            'We have no access to your synced data.',
+            'Sync is governed by Apple’s iCloud terms and privacy practices.',
+            'You can stop sync at any time from your device’s Apple ID &rsaquo; iCloud settings.'
+          ] },
+        { h: 'Share extension', p: 'When you share text from another app into TakeKit, that text becomes a new script stored locally on your device, exactly like a script you typed yourself. Nothing is sent anywhere.' },
+        { h: 'Purchases', p: 'TakeKit Pro is a one-time purchase handled by Apple through the App Store. We receive transaction confirmation from Apple, but never your payment information.' },
+        { h: 'Analytics and tracking', p: 'TakeKit contains no third-party analytics, no advertising SDKs, no crash-reporting services, and no tracking. The app does not collect device identifiers, location, contacts, or any other personal information.' },
+        { h: 'Deleting your data', p: 'If you delete the app, your scripts and takes are removed from your device. Data already in iCloud remains in your iCloud account until you delete it from another device or from your iCloud storage settings.' },
+        { h: 'Children’s privacy', p: 'TakeKit does not knowingly collect personal information from anyone, including children under 13. Since the app collects no data, it is safe for users of all ages.' },
+        { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date.' },
+        { h: 'Contact', p: 'Questions? Email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
+      ]
     }
   };
 
@@ -5648,6 +5859,7 @@ html.touch-ui .project-row.active .p-name {
   document.getElementById('menu-gridborne').addEventListener('click', e => { e.preventDefault(); openApp('gridborne', 'Gridborne'); });
   document.getElementById('menu-wealthsquare').addEventListener('click', e => { e.preventDefault(); openApp('wealthsquare', 'Wealth Square'); });
   document.getElementById('menu-dummo').addEventListener('click', e => { e.preventDefault(); openApp('dummo', 'Dummo'); });
+  document.getElementById('menu-takekit').addEventListener('click', e => { e.preventDefault(); openApp('takekit', 'TakeKit'); });
   document.getElementById('menu-contact').addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
   const chanFormLink = document.getElementById('chan-form-link');
   if (chanFormLink) chanFormLink.addEventListener('click', e => {
@@ -5665,6 +5877,8 @@ html.touch-ui .project-row.active .p-name {
   if (gridborneFeedback) gridborneFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
   const dummoFeedback = document.getElementById('dummo-feedback-link');
   if (dummoFeedback) dummoFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
+  const takekitFeedback = document.getElementById('takekit-feedback-link');
+  if (takekitFeedback) takekitFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
   const wealthsquareNotify = document.getElementById('wealthsquare-notify-link');
   if (wealthsquareNotify) wealthsquareNotify.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
 
@@ -5685,6 +5899,7 @@ html.touch-ui .project-row.active .p-name {
   document.getElementById('footer-solid-link').addEventListener('click', e => { e.preventDefault(); openApp('solid', 'Solid'); });
   document.getElementById('footer-gridborne-link').addEventListener('click', e => { e.preventDefault(); openApp('gridborne', 'Gridborne'); });
   document.getElementById('footer-dummo-link').addEventListener('click', e => { e.preventDefault(); openApp('dummo', 'Dummo'); });
+  document.getElementById('footer-takekit-link').addEventListener('click', e => { e.preventDefault(); openApp('takekit', 'TakeKit'); });
   document.getElementById('footer-wealthsquare-link').addEventListener('click', e => { e.preventDefault(); openApp('wealthsquare', 'Wealth Square'); });
   const footerPrivacy = document.getElementById('footer-privacy-link');
   if (footerPrivacy) footerPrivacy.addEventListener('click', e => { e.preventDefault(); openPrivacyFor('site'); });
@@ -5748,6 +5963,7 @@ html.touch-ui .project-row.active .p-name {
     gridborne: `<img src="/images/gridborne.png" alt="Gridborne" style="width:100%;height:100%;display:block;object-fit:cover"/>`,
     wealthsquare: `<img src="/images/wealthsquare.png" alt="Wealth Square" style="width:100%;height:100%;display:block;object-fit:cover"/>`,
     dummo: `<img src="/images/dummo.png" alt="Dummo" style="width:100%;height:100%;display:block;object-fit:cover"/>`,
+    takekit: `<img src="/images/takekit.png" alt="TakeKit" style="width:100%;height:100%;display:block;object-fit:cover"/>`,
     _unused_svg_DELETED: `<svg></svg>`,
   };
   const _IGNORED_OLD_SVGS = {

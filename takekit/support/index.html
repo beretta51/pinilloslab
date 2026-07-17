@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TakeKit — Support</title>
+<meta name="description" content="TakeKit support. Get help with scripts, the on-screen guide, speech-paced auto-scroll, takes, exporting, TakeKit Pro, and iCloud sync.">
+<link rel="canonical" href="https://pinilloslab.com/takekit/support">
+<style>
+/* Bricolage Grotesque · latin-ext */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Bricolage Grotesque · latin */
+@font-face {
+  font-family: 'Bricolage Grotesque';
+  font-style: normal;
+  font-weight: 200 800;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  src: url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Instrument Serif italic · latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Instrument Serif italic · latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* JetBrains Mono · latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* JetBrains Mono · latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  --yellow: #F1F332;
+  --black: #000;
+  --paper: #F2EFE6;
+  --paper-dark: #E8E4D6;
+  --ink: #0A0A0A;
+  --ink-soft: #6E6E6E;
+  --display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --serif: 'Instrument Serif', Georgia, serif;
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  width: 100%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--display);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+::selection { background: var(--yellow); color: var(--black); }
+
+.app-hero {
+  padding: 120px 28px 40px;
+  position: relative;
+  max-width: 872px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) { .app-hero { padding: 160px 56px 60px; } }
+
+.privacy-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  text-decoration: none;
+  margin-bottom: 24px;
+  padding: 8px 14px 8px 10px;
+  background: var(--paper-dark);
+  border-radius: 999px;
+  transition: background 0.3s, color 0.3s, padding 0.3s var(--ease-out-expo);
+}
+.privacy-back:hover {
+  background: var(--ink);
+  color: var(--paper);
+  padding-left: 16px;
+}
+.privacy-back svg { transition: transform 0.3s var(--ease-out-expo); }
+.privacy-back:hover svg { transform: translateX(-2px); }
+
+.app-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+.app-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(72px, 16vw, 200px);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin-bottom: 24px;
+  font-variation-settings: "opsz" 96;
+}
+.app-name em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+.privacy-body {
+  padding: 0 28px 80px;
+  max-width: 760px;
+  margin: 0 auto;
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+@media (min-width: 768px) { .privacy-body { padding: 0 56px 120px; } }
+.privacy-body section { display: flex; flex-direction: column; gap: 10px; }
+.privacy-body h3 {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
+}
+.privacy-body p { font-size: 17px; line-height: 1.55; }
+.privacy-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0;
+}
+.privacy-body ul li {
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.5;
+}
+.privacy-body ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--ink-soft);
+}
+.privacy-body strong { font-weight: 700; }
+.privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.privacy-body a:hover { color: var(--ink-soft); }
+.privacy-body a.reddit-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #fff;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  max-width: 480px;
+  margin: 8px 0 4px;
+  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
+}
+.privacy-body a.reddit-cta:hover { background: var(--ink); color: var(--yellow); }
+.privacy-body a.reddit-cta .arr { font-family: var(--mono); }
+@media (max-width: 767px) {
+  .privacy-body a.reddit-cta { padding: 17px 20px; font-size: 15px; }
+}
+.privacy-body .privacy-updated {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--paper-dark);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .app-hero { padding: 100px 22px 32px; }
+  .app-num { font-size: 10px; margin-bottom: 12px; }
+  .app-name { font-size: clamp(48px, 14vw, 72px); margin-bottom: 18px; word-break: keep-all; overflow-wrap: normal; hyphens: none; }
+  .app-name em { font-size: 0.55em; }
+  .privacy-back { font-size: 10px; padding: 7px 12px 7px 8px; margin-bottom: 18px; }
+}
+</style>
+</head>
+<body>
+<div class="app-hero">
+  <a href="/takekit" class="privacy-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    <span>Back to TakeKit</span>
+  </a>
+  <div class="app-num">— Support · TakeKit</div>
+  <h1 class="app-name">Support<br><em>center</em></h1>
+</div>
+
+<div class="privacy-body">
+  <section>
+    <h3>Need help?</h3>
+    <p><strong>Reddit is the best way to reach me</strong> — it's where I talk with the people who use my apps every day, and it's where I answer fastest.</p>
+    <a class="reddit-cta" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><span>Message me on Reddit — u/beretta51</span><span class="arr">&#8599;</span></a>
+    <p>You can also email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. TakeKit is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
+  </section>
+
+  <section>
+    <h3>Getting started</h3>
+    <ul>
+      <li><strong>Write your script.</strong> Type it in TakeKit, paste it, or share text from any app straight into TakeKit as a new script.</li>
+      <li><strong>Hit record.</strong> Read from the on-screen guide — the current line stays highlighted mid-screen so you never get lost. The guide is only visible to you; it is never in your exported video.</li>
+      <li><strong>Export.</strong> Pick your best take, crop to 9:16, 16:9, 1:1, or 4:5, trim, and export in up to 1080p — ready for Reels, TikTok, Shorts, or YouTube.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Auto-scroll and speech recognition</h3>
+    <p>With speech-paced auto-scroll (Pro), the guide follows your voice as you speak. Recognition runs entirely on your iPhone — nothing is sent anywhere. If the guide isn't following you, check that TakeKit has microphone and speech recognition permissions in iOS Settings &rsaquo; Privacy. You can always switch to fixed-speed scrolling with instant speed control, or use eye-contact mode to dock the text next to the front lens.</p>
+  </section>
+
+  <section>
+    <h3>Takes</h3>
+    <ul>
+      <li><strong>Record as many takes as you need</strong> — they're grouped by script, so nothing gets mixed up.</li>
+      <li><strong>Resume from where you stopped.</strong> No re-reading from the top after a flubbed line.</li>
+      <li><strong>Mark your best take with a star</strong>, rename takes, and compare attempts before exporting.</li>
+      <li><strong>Watch the live mic meter</strong> while you record so you never discover bad audio too late.</li>
+      <li><strong>Dual camera:</strong> record front and back at the same time on supported devices.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>TakeKit Pro</h3>
+    <p>TakeKit is free for up to 5 scripts and 5 recordings with a small watermark. <strong>TakeKit Pro</strong> is a single one-time purchase — no subscription, no renewal, ever. It unlocks unlimited scripts and takes, speech-paced auto-scroll, word-timed captions, automatic silence cutting, and watermark-free export. Purchases are tied to your Apple Account — use <em>Restore Purchases</em> in Settings if Pro doesn't show up on a new device.</p>
+  </section>
+
+  <section>
+    <h3>iCloud sync</h3>
+    <p>Your scripts and takes sync across your devices through your own private iCloud account whenever you're signed in to iCloud. There's nothing to configure and no account to create.</p>
+  </section>
+
+  <section>
+    <h3>Privacy</h3>
+    <p>TakeKit has no servers and collects no personal data. Speech recognition runs on your device. Read the full <a href="/takekit/privacy">TakeKit Privacy Policy</a>.</p>
+  </section>
+
+  <p class="privacy-updated">TakeKit · <a href="/">pinilloslab.com</a></p>
+</div>
+</body>
+</html>

@@ -44,10 +44,12 @@ PAGES = [
     {"route": "/gridborne", "dir": "gridborne", "app": "Gridborne"},
     {"route": "/wealth-square", "dir": "wealth-square", "app": "Wealth Square"},
     {"route": "/dummo", "dir": "dummo", "app": "Dummo"},
+    {"route": "/takekit", "dir": "takekit", "app": "TakeKit"},
     {"route": "/dimmly/privacy", "dir": "dimmly/privacy", "type": "WebPage", "crumb": "Dimmly"},
     {"route": "/percha/privacy", "dir": "percha/privacy", "type": "WebPage", "crumb": "Percha"},
     {"route": "/solid/privacy", "dir": "solid/privacy", "type": "WebPage", "crumb": "Solid"},
     {"route": "/gridborne/privacy", "dir": "gridborne/privacy", "type": "WebPage", "crumb": "Gridborne"},
+    {"route": "/takekit/privacy", "dir": "takekit/privacy", "type": "WebPage", "crumb": "TakeKit"},
 ]
 
 

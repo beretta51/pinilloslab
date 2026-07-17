@@ -2,7 +2,7 @@
 
 > Personal studio and app portfolio of Eduardo Pinillos, an independent product builder shipping iOS and Mac apps alone, slow, on purpose. Born in Lima (1983), currently based in Portugal.
 
-Pinillos Lab is the home of seven small software products, all built and maintained by one person without a team, investors, or subscriptions-by-default. The work emphasises privacy, on-device processing, and quiet design.
+Pinillos Lab is the home of eight small software products, all built and maintained by one person without a team, investors, or subscriptions-by-default. The work emphasises privacy, on-device processing, and quiet design.
 
 - Home: https://pinilloslab.com/
 - About: https://pinilloslab.com/about/
@@ -68,6 +68,12 @@ Turn a plain screen recording into a polished promo video. Wrap it in a realisti
 - Page: https://pinilloslab.com/dummo/
 - App Store: https://apps.apple.com/app/id6779711252
 - Platform: iOS, macOS
+- Category: Photo & Video
+
+### TakeKit — Teleprompter camera (iOS)
+A teleprompter camera for creators, coaches, and founders. Write your script, hit record, and read from an on-screen guide that only you can see — the exported video is always clean. The guide scrolls automatically as you speak (on-device speech recognition) or at a fixed speed; the current line stays highlighted mid-screen, and eye-contact mode docks the text next to the front lens. Record unlimited takes grouped by script, resume from where you stopped, star your best take, watch a live mic meter, and record front and back cameras at once on supported devices. Crop to 9:16, 16:9, 1:1, or 4:5 and export up to 1080p. No account; scripts and takes sync privately over iCloud. Free for up to 5 scripts and 5 recordings with a small watermark; TakeKit Pro is a one-time purchase that unlocks unlimited scripts and takes, speech-paced auto-scroll, word-timed captions, automatic silence cutting, and watermark-free export.
+- Page: https://pinilloslab.com/takekit/
+- Platform: iOS
 - Category: Photo & Video
 
 ## Philosophy
