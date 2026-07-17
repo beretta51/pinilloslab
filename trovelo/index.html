@@ -5762,26 +5762,32 @@ html.touch-ui .project-row.active .p-name {
       ]
     },
     TakeKit: {
-      updated: 'July 2026',
+      updated: 'July 17, 2026',
       sections: [
-        { h: 'Overview', p: 'TakeKit is a teleprompter camera built to be private by default. There are no accounts, no analytics, and no tracking. Your scripts and recordings stay on your device.' },
-        { h: 'What TakeKit stores', p: 'Everything you create in TakeKit — your scripts, recorded takes, take names and stars, trims, and export settings — is stored locally on your device. We, the developer, never see this content.' },
-        { h: 'Camera and microphone', p: 'TakeKit uses the camera and microphone only to record your takes, and only while you are recording. Recordings are saved to your device (and your private iCloud, if enabled) — they are never transmitted to the developer or any third party by the app.' },
-        { h: 'Speech recognition', p: 'The speech-paced auto-scroll feature uses Apple’s on-device speech recognition to follow your voice through the script. Recognition runs entirely on your iPhone: your voice and your script are never sent to the developer or to any server.' },
-        { h: 'iCloud sync', p: 'If you’re signed in to iCloud, TakeKit syncs your scripts and takes across your devices using Apple’s CloudKit private database. This means:',
+        { h: 'Overview', p: 'TakeKit is a teleprompter camera built to be private by default. There are no accounts, no analytics, and no tracking. Your scripts and recordings stay on your device and, if you use iCloud, in your own private iCloud.' },
+        { h: 'Who we are', p: 'TakeKit is developed and published by Eduardo Pinillos, based in Portugal. For the purposes of data protection law (including the EU GDPR), the developer is the party responsible for this policy. Contact: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' },
+        { h: 'What TakeKit stores', p: 'Everything you create in TakeKit — your scripts, recorded takes, take names and stars, trims, and export settings — is stored locally on your device. We never see this content, and we have no technical means to access it.' },
+        { h: 'Camera and microphone', p: 'TakeKit uses the camera and microphone only to record your takes, and only while you are recording. Recordings are saved to your device (and your private iCloud, if enabled) — the app never transmits them to the developer or to any third party.' },
+        { h: 'Speech recognition', p: 'The speech-paced auto-scroll and captions features use Apple’s on-device speech recognition to follow your voice through the script. Recognition runs entirely on your device — always. If on-device recognition is not available for your device or language, these features are simply unavailable; the app never falls back to server-based processing. Your voice, your transcripts, and your scripts are never sent to the developer or to any server.' },
+        { h: 'Photos', p: 'TakeKit requests add-only access to your Photos library, used solely to save the videos you export. The app cannot read or browse your existing photos.' },
+        { h: 'iCloud sync', p: 'If you’re signed in to iCloud, TakeKit syncs your scripts and takes across your devices using Apple’s private CloudKit database and iCloud Drive. This means:',
           list: [
-            'Your scripts and takes are stored in your own iCloud account, not on our servers.',
+            'Your scripts and takes are stored in your own iCloud account, not on our servers — we have none.',
             'We have no access to your synced data.',
             'Sync is governed by Apple’s iCloud terms and privacy practices.',
             'You can stop sync at any time from your device’s Apple ID &rsaquo; iCloud settings.'
           ] },
         { h: 'Share extension', p: 'When you share text from another app into TakeKit, that text becomes a new script stored locally on your device, exactly like a script you typed yourself. Nothing is sent anywhere.' },
-        { h: 'Purchases', p: 'TakeKit Pro is a one-time purchase handled by Apple through the App Store. We receive transaction confirmation from Apple, but never your payment information.' },
+        { h: 'Purchases', p: 'TakeKit Pro is a one-time purchase processed entirely by Apple through the App Store. We never receive or see your payment information. Your purchase is verified on your device using Apple’s StoreKit framework.' },
+        { h: 'Sharing and exporting', p: 'When you export or share a video, it goes only where you send it — your Photos library, or a third-party app you choose, such as a social network. Once you share content with a third-party platform, that platform’s own terms and privacy policy apply. We are not responsible for the practices of services you choose to share your content with.' },
         { h: 'Analytics and tracking', p: 'TakeKit contains no third-party analytics, no advertising SDKs, no crash-reporting services, and no tracking. The app does not collect device identifiers, location, contacts, or any other personal information.' },
-        { h: 'Deleting your data', p: 'If you delete the app, your scripts and takes are removed from your device. Data already in iCloud remains in your iCloud account until you delete it from another device or from your iCloud storage settings.' },
-        { h: 'Children’s privacy', p: 'TakeKit does not knowingly collect personal information from anyone, including children under 13. Since the app collects no data, it is safe for users of all ages.' },
-        { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date.' },
-        { h: 'Contact', p: 'Questions? Email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
+        { h: 'Security', p: 'Your content is protected by your device’s security measures (device encryption, passcode, and biometrics, as configured by you) and, for iCloud content, by Apple’s iCloud security, including encryption in transit and at rest. No system is perfectly secure; we recommend keeping your device and iOS up to date.' },
+        { h: 'Deleting your data', p: 'If you delete the app, your scripts and takes are removed from your device. Data already in iCloud remains in your iCloud account until you delete it from another device or from your iCloud storage settings. Because we hold no data about you, there is nothing for us to retain or delete.' },
+        { h: 'Children’s privacy', p: 'TakeKit is not directed at children under 13 (or the equivalent minimum age in your country) and, consistent with the rest of this policy, does not knowingly collect personal information from anyone, including children.' },
+        { h: 'Your rights', p: 'Depending on where you live (for example, under the EU GDPR or the California Consumer Privacy Act), you may have rights of access, rectification, erasure, portability, restriction, and objection. Since we do not collect or hold personal data, there is typically no data on which we could act — but you can contact us at any time and we will respond as required by applicable law. If you are in the European Economic Area, you also have the right to lodge a complaint with your supervisory authority; in Portugal, this is the CNPD (Comissão Nacional de Proteção de Dados, <a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>).' },
+        { h: 'International transfers', p: 'We do not transfer your data internationally, because we do not collect it. Any storage or transfer performed by Apple as part of iCloud is governed by Apple’s own terms and safeguards.' },
+        { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date before it takes effect. Continued use of the app after a change constitutes acceptance of the updated policy.' },
+        { h: 'Contact', p: 'Questions or requests: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
       ]
     }
   };
