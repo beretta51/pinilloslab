@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="refresh" content="0;url=/">
 <title>Pinillos Lab</title>
 <meta name="robots" content="noindex,follow">
 <style>
@@ -20,12 +19,15 @@
   (function () {
     var path = window.location.pathname + window.location.search + window.location.hash;
     if (path === '/' || path === '') return;
-    var separator = window.location.search ? '&' : '?';
-    window.location.replace('/' + separator + 'p=' + encodeURIComponent(path));
+    // `path` ya lleva el search dentro y va codificado entero, asi que el
+    // separador es siempre '?': con '&' salia "/&p=..." y location.search
+    // quedaba vacio, perdiendo la ruta original.
+    window.location.replace('/?p=' + encodeURIComponent(path));
   })();
 </script>
 </head>
 <body>
+  <noscript><meta http-equiv="refresh" content="0;url=/"></noscript>
   <div class="wrap">
     <h1>Redirecting…</h1>
     <p>If you aren't redirected, <a href="/">go to the homepage</a>.</p>
