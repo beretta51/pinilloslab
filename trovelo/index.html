@@ -3802,6 +3802,19 @@ html.touch-ui .project-row.active .p-name {
 .tweak-switch.on { background: var(--yellow); }
 .tweak-switch.on::after { transform: translateX(16px); background: var(--ink); }
 
+/* ── Reduced motion: red de seguridad para lo que no cubren los 11 bloques
+   por-app. Movimiento infinito, deslizamiento de pagina completa y el fade
+   de entrada por scroll. `.reveal` ademas queda visible de entrada, asi que
+   ya no depende de que el IntersectionObserver llegue a dispararse. ── */
+@media (prefers-reduced-motion: reduce) {
+  .app-soon-mark,
+  .footer-bottom .live-dot,
+  .scroll-hint .line { animation: none; }
+  .app-page,
+  #about-page { transition: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
 /* ─────────────────────────────── UTILITIES ─────────────────────────────── */
 /* visible para lectores de pantalla, invisible en pantalla */
 .sr-only {
@@ -5245,7 +5258,9 @@ html.touch-ui .project-row.active .p-name {
   const heroEl = document.getElementById('hero');
   const heroBlob1 = document.getElementById('hero-blob-1');
   const heroBlob2 = document.getElementById('hero-blob-2');
-  const kineticReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const kineticMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let kineticReduced = kineticMQ.matches;
+  let kineticRunning = false;
   let fieldR = 340; // influence radius — re-measured (innerWidth can be 0 at load)
   let fmx = 0, fmy = 0, frealX = -9999, frealY = -9999, fLastMove = 0;
   let b1x = 0, b1y = 0, b2x = 0, b2y = 0, blobInited = false;
@@ -5263,7 +5278,10 @@ html.touch-ui .project-row.active .p-name {
 
   function animateKinetic(t) {
     t = t || 0;
-    if (!kineticReduced) {
+    // corta el bucle entero: el desplazamiento de las bandas quedaba fuera del
+    // gate de mas abajo y seguia corriendo con reduced-motion activado
+    if (kineticReduced) { kineticRunning = false; return; }
+    {
       const [fx, fy] = fieldPos(t);
       fmx += (fx - fmx) * 0.14;
       fmy += (fy - fmy) * 0.14;
@@ -5292,7 +5310,7 @@ html.touch-ui .project-row.active .p-name {
         // Apply as negative offset so content scrolls continuously.
         s.row.style.transform = `translate3d(${-s.x}px, 0, 0)`;
       }
-      if (kineticReduced || !s.letters || !s.letters.length) return;
+      if (!s.letters || !s.letters.length) return;
 
       // the ink dodges the cursor: wght 800→250, wdth 100→75, slight vertical push
       const rect = s.row.getBoundingClientRect();
@@ -5322,7 +5340,13 @@ html.touch-ui .project-row.active .p-name {
     });
     requestAnimationFrame(animateKinetic);
   }
-  requestAnimationFrame(animateKinetic);
+  function startKinetic() {
+    if (kineticRunning || kineticReduced) return;
+    kineticRunning = true;
+    requestAnimationFrame(animateKinetic);
+  }
+  kineticMQ.addEventListener('change', e => { kineticReduced = e.matches; startKinetic(); });
+  startKinetic();
 
   // Re-measure on resize (and once fonts load) so the seam and letter offsets stay exact.
   function measureKinetic() {
