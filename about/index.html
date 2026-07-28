@@ -4328,7 +4328,7 @@ html.touch-ui .project-row.active .p-name {
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6760258252" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="https://www.reddit.com/r/trovelo/" target="_blank" class="app-action"><span>Send feedback</span><span class="arr">↗</span></a>
+    <a href="https://www.reddit.com/r/trovelo/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/trovelo</span><span class="arr">↗</span></a>
     <a href="/trovelo/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="#" class="app-action privacy-link" data-app="Trovelo"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4447,7 +4447,7 @@ html.touch-ui .project-row.active .p-name {
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6761221806" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="https://www.reddit.com/r/dimmly/" target="_blank" class="app-action"><span>Send feedback</span><span class="arr">↗</span></a>
+    <a href="https://www.reddit.com/r/dimmly/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dimmly</span><span class="arr">↗</span></a>
     <a href="/dimmly/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="#" class="app-action privacy-link" data-app="Dimmly"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4594,7 +4594,7 @@ html.touch-ui .project-row.active .p-name {
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6761683203" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="#" class="app-action" id="solid-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
+    <a href="https://www.reddit.com/r/besolid/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/besolid</span><span class="arr">↗</span></a>
     <a href="/solid/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="#" class="app-action privacy-link" data-app="Solid"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4855,7 +4855,7 @@ html.touch-ui .project-row.active .p-name {
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6779711252" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="#" class="app-action" id="dummo-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
+    <a href="https://www.reddit.com/r/dummoapp/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dummoapp</span><span class="arr">↗</span></a>
     <a href="/dummo/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="#" class="app-action privacy-link" data-app="Dummo"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4905,7 +4905,7 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
-    <a href="#" class="app-action" id="takekit-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
+    <a href="https://www.reddit.com/r/takekit/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/takekit</span><span class="arr">↗</span></a>
     <a href="/takekit/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="#" class="app-action privacy-link" data-app="TakeKit"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -6006,14 +6006,8 @@ html.touch-ui .project-row.active .p-name {
 
   const perchaFeedback = document.getElementById('percha-feedback-link');
   if (perchaFeedback) perchaFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
-  const solidFeedback = document.getElementById('solid-feedback-link');
-  if (solidFeedback) solidFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
   const gridborneFeedback = document.getElementById('gridborne-feedback-link');
   if (gridborneFeedback) gridborneFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
-  const dummoFeedback = document.getElementById('dummo-feedback-link');
-  if (dummoFeedback) dummoFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
-  const takekitFeedback = document.getElementById('takekit-feedback-link');
-  if (takekitFeedback) takekitFeedback.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
   const wealthsquareNotify = document.getElementById('wealthsquare-notify-link');
   if (wealthsquareNotify) wealthsquareNotify.addEventListener('click', e => { e.preventDefault(); openApp('contact', 'Contact'); });
 
