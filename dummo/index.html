@@ -211,7 +211,7 @@
             "operatingSystem": "iOS",
             "applicationCategory": "MultimediaApplication",
             "author": { "@id": "https://pinilloslab.com/#eduardo" },
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "url": "https://apps.apple.com/app/id6792025212" }
           }
         }
       ]
@@ -4920,6 +4920,7 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
+    <a href="https://apps.apple.com/app/id6792025212" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="https://www.reddit.com/r/takekit/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/takekit</span><span class="arr">↗</span></a>
     <a href="/takekit/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="#" class="app-action privacy-link" data-app="TakeKit"><span>Privacy policy</span><span class="arr">→</span></a>
@@ -6087,6 +6088,25 @@ html.touch-ui .project-row.active .p-name {
 
   // limpieza: el contador de visitas se eliminó; borra la clave antigua si existe
   try { localStorage.removeItem('pinillos_visits'); } catch (e) {}
+
+  // ═══════════════════════════ INERT: las capas cerradas salen del tabulador ═══════════════════════════
+  // Las subpáginas se ocultan solo con transform, así que sin esto siguen en el
+  // orden de tabulación y en el árbol de accesibilidad: un usuario de teclado
+  // recorre a ciegas las 8 apps, About, Privacy y el formulario en CADA página,
+  // y un lector de pantalla las lee todas. `inert` no afecta al render, de modo
+  // que las transiciones de entrada siguen funcionando igual.
+  (function () {
+    const overlays = Array.from(
+      document.querySelectorAll('.app-page, #about-page, #menu-overlay')
+    );
+    if (!overlays.length) return;
+    const sync = el => { el.inert = !el.classList.contains('open'); };
+    overlays.forEach(sync);
+    // Un observador en vez de tocar cada openApp/closeApp/openMenu/openPrivacyFor:
+    // así cualquier ruta futura que mueva la clase `open` queda cubierta sola.
+    const mo = new MutationObserver(muts => muts.forEach(m => sync(m.target)));
+    overlays.forEach(el => mo.observe(el, { attributes: true, attributeFilter: ['class'] }));
+  })();
 
   // ═══════════════════════════ REVEAL ON SCROLL ═══════════════════════════
   const io = new IntersectionObserver((entries) => {
