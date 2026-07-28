@@ -2888,6 +2888,16 @@ html.touch-ui .project-row.active .p-name {
 
 /* ─────────────────────────────── TAKEKIT PAGE ─────────────────────────────── */
 #takekit-page { background: #0B0B0C; }
+/* nombre con el icono real de la app, como en Trovelo */
+.tk-hero-name { display: flex; align-items: center; gap: 0.22em; }
+.tk-hero-icon { display: inline-flex; width: 0.72em; height: 0.72em; flex-shrink: 0; }
+.tk-hero-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 26%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
 #takekit-page .app-num { color: rgba(255, 255, 255, 0.45); }
 #takekit-page .app-name { color: #fff; }
 #takekit-page .app-tagline { color: rgba(255, 255, 255, 0.68); }
@@ -2896,7 +2906,7 @@ html.touch-ui .project-row.active .p-name {
   border-color: rgba(255, 255, 255, 0.28);
   color: #fff;
 }
-#takekit-page .app-action:hover { background: #FFB02E; border-color: #FFB02E; color: #0B0B0C; }
+#takekit-page .app-action:hover { background: #E8442D; border-color: #E8442D; color: #fff; }
 /* REC pill — floats top-right like a camera HUD */
 .tk-rec {
   position: absolute; top: 96px; right: 28px;
@@ -2917,7 +2927,7 @@ html.touch-ui .project-row.active .p-name {
 .tk-motto {
   font-family: var(--mono);
   font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: #FFB02E;
+  color: #E8442D;
   margin: -8px 0 28px;
 }
 .tk-motto em { font-family: var(--serif); font-style: italic; text-transform: none; letter-spacing: 0; font-size: 15px; color: #fff; }
@@ -2944,35 +2954,19 @@ html.touch-ui .project-row.active .p-name {
 @keyframes tkScroll { from { transform: translateY(0); } to { transform: translateY(-50%); } }
 .tk-prompter::after {
   content: ""; position: absolute; left: 0; top: 50%; width: 22px; height: 2px;
-  background: #FFB02E; transform: translateY(-50%);
+  background: #E8442D; transform: translateY(-50%);
 }
-/* Take cards — text takes instead of screenshots */
+/* Take cards — screenshot real a sangre, sin copy encima */
 #takekit-page .app-card.tk-take {
   aspect-ratio: auto;
   width: 76vw; max-width: 300px;
-  min-height: 340px;
   background: #101010;
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex; flex-direction: column;
-  padding: 22px;
 }
-.tk-take-row {
-  display: flex; justify-content: space-between; align-items: center; gap: 12px;
-  font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
-.tk-take-row .tk-star { color: #FFB02E; letter-spacing: 0.06em; }
-.tk-take-title {
-  font-family: var(--display); font-weight: 700;
-  font-size: 24px; letter-spacing: -0.02em; line-height: 1.05;
-  color: #fff;
-  margin: auto 0 12px;
-}
-.tk-take-title em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.tk-take-desc {
-  font-family: var(--display); font-weight: 400;
-  font-size: 13px; line-height: 1.55;
-  color: rgba(255, 255, 255, 0.55);
+#takekit-page .tk-take .app-card-img {
+  width: 100%;
+  height: auto; flex: 1; object-fit: cover;
 }
 @media (prefers-reduced-motion: reduce) {
   .tk-prompter-scroll, .tk-rec-dot { animation: none; }
@@ -4776,7 +4770,10 @@ html.touch-ui .project-row.active .p-name {
   <div class="app-hero">
     <div class="tk-rec" aria-hidden="true"><span class="tk-rec-dot"></span>REC <b>00:12</b></div>
     <div class="app-num">— 08 / 08</div>
-    <h1 class="app-name">TakeKit</h1>
+    <h1 class="app-name tk-hero-name">
+      <span class="tk-hero-icon" aria-hidden="true"><img src="/images/takekit.png" alt="" width="512" height="512"></span>
+      <span>TakeKit</span>
+    </h1>
     <p class="tk-motto">Stop memorizing <em>every line.</em></p>
     <div class="tk-prompter" aria-hidden="true">
       <div class="tk-prompter-scroll">
@@ -4796,29 +4793,19 @@ html.touch-ui .project-row.active .p-name {
   </div>
   <div class="app-screens">
     <div class="app-card tk-take">
-      <div class="tk-take-row"><span>Take 01 · 00:34</span></div>
-      <h3 class="tk-take-title">Read <em>while</em> you record</h3>
-      <p class="tk-take-desc">The guide scrolls automatically as you speak — speech recognition, fully on-device — or at a fixed speed with instant control. Eye-contact mode docks the text next to the front lens, so you appear to look straight at the camera.</p>
+      <img src="/images/takekit-1.webp" alt="TakeKit · record looking at the lens" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card tk-take">
-      <div class="tk-take-row"><span>Take 02 · 00:41</span></div>
-      <h3 class="tk-take-title">Built <em>for</em> takes</h3>
-      <p class="tk-take-desc">Record as many takes as you need, grouped by script. Resume from where you stopped, rename and compare attempts, watch the live mic meter so you never discover bad audio too late — and record front and back cameras at once on supported devices.</p>
+      <img src="/images/takekit-3.webp" alt="TakeKit · every take in its place" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card tk-take">
-      <div class="tk-take-row"><span>Take 03 · 00:29</span><span class="tk-star">★ best</span></div>
-      <h3 class="tk-take-title">Export <em>clean</em></h3>
-      <p class="tk-take-desc">Crop to 9:16, 16:9, 1:1, or 4:5 for Reels, TikTok, Shorts, and YouTube. Trim, then export in up to 1080p — the guide text is never in the video. Pro burns in auto-generated captions, timed word by word, and cuts silences and dead air.</p>
+      <img src="/images/takekit-4.webp" alt="TakeKit · comes out clean, no guide" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card tk-take">
-      <div class="tk-take-row"><span>Take 04 · 00:22</span></div>
-      <h3 class="tk-take-title">Yours, <em>privately</em></h3>
-      <p class="tk-take-desc">No account, no login — your scripts and takes sync privately through your own iCloud. Speech recognition runs on your iPhone; nothing is sent anywhere. Share text from any app straight into TakeKit as a new script.</p>
+      <img src="/images/takekit-2.webp" alt="TakeKit · all set before you hit rec" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card tk-take">
-      <div class="tk-take-row"><span>Take 05 · 00:18</span></div>
-      <h3 class="tk-take-title">Pay once, <em>own it</em></h3>
-      <p class="tk-take-desc">Free for up to 5 scripts and 5 recordings with a small watermark. TakeKit Pro is a single one-time purchase — no subscription, no renewal, ever. Unlimited scripts and takes, speech-paced auto-scroll, captions, silence cutting, watermark-free export.</p>
+      <img src="/images/takekit-5.webp" alt="TakeKit · write, record, repeat" class="app-card-img" loading="lazy">
     </div>
   </div>
   <div class="app-actions">
