@@ -361,7 +361,6 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
 * { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
   --yellow: #F1F332;
-  --yellow-dim: #DFE12B;
   --black: #000;
   --paper: #F2EFE6;
   --paper-dark: #E8E4D6;
@@ -372,7 +371,6 @@ window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   --mono: 'JetBrains Mono', ui-monospace, monospace;
   --serif: 'Instrument Serif', Georgia, serif;
   --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 html, body {
@@ -519,7 +517,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   /* Contact page */
   .contact-hero { padding: 100px 22px 32px; }
   .contact-headline { font-size: clamp(44px, 12vw, 64px); margin-bottom: 18px; }
-  .contact-sub { font-size: 16px; margin-bottom: 40px; }
   .contact-form { padding: 0 22px 16px; }
   .contact-field { padding: 18px 0; gap: 12px; }
   .contact-field-label { font-size: 10px; min-width: 60px; }
@@ -669,10 +666,6 @@ body[data-logo="wordmark"] .logo-v.wordmark { display: inline-flex; }
   display: flex;
   align-items: center;
   gap: 8px;
-}
-.pill-center .dot {
-  width: 6px; height: 6px; background: #1F8A3E; border-radius: 50%;
-  animation: blink 2s ease-in-out infinite;
 }
 @media (max-width: 720px) { .pill-center { display: none; } }
 
@@ -954,26 +947,6 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 #hero-meta .col.right { align-items: flex-end; }
 #hero-meta b { color: var(--ink); font-weight: 700; }
 
-#hero-status {
-  position: absolute;
-  top: 24px;
-  left: 28px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-#hero-status .dot {
-  width: 7px; height: 7px;
-  background: #1F8A3E;
-  border-radius: 50%;
-  animation: blink 2s ease-in-out infinite;
-}
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
 /* ─────────────────────────────── INTRO SECTION ─────────────────────────────── */
@@ -1102,12 +1075,6 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   letter-spacing: -0.02em;
   color: var(--yellow);
 }
-.work-count {
-  font-family: var(--mono);
-  font-size: 13px;
-  color: var(--ink-faint);
-  letter-spacing: 0.04em;
-}
 
 .projects-list {
   border-top: 1px solid #2a2a2a;
@@ -1142,7 +1109,6 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 .project-row:hover::before, .project-row.active::before { transform: translateY(0); }
 .project-row > * { position: relative; z-index: 1; transition: color 0.4s ease; }
 .project-row:hover, .project-row.active { color: var(--ink); }
-.project-row:hover .p-meta, .project-row.active .p-meta { color: rgba(0,0,0,0.6); }
 
 .p-num {
   font-family: var(--mono);
@@ -1201,16 +1167,7 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   text-transform: uppercase;
   color: #fff;
 }
-.p-meta {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-faint);
-  margin-top: 8px;
-}
 @media (min-width: 768px) {
-  .p-meta { margin-top: 0; }
   .p-tag { color: var(--ink-faint); }
 }
 .p-arrow {
@@ -2066,7 +2023,6 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 #dimmly-page.open .dim-strike { animation: dimStrike 1.5s ease 0.75s both; }
 #dimmly-page.open .dim-name-wrap { animation: dimNameDip 1.5s ease 0.75s both; }
 @keyframes dimCheckPop { from { transform: scale(0.3) rotate(-12deg); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes dimTickDraw { from { stroke-dashoffset: 30; } to { stroke-dashoffset: 0; } }
 @keyframes dimStrike {
   0%   { transform: scaleX(0); opacity: 1; }
   28%  { transform: scaleX(1); opacity: 1; }
@@ -2249,7 +2205,6 @@ html.touch-ui .project-preview { display: none; }
    de iOS tras un tap) no debe encender filas — si no, aparecen dos amarillas a la vez. */
 html.touch-ui .project-row:hover:not(.active)::before { transform: translateY(101%); }
 html.touch-ui .project-row:hover:not(.active) { color: inherit; }
-html.touch-ui .project-row:hover:not(.active) .p-meta { color: var(--ink-faint); }
 html.touch-ui .project-row:hover:not(.active) .p-name {
   font-family: var(--display);
   font-weight: 800;
@@ -2643,21 +2598,6 @@ html.touch-ui .project-row.active .p-name {
   transition: transform 0.6s var(--ease-out-expo) 0.4s, opacity 0.6s ease 0.4s;
 }
 #menu-overlay.open .menu-aside { opacity: 1; transform: translateY(0); }
-.menu-aside-block .label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.6;
-  margin-bottom: 6px;
-}
-.menu-aside-block .value {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 1.45;
-}
 
 .menu-bottom {
   display: flex;
@@ -2801,29 +2741,6 @@ html.touch-ui .project-row.active .p-name {
 .app-rating-stars { letter-spacing: 2px; font-size: 0.95em; }
 .app-rating-num { opacity: 0.85; }
 .app-rating-num strong { font-weight: 700; }
-.app-meta-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 56px;
-  border-top: 1px solid var(--ink);
-  padding-top: 24px;
-}
-@media (min-width: 768px) { .app-meta-row { grid-template-columns: repeat(4, 1fr); } }
-.app-meta-row .cell-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 4px;
-}
-.app-meta-row .cell-value {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-}
 
 .app-screens {
   display: flex;
@@ -2848,17 +2765,6 @@ html.touch-ui .project-row.active .p-name {
   box-shadow: 0 20px 60px rgba(0,0,0,0.15);
 }
 .app-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.app-card-ph {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  background:
-    repeating-linear-gradient(45deg, #1a1a1a 0, #1a1a1a 14px, #222 14px, #222 28px);
-  color: rgba(255,255,255,0.35);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
 
 .app-actions {
   padding: 0 28px 100px;
@@ -3066,40 +2972,6 @@ html.touch-ui .project-row.active .p-name {
   -webkit-overflow-scrolling: touch;
 }
 #about-page.open { transform: translateX(0); }
-
-.about-avatar-section {
-  padding: 120px 28px 0;
-  display: flex;
-  justify-content: center;
-}
-@media (min-width: 768px) { .about-avatar-section { padding: 160px 56px 0; } }
-.about-avatar-section .avatar-ph {
-  width: 70%;
-  max-width: 280px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 30% 30%, var(--paper-dark), var(--paper));
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--ink-soft);
-  text-transform: uppercase;
-  border: 1px solid var(--ink);
-}
-.about-avatar-section .avatar-img {
-  width: 70%;
-  max-width: 280px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  display: block;
-  object-fit: cover;
-  object-position: center 30%;
-  background: var(--paper-dark);
-  border: 1px solid var(--ink);
-  overflow: hidden;
-}
 
 .about-ticker-wrap {
   background: var(--ink);
@@ -3533,15 +3405,6 @@ html.touch-ui .project-row.active .p-name {
 }
 .contact-headline em { font-family: var(--serif); font-style: italic; font-weight: 400; }
 .contact-headline strong { font-weight: 800; }
-.contact-sub {
-  font-family: var(--display);
-  font-size: clamp(18px, 2.4vw, 24px);
-  color: var(--ink-soft);
-  line-height: 1.4;
-  max-width: 580px;
-  margin-bottom: 24px;
-}
-.contact-sub strong { color: var(--ink); font-weight: 700; }
 
 /* Channel picker — Reddit fast lane vs the form */
 .contact-channels {
@@ -3690,44 +3553,6 @@ html.touch-ui .project-row.active .p-name {
   text-wrap: balance;
 }
 .contact-success em { font-family: var(--serif); font-style: italic; }
-
-.contact-socials {
-  padding: 0 28px 100px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  border-top: 1px solid var(--ink);
-}
-@media (min-width: 768px) { .contact-socials { padding: 0 56px 120px; grid-template-columns: repeat(3, 1fr); } }
-.contact-social {
-  padding: 32px 0;
-  border-bottom: 1px solid var(--paper-dark);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  position: relative;
-  overflow: hidden;
-  transition: padding-left 0.4s var(--ease-out-expo);
-}
-.contact-social:hover { padding-left: 16px; }
-@media (min-width: 768px) {
-  .contact-social { border-right: 1px solid var(--paper-dark); padding: 40px 24px; }
-  .contact-social:last-child { border-right: none; }
-  .contact-social:hover { padding-left: 32px; }
-}
-.contact-social-name {
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 22px;
-  letter-spacing: -0.02em;
-}
-.contact-social-handle {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-}
 
 /* ─────────────────────────────── TWEAKS ─────────────────────────────── */
 #tweaks {
@@ -4330,42 +4155,42 @@ html.touch-ui .project-row.active .p-name {
         <span class="trov-chip">Day 1</span>
         <span class="trov-chip-dot" aria-hidden="true"></span>
       </div>
-      <img src="/images/trovelo-1.webp" alt="Trovelo · day 1" class="app-card-img" loading="lazy">
+      <img src="/images/trovelo-1.webp" alt="Trovelo · trip list with a Tokyo trip card and a world map of visited pins" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card trov-card">
       <div class="trov-card-row">
         <span class="trov-chip">Day 2</span>
         <span class="trov-chip-dot" aria-hidden="true"></span>
       </div>
-      <img src="/images/trovelo-2.webp" alt="Trovelo · day 2" class="app-card-img" loading="lazy">
+      <img src="/images/trovelo-2.webp" alt="Trovelo · a day plan with hotel check-in, a night walk and dinner, each priced in yen and dollars" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card trov-card">
       <div class="trov-card-row">
         <span class="trov-chip">Day 3</span>
         <span class="trov-chip-dot" aria-hidden="true"></span>
       </div>
-      <img src="/images/trovelo-3.webp" alt="Trovelo · day 3" class="app-card-img" loading="lazy">
+      <img src="/images/trovelo-3.webp" alt="Trovelo · a map of numbered stops in Paris, adding places from anywhere" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card trov-card">
       <div class="trov-card-row">
         <span class="trov-chip">Day 4</span>
         <span class="trov-chip-dot" aria-hidden="true"></span>
       </div>
-      <img src="/images/trovelo-4.webp" alt="Trovelo · day 4" class="app-card-img" loading="lazy">
+      <img src="/images/trovelo-4.webp" alt="Trovelo · typing "Giza Pyramids 5pm" in plain language and the app filing it as a stop" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card trov-card">
       <div class="trov-card-row">
         <span class="trov-chip">Day 5</span>
         <span class="trov-chip-dot" aria-hidden="true"></span>
       </div>
-      <img src="/images/trovelo-5.webp" alt="Trovelo · day 5" class="app-card-img" loading="lazy">
+      <img src="/images/trovelo-5.webp" alt="Trovelo · expense breakdown totalling US$438.78 by category, converted at live rates" class="app-card-img" loading="lazy">
     </div>
     <div class="app-card trov-card">
       <div class="trov-card-row">
         <span class="trov-chip">Day 6</span>
         <span class="trov-chip-dot" aria-hidden="true"></span>
       </div>
-      <img src="/images/trovelo-6.webp" alt="Trovelo · day 6" class="app-card-img" loading="lazy">
+      <img src="/images/trovelo-6.webp" alt="Trovelo · a home-screen widget showing the next item of the trip" class="app-card-img" loading="lazy">
     </div>
   </div>
   <div class="app-actions">
@@ -4518,42 +4343,42 @@ html.touch-ui .project-row.active .p-name {
       <svg class="percha-mini-hanger" viewBox="0 0 120 86" fill="none" aria-hidden="true"><path d="M47 20 A13 13 0 1 1 62.3 32.8 L60 42 M60 42 L10 78 H110 Z" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       <div class="app-card percha-card">
         <span class="percha-chip">Look 01</span>
-        <img src="/images/percha-1.webp" alt="Percha · look 1" class="app-card-img" loading="lazy">
+        <img src="/images/percha-1.webp" alt="Percha · outfit boards side by side to answer what to wear today" class="app-card-img" loading="lazy">
       </div>
     </div>
     <div class="percha-item">
       <svg class="percha-mini-hanger" viewBox="0 0 120 86" fill="none" aria-hidden="true"><path d="M47 20 A13 13 0 1 1 62.3 32.8 L60 42 M60 42 L10 78 H110 Z" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       <div class="app-card percha-card">
         <span class="percha-chip">Look 02</span>
-        <img src="/images/percha-2.webp" alt="Percha · look 2" class="app-card-img" loading="lazy">
+        <img src="/images/percha-2.webp" alt="Percha · photographing a garment to add it to the wardrobe" class="app-card-img" loading="lazy">
       </div>
     </div>
     <div class="percha-item">
       <svg class="percha-mini-hanger" viewBox="0 0 120 86" fill="none" aria-hidden="true"><path d="M47 20 A13 13 0 1 1 62.3 32.8 L60 42 M60 42 L10 78 H110 Z" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       <div class="app-card percha-card">
         <span class="percha-chip">Look 03</span>
-        <img src="/images/percha-3.webp" alt="Percha · look 3" class="app-card-img" loading="lazy">
+        <img src="/images/percha-3.webp" alt="Percha · the wardrobe grid, filtered by tops, bottoms, coats and shoes" class="app-card-img" loading="lazy">
       </div>
     </div>
     <div class="percha-item">
       <svg class="percha-mini-hanger" viewBox="0 0 120 86" fill="none" aria-hidden="true"><path d="M47 20 A13 13 0 1 1 62.3 32.8 L60 42 M60 42 L10 78 H110 Z" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       <div class="app-card percha-card">
         <span class="percha-chip">Look 04</span>
-        <img src="/images/percha-4.webp" alt="Percha · look 4" class="app-card-img" loading="lazy">
+        <img src="/images/percha-4.webp" alt="Percha · composing an outfit from saved garments" class="app-card-img" loading="lazy">
       </div>
     </div>
     <div class="percha-item">
       <svg class="percha-mini-hanger" viewBox="0 0 120 86" fill="none" aria-hidden="true"><path d="M47 20 A13 13 0 1 1 62.3 32.8 L60 42 M60 42 L10 78 H110 Z" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       <div class="app-card percha-card">
         <span class="percha-chip">Look 05</span>
-        <img src="/images/percha-5.webp" alt="Percha · look 5" class="app-card-img" loading="lazy">
+        <img src="/images/percha-5.webp" alt="Percha · a week planned out, one outfit per day" class="app-card-img" loading="lazy">
       </div>
     </div>
     <div class="percha-item">
       <svg class="percha-mini-hanger" viewBox="0 0 120 86" fill="none" aria-hidden="true"><path d="M47 20 A13 13 0 1 1 62.3 32.8 L60 42 M60 42 L10 78 H110 Z" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       <div class="app-card percha-card">
         <span class="percha-chip">Look 06</span>
-        <img src="/images/percha-6.webp" alt="Percha · look 6" class="app-card-img" loading="lazy">
+        <img src="/images/percha-6.webp" alt="Percha · wardrobe stats by category and colour" class="app-card-img" loading="lazy">
       </div>
     </div>
   </div>
@@ -4822,19 +4647,19 @@ html.touch-ui .project-row.active .p-name {
   <div class="grid-progress" aria-hidden="true" id="grid-progress">⚔&#xFE0E; <b id="grid-units">1</b> / 4 units placed</div>
   <div class="app-screens">
     <div class="app-card grid-unit">
-      <img src="/images/gridborne-4.webp" alt="Gridborne · unit 1" class="app-card-img" loading="lazy">
+      <img src="/images/gridborne-4.webp" alt="Gridborne · saved decks, six units each, ready to load" class="app-card-img" loading="lazy">
       <span class="grid-tag">Unit 01</span>
     </div>
     <div class="app-card grid-unit">
-      <img src="/images/gridborne-1.webp" alt="Gridborne · unit 2" class="app-card-img" loading="lazy">
+      <img src="/images/gridborne-1.webp" alt="Gridborne · the title screen over the battlefield, castles either side of a river" class="app-card-img" loading="lazy">
       <span class="grid-tag">Unit 02</span>
     </div>
     <div class="app-card grid-unit">
-      <img src="/images/gridborne-2.webp" alt="Gridborne · unit 3" class="app-card-img" loading="lazy">
+      <img src="/images/gridborne-2.webp" alt="Gridborne · a battle in progress, units on the grid with health and range" class="app-card-img" loading="lazy">
       <span class="grid-tag">Unit 03</span>
     </div>
     <div class="app-card grid-unit">
-      <img src="/images/gridborne-3.webp" alt="Gridborne · unit 4" class="app-card-img" loading="lazy">
+      <img src="/images/gridborne-3.webp" alt="Gridborne · building an army from unit cards with health, attack and movement" class="app-card-img" loading="lazy">
       <span class="grid-tag">Unit 04</span>
     </div>
   </div>
@@ -5001,36 +4826,6 @@ html.touch-ui .project-row.active .p-name {
     Message <em>received</em>.<br>I'll get back to you soon.
   </div>
 
-  <div class="contact-socials" style="display:none;">
-    <a class="contact-social" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">
-      <div>
-        <div class="contact-social-name">Reddit</div>
-        <div class="contact-social-handle">u/beretta51</div>
-      </div>
-      <span class="arr" style="font-family:var(--mono);">↗</span>
-    </a>
-    <a class="contact-social" href="https://www.linkedin.com/in/eduardopinillos/" target="_blank" rel="noopener">
-      <div>
-        <div class="contact-social-name">LinkedIn</div>
-        <div class="contact-social-handle">/eduardopinillos</div>
-      </div>
-      <span class="arr" style="font-family:var(--mono);">↗</span>
-    </a>
-    <a class="contact-social" href="#" target="_blank" rel="noopener">
-      <div>
-        <div class="contact-social-name">Twitter / X</div>
-        <div class="contact-social-handle">@pinillos</div>
-      </div>
-      <span class="arr" style="font-family:var(--mono);">↗</span>
-    </a>
-    <a class="contact-social" href="mailto:nocion.exento_8u@icloud.com">
-      <div>
-        <div class="contact-social-name">Email</div>
-        <div class="contact-social-handle">nocion.exento_8u@icloud.com</div>
-      </div>
-      <span class="arr" style="font-family:var(--mono);">→</span>
-    </a>
-  </div>
 </div>
 
 <!-- ═══════════════════════════ TWEAKS PANEL ═══════════════════════════ -->
@@ -5373,8 +5168,6 @@ html.touch-ui .project-row.active .p-name {
 
   // ═══════════════════════════ HEADER ═══════════════════════════
   const pill = document.getElementById('pill');
-  const pillWm = document.getElementById('pill-wm');
-  const pillStatus = document.getElementById('pill-status');
   const pillCenter = document.getElementById('pill-center');
   const menuBtn = document.getElementById('pill-menu-btn');
   const overlay = document.getElementById('menu-overlay');
@@ -6117,8 +5910,6 @@ html.touch-ui .project-row.active .p-name {
     document.getElementById('local-time').textContent = t + ' LIS';
     document.getElementById('footer-time').textContent = t;
     document.getElementById('menu-time').textContent = t;
-    const aboutT = document.getElementById('about-local-time');
-    if (aboutT) aboutT.textContent = t.slice(0,5) + ' PT';
   }
   tickClock();
   setInterval(tickClock, 1000);
