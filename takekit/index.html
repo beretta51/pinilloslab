@@ -2886,6 +2886,27 @@ html.touch-ui .project-row.active .p-name {
 .app-action:hover { background: var(--ink); color: var(--yellow); }
 .app-action .arr { font-family: var(--mono); }
 
+/* ─────────────────────────────── DUMMO PAGE ─────────────────────────────── */
+/* la app es de Mac: los shots son 16:10, no caben en la card vertical */
+#dummo-page { background: #C5B9FD; }
+.dm-hero-name { display: flex; align-items: center; gap: 0.22em; }
+.dm-hero-icon { display: inline-flex; width: 0.72em; height: 0.72em; flex-shrink: 0; }
+.dm-hero-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 26%;
+  box-shadow: 0 10px 30px rgba(30, 12, 90, 0.28);
+}
+#dummo-page .app-card.dm-shot {
+  aspect-ratio: 16 / 10;
+  width: 92vw; max-width: 560px;
+  background: #C5B9FD;
+  border-radius: 20px;
+  box-shadow: none;
+}
+#dummo-page .dm-shot .app-card-img { object-fit: contain; }
+
 /* ─────────────────────────────── TAKEKIT PAGE ─────────────────────────────── */
 #takekit-page { background: #0B0B0C; }
 /* nombre con el icono real de la app, como en Trovelo */
@@ -4759,14 +4780,19 @@ html.touch-ui .project-row.active .p-name {
 <div id="dummo-page" class="app-page">
   <div class="app-hero">
     <div class="app-num">— 07 / 08</div>
-    <h1 class="app-name">Dummo</h1>
+    <h1 class="app-name dm-hero-name">
+      <span class="dm-hero-icon" aria-hidden="true"><img src="/images/dummo.png" alt="" width="512" height="512"></span>
+      <span>Dummo</span>
+    </h1>
     <p class="app-tagline">Dummo turns a plain screen recording into a polished promo video. Wrap it in a realistic device frame, drop animated taps exactly where the action happens, let the auto-zoom director choreograph the camera, and export sizes ready for the App Store, Instagram, and your landing page — all without opening a full editor.</p>
   </div>
   <div class="app-screens">
-    <div class="app-card"><img src="/images/dummo-1.webp" alt="Dummo · screen 1" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="/images/dummo-2.webp" alt="Dummo · screen 2" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="/images/dummo-3.webp" alt="Dummo · screen 3" class="app-card-img" loading="lazy"></div>
-    <div class="app-card"><img src="/images/dummo-4.webp" alt="Dummo · screen 4" class="app-card-img" loading="lazy"></div>
+    <div class="app-card dm-shot"><img src="/images/dummo-1.webp" alt="Dummo · turn a screen recording into a polished promo" class="app-card-img" loading="lazy"></div>
+    <div class="app-card dm-shot"><img src="/images/dummo-2.webp" alt="Dummo · frame-perfect timeline editing" class="app-card-img" loading="lazy"></div>
+    <div class="app-card dm-shot"><img src="/images/dummo-3.webp" alt="Dummo · beautiful animated backgrounds in any color" class="app-card-img" loading="lazy"></div>
+    <div class="app-card dm-shot"><img src="/images/dummo-4.webp" alt="Dummo · stickers, captions, tap animations, cinematic zoom" class="app-card-img" loading="lazy"></div>
+    <div class="app-card dm-shot"><img src="/images/dummo-5.webp" alt="Dummo · every aspect ratio, one click" class="app-card-img" loading="lazy"></div>
+    <div class="app-card dm-shot"><img src="/images/dummo-6.webp" alt="Dummo · let AI make your videos for you" class="app-card-img" loading="lazy"></div>
   </div>
   <div class="app-actions">
     <a href="https://apps.apple.com/app/id6779711252" target="_blank" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
