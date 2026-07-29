@@ -5628,23 +5628,46 @@ html.touch-ui .project-row.active .p-name {
   };
 
   let previewVisible = false;
-  document.querySelectorAll('.project-row').forEach(row => {
-    row.addEventListener('mouseenter', () => {
+  // Los enlaces del menu reciben el mismo gesto, reutilizando el mismo
+  // elemento y el mismo mapa de iconos. Solo los de app: Home, About y
+  // Contact no tienen icono y se quedan sin preview. En tactil no aplica,
+  // porque .project-preview ya va en display:none ahi.
+  document.querySelectorAll('#menu-overlay .menu-nav a').forEach(link => {
+    const key = (link.id || '').replace(/^menu-/, '');
+    if (!APP_ICONS[key]) return;
+    link.dataset.project = key;
+  });
+  // En el menu el texto es corto y alineado a la izquierda: si el icono
+  // siguiera al cursor caeria encima de la palabra. Ahi se ancla al borde
+  // derecho del enlace; en las filas del home sigue persiguiendo al cursor.
+  let previewAnchor = null;
+  function placePreview(e) {
+    if (previewAnchor) {
+      const r = previewAnchor.getBoundingClientRect();
+      preview.style.left = (r.right + 90) + 'px';
+      preview.style.top = (r.top + r.height / 2) + 'px';
+    } else if (e) {
+      preview.style.left = (e.clientX + 60) + 'px';
+      preview.style.top = e.clientY + 'px';
+    }
+  }
+  document.querySelectorAll('.project-row, #menu-overlay .menu-nav a[data-project]').forEach(row => {
+    row.addEventListener('mouseenter', (e) => {
       const key = row.dataset.project;
       previewContent.innerHTML = APP_ICONS[key] || '';
+      previewAnchor = row.closest('#menu-overlay') ? row : null;
+      placePreview(e);
       preview.classList.add('show');
       previewVisible = true;
     });
     row.addEventListener('mouseleave', () => {
       preview.classList.remove('show');
       previewVisible = false;
+      previewAnchor = null;
     });
   });
   window.addEventListener('mousemove', (e) => {
-    if (previewVisible) {
-      preview.style.left = (e.clientX + 60) + 'px';
-      preview.style.top = e.clientY + 'px';
-    }
+    if (previewVisible) placePreview(e);
   });
 
   // ═══════════════════════════ MOBILE SCROLL-SPOTLIGHT ═══════════════════════════
