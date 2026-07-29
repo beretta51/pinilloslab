@@ -2541,6 +2541,10 @@ html.touch-ui .project-row.active .p-name {
   position: relative;
   cursor: pointer;
   font-variation-settings: "opsz" 96;
+  /* el nav es una columna flex: sin esto el enlace se estira a todo el ancho
+     y el hover salta con el cursor a 400px del texto, ademas de dejar el
+     icono colgado al pasar a la columna de la derecha */
+  align-self: flex-start;
 }
 .menu-nav a .menu-num {
   font-family: var(--mono);
