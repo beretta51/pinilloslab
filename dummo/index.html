@@ -495,14 +495,12 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
     padding: 24px 22px;
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      "num   arrow"
       "name  arrow"
       "tag   arrow";
     column-gap: 16px;
     row-gap: 4px;
     align-items: center;
   }
-  .p-num { grid-area: num; }
   .p-name { grid-area: name; font-size: clamp(34px, 9vw, 48px); gap: 10px; flex-wrap: wrap; }
   .p-name em { font-size: 0.42em; }
   .p-tag { grid-area: tag; font-size: 11px; }
@@ -1110,7 +1108,7 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 }
 @media (min-width: 768px) {
   .project-row {
-    grid-template-columns: 80px 1fr 1fr 60px;
+    grid-template-columns: 1fr 1fr 60px;
     align-items: center;
     padding: 36px 56px;
     gap: 24px;
@@ -1129,12 +1127,6 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
 .project-row > * { position: relative; z-index: 1; transition: color 0.4s ease; }
 .project-row:hover, .project-row.active { color: var(--ink); }
 
-.p-num {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--ink-faint);
-}
 .p-name {
   font-family: var(--display);
   font-size: clamp(40px, 7vw, 84px);
@@ -1340,7 +1332,6 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
   --grid-green: #3E9B3E;
 }
 #gridborne-page .app-hero { position: relative; overflow: hidden; }
-#gridborne-page .app-num { color: rgba(237, 239, 248, 0.5); position: relative; z-index: 2; }
 #gridborne-page .app-tagline { color: #C7CCE2; position: relative; z-index: 2; }
 #gridborne-page .app-action {
   background: #1D2338;
@@ -1487,7 +1478,6 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
   position: relative;
   padding-bottom: 72px;
 }
-#percha-page .app-num { color: rgba(46, 37, 102, 0.9); }
 #percha-page .app-name { color: var(--percha-tinta); }
 #percha-page .app-tagline { color: rgba(46, 37, 102, 0.95); }
 #percha-page .app-action { border-color: var(--ink); }
@@ -1655,7 +1645,6 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
   --trov-deep: #2E2566;
 }
 #trovelo-page .app-hero { position: relative; overflow: hidden; }
-#trovelo-page .app-num { color: rgba(46, 37, 102, 0.65); position: relative; z-index: 2; }
 #trovelo-page .app-tagline { color: #3A3072; position: relative; z-index: 2; }
 #trovelo-page .app-action { border-color: var(--trov-deep); }
 #trovelo-page .app-action:hover { background: var(--trov-deep); color: var(--trov-sun); }
@@ -1805,7 +1794,6 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
   color: #fff;
   --volt: #D6F324;
 }
-#solid-page .app-num { color: rgba(255, 255, 255, 0.45); }
 #solid-page .app-name { color: #fff; }
 #solid-page .app-tagline { color: rgba(255, 255, 255, 0.68); }
 #solid-page .app-action {
@@ -1984,7 +1972,6 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
   color: var(--paper);
   --dim: 1;
 }
-#dimmly-page .app-num { color: rgba(242, 239, 230, 0.5); }
 #dimmly-page .app-name { color: var(--paper); }
 #dimmly-page .app-tagline { color: rgba(242, 239, 230, 0.72); }
 #dimmly-page .app-action {
@@ -2890,7 +2877,6 @@ html.touch-ui .project-row.active .p-name {
   border-radius: 26%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
 }
-#takekit-page .app-num { color: rgba(255, 255, 255, 0.45); }
 #takekit-page .app-name { color: #fff; }
 #takekit-page .app-tagline { color: rgba(255, 255, 255, 0.68); }
 #takekit-page .app-action {
@@ -3766,7 +3752,6 @@ html.touch-ui .project-row.active .p-name {
 
   <div class="projects-list">
     <a class="project-row" data-project="trovelo" href="#">
-      <span class="p-num">01 / 08</span>
       <h3 class="p-name">Trovelo <em>travel&nbsp;app</em></h3>
       <span class="p-tag">iOS · Privacy-first</span>
       <span class="p-arrow">
@@ -3776,7 +3761,6 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="dimmly" href="#">
-      <span class="p-num">02 / 08</span>
       <h3 class="p-name">Dimmly <em>To‑do&nbsp;with&nbsp;a&nbsp;twist</em></h3>
       <span class="p-tag">iOS · Utility</span>
       <span class="p-arrow">
@@ -3786,7 +3770,6 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="percha" href="#">
-      <span class="p-num">03 / 08</span>
       <h3 class="p-name">Percha <em>wardrobe&nbsp;OS</em></h3>
       <span class="p-tag">iOS · Lifestyle</span>
       <span class="p-arrow">
@@ -3796,7 +3779,6 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="solid" href="#">
-      <span class="p-num">04 / 08</span>
       <h3 class="p-name">Solid <em>Minimal&nbsp;Gym&nbsp;Workout</em></h3>
       <span class="p-tag">iOS · Productivity</span>
       <span class="p-arrow">
@@ -3806,7 +3788,6 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="gridborne" href="#">
-      <span class="p-num">05 / 08</span>
       <h3 class="p-name">Gridborne <em>strategy&nbsp;game</em></h3>
       <span class="p-tag">iOS · Game</span>
       <span class="p-arrow">
@@ -3816,7 +3797,6 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="wealthsquare" href="#">
-      <span class="p-num">06 / 08</span>
       <h3 class="p-name">Wealth&nbsp;Square <em>networth&nbsp;tracking</em></h3>
       <span class="p-tag">macOS · Finance</span>
       <span class="p-arrow">
@@ -3826,7 +3806,6 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="dummo" href="#">
-      <span class="p-num">07 / 08</span>
       <h3 class="p-name">Dummo <em>promo&nbsp;videos</em></h3>
       <span class="p-tag">iOS · macOS · Video</span>
       <span class="p-arrow">
@@ -3836,7 +3815,6 @@ html.touch-ui .project-row.active .p-name {
       </span>
     </a>
     <a class="project-row" data-project="takekit" href="#">
-      <span class="p-num">08 / 08</span>
       <h3 class="p-name">TakeKit <em>teleprompter&nbsp;camera</em></h3>
       <span class="p-tag">iOS · Video</span>
       <span class="p-arrow">
