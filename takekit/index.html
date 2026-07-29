@@ -3398,9 +3398,8 @@ html.touch-ui .project-row.active .p-name {
   background: var(--paper);
 }
 /* La pagina entera es un solo gesto: el titular ES el enlace a Reddit.
-   Fondo oscuro y foco liquido como en el hero de la home, pero con screen
-   en vez de multiply, que sobre negro el multiply no pinta nada. */
-#contact-page { background: #0A0A0A; }
+   Crema, tinta y el mismo foco liquido del hero de la home: con multiply
+   el negro se queda negro, asi que el amarillo nunca compromete la lectura. */
 .contact-shout {
   position: relative;
   min-height: 100%;
@@ -3416,10 +3415,10 @@ html.touch-ui .project-row.active .p-name {
   display: flex; align-items: center; gap: 14px;
   font-family: var(--mono);
   font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: #5E5E5E;
   margin: 0 0 28px;
 }
-.contact-tag::before { content: ""; width: 40px; height: 1px; background: rgba(255, 255, 255, 0.45); }
+.contact-tag::before { content: ""; width: 40px; height: 1px; background: rgba(10, 10, 10, 0.45); }
 .contact-headline {
   position: relative; z-index: 4;
   font-family: var(--display);
@@ -3427,7 +3426,7 @@ html.touch-ui .project-row.active .p-name {
   font-size: clamp(52px, 11vw, 152px);
   line-height: 0.9;
   letter-spacing: -0.045em;
-  color: #fff;
+  color: var(--ink);
   margin: 0 0 34px;
 }
 .contact-headline em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
@@ -3441,58 +3440,66 @@ html.touch-ui .project-row.active .p-name {
 }
 .contact-cta:hover .contact-arr,
 .contact-cta:focus-visible .contact-arr { transform: translate(0.12em, -0.12em); }
-.contact-cta:focus-visible { outline: 3px solid var(--yellow); outline-offset: 6px; border-radius: 6px; }
+.contact-cta:focus-visible { outline: 3px solid var(--ink); outline-offset: 6px; border-radius: 6px; }
 .contact-lede {
   position: relative; z-index: 4;
   font-family: var(--display);
   font-size: clamp(16px, 1.9vw, 20px);
   line-height: 1.5;
-  color: rgba(255, 255, 255, 0.72);
+  color: #4A4A4A;
   max-width: 620px;
   margin: 0 0 56px;
 }
-.contact-lede strong { color: var(--yellow); font-weight: 700; }
+/* el amarillo sobre crema no se lee: va de subrayado, como el sello del logo */
+.contact-lede strong {
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--yellow);
+  padding: 1px 6px;
+  border-radius: 4px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
 /* el correo, deliberadamente en voz baja */
 .contact-alt {
   position: relative; z-index: 4;
   display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 16px;
   padding-top: 26px;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  border-top: 1px solid rgba(10, 10, 10, 0.18);
   max-width: 720px;
 }
 .contact-alt-label {
   font-family: var(--mono);
   font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: #5E5E5E;
 }
 .contact-alt-mail {
   font-family: var(--display);
   font-weight: 500;
   font-size: clamp(17px, 2.2vw, 22px);
   letter-spacing: -0.01em;
-  color: #fff;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-  transition: border-color 0.3s ease, color 0.3s ease;
+  color: var(--ink);
+  border-bottom: 1px solid rgba(10, 10, 10, 0.4);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
-.contact-alt-mail:hover { color: var(--yellow); border-bottom-color: var(--yellow); }
-.contact-alt-mail:focus-visible { outline: 3px solid var(--yellow); outline-offset: 4px; }
-.contact-alt-note { font-family: var(--display); font-size: 14px; color: rgba(255, 255, 255, 0.5); }
-/* foco liquido: mismo mecanismo que la home, modo screen para fondo negro */
+.contact-alt-mail:hover { background: var(--yellow); border-bottom-color: var(--ink); }
+.contact-alt-mail:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+.contact-alt-note { font-family: var(--display); font-size: 14px; color: #5E5E5E; }
+/* foco liquido: mismos valores que el hero de la home */
 .contact-blob {
   position: absolute;
   top: 0; left: 0;
-  width: 34vw; max-width: 460px;
+  width: 46vw; max-width: 640px;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--yellow) 0%, var(--yellow) 40%, rgba(241, 243, 50, 0) 68%);
-  mix-blend-mode: screen;
-  opacity: 0.5;
+  background: radial-gradient(circle, var(--yellow) 0%, var(--yellow) 42%, rgba(241, 243, 50, 0) 68%);
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 1;
   will-change: transform;
   transform: translate(-50%, -50%) translate(50vw, 46vh);
 }
-.contact-blob.b2 { width: 17vw; max-width: 230px; opacity: 0.44; }
+.contact-blob.b2 { width: 24vw; max-width: 330px; opacity: 0.85; }
 @media (prefers-reduced-motion: reduce) { .contact-blob { display: none; } }
 
 /* ─────────────────────────────── TWEAKS ─────────────────────────────── */
@@ -3945,7 +3952,7 @@ html.touch-ui .project-row.active .p-name {
     <div>
       <div class="footer-col-label">— Get in touch</div>
       <div class="footer-col-value">
-        <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener" id="footer-contact-email-link">Reddit me ↗</a>
+        <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener" id="footer-contact-email-link">Reddit me ↗︎</a>
       </div>
     </div>
     <div>
@@ -4135,8 +4142,8 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
-    <a href="https://apps.apple.com/app/id6760258252" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="https://www.reddit.com/r/trovelo/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/trovelo</span><span class="arr">↗</span></a>
+    <a href="https://apps.apple.com/app/id6760258252" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗︎</span></a>
+    <a href="https://www.reddit.com/r/trovelo/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/trovelo</span><span class="arr">↗︎</span></a>
     <a href="/trovelo/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="/trovelo/privacy/" class="app-action privacy-link" data-app="Trovelo"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4254,8 +4261,8 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
-    <a href="https://apps.apple.com/app/id6761221806" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="https://www.reddit.com/r/dimmly/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dimmly</span><span class="arr">↗</span></a>
+    <a href="https://apps.apple.com/app/id6761221806" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗︎</span></a>
+    <a href="https://www.reddit.com/r/dimmly/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dimmly</span><span class="arr">↗︎</span></a>
     <a href="/dimmly/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="/dimmly/privacy/" class="app-action privacy-link" data-app="Dimmly"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4275,7 +4282,7 @@ html.touch-ui .project-row.active .p-name {
         <span>Percha</span>
       </h1>
     </div>
-    <div class="percha-cut" aria-hidden="true"><span class="percha-scissors">✂️</span></div>
+    <div class="percha-cut" aria-hidden="true"><span class="percha-scissors">✂︎</span></div>
     <p class="app-tagline">A quiet wardrobe OS. See what you own, what you wear, what you don't. In progress, in beta.</p>
   </div>
   <div class="percha-progress" aria-hidden="true">Look <b id="percha-look">1</b> / 6</div>
@@ -4324,7 +4331,7 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
-    <a href="https://apps.apple.com/app/id6761848999" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
+    <a href="https://apps.apple.com/app/id6761848999" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗︎</span></a>
     <a href="#" class="app-action" id="percha-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
     <a href="/percha/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="/percha/privacy/" class="app-action privacy-link" data-app="Percha"><span>Privacy policy</span><span class="arr">→</span></a>
@@ -4400,8 +4407,8 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
-    <a href="https://apps.apple.com/app/id6761683203" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="https://www.reddit.com/r/besolid/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/besolid</span><span class="arr">↗</span></a>
+    <a href="https://apps.apple.com/app/id6761683203" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗︎</span></a>
+    <a href="https://www.reddit.com/r/besolid/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/besolid</span><span class="arr">↗︎</span></a>
     <a href="/solid/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="/solid/privacy/" class="app-action privacy-link" data-app="Solid"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4605,7 +4612,7 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
-    <a href="https://apps.apple.com/app/id6761489335" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
+    <a href="https://apps.apple.com/app/id6761489335" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗︎</span></a>
     <a href="#" class="app-action" id="gridborne-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
     <a href="/gridborne/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="/gridborne/privacy/" class="app-action privacy-link" data-app="Gridborne"><span>Privacy policy</span><span class="arr">→</span></a>
@@ -4661,8 +4668,8 @@ html.touch-ui .project-row.active .p-name {
     <div class="app-card dm-shot"><img src="/images/dummo-6.webp" alt="Dummo · let AI make your videos for you" class="app-card-img" loading="lazy"></div>
   </div>
   <div class="app-actions">
-    <a href="https://apps.apple.com/app/id6779711252" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="https://www.reddit.com/r/dummoapp/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dummoapp</span><span class="arr">↗</span></a>
+    <a href="https://apps.apple.com/app/id6779711252" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗︎</span></a>
+    <a href="https://www.reddit.com/r/dummoapp/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dummoapp</span><span class="arr">↗︎</span></a>
     <a href="/dummo/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="/dummo/privacy/" class="app-action privacy-link" data-app="Dummo"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4712,8 +4719,8 @@ html.touch-ui .project-row.active .p-name {
     </div>
   </div>
   <div class="app-actions">
-    <a href="https://apps.apple.com/app/id6792025212" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
-    <a href="https://www.reddit.com/r/takekit/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/takekit</span><span class="arr">↗</span></a>
+    <a href="https://apps.apple.com/app/id6792025212" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗︎</span></a>
+    <a href="https://www.reddit.com/r/takekit/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/takekit</span><span class="arr">↗︎</span></a>
     <a href="/takekit/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
     <a href="/takekit/privacy/" class="app-action privacy-link" data-app="TakeKit"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
@@ -4723,7 +4730,7 @@ html.touch-ui .project-row.active .p-name {
 <div id="contact-page" class="app-page">
   <div class="contact-shout">
     <div class="contact-tag"><span>Contact · 07</span></div>
-    <h1 class="contact-headline">Got an <em>idea</em>?<br><a class="contact-cta" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><strong>Reddit</strong> <em>me.</em><span class="contact-arr" aria-hidden="true">↗</span></a></h1>
+    <h1 class="contact-headline">Got an <em>idea</em>?<br><a class="contact-cta" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><strong>Reddit</strong> <em>me.</em><span class="contact-arr" aria-hidden="true">↗︎</span></a></h1>
     <p class="contact-lede"><strong>u/beretta51</strong> — where I talk with the people who use my apps every day. No forms, no inbox: Reddit is where I answer fastest, by far.</p>
     <div class="contact-alt">
       <span class="contact-alt-label">— Rather write?</span>
@@ -5572,13 +5579,12 @@ html.touch-ui .project-row.active .p-name {
           mx = r.width * (0.5 + 0.34 * Math.sin(t * 0.00042));
           my = r.height * (0.46 + 0.24 * Math.sin(t * 0.00097));
         }
-        // el foco se queda en la banda del titular: sobre texto pequeño el
-        // amarillo en modo screen tumbaria el contraste por debajo de 4.5
-        const head = page.querySelector('.contact-headline');
-        const limite = head ? head.offsetTop + head.offsetHeight * 0.72 : r.height;
-        const myc = Math.min(my, limite);
-        x1 += (mx - x1) * 0.075;  y1 += (myc - y1) * 0.075;
-        x2 += (mx - x2) * 0.15;   y2 += (myc - y2) * 0.15;
+        // sin acotar, al cambiar de tamaño de ventana el objetivo se queda
+        // con coordenadas viejas y el foco se va fuera de pantalla
+        const tx = Math.max(0, Math.min(mx, r.width));
+        const ty = Math.max(0, Math.min(my, r.height));
+        x1 += (tx - x1) * 0.075;  y1 += (ty - y1) * 0.075;
+        x2 += (tx - x2) * 0.15;   y2 += (ty - y2) * 0.15;
         b1.style.transform = `translate(-50%, -50%) translate(${x1.toFixed(1)}px, ${y1.toFixed(1)}px)`;
         b2.style.transform = `translate(-50%, -50%) translate(${x2.toFixed(1)}px, ${y2.toFixed(1)}px)`;
       }
