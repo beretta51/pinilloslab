@@ -972,22 +972,6 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   background: var(--paper);
   position: relative;
 }
-.intro-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 32px;
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-.intro-eyebrow::before {
-  content: '';
-  width: 32px; height: 1px;
-  background: var(--ink);
-}
 .intro-headline {
   font-family: var(--display);
   font-weight: 400;
@@ -2244,20 +2228,6 @@ html.touch-ui .project-row.active .p-name {
 }
 @media (min-width: 768px) { #about-strip { padding: 180px 56px; } }
 
-#about-strip .about-eyebrow {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink);
-  margin-bottom: 32px;
-  display: flex;
-  gap: 16px;
-  align-items: center;
-}
-#about-strip .about-eyebrow::before {
-  content: ''; width: 32px; height: 1px; background: var(--ink);
-}
 .about-bio-big {
   font-family: var(--display);
   font-weight: 400;
@@ -3707,7 +3677,6 @@ html.touch-ui .project-row.active .p-name {
 
 <!-- ═══════════════════════════ INTRO ═══════════════════════════ -->
 <section id="intro" data-screen-label="02 Intro">
-  <div class="intro-eyebrow reveal"><span>Manifesto · 01</span></div>
   <h1 class="intro-headline reveal">
     Hi, I'm <strong>Edu</strong>. I build <em>privacy-first</em>, native&nbsp;tools that&nbsp;<span class="yel">feel like home</span> on your device.
   </h1>
@@ -3824,7 +3793,6 @@ html.touch-ui .project-row.active .p-name {
 
 <!-- ═══════════════════════════ ABOUT STRIP ═══════════════════════════ -->
 <section id="about-strip" data-screen-label="04 About">
-  <div class="about-eyebrow reveal"><span>About · 04</span></div>
 
   <div class="about-stamp" id="about-stamp" aria-hidden="true">
     <svg viewBox="0 0 120 120">
@@ -4413,7 +4381,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
   <header class="about-hero">
     <div class="about-hero-eyebrow">
       <span class="ah-line"></span>
-      <span>About · 04</span>
       <span>Eduardo Pinillos</span>
       <span>b. Lima 1983</span>
     </div>
