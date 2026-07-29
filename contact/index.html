@@ -5435,6 +5435,29 @@ html.touch-ui .project-row.active .p-name {
   // limpieza: el contador de visitas se eliminó; borra la clave antigua si existe
   try { localStorage.removeItem('pinillos_visits'); } catch (e) {}
 
+  // ═══════════════════════════ MENU — anchos fijos ═══════════════════════════
+  // Al pasar el raton el nombre cambia a una serif italica mas estrecha
+  // (Trovelo pierde 91px, Contact 27). Como el enlace mide lo que su texto,
+  // la caja se encogia por debajo del cursor, se perdia el hover, volvia la
+  // normal y el ciclo se repetia: el nombre parpadeaba entre las dos fuentes
+  // al posarse sobre sus ultimas letras. Se fija el ancho del estado normal,
+  // que siempre es el mayor de los dos.
+  (function () {
+    const links = Array.from(document.querySelectorAll('#menu-overlay .menu-nav a'));
+    if (!links.length) return;
+    function lock() {
+      links.forEach(a => { a.style.width = ''; });
+      // se miden todos antes de escribir, para no encadenar reflows
+      const anchos = links.map(a => a.getBoundingClientRect().width);
+      links.forEach((a, i) => { a.style.width = anchos[i].toFixed(2) + 'px'; });
+    }
+    // tras cargar las fuentes: con las de reserva los anchos serian otros
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(lock);
+    else window.addEventListener('load', lock);
+    let t;
+    window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(lock, 150); });
+  })();
+
   // ═══════════════════════════ CONTACTO — foco liquido ═══════════════════════════
   // Mismo gesto que el hero de la home: dos manchas amarillas persiguen al
   // cursor con inercias distintas, y derivan solas si nadie mueve el raton.
