@@ -414,6 +414,33 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   margin-bottom: 4px;
 }
 .privacy-body p { font-size: 17px; line-height: 1.55; }
+/* las politicas largas traen una tabla de servicios externos */
+.privacy-body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.45;
+  margin: 4px 0;
+  display: block;
+  overflow-x: auto;
+}
+@media (min-width: 768px) { .privacy-body table { display: table; } }
+.privacy-body th,
+.privacy-body td {
+  border: 1px solid var(--paper-dark);
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  min-width: 140px;
+}
+.privacy-body th {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
 .privacy-body ul {
   list-style: none;
   display: flex;
@@ -4007,7 +4034,7 @@ html.touch-ui .project-row.active .p-name {
         <a href="#" id="footer-dummo-link">Dummo</a>
         <a href="#" id="footer-takekit-link">TakeKit</a>
         <a href="#" id="footer-wealthsquare-link">Wealth Square</a>
-        <a href="#" id="footer-privacy-link">Privacy</a>
+        <a href="/privacy/" id="footer-privacy-link">Privacy</a>
       </div>
     </div>
   </div>
@@ -4185,7 +4212,7 @@ html.touch-ui .project-row.active .p-name {
     <a href="https://apps.apple.com/app/id6760258252" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="https://www.reddit.com/r/trovelo/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/trovelo</span><span class="arr">↗</span></a>
     <a href="/trovelo/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
-    <a href="#" class="app-action privacy-link" data-app="Trovelo"><span>Privacy policy</span><span class="arr">→</span></a>
+    <a href="/trovelo/privacy/" class="app-action privacy-link" data-app="Trovelo"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -4201,7 +4228,27 @@ html.touch-ui .project-row.active .p-name {
   </div>
 
   <div class="privacy-body" id="privacy-content">
-    <div class="privacy-updated">Last updated: May 2026</div><section><h3>— Overview</h3><p>Percha is designed with privacy in mind. The app works entirely on your device — no account is required and no personal data is sent to external servers. Your wardrobe data syncs automatically across your Apple devices via iCloud, encrypted end-to-end.</p></section><section><h3>— Data we collect</h3><p>Percha does not collect, transmit, or share any personal data with third parties. All information you enter (clothing items, photos, outfits, preferences) is stored locally on your device using Apple’s SwiftData framework.</p></section><section><h3>— iCloud synchronization</h3><p>Your wardrobe data (clothing items, outfits, usage history, preferences) is automatically synchronized to iCloud using Apple’s CloudKit service if you’re signed into your Apple account. This synchronization:</p><ul><li>Is encrypted end-to-end by Apple</li><li>Happens transparently — no additional login required</li><li>Allows seamless access across your personal Apple devices</li><li>Is governed by Apple’s iCloud Privacy Policy</li></ul></section><section><h3>— Permissions</h3><p>Percha requests only the permissions it needs to work:</p><ul><li><strong>Camera</strong> — used only to photograph your clothing items. Photos are processed locally on your device (background removal, color detection) and saved to local storage. Photos are never transmitted to external servers.</li><li><strong>Photo Library</strong> — used only to import existing photos of your clothing. Access is granted only when you choose to import a photo.</li><li><strong>Location (When In Use)</strong> — used only to fetch local weather data to power outfit suggestions. Your location is sent directly to Apple’s WeatherKit service and is never stored or shared by Percha.</li><li><strong>iCloud</strong> — syncs your wardrobe data across your Apple devices if you’re signed into iCloud. All data is encrypted by Apple.</li></ul></section><section><h3>— Third-party services</h3><p>Percha uses:</p><ul><li><strong>Apple WeatherKit</strong> — for weather-based outfit suggestions (governed by Apple’s privacy policy)</li><li><strong>Apple CloudKit</strong> — for iCloud synchronization (governed by Apple’s iCloud Privacy Policy)</li></ul></section><section><h3>— No other services</h3><p>No other third-party services are used. Your data never leaves Apple’s ecosystem.</p></section><section><h3>— Data deletion</h3><p>You can delete your Percha data at any time:</p><ul><li><strong>Local deletion</strong> — all data on your device is deleted when you uninstall the app.</li><li><strong>iCloud deletion</strong> — data synced to iCloud can be deleted by signing out of iCloud or removing Percha from iCloud settings in System Preferences. Apple retains backups according to their standard data retention policies.</li></ul></section><section><h3>— Contact</h3><p>If you have any questions about this privacy policy, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.</p></section>
+    <div class="privacy-updated">Last updated: May 2026</div><section><h3>— Overview</h3><p>Percha is designed with privacy in mind. The app works entirely on your device — no account is required and no personal data is sent to external servers. Your wardrobe data syncs automatically across your Apple devices via iCloud, encrypted end-to-end.</p></section><section><h3>— Data we collect</h3><p>Percha does not collect, transmit, or share any personal data with third parties. All information you enter (clothing items, photos, outfits, preferences) is stored locally on your device using Apple’s SwiftData framework.</p></section><section><h3>— iCloud synchronization</h3><p>Your wardrobe data (clothing items, outfits, usage history, preferences) is automatically synchronized to iCloud using Apple’s CloudKit service if you’re signed into your Apple account. This synchronization:</p>
+<ul>
+  <li>Is encrypted end-to-end by Apple</li>
+  <li>Happens transparently — no additional login required</li>
+  <li>Allows seamless access across your personal Apple devices</li>
+  <li>Is governed by Apple’s iCloud Privacy Policy</li>
+</ul></section><section><h3>— Permissions</h3><p>Percha requests only the permissions it needs to work:</p>
+<ul>
+  <li><strong>Camera</strong> — used only to photograph your clothing items. Photos are processed locally on your device (background removal, color detection) and saved to local storage. Photos are never transmitted to external servers.</li>
+  <li><strong>Photo Library</strong> — used only to import existing photos of your clothing. Access is granted only when you choose to import a photo.</li>
+  <li><strong>Location (When In Use)</strong> — used only to fetch local weather data to power outfit suggestions. Your location is sent directly to Apple’s WeatherKit service and is never stored or shared by Percha.</li>
+  <li><strong>iCloud</strong> — syncs your wardrobe data across your Apple devices if you’re signed into iCloud. All data is encrypted by Apple.</li>
+</ul></section><section><h3>— Third-party services</h3><p>Percha uses:</p>
+<ul>
+  <li><strong>Apple WeatherKit</strong> — for weather-based outfit suggestions (governed by Apple’s privacy policy)</li>
+  <li><strong>Apple CloudKit</strong> — for iCloud synchronization (governed by Apple’s iCloud Privacy Policy)</li>
+</ul></section><section><h3>— No other services</h3><p>No other third-party services are used. Your data never leaves Apple’s ecosystem.</p></section><section><h3>— Data deletion</h3><p>You can delete your Percha data at any time:</p>
+<ul>
+  <li><strong>Local deletion</strong> — all data on your device is deleted when you uninstall the app.</li>
+  <li><strong>iCloud deletion</strong> — data synced to iCloud can be deleted by signing out of iCloud or removing Percha from iCloud settings in System Preferences. Apple retains backups according to their standard data retention policies.</li>
+</ul></section><section><h3>— Contact</h3><p>If you have any questions about this privacy policy, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.</p></section>
   </div>
 </div>
 
@@ -4304,7 +4351,7 @@ html.touch-ui .project-row.active .p-name {
     <a href="https://apps.apple.com/app/id6761221806" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="https://www.reddit.com/r/dimmly/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dimmly</span><span class="arr">↗</span></a>
     <a href="/dimmly/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
-    <a href="#" class="app-action privacy-link" data-app="Dimmly"><span>Privacy policy</span><span class="arr">→</span></a>
+    <a href="/dimmly/privacy/" class="app-action privacy-link" data-app="Dimmly"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -4374,7 +4421,7 @@ html.touch-ui .project-row.active .p-name {
     <a href="https://apps.apple.com/app/id6761848999" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="#" class="app-action" id="percha-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
     <a href="/percha/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
-    <a href="#" class="app-action privacy-link" data-app="Percha"><span>Privacy policy</span><span class="arr">→</span></a>
+    <a href="/percha/privacy/" class="app-action privacy-link" data-app="Percha"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -4450,7 +4497,7 @@ html.touch-ui .project-row.active .p-name {
     <a href="https://apps.apple.com/app/id6761683203" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="https://www.reddit.com/r/besolid/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/besolid</span><span class="arr">↗</span></a>
     <a href="/solid/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
-    <a href="#" class="app-action privacy-link" data-app="Solid"><span>Privacy policy</span><span class="arr">→</span></a>
+    <a href="/solid/privacy/" class="app-action privacy-link" data-app="Solid"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -4655,7 +4702,7 @@ html.touch-ui .project-row.active .p-name {
     <a href="https://apps.apple.com/app/id6761489335" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="#" class="app-action" id="gridborne-feedback-link"><span>Send feedback</span><span class="arr">→</span></a>
     <a href="/gridborne/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
-    <a href="#" class="app-action privacy-link" data-app="Gridborne"><span>Privacy policy</span><span class="arr">→</span></a>
+    <a href="/gridborne/privacy/" class="app-action privacy-link" data-app="Gridborne"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -4711,7 +4758,7 @@ html.touch-ui .project-row.active .p-name {
     <a href="https://apps.apple.com/app/id6779711252" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="https://www.reddit.com/r/dummoapp/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/dummoapp</span><span class="arr">↗</span></a>
     <a href="/dummo/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
-    <a href="#" class="app-action privacy-link" data-app="Dummo"><span>Privacy policy</span><span class="arr">→</span></a>
+    <a href="/dummo/privacy/" class="app-action privacy-link" data-app="Dummo"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -4762,7 +4809,7 @@ html.touch-ui .project-row.active .p-name {
     <a href="https://apps.apple.com/app/id6792025212" target="_blank" rel="noopener" class="app-action"><span>Download on the App Store</span><span class="arr">↗</span></a>
     <a href="https://www.reddit.com/r/takekit/" target="_blank" rel="noopener" class="app-action"><span>Send feedback · r/takekit</span><span class="arr">↗</span></a>
     <a href="/takekit/support/" class="app-action"><span>Support</span><span class="arr">→</span></a>
-    <a href="#" class="app-action privacy-link" data-app="TakeKit"><span>Privacy policy</span><span class="arr">→</span></a>
+    <a href="/takekit/privacy/" class="app-action privacy-link" data-app="TakeKit"><span>Privacy policy</span><span class="arr">→</span></a>
   </div>
 </div>
 
@@ -5273,7 +5320,6 @@ html.touch-ui .project-row.active .p-name {
     document.getElementById('privacy-app-name').textContent = name;
     const backName = document.getElementById('privacy-back-name');
     if (backName) backName.textContent = name;
-    renderPrivacy(name);
     lastAppBeforePrivacy = appKey;
     // Close anything else that's open
     if (aboutOpen) closeAbout(true);
@@ -5521,278 +5567,8 @@ html.touch-ui .project-row.active .p-name {
   })();
 
   // privacy policy content per app
-  const PRIVACY_DEFAULT_DATE = 'May 2026';
-  const APP_PRIVACY = {
-    'Pinilloslab.com': {
-      updated: 'July 11, 2026',
-      sections: [
-        { h: 'Overview', p: 'This website does not use cookies, analytics, advertising, or any kind of tracking. There is nothing to accept and nothing to opt out of.' },
-        { h: 'What stays on your device', p: 'The site keeps one small piece of functional data in your browser\u2019s session storage: a flag so the intro animation plays only once per session. It is not transmitted anywhere, it does not identify you, and it disappears when you close the browser.' },
-        { h: 'Contact form', p: 'If you send a message through the contact form, your name, email address and message are delivered to me via Web3Forms (web3forms.com), which acts as a form-processing service. I use that information solely to reply to you. It is never sold, shared, or added to any mailing list.' },
-        { h: 'Hosting', p: 'The site is hosted on GitHub Pages. Like any web host, GitHub may keep standard server logs (including IP addresses) for security and operational purposes. See GitHub\u2019s privacy statement for details.' },
-        { h: 'Fonts & third parties', p: 'All fonts are self-hosted on this domain. Loading this site makes no requests to Google or any other third party.' },
-        { h: 'Site operator', p: 'This website is operated by Eduardo Pinillos, independent software developer, Portugal. Contact: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' },
-        { h: 'Typefaces', p: 'All fonts are self-hosted and licensed under the <a href="/fonts/LICENSE.txt" target="_blank" rel="noopener">SIL Open Font License 1.1</a>.' },
-        { h: 'Contact', p: 'Questions about this policy? Write to <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a> or use the contact form on the home page.' }
-      ]
-    },
-    Trovelo: {
-      updated: 'July 12, 2026',
-      sections: [
-        { h: 'Summary', p: 'Trovelo is a travel-planning app built privacy-first. We operate <strong>no servers</strong>: the developer never receives, collects, stores, sells, or monetizes your personal data. Everything you create in Trovelo lives on your device and — if you use iCloud — in your own private iCloud account. A small number of features send limited, feature-specific data directly from your device to external services (described in full below), and one optional feature (connecting an AI assistant such as Claude, on Mac) lets <em>you</em> share your trip data with an AI assistant of your choosing. Nothing ever passes through infrastructure we control, because we have none. This policy explains exactly what data the app handles, where it goes, the legal bases for any processing, and your rights — including your rights under the EU/EEA General Data Protection Regulation (GDPR) and the UK GDPR.' },
-        { h: '1. Who is responsible (data controller)', p: 'Trovelo is developed and published by <strong>Eduardo Pinillos</strong> (independent developer). Contact: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Because Trovelo has no servers, the developer does not hold or have access to any of your data. To the limited extent that the app causes personal data (such as your IP address or a place-name search) to be transmitted to the service providers listed in Section 5, the developer acts as the data controller for determining that such transmissions occur, and this policy serves as the transparency notice required by Articles 13–14 GDPR. Apple, Pexels, and other providers act as independent controllers of the data they receive, under their own privacy policies.' },
-        { h: '2. Our privacy model',
-          list: [
-            '<strong>No Trovelo servers or databases exist.</strong> There is nothing for us to access, leak, or hand over.',
-            '<strong>No accounts.</strong> Trovelo has no sign-up, login, or user profile.',
-            '<strong>No analytics, no tracking, no advertising.</strong> The app contains no analytics SDKs, crash reporters, ad networks, fingerprinting, or third-party trackers of any kind.',
-            '<strong>No sale or sharing of personal data</strong>, ever, for any purpose.'
-          ] },
-        { h: '3. Data stored on your device and in your iCloud', p: 'Everything you enter in Trovelo is stored locally on your device and, if you are signed in to iCloud, synced through Apple CloudKit <strong>inside your personal, private iCloud account</strong>. This may include:',
-          list: [
-            'Trips: names, destinations, dates, colors, cover photos',
-            'Itinerary cards: titles, notes, times, categories, places (names, addresses, coordinates), links, phone numbers',
-            'Expenses and budgets: amounts and currencies',
-            'Flight details: flight numbers, airports, times, terminals, gates',
-            'Packing lists and templates',
-            'Visited places (\u201cSpots\u201d): countries and cities you mark or that are suggested from your photo library (see Section 9)',
-            'Attached documents and photos (see Section 10)'
-          ],
-          p2: 'iCloud sync is provided by Apple under <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple\u2019s Privacy Policy</a> and your agreement with Apple. Trovelo cannot read, access, or recover data in your iCloud account. If you disable iCloud for Trovelo, data stays only on your device. Trovelo\u2019s widget shows a snapshot of your trips stored in a shared container on your device only.' },
-        { h: '4. Data we do not collect', p: 'We do not collect your name, email address, contacts, identifiers, usage statistics, crash logs, advertising data, or any other personal information. We have no means of identifying you.' },
-        { h: '5. Features that contact external services', p: 'Some features need the internet. These requests go <strong>directly from your device to the provider</strong> — never through Trovelo servers. As with any internet request, the provider technically receives your IP address and standard request metadata, which it processes under its own privacy policy. Trovelo sends the minimum data each feature needs:',
-          list: [
-            '<strong>Cover photos for trips and cards</strong> — Pexels: a place-name search term only (e.g. \u201cTokyo\u201d). <a href="https://www.pexels.com/privacy-policy/" target="_blank" rel="noopener">Pexels Privacy Policy</a>',
-            '<strong>Currency conversion for expenses</strong> — an open-source exchange-rate dataset served via the jsDelivr CDN (with a Cloudflare Pages fallback): a currency code only (e.g. \u201ceur\u201d), never amounts or trip data. <a href="https://www.jsdelivr.com/terms/privacy-policy" target="_blank" rel="noopener">jsDelivr</a> · <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare</a>',
-            '<strong>Place search, maps, geocoding, and travel-time estimates</strong> — Apple Maps (MapKit): the place names you search, and place coordinates for routing/geocoding. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a>',
-            '<strong>Importing a shared map link</strong> (e.g. pasting a Google Maps link) — Google, only when you import such a link: the link you chose to import, so it can be resolved to a place. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>',
-            '<strong>iCloud sync and trip-share links</strong> — Apple CloudKit: your trip data, within your private iCloud account. <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a>',
-            '<strong>Trovelo Pro purchase</strong> — Apple App Store: handled entirely by Apple; Trovelo never sees payment details (Section 11). <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a>'
-          ],
-          p2: 'Trovelo never sends your identity, your trip contents, your expenses, or your documents to any of these providers. Photo and currency requests contain no personal content beyond the technical metadata inherent to any web request. <strong>Legal bases (GDPR):</strong> these transmissions are necessary to perform the features you actively use (Art. 6(1)(b) GDPR) and pursue our legitimate interest in providing app functionality without operating our own data-collecting servers (Art. 6(1)(f)). You can avoid them entirely by not using the relevant feature or by using the app offline.' },
-        { h: '6. AI assistant connections (optional, Mac only)', p: 'The Mac version of Trovelo Pro can expose your trips to an AI assistant of your choice \u2014 such as Anthropic\u2019s Claude, or any other assistant that supports the Model Context Protocol (MCP) \u2014 through a <strong>local connection that exists only on your Mac</strong> (a loopback server on 127.0.0.1, protected by a secret token). Trovelo itself never sends anything to any AI provider. You should understand clearly:',
-          list: [
-            'The feature is <strong>off by default</strong> and requires your explicit activation and acknowledgement.',
-            'Once you connect an AI client, <strong>anything it reads through the connection — trip names, places, dates, notes, prices, visited spots — becomes part of your conversation with that AI assistant</strong> and is processed under that provider\u2019s privacy policy (for Claude, <a href="https://www.anthropic.com/legal/privacy" target="_blank" rel="noopener">Anthropic\u2019s Privacy Policy</a>; for other assistants, the policy of their provider). The AI provider you connect acts as an independent controller of that data.',
-            'You can restrict the connection to <strong>view-only</strong>, rotate the access token, or turn the feature off at any time in Settings.',
-            'Do not connect an AI client if your trips contain information you do not want processed by that provider.'
-          ],
-          p2: '<strong>Legal basis (GDPR):</strong> your consent (Art. 6(1)(a)), given when you enable the feature; withdrawable at any time by turning it off.' },
-        { h: '7. Sharing trips with others', p: 'If you use <strong>Share Trip</strong>, Trovelo creates a read-only link through your iCloud account. <strong>Anyone who has that link can view the shared trip\u2019s full contents</strong> (itinerary, places, notes, prices). Share links only with people you trust, and avoid sharing trips containing sensitive attachments. You can stop sharing at any time, which revokes the link. Sharing is performed by Apple CloudKit through your iCloud account; Trovelo servers are not involved (none exist). You can also export trips as files or videos. Once you export or share something outside the app, its further distribution is under your control, not Trovelo\u2019s.' },
-        { h: '8. Location data', p: 'If you grant location permission, your position is used <strong>only on-device</strong> to show you on the map and improve nearby place suggestions. It is used while you view the map, never in the background, never stored, and never transmitted to the developer or third parties (standard Apple Maps requests aside, per Section 5). Location permission is optional; the app works without it.' },
-        { h: '9. Photo library scanning (visited places)', p: 'The optional \u201cscan my photos\u201d feature reads <strong>only the GPS location tags</strong> of your photos, entirely on-device, to suggest countries and cities you have visited. Your photos\u2019 image content is never read, uploaded, or analyzed. Location clusters are converted to place names using Apple\u2019s geocoding service (coordinates are sent to Apple for this, per Section 5). You choose whether to grant photo access, and you can revoke it in system Settings at any time.' },
-        { h: '10. Documents and sensitive data', p: 'You may attach documents to trips — for example boarding passes, insurance PDFs, passport scans, or vaccination records. These attachments:',
-          list: [
-            'are stored on your device and, if iCloud is enabled, in your private iCloud account,',
-            'are never sent to the developer or any third party by Trovelo,',
-            'may include data that is sensitive (identity documents, health-related documents). <strong>You</strong> decide what to attach. Consider the sensitivity of a document before attaching it to a trip you plan to share (Section 7) or expose to an AI client (Section 6).'
-          ] },
-        { h: '11. Purchases', p: 'Trovelo Pro is a one-time purchase processed entirely by Apple through the App Store using StoreKit. Trovelo never receives or stores your payment details, billing address, or Apple ID. Purchase entitlement is verified on-device.' },
-        { h: '12. Diagnostics', p: 'Trovelo does not use any crash-reporting or analytics service. The app can locally record Apple\u2019s standard, anonymous performance metrics (launch time, memory, hang rate) on your device only, auto-deleted after 14 days. This data <strong>never leaves your device</strong> unless you personally choose to export and send it to us for troubleshooting.' },
-        { h: '13. Data retention and deletion', p: 'We retain nothing, so there is nothing for us to delete. You are in full control:',
-          list: [
-            '<strong>Delete individual items</strong> (trips, cards, documents, spots) at any time inside the app.',
-            '<strong>Delete everything on-device</strong> by deleting the app.',
-            '<strong>Delete iCloud data</strong> in System Settings › [your name] › iCloud › Manage Account Storage › Trovelo, or by deleting your trips in-app before removing the app (deletions sync).',
-            '<strong>Revoke shared links</strong> with \u201cStop Sharing\u201d on any shared trip.',
-            'Data you shared with an AI provider (Section 6) is governed by that provider\u2019s retention rules and deletion tools.'
-          ] },
-        { h: '14. Your rights (EEA, UK, and Switzerland)', p: 'Under the GDPR / UK GDPR you have rights of access, rectification, erasure, restriction, portability, and objection, and the right to withdraw consent at any time. Because your data is stored only on your own device and in your own iCloud account:',
-          list: [
-            '<strong>Access, rectification, erasure, restriction:</strong> you exercise these directly and immediately in the app — you hold the data, not us. We could not access it even on request.',
-            '<strong>Portability:</strong> Trovelo includes a built-in export that produces your trips in a structured, machine-readable format (.trovelo JSON files).',
-            '<strong>Withdrawal of consent:</strong> turn off the relevant permission (location, photos) in system Settings, or disable the AI connection in Trovelo\u2019s settings.',
-            '<strong>Complaints:</strong> you have the right to lodge a complaint with your local data-protection supervisory authority (in the EU, see <a href="https://edpb.europa.eu/about-edpb/about-edpb/members_en" target="_blank" rel="noopener">edpb.europa.eu</a>; in the UK, the ICO).'
-          ],
-          p2: 'For data held by Apple, Anthropic, Pexels, or other providers listed above, please direct requests to them as independent controllers; we have no access to that data. You are not subject to any automated decision-making or profiling by Trovelo. Providing personal data to Trovelo is never a statutory or contractual requirement — every field in the app is optional.' },
-        { h: '15. International data transfers', p: 'The developer transfers no data internationally, because the developer receives no data. Requests your device makes to providers in Section 5 may reach servers outside your country (for example, Pexels in the United States); those providers are responsible for their own transfer safeguards (such as the EU–US Data Privacy Framework or Standard Contractual Clauses) as described in their privacy policies. iCloud data residency is managed by Apple per your Apple ID region.' },
-        { h: '16. Users outside the EU', p: 'The same privacy model applies to every user worldwide. In particular:',
-          list: [
-            '<strong>California (CCPA/CPRA):</strong> Trovelo does not collect, sell, or share personal information as defined by the CCPA, and the developer does not meet the CCPA\u2019s thresholds for a covered \u201cbusiness.\u201d There is nothing to opt out of.',
-            '<strong>Brazil (LGPD), Canada (PIPEDA), Australia (Privacy Act), and other jurisdictions:</strong> the developer collects and holds no personal data; the rights described in Section 14 are honored for all users regardless of location, through the same in-app mechanisms.'
-          ] },
-        { h: '17. Children\u2019s privacy', p: 'Trovelo does not knowingly collect data from anyone, including children. Since no data ever reaches the developer, no children\u2019s data can be collected. The app requires no account and shows no ads.' },
-        { h: '18. Security', p: 'Your data is protected by the built-in encryption of iOS and macOS (data protection at rest) and by Apple\u2019s encryption of iCloud data in transit and at rest. The optional AI connection is restricted to your own machine (localhost) and protected by a randomly generated secret token that you can rotate. No security measure is absolute; we recommend using a device passcode and two-factor authentication on your Apple ID.' },
-        { h: '19. Changes to this policy', p: 'If we change this policy, we will update the \u201cLast updated\u201d date above and, for material changes (such as any new external service), describe the change in the app\u2019s release notes. Continued use after an update constitutes acceptance of the revised policy. We will never retroactively weaken the core commitment of this policy — no collection of your data on Trovelo servers — without your explicit consent.' },
-        { h: '20. Contact', p: 'Questions or privacy requests: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. We answer data-protection inquiries within 30 days.' }
-      ]
-    },
-    Gridborne: {
-      updated: PRIVACY_DEFAULT_DATE,
-      sections: [
-        { h: 'Information collection and use', p: 'Gridborne does not collect, store, or share any personal information. The game is played entirely offline against an AI opponent. No account creation or login is required to play.' },
-        { h: 'Game Center', p: 'Gridborne integrates with Apple Game Center for leaderboards and achievements. Game Center is managed entirely by Apple and is subject to Apple\u2019s Privacy Policy. We do not have access to your Game Center data.' },
-        { h: 'Local data', p: 'Game preferences and statistics are stored locally on your device using standard device storage. This data never leaves your device and is not accessible to us.' },
-        { h: 'Children\u2019s privacy', p: 'We do not knowingly collect personal information from children. Since our app does not collect any data, it is safe for users of all ages.' },
-        { h: 'Changes to this privacy policy', p: 'We may update our Privacy Policy from time to time. Changes will be posted on this page with an updated date.' },
-        { h: 'Contact us', p: 'If you have any questions about this Privacy Policy, contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
-      ]
-    },
-    Percha: {
-      updated: PRIVACY_DEFAULT_DATE,
-      sections: [
-        { h: 'Overview', p: 'Percha is designed with privacy in mind. The app works entirely on your device — no account is required and no personal data is sent to external servers. Your wardrobe data syncs automatically across your Apple devices via iCloud, encrypted end-to-end.' },
-        { h: 'Data we collect', p: 'Percha does not collect, transmit, or share any personal data with third parties. All information you enter (clothing items, photos, outfits, preferences) is stored locally on your device using Apple\u2019s SwiftData framework.' },
-        { h: 'iCloud synchronization', p: 'Your wardrobe data (clothing items, outfits, usage history, preferences) is automatically synchronized to iCloud using Apple\u2019s CloudKit service if you\u2019re signed into your Apple account. This synchronization:',
-          list: [
-            'Is encrypted end-to-end by Apple',
-            'Happens transparently — no additional login required',
-            'Allows seamless access across your personal Apple devices',
-            'Is governed by Apple\u2019s iCloud Privacy Policy'
-          ] },
-        { h: 'Permissions', p: 'Percha requests only the permissions it needs to work:',
-          list: [
-            '<strong>Camera</strong> — used only to photograph your clothing items. Photos are processed locally on your device (background removal, color detection) and saved to local storage. Photos are never transmitted to external servers.',
-            '<strong>Photo Library</strong> — used only to import existing photos of your clothing. Access is granted only when you choose to import a photo.',
-            '<strong>Location (When In Use)</strong> — used only to fetch local weather data to power outfit suggestions. Your location is sent directly to Apple\u2019s WeatherKit service and is never stored or shared by Percha.',
-            '<strong>iCloud</strong> — syncs your wardrobe data across your Apple devices if you\u2019re signed into iCloud. All data is encrypted by Apple.'
-          ] },
-        { h: 'Third-party services', p: 'Percha uses:',
-          list: [
-            '<strong>Apple WeatherKit</strong> — for weather-based outfit suggestions (governed by Apple\u2019s privacy policy)',
-            '<strong>Apple CloudKit</strong> — for iCloud synchronization (governed by Apple\u2019s iCloud Privacy Policy)'
-          ] },
-        { h: 'No other services', p: 'No other third-party services are used. Your data never leaves Apple\u2019s ecosystem.' },
-        { h: 'Data deletion', p: 'You can delete your Percha data at any time:',
-          list: [
-            '<strong>Local deletion</strong> — all data on your device is deleted when you uninstall the app.',
-            '<strong>iCloud deletion</strong> — data synced to iCloud can be deleted by signing out of iCloud or removing Percha from iCloud settings in System Preferences. Apple retains backups according to their standard data retention policies.'
-          ] },
-        { h: 'Contact', p: 'If you have any questions about this privacy policy, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
-      ]
-    },
-    Solid: {
-      updated: PRIVACY_DEFAULT_DATE,
-      sections: [
-        { h: 'No data collection', p: 'Solid does not collect, store, transmit, or share any personal data. All information you enter — workout plans, exercise history, and session data — is stored on your device and optionally synced to your personal iCloud account. No data ever passes through Solid\u2019s servers, because Solid has no servers.' },
-        { h: 'No accounts', p: 'Solid does not require you to create an account. There is no sign-in, no registration, and no user profile. iCloud sync uses your existing Apple ID exclusively — Solid never sees your credentials or identity.' },
-        { h: 'No third-party services', p: 'Solid does not integrate any third-party analytics, advertising SDKs, or tracking services. No data is ever sent to external servers.' },
-        { h: 'On-device processing', p: 'Any intelligent features in the app (such as exercise parsing) run entirely on your device using Apple\u2019s on-device frameworks. No text or input is sent to external servers.' },
-        { h: 'iCloud sync', p: 'If you enable iCloud sync, your data is stored in your personal iCloud account and governed by Apple\u2019s privacy policy. Solid never has access to your iCloud data — syncing happens directly between your devices through Apple\u2019s infrastructure.' },
-        { h: 'Data deletion', p: 'To delete your data, disable iCloud sync in Settings and uninstall the app. If iCloud sync was enabled, you can also delete the app\u2019s data from iCloud Drive in your iPhone Settings &rsaquo; Apple ID &rsaquo; iCloud &rsaquo; Manage Storage. Solid does not retain any information after deletion.' },
-        { h: 'Contact', p: 'If you have any questions about this privacy policy, please contact us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
-      ]
-    },
-    Dimmly: {
-      updated: PRIVACY_DEFAULT_DATE,
-      sections: [
-        { h: 'Overview', p: 'Dimmly is built to be private by default. No account. No tracking. No data sent to servers we control.' },
-        { h: 'What Dimmly stores', p: 'All your lists, items, alarms, streaks, and settings are stored locally on your device using Apple\u2019s SwiftData framework. We — the developer — never see this data.' },
-        { h: 'iCloud sync', p: 'If you\u2019re signed in to iCloud, Dimmly syncs your data across your devices using Apple\u2019s CloudKit private database. This means:',
-          list: [
-            'Your data is stored in your own iCloud account, not on our servers.',
-            'We have no access to your synced data.',
-            'Sync is governed by Apple\u2019s iCloud terms and privacy practices.',
-            'You can stop sync at any time from iOS Settings &rsaquo; Apple ID &rsaquo; iCloud &rsaquo; Dimmly.'
-          ] },
-        { h: 'Deleting the app', p: 'If you delete the app, your data is removed from your device. Data already in iCloud remains in your iCloud account unless you delete it from another device or from iCloud storage settings.' },
-        { h: 'Notifications', p: 'Dimmly schedules local notifications for the alarms you set on items. They are scheduled and delivered entirely on your device through Apple\u2019s notification system. No notification content is sent to any server.' },
-        { h: 'Spotlight search', p: 'Dimmly indexes your lists and items into iOS Spotlight so you can find them from system search. This index lives on your device only.' },
-        { h: 'CSV import and export', p: 'When you export a list, the resulting CSV file is shared through iOS\u2019s standard share sheet — you decide where it goes. When you import a CSV, the file is read directly from the source you pick. We don\u2019t see either file.' },
-        { h: 'Purchases', p: 'Dimmly Pro is a one-time in-app purchase handled by Apple through the App Store. We receive transaction confirmation from Apple, but no payment information.' },
-        { h: 'Analytics and tracking', p: 'Dimmly contains no third-party analytics, no advertising SDKs, no crash reporting services, and no tracking. The app does not collect device identifiers, location, contacts, photos, or any other personal information.' },
-        { h: 'Children', p: 'Dimmly is not directed to children under 13 and does not knowingly collect personal information from anyone, regardless of age.' },
-        { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date.' },
-        { h: 'Contact', p: 'Questions? Email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
-      ]
-    },
-    Dummo: {
-      updated: PRIVACY_DEFAULT_DATE,
-      sections: [
-        { h: 'Overview', p: 'Dummo is a video tool built to be private by default. As declared on the App Store, Dummo does not collect any data. There are no accounts, no analytics, and no tracking. Your recordings and projects stay on your device.' },
-        { h: 'What Dummo stores', p: 'Everything you create in Dummo — your imported screen recordings, projects, device frames, backgrounds, stickers, text, and export settings — is stored locally on your device. We, the developer, never see this content.' },
-        { h: 'iCloud sync', p: 'If you’re signed in to iCloud, Dummo syncs your projects across your iPhone, iPad, and Mac using Apple’s CloudKit private database. This means:',
-          list: [
-            'Your projects are stored in your own iCloud account, not on our servers.',
-            'We have no access to your synced data.',
-            'Sync is governed by Apple’s iCloud terms and privacy practices.',
-            'You can stop sync at any time from your device’s Apple ID &rsaquo; iCloud settings.'
-          ] },
-        { h: 'Edit with Claude (Mac)', p: 'On the Mac, Dummo offers an optional feature that connects Claude to your open project so it can make edits for you (set the device, add text and taps, apply auto-zoom, and more). This feature is off unless you choose to use it. When you use it, the project details needed to perform the edit are shared with Claude (Anthropic) and are handled under Anthropic’s privacy policy. If you never enable it, nothing is sent.' },
-        { h: 'Purchases', p: 'Dummo Pro is a one-time purchase handled by Apple through the App Store. We receive transaction confirmation from Apple, but never your payment information.' },
-        { h: 'Analytics and tracking', p: 'Dummo contains no third-party analytics, no advertising SDKs, no crash-reporting services, and no tracking. The app does not collect device identifiers, location, contacts, or any other personal information.' },
-        { h: 'Deleting your data', p: 'If you delete the app, your projects are removed from your device. Data already in iCloud remains in your iCloud account until you delete it from another device or from your iCloud storage settings.' },
-        { h: 'Children’s privacy', p: 'Dummo does not knowingly collect personal information from anyone, including children under 13. Since the app collects no data, it is safe for users of all ages.' },
-        { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date.' },
-        { h: 'Contact', p: 'Questions? Email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
-      ]
-    },
-    TakeKit: {
-      updated: 'July 17, 2026',
-      sections: [
-        { h: 'Overview', p: 'TakeKit is a teleprompter camera built to be private by default. There are no accounts, no analytics, and no tracking. Your scripts and recordings stay on your device and, if you use iCloud, in your own private iCloud.' },
-        { h: 'Who we are', p: 'TakeKit is developed and published by Eduardo Pinillos, based in Portugal. For the purposes of data protection law (including the EU GDPR), the developer is the party responsible for this policy. Contact: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' },
-        { h: 'What TakeKit stores', p: 'Everything you create in TakeKit — your scripts, recorded takes, take names and stars, trims, and export settings — is stored locally on your device. We never see this content, and we have no technical means to access it.' },
-        { h: 'Camera and microphone', p: 'TakeKit uses the camera and microphone only to record your takes, and only while you are recording. Recordings are saved to your device (and your private iCloud, if enabled) — the app never transmits them to the developer or to any third party.' },
-        { h: 'Speech recognition', p: 'The speech-paced auto-scroll and captions features use Apple’s on-device speech recognition to follow your voice through the script. Recognition runs entirely on your device — always. If on-device recognition is not available for your device or language, these features are simply unavailable; the app never falls back to server-based processing. Your voice, your transcripts, and your scripts are never sent to the developer or to any server.' },
-        { h: 'Photos', p: 'TakeKit requests add-only access to your Photos library, used solely to save the videos you export. The app cannot read or browse your existing photos.' },
-        { h: 'iCloud sync', p: 'If you’re signed in to iCloud, TakeKit syncs your scripts and takes across your devices using Apple’s private CloudKit database and iCloud Drive. This means:',
-          list: [
-            'Your scripts and takes are stored in your own iCloud account, not on our servers — we have none.',
-            'We have no access to your synced data.',
-            'Sync is governed by Apple’s iCloud terms and privacy practices.',
-            'You can stop sync at any time from your device’s Apple ID &rsaquo; iCloud settings.'
-          ] },
-        { h: 'Share extension', p: 'When you share text from another app into TakeKit, that text becomes a new script stored locally on your device, exactly like a script you typed yourself. Nothing is sent anywhere.' },
-        { h: 'Purchases', p: 'TakeKit Pro is a one-time purchase processed entirely by Apple through the App Store. We never receive or see your payment information. Your purchase is verified on your device using Apple’s StoreKit framework.' },
-        { h: 'Sharing and exporting', p: 'When you export or share a video, it goes only where you send it — your Photos library, or a third-party app you choose, such as a social network. Once you share content with a third-party platform, that platform’s own terms and privacy policy apply. We are not responsible for the practices of services you choose to share your content with.' },
-        { h: 'Analytics and tracking', p: 'TakeKit contains no third-party analytics, no advertising SDKs, no crash-reporting services, and no tracking. The app does not collect device identifiers, location, contacts, or any other personal information.' },
-        { h: 'Security', p: 'Your content is protected by your device’s security measures (device encryption, passcode, and biometrics, as configured by you) and, for iCloud content, by Apple’s iCloud security, including encryption in transit and at rest. No system is perfectly secure; we recommend keeping your device and iOS up to date.' },
-        { h: 'Deleting your data', p: 'If you delete the app, your scripts and takes are removed from your device. Data already in iCloud remains in your iCloud account until you delete it from another device or from your iCloud storage settings. Because we hold no data about you, there is nothing for us to retain or delete.' },
-        { h: 'Children’s privacy', p: 'TakeKit is not directed at children under 13 (or the equivalent minimum age in your country) and, consistent with the rest of this policy, does not knowingly collect personal information from anyone, including children.' },
-        { h: 'Your rights', p: 'Depending on where you live (for example, under the EU GDPR or the California Consumer Privacy Act), you may have rights of access, rectification, erasure, portability, restriction, and objection. Since we do not collect or hold personal data, there is typically no data on which we could act — but you can contact us at any time and we will respond as required by applicable law. If you are in the European Economic Area, you also have the right to lodge a complaint with your supervisory authority; in Portugal, this is the CNPD (Comissão Nacional de Proteção de Dados, <a href="https://www.cnpd.pt" target="_blank" rel="noopener">cnpd.pt</a>).' },
-        { h: 'International transfers', p: 'We do not transfer your data internationally, because we do not collect it. Any storage or transfer performed by Apple as part of iCloud is governed by Apple’s own terms and safeguards.' },
-        { h: 'Changes to this policy', p: 'If we update this policy, the new version will be posted here with a new effective date before it takes effect. Continued use of the app after a change constitutes acceptance of the updated policy.' },
-        { h: 'Contact', p: 'Questions or requests: <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>.' }
-      ]
-    }
-  };
-
-  function genericPolicy(name) {
-    return {
-      updated: PRIVACY_DEFAULT_DATE,
-      sections: [
-        { h: 'What we collect', p: `Nothing identifiable. ${name} stores everything you create locally on your device. We don\u2019t have a server that sees your activity, your library, or your taste.` },
-        { h: 'iCloud sync', p: 'If you enable iCloud sync, your data is encrypted and synced through your private Apple iCloud container. We never see it. Apple never opens it.' },
-        { h: 'Crash reports', p: 'Apple\u2019s standard crash reports are sent to us only if you\u2019ve opted in via iOS Settings &rsaquo; Privacy &rsaquo; Analytics. They contain no personal information.' },
-        { h: 'Email contact', p: 'If you email us at <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>, we\u2019ll keep that email so we can answer you. We don\u2019t add it to any list. There is no list.' },
-        { h: 'Changes', p: 'If anything material changes, we\u2019ll update this page and note the date at the top.' }
-      ]
-    };
-  }
-
-  function renderPrivacy(name) {
-    const data = APP_PRIVACY[name] || genericPolicy(name);
-    const container = document.getElementById('privacy-content');
-    if (!container) return;
-    let html = '';
-    if (data.updated) {
-      html += `<div class="privacy-updated">Last updated: ${data.updated}</div>`;
-    }
-    data.sections.forEach(s => {
-      html += `<section><h3>— ${s.h}</h3>`;
-      if (s.p) html += `<p>${s.p}</p>`;
-      if (s.list && s.list.length) {
-        html += '<ul>';
-        s.list.forEach(li => { html += `<li>${li}</li>`; });
-        html += '</ul>';
-      }
-      if (s.p2) html += `<p>${s.p2}</p>`;
-      html += '</section>';
-    });
-    container.innerHTML = html;
-  }
-
   // privacy policy links — navigate to /{app}/privacy via the router so the
   // URL is shareable and the policy is directly deep-linkable.
-  document.querySelectorAll('.privacy-link').forEach(el => {
-    el.addEventListener('click', e => {
-      e.preventDefault();
-      const name = el.dataset.app || 'Trovelo';
-      const appKey = (name || '').toLowerCase();
-      if (PRIVACY_APP_NAMES[appKey]) openPrivacyFor(appKey, false);
-    });
-  });
   // back button on privacy page — return to /{app}. Use history.back() if
   // we got here from a click on the same tab (so we don't pile up entries);
   // otherwise push the parent app route so direct landings work too.
@@ -5864,8 +5640,6 @@ html.touch-ui .project-row.active .p-name {
   document.getElementById('footer-dummo-link').addEventListener('click', e => { e.preventDefault(); openApp('dummo', 'Dummo'); });
   document.getElementById('footer-takekit-link').addEventListener('click', e => { e.preventDefault(); openApp('takekit', 'TakeKit'); });
   document.getElementById('footer-wealthsquare-link').addEventListener('click', e => { e.preventDefault(); openApp('wealthsquare', 'Wealth Square'); });
-  const footerPrivacy = document.getElementById('footer-privacy-link');
-  if (footerPrivacy) footerPrivacy.addEventListener('click', e => { e.preventDefault(); openPrivacyFor('site'); });
 
   // ESC closes everything
   window.addEventListener('keydown', (e) => {

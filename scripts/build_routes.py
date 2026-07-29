@@ -31,12 +31,11 @@ html = (ROOT / "index.html").read_text(encoding="utf-8")
 
 # ─── Routes to prerender ────────────────────────────────────────────────
 # dir: output directory (dir/index.html). app: name in the JSON-LD graph.
-# Privacy pages that already exist as hand-written static files
-# (trovelo/privacy, dummo/privacy) are left untouched.
+# policy: nombre del archivo en policies/ del que sale el texto.
 PAGES = [
     {"route": "/about", "dir": "about", "type": "AboutPage"},
     {"route": "/contact", "dir": "contact", "type": "ContactPage"},
-    {"route": "/privacy", "dir": "privacy", "type": "WebPage", "policy": "Pinilloslab.com"},
+    {"route": "/privacy", "dir": "privacy", "type": "WebPage", "policy": "site"},
     {"route": "/trovelo", "dir": "trovelo", "app": "Trovelo"},
     {"route": "/dimmly", "dir": "dimmly", "app": "Dimmly"},
     {"route": "/percha", "dir": "percha", "app": "Percha"},
@@ -45,11 +44,13 @@ PAGES = [
     {"route": "/wealth-square", "dir": "wealth-square", "app": "Wealth Square"},
     {"route": "/dummo", "dir": "dummo", "app": "Dummo"},
     {"route": "/takekit", "dir": "takekit", "app": "TakeKit"},
-    {"route": "/dimmly/privacy", "dir": "dimmly/privacy", "type": "WebPage", "crumb": "Dimmly"},
-    {"route": "/percha/privacy", "dir": "percha/privacy", "type": "WebPage", "crumb": "Percha"},
-    {"route": "/solid/privacy", "dir": "solid/privacy", "type": "WebPage", "crumb": "Solid"},
-    {"route": "/gridborne/privacy", "dir": "gridborne/privacy", "type": "WebPage", "crumb": "Gridborne"},
-    {"route": "/takekit/privacy", "dir": "takekit/privacy", "type": "WebPage", "crumb": "TakeKit"},
+    {"route": "/dimmly/privacy", "dir": "dimmly/privacy", "type": "WebPage", "crumb": "Dimmly", "policy": "dimmly"},
+    {"route": "/trovelo/privacy", "dir": "trovelo/privacy", "type": "WebPage", "crumb": "Trovelo", "policy": "trovelo"},
+    {"route": "/dummo/privacy", "dir": "dummo/privacy", "type": "WebPage", "crumb": "Dummo", "policy": "dummo"},
+    {"route": "/percha/privacy", "dir": "percha/privacy", "type": "WebPage", "crumb": "Percha", "policy": "percha"},
+    {"route": "/solid/privacy", "dir": "solid/privacy", "type": "WebPage", "crumb": "Solid", "policy": "solid"},
+    {"route": "/gridborne/privacy", "dir": "gridborne/privacy", "type": "WebPage", "crumb": "Gridborne", "policy": "gridborne"},
+    {"route": "/takekit/privacy", "dir": "takekit/privacy", "type": "WebPage", "crumb": "TakeKit", "policy": "takekit"},
 ]
 
 
@@ -135,107 +136,38 @@ def page_json_ld(page, url, meta):
     return {"@context": "https://schema.org", "@graph": [node]}
 
 
-# ─── Privacy policies: render the APP_PRIVACY map to static HTML ──────────
-# The five generated /{app}/privacy pages used to ship an empty
-# <div id="privacy-content"> filled by JS at runtime, so without
-# JavaScript — an App Store reviewer's crawler, a reader-mode save, a bot —
-# they had zero words of policy. We read the same JS map that the SPA uses
-# so there is still one source of truth, and bake the markup in.
+# ─── Privacy policies ────────────────────────────────────────────────────
+# Cada politica vive en policies/<slug>.html como un documento editable:
+# una linea "<!-- updated: … -->" y luego <h2> por seccion con <p>, <ul> y
+# <table> normales. Aqui se envuelve en el markup del sitio. Es la unica
+# copia del texto: index.html no lleva ni una palabra de politica, y la
+# URL /{app}/privacy/ sirve exactamente este archivo.
 
-def js_object_to_json(src):
-    """Convert the APP_PRIVACY object literal to JSON.
-
-    Scans character by character rather than regexing, because the policy
-    strings contain apostrophes, HTML tags and colons that would otherwise
-    look like structure.
-    """
-    out, i, n = [], 0, len(src)
-    while i < n:
-        c = src[i]
-        if c == "'":                        # JS single-quoted string
-            i += 1
-            buf = []
-            while i < n and src[i] != "'":
-                if src[i] == "\\":
-                    nxt = src[i + 1]
-                    buf.append("'" if nxt == "'" else src[i:i + 2])
-                    i += 2
-                    continue
-                buf.append('\\"' if src[i] == '"' else src[i])
-                i += 1
-            i += 1
-            out.append('"' + "".join(buf) + '"')
-            continue
-        if c.isalpha() or c == "_":         # bare key -> quoted key
-            j = i
-            while j < n and (src[j].isalnum() or src[j] in "_$"):
-                j += 1
-            word = src[i:j]
-            k = j
-            while k < n and src[k] in " \t\n":
-                k += 1
-            if k < n and src[k] == ":":
-                out.append('"' + word + '"')
-                i = j
-                continue
-            out.append(word)
-            i = j
-            continue
-        if c == "," and src[i + 1:].lstrip()[:1] in ("}", "]"):
-            i += 1                          # trailing comma
-            continue
-        out.append(c)
-        i += 1
-    return "".join(out)
+POLICIES = ROOT / "policies"
 
 
-def extract_app_privacy(doc):
-    # Some entries write `updated: PRIVACY_DEFAULT_DATE` instead of a literal,
-    # so resolve the constants the map leans on before parsing.
-    consts = dict(re.findall(r"const ([A-Z_]+) = '((?:\\.|[^'\\])*)';", doc))
-    start = doc.index("const APP_PRIVACY = {") + len("const APP_PRIVACY = ")
-    depth, i, in_str = 0, start, False
-    while i < len(doc):
-        ch = doc[i]
-        if in_str:
-            if ch == "\\":
-                i += 2
-                continue
-            if ch == "'":
-                in_str = False
-        elif ch == "'":
-            in_str = True
-        elif ch == "{":
-            depth += 1
-        elif ch == "}":
-            depth -= 1
-            if depth == 0:
-                frag = doc[start:i + 1]
-                for name, value in consts.items():
-                    frag = frag.replace(name, "'" + value + "'")
-                return json.loads(js_object_to_json(frag))
-        i += 1
-    sys.exit("APP_PRIVACY block not found in index.html")
+def render_policy(slug):
+    src_file = POLICIES / (slug + ".html")
+    if not src_file.exists():
+        sys.exit("Missing policy source: " + str(src_file))
+    raw = src_file.read_text(encoding="utf-8")
 
+    m = re.search(r"<!--\s*updated:\s*(.*?)\s*-->", raw)
+    if not m:
+        sys.exit("No '<!-- updated: … -->' line in " + str(src_file))
+    updated = m.group(1)
+    body = raw[m.end():].strip()
 
-def render_privacy(data):
-    """Same markup renderPrivacy() builds in the browser."""
-    html_out = ""
-    if data.get("updated"):
-        html_out += '<div class="privacy-updated">Last updated: %s</div>' % data["updated"]
-    for sec in data["sections"]:
-        html_out += "<section><h3>— %s</h3>" % sec["h"]
-        if sec.get("p"):
-            html_out += "<p>%s</p>" % sec["p"]
-        if sec.get("list"):
-            html_out += "<ul>" + "".join("<li>%s</li>" % li for li in sec["list"]) + "</ul>"
-        if sec.get("p2"):
-            html_out += "<p>%s</p>" % sec["p2"]
-        html_out += "</section>"
-    return html_out
+    parts = re.split(r"<h2[^>]*>(.*?)</h2>", body)
+    if len(parts) < 3:
+        sys.exit("No <h2> sections found in " + str(src_file))
 
-
-APP_PRIVACY = extract_app_privacy(html)
+    out = '<div class="privacy-updated">Last updated: %s</div>' % updated
+    for k in range(1, len(parts), 2):
+        heading = parts[k].strip()
+        content = parts[k + 1].strip()
+        out += "<section><h3>— %s</h3>%s</section>" % (heading, content)
+    return out
 
 
 # ─── Build ────────────────────────────────────────────────────────────────
@@ -271,16 +203,12 @@ for page in PAGES:
     doc = doc.replace("url(fonts/", "url(/fonts/")
 
     # Privacy pages: bake the policy in so the page has real text without JS.
-    policy_name = page.get("policy") or page.get("crumb")
-    if policy_name:
-        name = policy_name
-        if name not in APP_PRIVACY:
-            sys.exit("No APP_PRIVACY entry for " + name)
-        doc = must_replace(doc, "<!-- Filled dynamically via APP_PRIVACY map in JS -->",
-                           render_privacy(APP_PRIVACY[name]))
+    if page.get("policy"):
+        doc = must_replace(doc, "<!-- Policy text injected by build_routes.py -->",
+                           render_policy(page["policy"]))
         if page.get("crumb"):
             doc = must_replace(doc, '<span id="privacy-app-name">Trovelo</span>',
-                               '<span id="privacy-app-name">' + esc_attr(name) + "</span>")
+                               '<span id="privacy-app-name">' + esc_attr(page["crumb"]) + "</span>")
 
     # Page-specific JSON-LD (breadcrumb + main entity), alongside the site graph.
     ld = ('<script type="application/ld+json">\n'
