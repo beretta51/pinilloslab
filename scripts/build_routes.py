@@ -206,9 +206,6 @@ for page in PAGES:
     if page.get("policy"):
         doc = must_replace(doc, "<!-- Policy text injected by build_routes.py -->",
                            render_policy(page["policy"]))
-        if page.get("crumb"):
-            doc = must_replace(doc, '<span id="privacy-app-name">Trovelo</span>',
-                               '<span id="privacy-app-name">' + esc_attr(page["crumb"]) + "</span>")
 
     # Page-specific JSON-LD (breadcrumb + main entity), alongside the site graph.
     ld = ('<script type="application/ld+json">\n'

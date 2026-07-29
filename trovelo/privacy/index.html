@@ -526,7 +526,6 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
   .menu-grid { gap: 32px; padding-top: 8px; }
   .menu-nav a { font-size: clamp(36px, 10vw, 56px); gap: 10px; }
   .menu-nav a .menu-num { font-size: 11px; margin-top: 0.55em; }
-  .menu-bottom { padding-top: 16px; font-size: 10px; }
 
   /* App pages — title + tagline + scrolling screens */
   .app-hero { padding: 100px 22px 32px; }
@@ -965,7 +964,6 @@ html.intro-run .kinetic-row:nth-child(3), html.intro-run .kinetic-row:nth-child(
   flex-direction: column;
   gap: 4px;
 }
-#hero-meta .col.right { align-items: flex-end; }
 #hero-meta b { color: var(--ink); font-weight: 700; }
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
@@ -2620,21 +2618,7 @@ html.touch-ui .project-row.active .p-name {
 }
 #menu-overlay.open .menu-aside { opacity: 1; transform: translateY(0); }
 
-.menu-bottom {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink);
-  opacity: 0.6;
-  border-top: 1px solid var(--ink);
-  padding-top: 20px;
-}
 @media (min-width: 768px) {
-  .menu-bottom { flex-direction: row; justify-content: space-between; }
 }
 
 /* ─────────────────────────────── APP / SUB PAGES ─────────────────────────────── */
@@ -3410,15 +3394,6 @@ html.touch-ui .project-row.active .p-name {
   overflow: hidden;
 }
 @media (min-width: 768px) { .contact-shout { padding: 140px 56px 90px; } }
-.contact-tag {
-  position: relative; z-index: 4;
-  display: flex; align-items: center; gap: 14px;
-  font-family: var(--mono);
-  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-  color: #5E5E5E;
-  margin: 0 0 28px;
-}
-.contact-tag::before { content: ""; width: 40px; height: 1px; background: rgba(10, 10, 10, 0.45); }
 .contact-headline {
   position: relative; z-index: 4;
   font-family: var(--display);
@@ -3736,10 +3711,6 @@ html.touch-ui .project-row.active .p-name {
       <span><b>EDU PINILLOS</b></span>
       <span>BORN IN LIMA · BASED EU</span>
     </div>
-    <div class="col right">
-      <span id="local-time">— : —</span>
-      <span>38.7223 N · 9.1393 W</span>
-    </div>
   </div>
 
   <div class="scroll-hint" id="scroll-hint">
@@ -4048,11 +4019,6 @@ html.touch-ui .project-row.active .p-name {
     </aside>
   </div>
 
-  <div class="menu-bottom">
-    <span>v2.0 · 2026</span>
-    <span><span id="menu-time">— : —</span> · PORTUGAL</span>
-    <span>SINCE 2008</span>
-  </div>
 </div>
 
 <!-- ═══════════════════════════ APP PAGES ═══════════════════════════ -->
@@ -4073,7 +4039,6 @@ html.touch-ui .project-row.active .p-name {
         <animateMotion id="trov-plane-motion" dur="1.1s" begin="indefinite" fill="freeze" path="M16,200 C120,60 260,240 380,110 S560,40 624,72"/>
       </circle>
     </svg>
-    <div class="app-num">— 01 / 08</div>
     <h1 class="app-name trov-hero-name">
       <span class="trov-hero-icon" aria-hidden="true"><img src="/images/trovelo.png" alt="" width="512" height="512"></span>
       <span>Trovelo</span>
@@ -4144,7 +4109,6 @@ html.touch-ui .project-row.active .p-name {
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
       <span>Back to <span id="privacy-back-name">Trovelo</span></span>
     </a>
-    <div class="app-num">— Legal · <span id="privacy-app-name">Trovelo</span></div>
     <h1 class="app-name">Privacy<br><em>policy</em></h1>
   </div>
 
@@ -4222,7 +4186,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <!-- Dimmly -->
 <div id="dimmly-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 02 / 08</div>
     <h1 class="app-name dim-hero-name">
       <span class="dim-hero-icon" aria-hidden="true">
         <img src="/images/dimmly.png" alt="" width="512" height="512">
@@ -4325,7 +4288,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <!-- Percha -->
 <div id="percha-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 03 / 08</div>
     <div class="percha-rail" aria-hidden="true"></div>
     <div class="percha-hang">
       <svg class="percha-hanger" viewBox="0 0 120 86" fill="none" aria-hidden="true">
@@ -4395,7 +4357,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <!-- Solid -->
 <div id="solid-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 04 / 08</div>
     <h1 class="app-name solid-hero-name">
       <span class="solid-hero-icon" aria-hidden="true"><img src="/images/solid.png" alt="" width="512" height="512"></span>
       <span class="solid-drop">Solid</span>
@@ -4639,7 +4600,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <div id="gridborne-page" class="app-page">
   <div class="app-hero">
     <div class="grid-board" aria-hidden="true"><i style="--d:0.500s"></i><i style="--d:0.545s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.545s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.590s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.635s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.680s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.725s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.995s"></i><i style="--d:0.770s"></i><i style="--d:0.815s"></i><i style="--d:0.860s"></i><i style="--d:0.905s"></i><i style="--d:0.950s"></i><i style="--d:0.995s"></i><i style="--d:1.040s"></i></div>
-    <div class="app-num">— 05 / 08</div>
     <h1 class="app-name grid-hero-name">
       <span class="grid-hero-icon" aria-hidden="true"><img src="/images/gridborne.webp" alt="" width="512" height="512"></span>
       <span class="grid-name-slam">Gridborne</span>
@@ -4676,7 +4636,7 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <!-- Wealth Square -->
 <div id="wealthsquare-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 06 / 08 · <span style="color:var(--ink);font-weight:500;">In&nbsp;the&nbsp;workshop</span></div>
+    <div class="app-num"><span style="color:var(--ink);font-weight:500;">In&nbsp;the&nbsp;workshop</span></div>
     <h1 class="app-name">Wealth Square <em>soon</em></h1>
     <p class="app-tagline">A native Mac app for tracking your net worth. Quietly cooking — not ready to show yet.</p>
   </div>
@@ -4693,7 +4653,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <!-- Dummo -->
 <div id="dummo-page" class="app-page">
   <div class="app-hero">
-    <div class="app-num">— 07 / 08</div>
     <h1 class="app-name dm-hero-name">
       <span class="dm-hero-icon" aria-hidden="true"><img src="/images/dummo.png" alt="" width="512" height="512"></span>
       <span>Dummo</span>
@@ -4733,7 +4692,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <div id="takekit-page" class="app-page">
   <div class="app-hero">
     <div class="tk-rec" aria-hidden="true"><span class="tk-rec-dot"></span>REC <b>00:12</b></div>
-    <div class="app-num">— 08 / 08</div>
     <h1 class="app-name tk-hero-name">
       <span class="tk-hero-icon" aria-hidden="true"><img src="/images/takekit.png" alt="" width="512" height="512"></span>
       <span>TakeKit</span>
@@ -4783,7 +4741,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <!-- ═══════════════════════════ CONTACT PAGE ═══════════════════════════ -->
 <div id="contact-page" class="app-page">
   <div class="contact-shout">
-    <div class="contact-tag"><span>Contact · 07</span></div>
     <h1 class="contact-headline">Got an <em>idea</em>?<br><a class="contact-cta" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><strong>Reddit</strong> <em>me.</em><span class="contact-arr" aria-hidden="true">↗︎</span></a></h1>
     <p class="contact-lede"><strong>u/beretta51</strong> — where I talk with the people who use my apps every day. No forms, no inbox: Reddit is where I answer fastest, by far.</p>
     <div class="contact-alt">
@@ -5250,7 +5207,6 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
   function openPrivacyFor(appKey, fromRoute) {
     const name = PRIVACY_APP_NAMES[appKey];
     if (!name) return;
-    document.getElementById('privacy-app-name').textContent = name;
     const backName = document.getElementById('privacy-back-name');
     if (backName) backName.textContent = name;
     lastAppBeforePrivacy = appKey;
@@ -5594,9 +5550,8 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
     const now = new Date();
     const opt = { timeZone: 'Europe/Lisbon', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
     const t = new Intl.DateTimeFormat('en-GB', opt).format(now);
-    document.getElementById('local-time').textContent = t + ' LIS';
-    document.getElementById('footer-time').textContent = t;
-    document.getElementById('menu-time').textContent = t;
+    const ft = document.getElementById('footer-time');
+    if (ft) ft.textContent = t;
   }
   tickClock();
   setInterval(tickClock, 1000);
