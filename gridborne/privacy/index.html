@@ -2479,13 +2479,35 @@ html.touch-ui .project-row.active .p-name {
   font-size: clamp(120px, 22vw, 320px);
   letter-spacing: -0.06em;
   line-height: 0.85;
-  color: transparent;
-  -webkit-text-stroke: 1px #2a2a2a;
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  display: flex;
   font-variation-settings: "opsz" 96;
+}
+#footer-marquee svg {
+  display: block;
+  width: 100%;
+  height: 0.85em;
+  overflow: visible;
+}
+#footer-marquee text {
+  fill: transparent;
+  stroke: #2a2a2a;
+  stroke-width: 1px;
+}
+/* Contorno que se dibuja al asomar el footer. El dasharray debe superar el
+   subpath mas largo de un glifo a 320px (~1000px); si se queda corto, el
+   trazo aparece con huecos en mitad de la letra. */
+#footer-marquee.draw-armed tspan {
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+}
+#footer-marquee.draw-run tspan {
+  transition: stroke-dashoffset 1.5s ease;
+  stroke-dashoffset: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  #footer-marquee.draw-armed tspan { stroke-dasharray: none; stroke-dashoffset: 0; }
 }
 
 /* ─────────────────────────────── MENU OVERLAY ─────────────────────────────── */
@@ -3837,8 +3859,10 @@ html.touch-ui .project-row.active .p-name {
 
 <!-- ═══════════════════════════ FOOTER ═══════════════════════════ -->
 <section id="footer" data-screen-label="05 Footer">
+  <!-- SVG en vez de span: -webkit-text-stroke no se puede animar, y el efecto
+       de "contorno que se dibuja" necesita stroke-dashoffset por letra -->
   <div id="footer-marquee">
-    <span>EDUARDO&nbsp;·&nbsp;PINILLOS&nbsp;·&nbsp;EDUARDO&nbsp;·&nbsp;PINILLOS&nbsp;·&nbsp;</span>
+    <svg aria-hidden="true" focusable="false"><text x="0" y="0.756em">EDUARDO&#160;·&#160;PINILLOS&#160;·&#160;EDUARDO&#160;·&#160;PINILLOS&#160;·&#160;</text></svg>
   </div>
 
   <h2 class="footer-headline">Got an <em>idea</em>?</h2>
@@ -5531,6 +5555,33 @@ html.touch-ui .project-row.active .p-name {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
   }, { rootMargin: '-10% 0px -10% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // ═══════════════════════════ FOOTER MARQUEE — contorno que se dibuja ═══════════════════════════
+  // Divide el <text> en un tspan por letra (delays escalonados) y arma el
+  // efecto; sin JS el texto queda estatico con su contorno, como siempre.
+  (function () {
+    const marquee = document.getElementById('footer-marquee');
+    const textEl = marquee ? marquee.querySelector('text') : null;
+    if (!textEl) return;
+    const chars = textEl.textContent;
+    textEl.textContent = '';
+    for (let i = 0; i < chars.length; i++) {
+      const ts = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+      ts.textContent = chars[i];
+      ts.style.transitionDelay = (i * 0.045).toFixed(3) + 's';
+      textEl.appendChild(ts);
+    }
+    marquee.classList.add('draw-armed');
+    const mio = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        mio.disconnect();
+        // un frame entre armar (offset 3000) y correr (offset 0), o la
+        // transicion no llega a ver el estado inicial
+        requestAnimationFrame(() => requestAnimationFrame(() => marquee.classList.add('draw-run')));
+      }
+    }, { threshold: 0.2 });
+    mio.observe(marquee);
+  })();
 
   // ═══════════════════════════ PROJECT HOVER PREVIEW (iOS app icons) ═══════════════════════════
   const preview = document.getElementById('project-preview');
