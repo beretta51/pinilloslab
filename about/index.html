@@ -2495,19 +2495,27 @@ html.touch-ui .project-row.active .p-name {
   stroke: #2a2a2a;
   stroke-width: 1px;
 }
-/* Contorno que se dibuja al asomar el footer. El dasharray debe superar el
-   subpath mas largo de un glifo a 320px (~1000px); si se queda corto, el
-   trazo aparece con huecos en mitad de la letra. */
-#footer-marquee.draw-armed tspan {
+/* Contorno en bucle perpetuo: cada letra se dibuja despacio (offset 3000->0),
+   aguanta, y se borra por donde empezo (0->-3000). Los delays negativos por
+   letra (JS) desfasan los ciclos, asi que siempre hay letras a medio armar.
+   El dasharray debe superar el subpath mas largo de un glifo a 320px (~1000px);
+   si se queda corto, el trazo aparece con huecos en mitad de la letra. */
+#footer-marquee tspan {
   stroke-dasharray: 3000;
   stroke-dashoffset: 3000;
+  animation: marqueeDraw 18s linear infinite;
+  animation-play-state: paused;
 }
-#footer-marquee.draw-run tspan {
-  transition: stroke-dashoffset 1.5s ease;
-  stroke-dashoffset: 0;
+#footer-marquee.marquee-run tspan { animation-play-state: running; }
+@keyframes marqueeDraw {
+  0%   { stroke-dashoffset: 3000; }
+  30%  { stroke-dashoffset: 0; }
+  55%  { stroke-dashoffset: 0; }
+  85%  { stroke-dashoffset: -3000; }
+  100% { stroke-dashoffset: -3000; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #footer-marquee.draw-armed tspan { stroke-dasharray: none; stroke-dashoffset: 0; }
+  #footer-marquee tspan { animation: none; stroke-dasharray: none; stroke-dashoffset: 0; }
 }
 
 /* ─────────────────────────────── MENU OVERLAY ─────────────────────────────── */
@@ -5553,9 +5561,12 @@ html.touch-ui .project-row.active .p-name {
   }, { rootMargin: '-10% 0px -10% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  // ═══════════════════════════ FOOTER MARQUEE — contorno que se dibuja ═══════════════════════════
-  // Divide el <text> en un tspan por letra (delays escalonados) y arma el
-  // efecto; sin JS el texto queda estatico con su contorno, como siempre.
+  // ═══════════════════════════ FOOTER MARQUEE — contorno en bucle ═══════════════════════════
+  // Divide el <text> en un tspan por letra con delay negativo creciente: cada
+  // letra va por una fase distinta del ciclo dibujar/aguantar/borrar, y la ola
+  // recorre el texto sin principio ni fin. El observer pausa la animacion
+  // cuando el footer no se ve. Sin JS no hay tspans y el texto queda estatico
+  // con su contorno, como siempre.
   (function () {
     const marquee = document.getElementById('footer-marquee');
     const textEl = marquee ? marquee.querySelector('text') : null;
@@ -5565,18 +5576,12 @@ html.touch-ui .project-row.active .p-name {
     for (let i = 0; i < chars.length; i++) {
       const ts = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
       ts.textContent = chars[i];
-      ts.style.transitionDelay = (i * 0.045).toFixed(3) + 's';
+      ts.style.animationDelay = (-(i * 0.4)).toFixed(1) + 's';
       textEl.appendChild(ts);
     }
-    marquee.classList.add('draw-armed');
     const mio = new IntersectionObserver((entries) => {
-      if (entries.some(e => e.isIntersecting)) {
-        mio.disconnect();
-        // un frame entre armar (offset 3000) y correr (offset 0), o la
-        // transicion no llega a ver el estado inicial
-        requestAnimationFrame(() => requestAnimationFrame(() => marquee.classList.add('draw-run')));
-      }
-    }, { threshold: 0.2 });
+      entries.forEach(e => marquee.classList.toggle('marquee-run', e.isIntersecting));
+    });
     mio.observe(marquee);
   })();
 
