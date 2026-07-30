@@ -5630,11 +5630,12 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   // ═══════════════════════════ FOOTER MARQUEE — contorno en bucle ═══════════════════════════
-  // Divide el <text> en un tspan por letra con delay negativo creciente: cada
-  // letra va por una fase distinta del ciclo dibujar/aguantar/borrar, y la ola
-  // recorre el texto sin principio ni fin. El observer pausa la animacion
-  // cuando el footer no se ve. Sin JS no hay tspans y el texto queda estatico
-  // con su contorno, como siempre.
+  // Divide el <text> en un tspan por letra, cada una en una fase distinta del
+  // ciclo dibujar/aguantar/borrar. El orden de las fases va barajado con un
+  // salto coprimo (i*17 mod n): reparte las fases uniformemente (nunca hay
+  // demasiadas letras vacias a la vez) pero se arman salteadas, sin patron
+  // aparente. El observer pausa la animacion cuando el footer no se ve. Sin
+  // JS no hay tspans y el texto queda estatico con su contorno, como siempre.
   (function () {
     const marquee = document.getElementById('footer-marquee');
     const textEl = marquee ? marquee.querySelector('text') : null;
@@ -5644,7 +5645,7 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
     for (let i = 0; i < chars.length; i++) {
       const ts = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
       ts.textContent = chars[i];
-      ts.style.animationDelay = (-(i * 0.4)).toFixed(1) + 's';
+      ts.style.animationDelay = (-(((i * 17) % chars.length) * 0.4)).toFixed(1) + 's';
       textEl.appendChild(ts);
     }
     const mio = new IntersectionObserver((entries) => {
