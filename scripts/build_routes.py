@@ -37,6 +37,7 @@ PAGES = [
     {"route": "/contact", "dir": "contact", "type": "ContactPage"},
     {"route": "/privacy", "dir": "privacy", "type": "WebPage", "policy": "site"},
     {"route": "/trovelo", "dir": "trovelo", "app": "Trovelo"},
+    {"route": "/trovelo/press", "dir": "trovelo/press", "type": "WebPage", "crumb": "Trovelo"},
     {"route": "/dimmly", "dir": "dimmly", "app": "Dimmly"},
     {"route": "/percha", "dir": "percha", "app": "Percha"},
     {"route": "/solid", "dir": "solid", "app": "Solid"},
@@ -62,7 +63,7 @@ def unquote_js(raw):
 # ─── Extract per-route title/description from the router's ROUTES object ──
 route_meta = {}
 route_re = re.compile(
-    r"'(/[a-z-]+(?:/privacy)?)':\s*\{\s*"
+    r"'(/[a-z-]+(?:/privacy|/press)?)':\s*\{\s*"
     r"title:\s*'((?:\\.|[^'\\])*)',\s*"
     r"description:\s*'((?:\\.|[^'\\])*)'\s*\}"
 )
