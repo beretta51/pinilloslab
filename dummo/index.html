@@ -2364,10 +2364,19 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .pp-fan img.mid{z-index:2;width:250px}
 .tvx .pp-facts{position:absolute;left:96px;right:96px;top:590px}
 .tvx .pp-facts .pr-facts{grid-template-columns:repeat(6,minmax(0,1fr));margin-top:0}
-.tvx .s-passets{height:500px}
+.tvx .s-passets{height:760px}
 .tvx .pp-lbl{position:absolute;left:96px;top:40px;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8E8E93}
-.tvx .pp-grid{position:absolute;left:96px;right:96px;top:74px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.tvx .pp-grid .pr-prev{height:230px}
+.tvx .pp-grid{position:absolute;left:96px;right:96px;top:74px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.tvx .pp-grid .pr-prev{height:200px}
+.tvx .pp-grid .pr-big .pr-prev{height:280px}
+.tvx .pr-ios{gap:10px;align-items:flex-end}
+.tvx .pr-ios img{width:78px;height:auto;border-radius:12px;box-shadow:0 10px 22px rgba(0,0,0,.2);transform:translateY(34px);display:block}
+.tvx .pr-ios img:nth-child(2),.tvx .pr-ios img:nth-child(3){transform:translateY(12px)}
+.tvx .pr-macs img{position:absolute;width:290px;height:auto;border-radius:10px;box-shadow:0 14px 30px rgba(0,0,0,.22);display:block}
+.tvx .pr-macs img.b{left:24px;top:30px;transform:rotate(-4deg)}
+.tvx .pr-macs img.f{right:24px;bottom:28px;transform:rotate(3deg)}
+.tvx .pr-social{display:grid!important;grid-template-columns:repeat(2,116px);gap:10px;align-content:center;justify-content:center}
+.tvx .pr-social img{width:116px;height:116px;border-radius:12px;object-fit:cover;box-shadow:0 8px 18px rgba(0,0,0,.16);display:block}
 .tvx .s-pabout{height:420px}
 .tvx .pp-row{position:absolute;left:96px;right:96px;top:10px;display:grid;grid-template-columns:3fr 2fr;gap:18px;align-items:stretch}
 .tvx .pp-row .pr-about{grid-column:auto;padding:24px 26px}
@@ -2384,6 +2393,10 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .pp-type strong{font-size:22px;font-weight:600;color:#1C1C1E}
 .tvx .pp-type strong.gs{font-family:'Gasoek One',sans-serif;font-weight:400;font-size:26px;color:#2774FD;letter-spacing:.01em}
 .tvx .pp-type small{font-size:13px;color:#8E8E93;white-space:nowrap}
+.tvx .pp-grid .pr-logo-wide{grid-column:span 2}
+.tvx .pr-logo3{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))}
+.tvx .pr-logo3 span{display:flex;align-items:center;justify-content:center;padding:0 22px}
+.tvx .pr-logo3 img{width:100%;height:auto;display:block}
 .tvx,.tvx *,.tvx *::before,.tvx *::after{box-sizing:content-box}
 .tvx{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .tvx img{max-width:none}
@@ -2486,8 +2499,11 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .pp-facts,.tvx .pp-grid,.tvx .pp-row{width:100%}
 .tvx .pp-facts .pr-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
 .tvx .pp-lbl{align-self:flex-start}
-.tvx .pp-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.tvx .pp-grid .pr-prev{height:150px}
+.tvx .pp-grid{grid-template-columns:1fr;gap:14px}
+.tvx .pp-grid .pr-prev,.tvx .pp-grid .pr-big .pr-prev{height:240px}
+.tvx .pp-grid .pr-logo-wide{grid-column:auto}
+.tvx .pr-logo3{grid-template-columns:1fr!important;grid-template-rows:repeat(3,1fr)}
+.tvx .pr-logo3 span{padding:0 56px}
 .tvx .pp-row{grid-template-columns:1fr}}
 @media (prefers-reduced-motion: reduce){.tvx .cloud,.tvx .w-med,.tvx .w-small,.tvx .watch,.tvx .m-call,.tvx .s-medal,.tvx .stk,.tvx .s-pulse,.tvx .ex-bars i,.tvx .sa-caret,.tvx .ai-caret,.tvx .c-caret{animation:none!important}
 .tvx .r-track{animation:none!important}
@@ -5752,18 +5768,18 @@ html.touch-ui .project-row.active .p-name {
         <a class="pp-back" href="/trovelo/" data-tv-open="trovelo"><i class="sf sf-chevron-left s20"></i>Trovelo</a>
         <h1 class="word" style="color: #2774FD; font-size: 104px">PRESS</h1>
         <p class="tag" style="color: #1C1C1E">Writing about Trovelo? Take what you need.</p>
-        <p class="body" style="width: 600px">Logos, icons, screenshots and a photo of the maker. Free to use in articles and reviews about Trovelo.</p>
+        <p class="body" style="width: 600px">Screenshots for iPhone and Mac, social images, the app icon and the logo. Free to use in articles and reviews about Trovelo.</p>
         <div class="pp-actions">
-          <a class="pr-kit" href="/trovelo/press/trovelo-press-kit.zip"><span class="k1"><i class="sf sf-arrow-down-circle-fill s40"></i></span><span class="k2"><b>Download the press kit</b><small>Everything below · ZIP</small></span></a>
+          <a class="pr-kit" href="/trovelo/press/trovelo-press-kit.zip"><span class="k1"><i class="sf sf-arrow-down-circle-fill s40"></i></span><span class="k2"><b>Download the press kit</b><small>Everything below · ZIP · 64 MB</small></span></a>
           <div class="pp-ask"><small>Questions or an interview?</small>
             <a class="pr-mail" href="mailto:nocion.exento_8u@icloud.com"><i class="sf sf-envelope-fill s26"></i>nocion.exento_8u@icloud.com</a>
           </div>
         </div>
       </div>
       <div class="pp-fan">
-        <img loading="lazy" decoding="async" style="left: 0; top: 60px; transform: rotate(-8deg)" src="/images/trovelo/shot-1.webp" alt="">
-        <img loading="lazy" decoding="async" style="left: 300px; top: 60px; transform: rotate(8deg)" src="/images/trovelo/shot-5.webp" alt="">
-        <img loading="lazy" decoding="async" class="mid" style="left: 150px; top: 0" src="/images/trovelo/shot-2.webp" alt="">
+        <img loading="lazy" decoding="async" style="left: 0; top: 60px; transform: rotate(-8deg)" src="/images/trovelo/ios-02.jpg" alt="Trovelo on iPhone: the board">
+        <img loading="lazy" decoding="async" style="left: 300px; top: 60px; transform: rotate(8deg)" src="/images/trovelo/ios-04.jpg" alt="Trovelo on iPhone: the map">
+        <img loading="lazy" decoding="async" class="mid" style="left: 150px; top: 0" src="/images/trovelo/ios-07.jpg" alt="Trovelo on iPhone: just type">
       </div>
       <div class="pp-facts">
         <div class="pr-facts">
@@ -5782,21 +5798,25 @@ html.touch-ui .project-row.active .p-name {
     <div class="in">
       <div class="pp-lbl">Assets</div>
       <div class="pp-grid">
-        <a class="pr-card" href="/trovelo/press/trovelo-app-icon.zip">
+        <a class="pr-card pr-big" href="/trovelo/press/trovelo-iphone-screenshots.zip">
+          <div class="pr-prev pr-ios" style="background: #CEAEFB"><img loading="lazy" decoding="async" src="/images/trovelo/ios-01.jpg" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/ios-02.jpg" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/ios-05.jpg" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/ios-10.jpg" alt=""></div>
+          <div class="pr-meta"><div><b>iPhone screenshots</b><small>10 · PNG · 1243 × 2689 · 17 MB</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
+        </a>
+        <a class="pr-card pr-big" href="/trovelo/press/trovelo-mac-screenshots.zip">
+          <div class="pr-prev pr-macs" style="background: #FAD4AF"><img loading="lazy" decoding="async" class="b" src="/images/trovelo/mac-02.jpg" alt=""><img loading="lazy" decoding="async" class="f" src="/images/trovelo/mac-01.jpg" alt=""></div>
+          <div class="pr-meta"><div><b>Mac screenshots</b><small>8 · PNG · 3843 × 2403 · 35 MB</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
+        </a>
+        <a class="pr-card pr-big" href="/trovelo/press/trovelo-social-images.zip">
+          <div class="pr-prev pr-social" style="background: #FBAECC"><img loading="lazy" decoding="async" src="/images/trovelo/social-04.jpg" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/social-03.jpg" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/social-05.jpg" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/social-07.jpg" alt=""></div>
+          <div class="pr-meta"><div><b>Social images</b><small>10 · JPG · square, up to 3240 px · 12 MB</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
+        </a>
+        <a class="pr-card" href="/trovelo/press/trovelo-app-icon.png" download>
           <div class="pr-prev" style="background: #CEAEFB"><img loading="lazy" decoding="async" class="pr-icon" src="/images/trovelo/app-icon.png" alt="Trovelo app icon"></div>
-          <div class="pr-meta"><div><b>App icon</b><small>PNG · 1024 px</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
+          <div class="pr-meta"><div><b>App icon</b><small>PNG · 1024 × 1024</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
         </a>
-        <a class="pr-card" href="/trovelo/press/trovelo-logo.zip">
-          <div class="pr-prev pr-logos"><span style="background: #fff"><img loading="lazy" decoding="async" src="/images/trovelo/trovelo-wordmark-blue.svg" alt="Trovelo logo"></span><span style="background: #2774FD"><img loading="lazy" decoding="async" src="/images/trovelo/trovelo-wordmark-white.svg" alt="Trovelo logo in white"></span></div>
-          <div class="pr-meta"><div><b>Logo</b><small>SVG + PNG · blue and white</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
-        </a>
-        <a class="pr-card" href="/trovelo/press/trovelo-screenshots.zip">
-          <div class="pr-prev pr-shots" style="background: #FFB4B7"><img loading="lazy" decoding="async" src="/images/trovelo/shot-1.webp" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/shot-2.webp" alt=""><img loading="lazy" decoding="async" src="/images/trovelo/shot-5.webp" alt=""></div>
-          <div class="pr-meta"><div><b>Screenshots</b><small>iPhone and Mac · PNG</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
-        </a>
-        <a class="pr-card" href="/trovelo/press/eduardo-pinillos.jpg">
-          <div class="pr-prev"><img loading="lazy" decoding="async" class="pr-photo" src="/images/trovelo/edu.webp" alt="Eduardo Pinillos"></div>
-          <div class="pr-meta"><div><b>The maker</b><small>Eduardo Pinillos · JPG</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
+        <a class="pr-card pr-logo-wide" href="/trovelo/press/trovelo-logo.zip">
+          <div class="pr-prev pr-logo3"><span style="background: #fff"><img loading="lazy" decoding="async" src="/images/trovelo/logo-color.png" alt="Trovelo logo in colour"></span><span style="background: #F2EFE6"><img loading="lazy" decoding="async" src="/images/trovelo/logo-black.png" alt="Trovelo logo in black"></span><span style="background: #2774FD"><img loading="lazy" decoding="async" src="/images/trovelo/logo-white.png" alt="Trovelo logo in white"></span></div>
+          <div class="pr-meta"><div><b>Logo</b><small>PNG · colour, black and white · 4294 px wide</small></div><i class="sf sf-arrow-down-to-line s26"></i></div>
         </a>
       </div>
     </div>
