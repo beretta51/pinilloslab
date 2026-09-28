@@ -1641,7 +1641,7 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .cloud::before{width:52px;height:52px;top:-26px;left:22px}
 .tvx .cloud::after{width:38px;height:38px;top:-18px;left:64px}
 @keyframes tv-cdrift{from{translate:0 0}to{translate:26px -6px}}
-.tvx .sec{position:relative;overflow:hidden}
+.tvx .sec{position:relative;overflow:hidden;overflow:clip visible}
 .tvx .in{position:relative;width:1440px;height:100%;margin:0 auto}
 .tvx .eyebrow{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;letter-spacing:.2em;color:#6B6585}
 .tvx .h2{margin:16px 0 0;font-weight:800;font-size:64px;line-height:1;letter-spacing:-.045em}
@@ -2335,6 +2335,7 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .pr-copy{display:flex;align-items:center;gap:3px;font-size:14px;font-weight:700;color:#2774FD;background:#EAF1FF;border-radius:14px;padding:5px 12px 5px 6px}
 .tvx .pr-about p{margin:10px 0 0;font-size:15px;line-height:1.5;color:rgba(28,28,30,.72)}
 .tvx .s-foot{height:1180px;background:linear-gradient(180deg,#FAF7F1 0px,#D8D5D6 70px,#5C5A60 170px,#1A1A1E 230px,#0A0A0A 280px);color:#fff}
+.tvx .s-foot{overflow:hidden}
 .tvx .ft-in{padding:300px 56px 40px;box-sizing:border-box;z-index:1}
 .tvx .ft-head{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:200px;letter-spacing:-.05em;line-height:.85}
 .tvx .ft-head em,.tvx .ft-cta em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
@@ -2462,22 +2463,6 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 @media (prefers-reduced-motion: reduce){.tvx .cloud,.tvx .w-med,.tvx .w-small,.tvx .watch,.tvx .m-call,.tvx .s-medal,.tvx .stk,.tvx .s-pulse,.tvx .ex-bars i,.tvx .sa-caret,.tvx .ai-caret,.tvx .c-caret{animation:none!important}
 .tvx .r-track{animation:none!important}
 .tvx .s-rev{overflow-x:auto}}
-.tvx .s-hero{background:linear-gradient(180deg,#EBDFFD 0.00%,#EBDFFD 59.83%,#F5E0EF 100.00%)}
-.tvx .s-cards{background:linear-gradient(180deg,#F5E0EF 0.00%,#FFE1E2 50.00%,#FCE2EF 100.00%)}
-.tvx .s-ai{background:linear-gradient(180deg,#FCE2EF 0.00%,#F8E4FF 50.00%,#FBEAED 100.00%)}
-.tvx .s-map{background:linear-gradient(180deg,#FBEAED 0.00%,#FDEEDF 50.00%,#F0F2E8 100.00%)}
-.tvx .s-exp{background:linear-gradient(180deg,#F0F2E8 0.00%,#E3F6F2 50.00%,#DBF2F3 100.00%)}
-.tvx .s-glance{background:linear-gradient(180deg,#DBF2F3 0.00%,#D0EEF4 50.00%,#E8E6EF 100.00%)}
-.tvx .s-spots{background:linear-gradient(180deg,#E8E6EF 0.00%,#FDDFEB 50.00%,#EEE9F2 100.00%)}
-.tvx .s-wx{background:linear-gradient(180deg,#EEE9F2 0.00%,#DCF5FB 50.00%,#E3EAFC 100.00%)}
-.tvx .s-share{background:linear-gradient(180deg,#E3EAFC 0.00%,#EBDFFD 50.00%,#E2E1FE 100.00%)}
-.tvx .s-more{background:linear-gradient(180deg,#E2E1FE 0.00%,#DAE3FF 50.00%,#EEEAFF 100.00%)}
-.tvx .s-rev{background:linear-gradient(180deg,#EEEAFF 0.00%,#FBEFFF 50.00%,#EBECFF 100.00%)}
-.tvx .s-priv{background:linear-gradient(180deg,#EBECFF 0.00%,#DFEAFF 50.00%,#EDECE2 100.00%)}
-.tvx .s-cta{background:linear-gradient(180deg,#EDECE2 0.00%,#FEEEC0 40.62%,#FAF7F1 100.00%)}
-.tvx .s-phero{background:linear-gradient(180deg,#EEE9F2 0.00%,#F9F6F1 100.00%)}
-.tvx .s-passets{background:linear-gradient(180deg,#F9F6F1 0.00%,#FAF7F1 8.00%,#FAF7F1 100.00%)}
-.tvx .s-pabout{background:linear-gradient(180deg,#FAF7F1 0.00%,#FAF7F1 100.00%)}
 
 /* ═══════════ SOLID TAKEOVER — negro + volt, la pesa cae ═══════════ */
 #solid-page {
@@ -8202,9 +8187,46 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
         if (!this.cards) this.setup();
         this.t0 = Date.now();
         this.iv = setInterval(() => this.setState({ t: Date.now() - this.t0 }), 60);
+        this.onBg = () => this.paintBg();
+        window.addEventListener('scroll', this.onBg, { passive: true });
+        window.addEventListener('resize', this.onBg);
+        this.paintBg();
       }
       componentWillUnmount() {
         clearInterval(this.iv);
+        window.removeEventListener('scroll', this.onBg);
+        window.removeEventListener('resize', this.onBg);
+      }
+      // One background for the whole page: while it scrolls, its colour glides
+      // from each section's tint to the next. On the canvas, where the whole
+      // board shows at once, the painted gradient stays.
+      paintBg() {
+        const TINTS = { 's-hero': '#EBDFFD', 's-cards': '#FFE1E2', 's-ai': '#F8E4FF', 's-map': '#FDEEDF', 's-exp': '#E3F6F2',
+          's-glance': '#D0EEF4', 's-spots': '#FDDFEB', 's-wx': '#DCF5FB', 's-share': '#EBDFFD', 's-more': '#DAE3FF',
+          's-rev': '#FBEFFF', 's-priv': '#DFEAFF', 's-cta': '#FEEEC0', 's-foot': '#FAF7F1' };
+        const doc = document.scrollingElement || document.documentElement;
+        const page = document.querySelector('.page');
+        if (!page) return;
+        if (doc.scrollHeight <= window.innerHeight + 40) { page.style.background = ''; return; }
+        const anchors = Array.from(page.querySelectorAll('section.sec')).map((s) => {
+          const cls = Array.from(s.classList).find((k) => TINTS[k]);
+          return cls ? [s.offsetTop + s.offsetHeight / 2, TINTS[cls]] : null;
+        }).filter(Boolean);
+        const y = doc.scrollTop + window.innerHeight / 2;
+        let color = anchors[anchors.length - 1][1];
+        if (y <= anchors[0][0]) color = anchors[0][1];
+        for (let i = 1; i < anchors.length; i++) {
+          if (y > anchors[i - 1][0] && y <= anchors[i][0]) {
+            let t = (y - anchors[i - 1][0]) / (anchors[i][0] - anchors[i - 1][0]);
+            t = t * t * (3 - 2 * t);
+            const a = parseInt(anchors[i - 1][1].slice(1), 16);
+            const b = parseInt(anchors[i][1].slice(1), 16);
+            const ch = (s) => Math.round(((a >> s) & 255) + (((b >> s) & 255) - ((a >> s) & 255)) * t);
+            color = 'rgb(' + ch(16) + ',' + ch(8) + ',' + ch(0) + ')';
+            break;
+          }
+        }
+        page.style.background = color;
       }
       dur(min) {
         if (!min) return '';
@@ -8556,9 +8578,46 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
         if (!this.reviews) this.setup();
         this.t0 = Date.now();
         this.iv = setInterval(() => this.setState({ t: Date.now() - this.t0 }), 60);
+        this.onBg = () => this.paintBg();
+        window.addEventListener('scroll', this.onBg, { passive: true });
+        window.addEventListener('resize', this.onBg);
+        this.paintBg();
       }
       componentWillUnmount() {
         clearInterval(this.iv);
+        window.removeEventListener('scroll', this.onBg);
+        window.removeEventListener('resize', this.onBg);
+      }
+      // One background for the whole page: while it scrolls, its colour glides
+      // from each section's tint to the next. On the canvas, where the whole
+      // board shows at once, the painted gradient stays.
+      paintBg() {
+        const TINTS = { 's-hero': '#EBDFFD', 's-cards': '#FFE1E2', 's-ai': '#F8E4FF', 's-map': '#FDEEDF', 's-exp': '#E3F6F2',
+          's-glance': '#D0EEF4', 's-spots': '#FDDFEB', 's-wx': '#DCF5FB', 's-share': '#EBDFFD', 's-more': '#DAE3FF',
+          's-rev': '#FBEFFF', 's-priv': '#DFEAFF', 's-cta': '#FEEEC0', 's-foot': '#FAF7F1' };
+        const doc = document.scrollingElement || document.documentElement;
+        const page = document.querySelector('.page');
+        if (!page) return;
+        if (doc.scrollHeight <= window.innerHeight + 40) { page.style.background = ''; return; }
+        const anchors = Array.from(page.querySelectorAll('section.sec')).map((s) => {
+          const cls = Array.from(s.classList).find((k) => TINTS[k]);
+          return cls ? [s.offsetTop + s.offsetHeight / 2, TINTS[cls]] : null;
+        }).filter(Boolean);
+        const y = doc.scrollTop + window.innerHeight / 2;
+        let color = anchors[anchors.length - 1][1];
+        if (y <= anchors[0][0]) color = anchors[0][1];
+        for (let i = 1; i < anchors.length; i++) {
+          if (y > anchors[i - 1][0] && y <= anchors[i][0]) {
+            let t = (y - anchors[i - 1][0]) / (anchors[i][0] - anchors[i - 1][0]);
+            t = t * t * (3 - 2 * t);
+            const a = parseInt(anchors[i - 1][1].slice(1), 16);
+            const b = parseInt(anchors[i][1].slice(1), 16);
+            const ch = (s) => Math.round(((a >> s) & 255) + (((b >> s) & 255) - ((a >> s) & 255)) * t);
+            color = 'rgb(' + ch(16) + ',' + ch(8) + ',' + ch(0) + ')';
+            break;
+          }
+        }
+        page.style.background = color;
       }
       ctaText(total) {
         const t = total % this.fcycle;
@@ -8627,6 +8686,57 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
       });
     }
 
+    // One background behind the whole page. The scrolling page's own
+    // background stays put while its content moves, so painting it with a
+    // colour that glides from each section's tint to the next, as you
+    // scroll, gives one continuous sky with no seams between sections.
+    const TINTS = {
+      's-hero': '#EBDFFD', 's-cards': '#FFE1E2', 's-ai': '#F8E4FF', 's-map': '#FDEEDF', 's-exp': '#E3F6F2',
+      's-glance': '#D0EEF4', 's-spots': '#FDDFEB', 's-wx': '#DCF5FB', 's-share': '#EBDFFD', 's-more': '#DAE3FF',
+      's-rev': '#FBEFFF', 's-priv': '#DFEAFF', 's-cta': '#FEEEC0', 's-foot': '#FAF7F1',
+      's-phero': '#EEE9F2', 's-passets': '#FAF7F1', 's-pabout': '#FAF7F1'
+    };
+    function sky(page, root) {
+      let anchors = [];
+      let queued = false;
+      const measure = () => {
+        const top = page.getBoundingClientRect().top - page.scrollTop;
+        anchors = Array.from(root.querySelectorAll('section.sec')).map((s) => {
+          const cls = Array.from(s.classList).find((k) => TINTS[k]);
+          const r = s.getBoundingClientRect();
+          return cls ? [r.top - top + r.height / 2, TINTS[cls]] : null;
+        }).filter(Boolean);
+      };
+      const paint = () => {
+        queued = false;
+        if (!anchors.length) measure();
+        if (!anchors.length) return;
+        const y = page.scrollTop + page.clientHeight / 2;
+        let color = anchors[anchors.length - 1][1];
+        if (y <= anchors[0][0]) color = anchors[0][1];
+        for (let i = 1; i < anchors.length; i++) {
+          if (y > anchors[i - 1][0] && y <= anchors[i][0]) {
+            let t = (y - anchors[i - 1][0]) / (anchors[i][0] - anchors[i - 1][0]);
+            t = t * t * (3 - 2 * t);
+            const a = parseInt(anchors[i - 1][1].slice(1), 16);
+            const b = parseInt(anchors[i][1].slice(1), 16);
+            const ch = (s) => Math.round(((a >> s) & 255) + (((b >> s) & 255) - ((a >> s) & 255)) * t);
+            color = 'rgb(' + ch(16) + ',' + ch(8) + ',' + ch(0) + ')';
+            break;
+          }
+        }
+        page.style.backgroundColor = color;
+      };
+      const later = () => { if (!queued) { queued = true; requestAnimationFrame(paint); } };
+      page.addEventListener('scroll', later, { passive: true });
+      window.addEventListener('resize', () => { measure(); later(); });
+      // Sections settle as pictures load on the phone layout; measure again now and then.
+      setInterval(() => { if (page.classList.contains('open')) { measure(); later(); } }, 1500);
+      measure();
+      paint();
+      return () => { measure(); later(); };
+    }
+
     function run(pageId, rootId, scenes) {
       const page = document.getElementById(pageId);
       const root = document.getElementById(rootId);
@@ -8636,6 +8746,7 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
       wireCopy(root);
       fit(page, root);
       window.addEventListener('resize', () => fit(page, root));
+      const repaint = sky(page, root);
 
       const draw = (t) => {
         const vals = {};
@@ -8654,7 +8765,7 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
       draw(0);
       setInterval(() => {
         const open = page.classList.contains('open');
-        if (open && !wasOpen) { t0 = performance.now(); fit(page, root); }
+        if (open && !wasOpen) { t0 = performance.now(); fit(page, root); repaint(); }
         wasOpen = open;
         if (!open || document.hidden) return;
         draw(performance.now() - t0);
