@@ -2334,9 +2334,9 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .pr-ah b{font-size:16px;font-weight:700}
 .tvx .pr-copy{display:flex;align-items:center;gap:3px;font-size:14px;font-weight:700;color:#2774FD;background:#EAF1FF;border-radius:14px;padding:5px 12px 5px 6px}
 .tvx .pr-about p{margin:10px 0 0;font-size:15px;line-height:1.5;color:rgba(28,28,30,.72)}
-.tvx .s-foot{height:1180px;background:linear-gradient(180deg,#FAF7F1 0px,#D8D5D6 70px,#5C5A60 170px,#1A1A1E 230px,#0A0A0A 280px);color:#fff}
+.tvx .s-foot{height:1000px;background:#0A0A0A;color:#fff}
 .tvx .s-foot{overflow:hidden}
-.tvx .ft-in{padding:300px 56px 40px;box-sizing:border-box;z-index:1}
+.tvx .ft-in{padding:120px 56px 40px;box-sizing:border-box;z-index:1}
 .tvx .ft-head{margin:0;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:200px;letter-spacing:-.05em;line-height:.85}
 .tvx .ft-head em,.tvx .ft-cta em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;letter-spacing:-.02em}
 .tvx .ft-cta{display:inline-flex;align-items:center;gap:.18em;color:#F1F332;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:200px;letter-spacing:-.05em;line-height:.85}
@@ -2385,6 +2385,7 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .pp-type strong.gs{font-family:'Gasoek One',sans-serif;font-weight:400;font-size:26px;color:#2774FD;letter-spacing:.01em}
 .tvx .pp-type small{font-size:13px;color:#8E8E93;white-space:nowrap}
 .tvx,.tvx *,.tvx *::before,.tvx *::after{box-sizing:content-box}
+.tvx{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .tvx img{max-width:none}
 .tvx a{color:inherit;text-decoration:none}
 .tvx h1,.tvx h2,.tvx p{font-weight:inherit}
@@ -2392,12 +2393,30 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .s-stage{position:absolute;left:120px;top:310px;width:1200px;height:476px}
 .tvx .s-stage .s-world{left:0;top:0}
 .tvx .ft-in .ft-time{font:inherit}
+.tvx .duo,.tvx .pair,.tvx .stks{display:contents}
 @media (min-width: 900px){.tvx{zoom:var(--tvz,1)}}
 @media (max-width: 899px){.tvx{min-width:0}
-.tvx .sec{height:auto!important;padding:84px 16px 64px;box-sizing:border-box}
-.tvx .in{width:auto;max-width:600px;height:auto;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:30px}
+.tvx .sec{height:auto!important;padding:64px 16px 44px;box-sizing:border-box}
+.tvx .in{width:auto;max-width:600px;height:auto;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:28px}
 .tvx .in>*{position:relative!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;margin:0}
-.tvx .cloud,.tvx .dev-cap,.tvx .g-lbl,.tvx .e-float,.tvx .ai-link,.tvx .pill,.tvx .ft-marquee{display:none!important}
+.tvx .cloud,.tvx .dev-cap,.tvx .g-lbl,.tvx .e-float,.tvx .pill,.tvx .ft-marquee{display:none!important}
+.tvx .mw-wrap,.tvx .ai-mw-wrap,.tvx .ai-chat,.tvx .ip-wrap,.tvx .l-phone,.tvx .w-med,.tvx .s-stage,.tvx .pp-fan,.tvx .k-col{
+    --k:calc(min(var(--tvw), var(--dw)) / var(--dw));
+    transform:scale(var(--k))!important;transform-origin:top center;
+    margin-bottom:calc((var(--k) - 1) * var(--dh) * 1px + var(--xb, 0px))!important;
+    flex-shrink:0}
+.tvx .mw-wrap{--dw:1040;--dh:638;--xb:30px}
+.tvx .ai-mw-wrap{--dw:980;--dh:570;--xb:30px}
+.tvx .ai-chat{--dw:380;--dh:570}
+.tvx .ip-wrap{--dw:380;--dh:694}
+.tvx .l-phone{--dw:360;--dh:660}
+.tvx .w-med{--dw:340;--dh:164}
+.tvx .s-stage{--dw:1200;--dh:476}
+.tvx .pp-fan{--dw:540;--dh:470;--xb:36px}
+.tvx .k-col{--dw:354;--dh:455}
+.tvx .k-col~.k-col{display:none!important}
+.tvx .mw-wrap,.tvx .ai-mw-wrap{box-shadow:0 0 0 20px #1C1C1E,0 0 0 22px #4A4A4E,0 50px 90px rgba(46,37,102,.3)}
+.tvx .mw-wrap::after,.tvx .ai-mw-wrap::after{content:'';position:absolute;left:-52px;right:-52px;bottom:-58px;height:34px;border-radius:0 0 44px 44px;background:linear-gradient(180deg,#E8E8EC 0%,#C6C6CC 55%,#9C9CA4 100%);box-shadow:0 22px 40px rgba(46,37,102,.2)}
 .tvx .word{font-size:clamp(52px,15vw,84px)!important}
 .tvx .tag{font-size:22px}
 .tvx .body{font-size:16px;width:auto!important}
@@ -2405,36 +2424,47 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .s-hero{padding-top:96px}
 .tvx .h-logo{width:100%;max-width:400px}
 .tvx .h-cta{flex-direction:column;gap:14px}
-.tvx .mw-wrap{zoom:calc(var(--tvw) / 940)}
-.tvx .s-hero .ip-wrap{zoom:calc(min(var(--tvw),330) / 330 * .92)}
+.tvx .s-hero .ip-wrap{--dw:560;transform-origin:top right;align-self:flex-end;margin-top:-118px!important;margin-right:-4px!important;z-index:4}
 .tvx .k-pills{justify-content:center}
-.tvx .k-col{zoom:calc(min(var(--tvw),354) / 354)}
 .tvx .ai-pills{flex-wrap:wrap;justify-content:center;row-gap:8px}
 .tvx .ai-pills span.mac{margin-right:0}
-.tvx .ai-chat{zoom:calc(min(var(--tvw),360) / 360)}
-.tvx .ai-mw-wrap{zoom:calc(var(--tvw) / 880)}
+.tvx .ai-link{display:block!important;width:20px!important;height:64px!important;margin:-10px 0 18px!important}
+.tvx .ai-line{left:9px;right:auto;top:0;bottom:0;height:auto;width:0;border-top:0;border-left:2px dashed rgba(39,116,253,.35)}
+.tvx .ai-dot{left:6px;top:0}
+.tvx .ai-link.go .ai-dot{animation:tv-flowv .75s linear infinite}
+.tvx .ai-link span{top:22px}
+@keyframes tv-flowv{0%{top:-4px;opacity:0}15%{opacity:1}85%{opacity:1}100%{top:60px;opacity:0}}
 .tvx .ai-foot{text-align:center;padding:0 8px}
-.tvx .s-map .ip-wrap{zoom:calc(min(var(--tvw),330) / 330 * .92)}
 .tvx .m-call{animation:none}
 .tvx .feat{text-align:left;align-self:stretch}
 .tvx .e-big{align-items:center}
 .tvx .e-big b{font-size:64px}
 .tvx .e-big span{font-size:26px}
 .tvx .e-rate{justify-content:center;flex-wrap:wrap}
-.tvx .s-exp .ip-wrap{zoom:calc(min(var(--tvw),330) / 330 * .92)}
-.tvx .w-med{zoom:calc(min(var(--tvw),340) / 340);animation:none}
+.tvx .w-med{animation:none}
 .tvx .w-small{animation:none}
-.tvx .l-phone{zoom:calc(min(var(--tvw),320) / 320 * .92)}
 .tvx .watch{margin:64px 0!important;animation:none}
 .tvx .s-pills{flex-wrap:wrap;justify-content:center}
-.tvx .s-stage{zoom:calc(var(--tvw) / 1200)}
 .tvx .s-medal{animation:none}
 .tvx .s-rail{flex-wrap:wrap;justify-content:center;width:100%;row-gap:14px}
 .tvx .s-line{display:none}
 .tvx .ph-lbl{transform:none}
-.tvx .s-wx .ip-wrap,.tvx .s-share .ip-wrap{zoom:calc(min(var(--tvw),330) / 330 * .92);transform:none}
+.tvx .duo{display:flex!important;gap:16px;width:100vw;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 16px 18px;box-sizing:border-box;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tvx .duo::-webkit-scrollbar{display:none}
+.tvx .pair{display:flex!important;flex-direction:column;align-items:center;gap:14px;flex:0 0 auto;scroll-snap-align:center}
+.tvx .pair>*{position:relative!important;left:auto!important;top:auto!important;margin:0!important}
+.tvx .duo .ip-wrap{transform:none!important;margin:0!important}
+.tvx .stks{display:flex!important;flex-wrap:wrap;justify-content:center;gap:10px}
+.tvx .stks .stk{position:relative!important;left:auto!important;top:auto!important}
 .tvx .stk{animation:none}
-.tvx .x-big{zoom:calc(min(var(--tvw),608) / 608)}
+.tvx .x-big{width:100%!important;height:auto!important;box-sizing:border-box!important;padding:26px 22px}
+.tvx .x-bt{position:static!important;width:auto!important}
+.tvx .x-guides{padding-bottom:236px}
+.tvx .x-guides .post{top:auto;bottom:26px}
+.tvx .x-guides .po1{left:calc(50% - 158px)}
+.tvx .x-guides .po2{left:calc(50% - 70px)}
+.tvx .x-guides .po3{left:calc(50% + 18px)}
+.tvx .sd-list{position:static!important;width:auto!important;margin-top:18px}
 .tvx .x-grid{width:100%;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .tvx .x-tile{height:auto;min-height:140px}
 .tvx .s-rev .r-track{position:relative;top:auto;margin-top:34px}
@@ -2446,14 +2476,13 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .c-links{width:100%;grid-template-columns:1fr}
 .tvx .c-link{width:100%}
 .tvx .s-foot .in{display:block}
-.tvx .ft-in{padding:260px 20px 40px!important}
+.tvx .ft-in{padding:80px 28px 32px!important}
 .tvx .ft-head,.tvx .ft-cta{font-size:clamp(64px,19vw,140px)}
 .tvx .ft-sub{margin:24px 0 48px}
 .tvx .ft-grid{grid-template-columns:1fr;gap:28px;margin-bottom:48px}
 .tvx .ft-bot{flex-direction:column;gap:8px}
 .tvx .pp-back{align-self:center}
 .tvx .pp-actions{flex-direction:column;gap:18px}
-.tvx .pp-fan{zoom:calc(min(var(--tvw),540) / 540);height:470px;margin:0 0 36px!important}
 .tvx .pp-facts,.tvx .pp-grid,.tvx .pp-row{width:100%}
 .tvx .pp-facts .pr-facts{grid-template-columns:repeat(2,minmax(0,1fr))}
 .tvx .pp-lbl{align-self:flex-start}
@@ -5456,17 +5485,10 @@ html.touch-ui .project-row.active .p-name {
 
   <!-- ═════════ WEATHER ═════════ -->
   <section class="sec s-wx">
-    <div class="in">
-      <i class="cloud" style="left: 70px; top: 90px; transform: scale(1.4)"></i>
-      <i class="cloud" style="left: 1230px; top: 150px; transform: scale(1.1); animation-duration: 13s"></i>
-      <i class="cloud" style="left: 1150px; top: 700px; transform: scale(1.5); animation-duration: 9s"></i>
-      <div class="c-head">
+    <div class="in"><i class="cloud" style="left: 70px; top: 90px; transform: scale(1.4)"></i><i class="cloud" style="left: 1230px; top: 150px; transform: scale(1.1); animation-duration: 13s"></i><i class="cloud" style="left: 1150px; top: 700px; transform: scale(1.5); animation-duration: 9s"></i><div class="c-head">
         <h2 class="word" style="color: #2774FD; font-size: 104px">WEATHER</h2>
         <p class="tag" style="color: #1C1C1E">Typical weather before. Live forecast during.</p>
-      </div>
-
-      <span class="ph-lbl" style="left: 402px; top: 316px">Before the trip</span>
-      <div class="ip-wrap" style="left: 380px; top: 356px; z-index: 2">
+      </div><div class="duo"><div class="pair"><span class="ph-lbl" style="left: 402px; top: 316px">Before the trip</span><div class="ip-wrap" style="left: 380px; top: 356px; z-index: 2">
         <div class="ip">
           <img loading="lazy" decoding="async" class="ip-map" src="/images/trovelo/shinjuku.jpg" alt="">
           <div class="ip-island"></div>
@@ -5492,10 +5514,7 @@ html.touch-ui .project-row.active .p-name {
             </div>
           </div>
         </div>
-      </div>
-
-      <span class="ph-lbl" style="left: 772px; top: 316px">During the trip</span>
-      <div class="ip-wrap" style="left: 740px; top: 356px; z-index: 2">
+      </div></div><div class="pair"><span class="ph-lbl" style="left: 772px; top: 316px">During the trip</span><div class="ip-wrap" style="left: 740px; top: 356px; z-index: 2">
         <div class="ip">
           <img loading="lazy" decoding="async" class="ip-map" src="/images/trovelo/shinjuku.jpg" alt="">
           <div class="ip-island"></div>
@@ -5526,21 +5545,15 @@ html.touch-ui .project-row.active .p-name {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </div></div></div></div>
   </section>
 
   <!-- ═════════ SHARE ═════════ -->
   <section class="sec s-share">
-    <div class="in">
-      <i class="cloud" style="left: 100px; top: 120px; transform: scale(1.2)"></i>
-      <i class="cloud" style="left: 1220px; top: 90px; transform: scale(1.4); animation-duration: 13s"></i>
-      <div class="c-head">
+    <div class="in"><i class="cloud" style="left: 100px; top: 120px; transform: scale(1.2)"></i><i class="cloud" style="left: 1220px; top: 90px; transform: scale(1.4); animation-duration: 13s"></i><div class="c-head">
         <h2 class="word" style="color: #2774FD; font-size: 104px">SHARE</h2>
         <p class="tag" style="color: #1C1C1E">Invite your crew. Plan the trip together.</p>
-      </div>
-
-      <div class="ip-wrap sh-l">
+      </div><div class="duo"><div class="pair"><div class="ip-wrap sh-l">
         <div class="ip">
           <img loading="lazy" decoding="async" class="ip-map" src="/images/trovelo/shinjuku.jpg" alt="">
           <div class="ip-island"></div>
@@ -5568,9 +5581,7 @@ html.touch-ui .project-row.active .p-name {
           </div>
         </div>
       </div>
-      </div>
-
-      <div class="ip-wrap sh-r">
+      </div></div><div class="pair"><div class="ip-wrap sh-r">
         <div class="ip">
           <img loading="lazy" decoding="async" class="ip-map" src="/images/trovelo/shinjuku.jpg" alt="">
           <div class="ip-island"></div>
@@ -5598,12 +5609,7 @@ html.touch-ui .project-row.active .p-name {
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="stk" style="left: 250px; top: 420px"><span class="av" style="background: #2774FD">E</span><div><b>Edu</b><small>Owner</small></div></div>
-      <div class="stk" style="left: 1010px; top: 330px; animation-duration: 8s"><span class="av" style="background: #C1195B">J</span><div><b>Jen</b><small class="ed">Can edit</small></div></div>
-      <div class="stk" style="left: 1060px; top: 640px; animation-duration: 9s"><span class="av" style="background: #339F89">S</span><div><b>Sam</b><small class="vw">Can view</small></div></div>
-    </div>
+      </div></div></div><div class="stks"><div class="stk" style="left: 250px; top: 420px"><span class="av" style="background: #2774FD">E</span><div><b>Edu</b><small>Owner</small></div></div><div class="stk" style="left: 1010px; top: 330px; animation-duration: 8s"><span class="av" style="background: #C1195B">J</span><div><b>Jen</b><small class="ed">Can edit</small></div></div><div class="stk" style="left: 1060px; top: 640px; animation-duration: 9s"><span class="av" style="background: #339F89">S</span><div><b>Sam</b><small class="vw">Can view</small></div></div></div></div>
   </section>
 
   <!-- ═════════ MORE ═════════ -->
