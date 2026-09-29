@@ -2409,6 +2409,11 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .pf-q summary .sf{color:#2774FD;transition:transform .25s ease}
 .tvx .pf-q[open] summary .sf{transform:rotate(180deg)}
 .tvx .pf-q p{margin:-6px 22px 20px;font-size:16px;font-weight:600;line-height:1.55;color:rgba(28,28,30,.66)}
+.tvx .pf-q ul{margin:-6px 22px 12px;padding:0 0 0 20px;display:flex;flex-direction:column;gap:8px}
+.tvx .pf-q li{font-size:16px;font-weight:600;line-height:1.5;color:rgba(28,28,30,.66)}
+.tvx .pf-q li::marker{color:#2774FD}
+.tvx .pf-q li b{color:#1C1C1E;font-weight:700}
+.tvx .pf-q ul+p{margin-top:4px}
 .tvx,.tvx *,.tvx *::before,.tvx *::after{box-sizing:content-box}
 .tvx{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .tvx img{max-width:none}
@@ -2525,7 +2530,9 @@ html.touch-ui .about-award-item.mini-lit .award-mini { opacity: 1; transform: sc
 .tvx .s-pfaq .in{display:block;padding:10px 0 40px}
 .tvx .pf-head{text-align:center;margin-bottom:24px}
 .tvx .pf-q summary{font-size:17px;padding:18px}
-.tvx .pf-q p{margin:-6px 18px 18px;font-size:15px}}
+.tvx .pf-q p{margin:-6px 18px 18px;font-size:15px}
+.tvx .pf-q ul{margin:-6px 18px 12px}
+.tvx .pf-q li{font-size:15px}}
 @media (prefers-reduced-motion: reduce){.tvx .cloud,.tvx .w-med,.tvx .w-small,.tvx .watch,.tvx .m-call,.tvx .s-medal,.tvx .stk,.tvx .s-pulse,.tvx .ex-bars i,.tvx .sa-caret,.tvx .ai-caret,.tvx .c-caret{animation:none!important}
 .tvx .r-track{animation:none!important}
 .tvx .s-rev{overflow-x:auto}}
@@ -5876,7 +5883,7 @@ html.touch-ui .project-row.active .p-name {
       <div class="pf-list">
         <details class="pf-q" open>
           <summary>What is Trovelo?<i class="sf sf-chevron-down s20"></i></summary>
-          <p>A travel planner for iPhone, iPad and Mac. You type your plans the way you’d text a friend, and they land on the right day, at the right time, with the cost in your own currency.</p>
+          <p>Trovelo solves the chaos of planning a trip across a handful of apps. Most people juggle Notes, Google Maps, spreadsheets and booking emails; Trovelo puts everything in one place, organised day by day, on iPhone, iPad and Mac. It’s built by a solo traveller who has been to more than 40 countries and 300 cities.</p>
         </details>
         <details class="pf-q">
           <summary>Who makes it?<i class="sf sf-chevron-down s20"></i></summary>
@@ -5896,7 +5903,20 @@ html.touch-ui .project-row.active .p-name {
         </details>
         <details class="pf-q">
           <summary>What makes it different?<i class="sf sf-chevron-down s20"></i></summary>
-          <p>You type instead of filling in forms. Everything sits on one board, day by day, with the map, expenses in two currencies, the weather, widgets and a Live Activity on the Lock Screen.</p>
+          <ul>
+            <li><b>No servers of its own.</b> Your trips are not stored with us; they sync through your own iCloud.</li>
+            <li><b>No account, no subscription.</b> Pro is a one-time purchase.</li>
+            <li><b>Native on iPhone, iPad and Mac.</b> The same trip, on the same board, everywhere.</li>
+            <li><b>13 languages, end to end.</b> Type “Cena en Casa Lucio 21:30 45€”, or the same in Japanese, Korean or Chinese, and Trovelo picks up the time, the price and the kind of place.</li>
+            <li><b>AI on the Mac (Pro).</b> Ask Claude to “plan me 4 days in Rome” and watch the trip build itself inside Trovelo.</li>
+            <li><b>Shared trips.</b> Invite the people travelling with you and plan on the same board.</li>
+            <li><b>Your travel life.</b> A map of every country and city you’ve been to, built from your own photos, with stamps and a year-by-year timeline.</li>
+            <li><b>Someday.</b> Save the places you love now and turn them into a real trip later.</li>
+            <li><b>A packing list</b> that checks the forecast and the plug type where you’re going.</li>
+            <li><b>A daily pace</b> that tells you when a day is already too full.</li>
+            <li><b>Expenses in two currencies</b> with live exchange rates, plus widgets, Live Activities and offline access to the essentials.</li>
+          </ul>
+          <p>Much of this started as a suggestion from someone using the app, on r/trovelo.</p>
         </details>
         <details class="pf-q">
           <summary>Which languages is it in?<i class="sf sf-chevron-down s20"></i></summary>
