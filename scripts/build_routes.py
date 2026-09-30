@@ -36,8 +36,8 @@ PAGES = [
     {"route": "/about", "dir": "about", "type": "AboutPage"},
     {"route": "/contact", "dir": "contact", "type": "ContactPage"},
     {"route": "/privacy", "dir": "privacy", "type": "WebPage", "policy": "site"},
-    {"route": "/trovelo", "dir": "trovelo", "app": "Trovelo"},
-    {"route": "/trovelo/press", "dir": "trovelo/press", "type": "WebPage", "crumb": "Trovelo"},
+    {"route": "/trovelo", "dir": "trovelo", "app": "Trovelo", "app_store_id": "6760258252"},
+    {"route": "/trovelo/press", "dir": "trovelo/press", "type": "WebPage", "crumb": "Trovelo", "app_store_id": "6760258252"},
     {"route": "/dimmly", "dir": "dimmly", "app": "Dimmly"},
     {"route": "/percha", "dir": "percha", "app": "Percha"},
     {"route": "/solid", "dir": "solid", "app": "Solid"},
@@ -207,6 +207,14 @@ for page in PAGES:
     if page.get("policy"):
         doc = must_replace(doc, "<!-- Policy text injected by build_routes.py -->",
                            render_policy(page["policy"]))
+
+    # Safari on iPhone shows the App Store's own banner (Get / Open) at the top
+    # of the app's pages. Only these pages: the home and the other apps keep
+    # their plain head.
+    if page.get("app_store_id"):
+        doc = must_replace(doc, '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+                           '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+                           '<meta name="apple-itunes-app" content="app-id=' + page["app_store_id"] + '">')
 
     # Page-specific JSON-LD (breadcrumb + main entity), alongside the site graph.
     ld = ('<script type="application/ld+json">\n'
