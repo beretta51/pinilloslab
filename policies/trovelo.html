@@ -24,6 +24,7 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <li>Trips: names, destinations, dates, colors, cover photos</li>
 <li>Itinerary cards: titles, notes, times, categories, places (names, addresses, coordinates), links, phone numbers, booking references, seat numbers, and door or access codes you choose to save</li>
 <li>Expenses: amounts, currencies, and what they were for — including payments you log by voice or through a Shortcuts or Wallet automation you set up yourself (the amount and the merchant name that Apple passes to Trovelo)</li>
+<li>A trip's group pot, if you start one (Expenses → Group): the names of the people in it — including names you type in for people who don't use Trovelo — and, for each group expense, what it was for, its amount and day, who paid and how it was split, plus the payments you mark as made between people. You enter these names yourself; Trovelo does not contact those people</li>
 <li>Flight and train details: flight numbers, airports, stations, times, terminals, gates</li>
 <li>Packing lists and templates</li>
 <li>Visited places ("Spots"): countries and cities you mark or that are suggested from your photo library (see Section 9)</li>
@@ -63,7 +64,7 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <p>You should understand clearly:</p>
 <ul>
 <li>The feature is <strong>off by default</strong> and requires your explicit activation and acknowledgement.</li>
-<li>Once you connect an AI client, <strong>anything it reads through the connection — trip names, places, dates, notes, prices, booking and flight details, stay door codes, visited spots, and saved Someday places — becomes part of your conversation with that AI assistant</strong> and is processed under that provider's privacy policy (for Claude, <a href="https://www.anthropic.com/legal/privacy">Anthropic's Privacy Policy</a>; for other assistants, the policy of their provider). The AI provider you connect acts as an independent controller of that data.</li>
+<li>Once you connect an AI client, <strong>anything it reads through the connection — trip names, places, dates, notes, prices, a trip's group pot (the names of the people in it, its expenses and balances), booking and flight details, stay door codes, visited spots, and saved Someday places — becomes part of your conversation with that AI assistant</strong> and is processed under that provider's privacy policy (for Claude, <a href="https://www.anthropic.com/legal/privacy">Anthropic's Privacy Policy</a>; for other assistants, the policy of their provider). The AI provider you connect acts as an independent controller of that data.</li>
 <li>Unless you choose <strong>view-only</strong>, the assistant can also add, change, or delete trips, cards, and spots when you ask it to.</li>
 <li>You can restrict the connection to view-only, rotate the access token, or turn the feature off at any time in Settings.</li>
 <li>Do not connect an AI client if your trips contain information you do not want processed by that provider.</li>
@@ -77,8 +78,9 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <li>The trip's name, destination, dates, currency, and cover picture.</li>
 <li>Every card on the plan, with what is saved on it — titles, notes, times, places and addresses, prices, links, phone numbers, flight and train details, booking references, seat numbers, and door or access codes.</li>
 <li>The list of people on the trip, shown by their iCloud name, or otherwise by their email address or phone number.</li>
+<li>The trip's group pot, if someone in the trip starts one: the names of the people in it — including names typed in for people who don't use Trovelo — each group expense (what it was for, its amount and day, who paid and how it was split), and the payments marked as made. Everyone in the trip sees it, including people who can only view; only people who can edit can add to it or change it. So that every device can tell who is who, the pot keeps each participant's iCloud user identifier, which CloudKit already makes available to the people in a shared trip.</li>
 </ul>
-<p>What stays with each person and is not shared: your home address and the "Leaving home" / "Back home" cards, your packing list, your documents and attachments, photos you added to cards from your own library, the expenses you log, and your visited places. Apple receives the shared trip's content and the participants' iCloud identities in order to provide iCloud sharing, under its own privacy policy.</p>
+<p>What stays with each person and is not shared: your home address and the "Leaving home" / "Back home" cards, your packing list, your documents and attachments, photos you added to cards from your own library, the expenses you log as "Just me", and your visited places. Apple receives the shared trip's content and the participants' iCloud identities in order to provide iCloud sharing, under its own privacy policy.</p>
 <p>You can change someone's permission, remove a person, or stop sharing at any time, and a guest can leave a trip. This ends future updates; people who have already received the trip may keep the copy on their devices, as with anything you send to someone. Invite only people you trust, and consider what a trip contains — such as door codes or booking references — before sharing it.</p>
 <p>Earlier versions of Trovelo could create a read-only link to a trip. That link has been retired: on iPhone, Trovelo closes any such links you created when you open the updated app. A copy someone already received through one of those links stays with them but no longer updates.</p>
 <p>You can also export trips — as Trovelo files, a PDF travel guide, images, or videos — and, on iPhone, save a full backup file of your data. These files are created on your device and go only where you send them. A backup contains everything, including your documents and home address, so store it with care. Once you export or share something outside the app, its further distribution is under your control, not Trovelo's.</p>
@@ -120,6 +122,7 @@ Contact: <strong>nocion.exento_8u@icloud.com</strong></p>
 <li><strong>Delete iCloud data</strong> in System Settings › [your name] › iCloud › Manage Account Storage › Trovelo, or by deleting your trips in-app before removing the app (deletions sync).</li>
 <li><strong>Remove the Trovelo calendar</strong> by turning off <strong>Show Trips in Calendar</strong>, or by deleting the calendar in the Calendar app.</li>
 <li><strong>Stop sharing</strong> a trip, or remove a person from it, on the trip's sharing screen. People who already received the trip may keep their copy (Section 7).</li>
+<li><strong>Delete group expenses and payments</strong> in Expenses → Group. On a shared trip this deletes them for everyone in it; people who left the trip earlier keep the copy they had.</li>
 <li>Data you shared with an AI provider (Section 6) is governed by that provider's retention rules and deletion tools.</li>
 </ul>
 
