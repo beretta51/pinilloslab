@@ -36,8 +36,6 @@ PAGES = [
     {"route": "/about", "dir": "about", "type": "AboutPage"},
     {"route": "/contact", "dir": "contact", "type": "ContactPage"},
     {"route": "/privacy", "dir": "privacy", "type": "WebPage", "policy": "site"},
-    {"route": "/trovelo", "dir": "trovelo", "app": "Trovelo", "app_store_id": "6760258252"},
-    {"route": "/trovelo/press", "dir": "trovelo/press", "type": "WebPage", "crumb": "Trovelo", "app_store_id": "6760258252"},
     {"route": "/dimmly", "dir": "dimmly", "app": "Dimmly"},
     {"route": "/percha", "dir": "percha", "app": "Percha"},
     {"route": "/solid", "dir": "solid", "app": "Solid"},
@@ -46,7 +44,6 @@ PAGES = [
     {"route": "/dummo", "dir": "dummo", "app": "Dummo"},
     {"route": "/takekit", "dir": "takekit", "app": "TakeKit"},
     {"route": "/dimmly/privacy", "dir": "dimmly/privacy", "type": "WebPage", "crumb": "Dimmly", "policy": "dimmly"},
-    {"route": "/trovelo/privacy", "dir": "trovelo/privacy", "type": "WebPage", "crumb": "Trovelo", "policy": "trovelo"},
     {"route": "/dummo/privacy", "dir": "dummo/privacy", "type": "WebPage", "crumb": "Dummo", "policy": "dummo"},
     {"route": "/percha/privacy", "dir": "percha/privacy", "type": "WebPage", "crumb": "Percha", "policy": "percha"},
     {"route": "/solid/privacy", "dir": "solid/privacy", "type": "WebPage", "crumb": "Solid", "policy": "solid"},
@@ -227,4 +224,42 @@ for page in PAGES:
     (out_dir / "index.html").write_text(doc, encoding="utf-8")
     print("✓ " + page["dir"] + "/index.html  ←  " + meta["title"])
 
-print("\nDone. %d routes prerendered." % len(PAGES))
+
+# ─── Trovelo moved to troveloapp.com (1 Nov 2026) ─────────────────────────
+# Its old addresses stay alive as forwarders, so links in old mails, posts
+# and app versions still land on the right page. The Trovelo Publisher pages
+# and the TikTok file under trovelo/ are real pages and stay as they are.
+REDIRECTS = {
+    "trovelo": "https://troveloapp.com/",
+    "trovelo/press": "https://troveloapp.com/press/",
+    "trovelo/privacy": "https://troveloapp.com/privacy/",
+    "trovelo/support": "https://troveloapp.com/support/",
+    "trovelo/help": "https://troveloapp.com/help/",
+    "trovelo/help/add-places-to-your-days": "https://troveloapp.com/help/add-places-to-your-days/",
+}
+# Pinterest checks its tag on pinilloslab.com/trovelo/.
+EXTRA_HEAD = {
+    "trovelo": '<meta name="p:domain_verify" content="7396fc109f5ed8aafdc524c564dbf98c"/>\n',
+}
+FORWARDER = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trovelo has moved to troveloapp.com</title>
+<link rel="canonical" href="{to}">
+<meta http-equiv="refresh" content="0; url={to}">
+{extra}<script>location.replace("{to}" + location.search + location.hash);</script>
+</head>
+<body>
+<p>Trovelo now lives at <a href="{to}">{to}</a>.</p>
+</body>
+</html>
+"""
+for d, to in REDIRECTS.items():
+    out_dir = ROOT / d
+    out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "index.html").write_text(FORWARDER.format(to=to, extra=EXTRA_HEAD.get(d, "")), encoding="utf-8")
+    print("→ " + d + "/index.html  →  " + to)
+
+print("\nDone. %d routes prerendered, %d forwarders." % (len(PAGES), len(REDIRECTS)))

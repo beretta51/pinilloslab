@@ -17,6 +17,13 @@
   // here. Pass the original path to index.html via the `p` query param so the
   // client-side router can restore it with history.replaceState.
   (function () {
+    // Trovelo moved to troveloapp.com: unknown /trovelo/… addresses go there
+    // (its Publisher pages stay here and are real files, so they never land here).
+    var t = window.location.pathname.match(/^\/trovelo(\/.*)?$/);
+    if (t) {
+      window.location.replace('https://troveloapp.com' + (t[1] || '/') + window.location.search + window.location.hash);
+      return;
+    }
     var path = window.location.pathname + window.location.search + window.location.hash;
     if (path === '/' || path === '') return;
     // `path` ya lleva el search dentro y va codificado entero, asi que el
