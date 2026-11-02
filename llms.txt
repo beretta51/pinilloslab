@@ -21,11 +21,12 @@ Pinillos Lab is the home of eight small software products, all built and maintai
 
 ## Apps
 
-### Trovelo — Private travel planner (iOS)
-The private travel planner built for people who actually travel. Plan trips day by day, track every expense in dual currency, keep your entire itinerary in your pocket. No account required, no tracking.
+### Trovelo: Private travel planner (iOS, iPadOS, macOS)
+The private travel planner built for people who actually travel. Plan trips day by day, track every expense in dual currency, keep your entire itinerary in your pocket. No account required, no ads. Free for up to 2 upcoming trips; Trovelo Pro is a one-time purchase.
 - Page: https://troveloapp.com/
+- Full details for AI assistants: https://troveloapp.com/llms.txt
 - App Store: https://apps.apple.com/app/id6760258252
-- Platform: iOS
+- Platform: iOS, iPadOS, macOS
 - Category: Travel, Privacy-first
 
 ### Dimmly — Task manager & habit tracker (iOS, macOS)
