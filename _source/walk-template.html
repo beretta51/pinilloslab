@@ -85,6 +85,18 @@ body.mo .ctas>*{pointer-events:none}
 .rail .strip{position:relative;height:100%;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:0 calc(50% - 34px)}
 .rail button{all:unset;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;border-radius:99px;color:var(--soft)}
 .rail button.on{background:var(--ink);color:var(--paper);font-weight:700}
+/* on a phone (any touch screen): an arrow at each end of the rail, to the stop before and the stop after; the way on is the yellow one */
+.railrow{display:flex;align-items:center;gap:8px;max-width:1200px;width:100%;margin:0 auto}
+.railrow .rail{flex:1;min-width:0;width:auto;margin:0}
+.arw{all:unset;box-sizing:border-box;display:none;pointer-events:auto;cursor:pointer;flex:none;width:40px;height:40px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);place-items:center;font:700 17px var(--display);-webkit-tap-highlight-color:transparent;transition:opacity .2s,background-color .2s}
+.arw.nx{background:var(--hot)}
+.arw:disabled{opacity:.38;background:var(--paper);cursor:default}
+.arw:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
+@media (max-width:820px),(pointer:coarse){.arw{display:grid}}
+.arw.nx.nudge:not(:disabled){animation:nudge 1.7s ease-in-out infinite}
+@keyframes nudge{0%,55%,100%{transform:none}28%{transform:translateX(5px)}}
+@media (prefers-reduced-motion:reduce){.arw.nx.nudge{animation:none}}
+body.mo .arw{opacity:0;pointer-events:none}
 #nogl[hidden]{display:none}
 #nogl{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;color:var(--paper);text-align:center}
 </style>
@@ -105,7 +117,7 @@ body.mo .ctas>*{pointer-events:none}
 <div class="ui">
   <div class="nav"><span class="brand">Pinillos <i>LAB</i></span><button class="mbtn" id="mbtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button></div>
   <div class="ctas" id="ctas"></div>
-  <nav class="rail" aria-label="Stops"><div class="rscroll" id="rscroll"><div class="strip" id="strip"></div></div></nav>
+  <div class="railrow"><button class="arw" id="prev" type="button" aria-label="Previous stop">←</button><nav class="rail" aria-label="Stops"><div class="rscroll" id="rscroll"><div class="strip" id="strip"></div></div></nav><button class="arw nx" id="next" type="button" aria-label="Next stop">→</button></div>
 </div>
 <div id="nogl" hidden>This browser could not start the 3D graphics.</div><!--__STATIC__-->
 
@@ -502,6 +514,9 @@ rail();
 function setWorld(k){WORLD=k;ST=k==='about'?ABOUT:HOME;build();rail();cur=-1}
 function go(k){if(tr||menuOpen)return;touch(performance.now());if(k==='about'||k==='home'){if(k!==WORLD)tr={to:k,t:0,sw:false,lift:WORLD==='about'&&k==='home'}}else if(k==='end')goal=maxX();else if(k==='hi')goal=0}
 window.__go=go;
+/* the rail's arrows: one stop back, one stop on. The yellow one beckons until he has moved for the first time */
+const prevB=$('#prev'),nextB=$('#next');let seen=0;nextB.classList.add('nudge');
+const step=d=>{if(tr||menuOpen)return;goal=stopX(clamp(Math.round(goal/PW)+d,0,ST.length-1));touch(performance.now())};prevB.onclick=()=>step(-1);nextB.onclick=()=>step(1);
 strip.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||tr||menuOpen)return;if(b.dataset.go)return go(b.dataset.go);goal=+b.dataset.i*PW;touch(performance.now())});
 const setMore=on=>{const m=ctas.querySelector('.more'),b=ctas.querySelector('[data-more]');if(!m||m.classList.contains('on')===on)return;m.classList.toggle('on',on);b.setAttribute('aria-expanded',on)};
 ctas.addEventListener('click',e=>{if(e.target.closest('[data-more]')){setMore(!ctas.querySelector('.more').classList.contains('on'));return}const b=e.target.closest('[data-go]');if(b){setMore(false);go(b.dataset.go)}else if(e.target.closest('.more a'))setMore(false)});
@@ -544,7 +559,7 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  const idx=clamp(Math.round(X/PW),0,n-1),s=ST[idx],off=Math.abs(X-stopX(idx));camO+=(stopX(idx)-idx*PW-camO)*Math.min(1,dt*4);still=(off<.3&&sp<.14)?still+dt:0;
  act+=((still>.28?1:0)-act)*Math.min(1,dt*5);zone+=((off<PW*.42?1:0)-zone)*Math.min(1,dt*6);
  const ft=sp>.16?Math.sign(vx)*(1.04-.8*sk):(still>.12?0:face);face+=(ft-face)*Math.min(1,dt*8);
- if(idx!==cur){cur=idx;tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];rsc.scrollTo({left:b.offsetLeft+b.offsetWidth/2-rsc.clientWidth/2,behavior:railSet?'smooth':'auto'});railSet=true;
+ if(idx!==cur){cur=idx;prevB.disabled=idx===0;nextB.disabled=idx===n-1;if(seen++===1)nextB.classList.remove('nudge');tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];rsc.scrollTo({left:b.offsetLeft+b.offsetWidth/2-rsc.clientWidth/2,behavior:railSet?'smooth':'auto'});railSet=true;
   scene.background=C(s.c);const L=s.ctas||(s.app?[s.u?{t:'Get '+s.big+' on the App Store ↗',u:s.u}:{t:s.big+' · coming soon'}]:[]);
   ctas.innerHTML=L.map(c=>c.u?'<a href="'+c.u+'" target="_blank" rel="noopener"'+(c.alt?' class="alt"':'')+'>'+c.t+'</a>':c.go?'<button type="button" data-go="'+c.go+'"'+(c.alt?' class="alt"':'')+'>'+c.t+'</button>':'<span>'+c.t+'</span>').join('')
    +(s.app&&s.k?'<button type="button" class="alt" data-more aria-expanded="false" aria-controls="more" aria-label="More links for '+s.big+'"><b class="w">More</b><b class="d">•••</b></button><div class="more" id="more">'
