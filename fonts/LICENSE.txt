@@ -10,8 +10,18 @@ All typefaces on this site are licensed under the SIL Open Font License 1.1
   (https://github.com/JetBrains/JetBrainsMono)
 - Instrument Serif — Copyright 2022 The Instrument Serif Project Authors
   (https://github.com/Instrument/instrument-serif)
-- Gasoek One — Copyright 2022 The Gasoek Project Authors
-  (https://github.com/JAMO-TYPEFACE/Gasoek) — Latin subset
+- Anton — Copyright 2020 The Anton Project Authors
+  (https://github.com/googlefonts/AntonFont.git) — Latin subset
+- Archivo — Copyright 2020 The Archivo Project Authors
+  (https://github.com/Omnibus-Type/Archivo) — Latin subset
+- Space Mono — Copyright 2016 The Space Mono Project Authors
+  (https://github.com/googlefonts/spacemono) — Latin subset
+- Changa One — Copyright (c) 2011, Eduardo Tunni (http://www.tipo.net.ar),
+  with Reserved Font Name "Changa" — Latin subset
+- Space Grotesk — Copyright 2020 The Space Grotesk Project Authors
+  (https://github.com/floriankarsten/space-grotesk) — Latin subset
+- IBM Plex Mono — Copyright © 2017 IBM Corp. with Reserved Font Name "Plex"
+  — Latin subset
 
 -----------------------------------------------------------------------
 

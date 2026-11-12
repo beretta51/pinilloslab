@@ -13,9 +13,7 @@
   a { color: #0A0A0A; text-decoration: underline; }
 </style>
 <script>
-  // SPA fallback for GitHub Pages: any path that isn't a real file gets routed
-  // here. Pass the original path to index.html via the `p` query param so the
-  // client-side router can restore it with history.replaceState.
+  // GitHub Pages shows this page for any address that isn't a real file.
   (function () {
     // Trovelo moved to troveloapp.com: unknown /trovelo/… addresses go there
     // (its Publisher pages stay here and are real files, so they never land here).
@@ -24,12 +22,11 @@
       window.location.replace('https://troveloapp.com' + (t[1] || '/') + window.location.search + window.location.hash);
       return;
     }
-    var path = window.location.pathname + window.location.search + window.location.hash;
-    if (path === '/' || path === '') return;
-    // `path` ya lleva el search dentro y va codificado entero, asi que el
-    // separador es siempre '?': con '&' salia "/&p=..." y location.search
-    // quedaba vacio, perdiendo la ruta original.
-    window.location.replace('/?p=' + encodeURIComponent(path));
+    // Everything else: an address that starts with a room's name goes to that room of the walk
+    // (/dimmly/whatever → /#dimmly); anything unknown goes home.
+    var seg = window.location.pathname.split('/')[1] || '';
+    var rooms = ['dimmly', 'percha', 'solid', 'gridborne', 'dummo', 'takekit', 'about', 'contact'];
+    window.location.replace(rooms.indexOf(seg) >= 0 ? '/#' + seg : '/');
   })();
 </script>
 </head>

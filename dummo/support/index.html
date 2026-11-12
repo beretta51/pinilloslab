@@ -1,279 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dummo — Support</title>
-<meta name="description" content="Dummo support. Get help with importing recordings, Dummo Pro, iCloud sync, and connecting Claude on Mac.">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dummo · Support · Pinillos Lab</title><meta name="description" content="Help and support for Dummo, an app by Pinillos Lab.">
 <link rel="canonical" href="https://pinilloslab.com/dummo/support/">
-<style>
-/* Bricolage Grotesque · latin-ext */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Bricolage Grotesque · latin */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Instrument Serif italic · latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Instrument Serif italic · latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* JetBrains Mono · latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* JetBrains Mono · latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-:root {
-  --yellow: #F1F332;
-  --black: #000;
-  --paper: #F2EFE6;
-  --paper-dark: #E8E4D6;
-  --ink: #0A0A0A;
-  --ink-soft: #6E6E6E;
-  --display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  width: 100%;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--display);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-a { color: inherit; text-decoration: none; }
-::selection { background: var(--yellow); color: var(--black); }
-
-.app-hero {
-  padding: 120px 28px 40px;
-  position: relative;
-  max-width: 872px;
-  margin: 0 auto;
-}
-@media (min-width: 768px) { .app-hero { padding: 160px 56px 60px; } }
-
-.privacy-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  text-decoration: none;
-  margin-bottom: 24px;
-  padding: 8px 14px 8px 10px;
-  background: var(--paper-dark);
-  border-radius: 999px;
-  transition: background 0.3s, color 0.3s, padding 0.3s var(--ease-out-expo);
-}
-.privacy-back:hover {
-  background: var(--ink);
-  color: var(--paper);
-  padding-left: 16px;
-}
-.privacy-back svg { transition: transform 0.3s var(--ease-out-expo); }
-.privacy-back:hover svg { transform: translateX(-2px); }
-
-.app-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-}
-.app-name {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(72px, 16vw, 200px);
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  margin-bottom: 24px;
-  font-variation-settings: "opsz" 96;
-}
-.app-name em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-
-.privacy-body {
-  padding: 0 28px 80px;
-  max-width: 760px;
-  margin: 0 auto;
-  font-family: var(--display);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-@media (min-width: 768px) { .privacy-body { padding: 0 56px 120px; } }
-.privacy-body section { display: flex; flex-direction: column; gap: 10px; }
-.privacy-body h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 4px;
-}
-.privacy-body p { font-size: 17px; line-height: 1.55; }
-.privacy-body ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0;
-}
-.privacy-body ul li {
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.5;
-}
-.privacy-body ul li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--ink-soft);
-}
-.privacy-body strong { font-weight: 700; }
-.privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.privacy-body a:hover { color: var(--ink-soft); }
-.privacy-body a.reddit-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  max-width: 480px;
-  margin: 8px 0 4px;
-  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
-}
-.privacy-body a.reddit-cta:hover { background: var(--ink); color: var(--yellow); }
-.privacy-body a.reddit-cta .arr { font-family: var(--mono); }
-@media (max-width: 767px) {
-  .privacy-body a.reddit-cta { padding: 17px 20px; font-size: 15px; }
-}
-.privacy-body .privacy-updated {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--paper-dark);
-  padding-top: 16px;
-  margin-top: 8px;
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/images/pinilloslab-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pinillos Lab">
+<meta property="og:url" content="https://pinilloslab.com/dummo/support/">
+<meta property="og:title" content="Dummo · Support · Pinillos Lab">
+<meta property="og:description" content="Help and support for Dummo, an app by Pinillos Lab.">
+<meta property="og:image" content="https://pinilloslab.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Dummo · Support · Pinillos Lab", "url": "https://pinilloslab.com/dummo/support/", "inLanguage": "en", "isPartOf": {"@id": "https://pinilloslab.com/#website"}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Pinillos Lab", "item": "https://pinilloslab.com/"}, {"@type": "ListItem", "position": 2, "name": "Dummo", "item": "https://pinilloslab.com/dummo/"}, {"@type": "ListItem", "position": 3, "name": "Support", "item": "https://pinilloslab.com/dummo/support/"}]}}</script>
+<style>/* the site's own typefaces, served from this domain (see fonts/LICENSE.txt); nothing is fetched from anyone else */
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+:root{--app:#8E6BFF;--on:#FFFFFF}
+/* Privacy and Support, in the walk's look: the app's room colour, the title as on its wall, the words on paper */
+:root{--ink:#0B0B10;--paper:#F4F1E8;--hot:#E4FF3A;--display:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}html,body{margin:0}
+body{font-family:var(--display);color:var(--ink);background:var(--app);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.55'/></svg>")}
+/* the walk's top bar */
+.nav{position:sticky;top:calc(14px + env(safe-area-inset-top,0px));z-index:5;margin:14px 20px 0;height:52px;border-radius:99px;color:var(--ink);background:var(--paper);box-shadow:0 0 0 1.5px var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 22px}
+.brand{font-weight:800;font-size:19px;letter-spacing:-.3px;text-decoration:none}
+.brand i{font:700 10px var(--mono);font-style:normal;background:var(--hot);padding:3px 6px;border-radius:4px;margin-left:6px;letter-spacing:1px;vertical-align:2px}
+.mbtn{font:700 11px var(--mono);letter-spacing:2px;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:99px;text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;line-height:1.2;padding:11px 18px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);text-decoration:none}
+.pill.k{background:var(--ink);color:var(--paper);box-shadow:0 0 0 1.5px var(--paper)}
+.pill.h{background:var(--hot);box-shadow:none}
+.pill:hover,.pill:focus-visible{background:var(--hot);color:var(--ink)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* two columns: the title stays put at the left while the paper scrolls at the right */
+.wrap{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.25fr);gap:44px;padding:44px 56px 90px;align-items:start;max-width:1500px;margin:0 auto}
+.side{position:sticky;top:96px;color:var(--on)}
+.t1{font-weight:800;font-size:clamp(64px,8.6vw,124px);letter-spacing:-.045em;line-height:.86;margin:30px 0 0}
+.t2{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:.9em;letter-spacing:-.01em;line-height:.92}
+.icon{display:block;width:74px;height:74px;margin:34px 0 0 6px;border-radius:19px;box-shadow:0 0 0 1.5px var(--ink),5px 6px 0 rgba(11,11,16,.9);transform:rotate(-7deg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+.sheet{background:var(--paper);color:var(--ink);border-radius:34px;box-shadow:0 0 0 1.5px var(--ink),10px 12px 0 rgba(11,11,16,.9);padding:38px 42px}
+.lab,.sheet .lab{font:700 11px/1.4 var(--mono);letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}.sheet .lab.dim{opacity:.55;margin-bottom:0}
+.sheet p,.sheet li{font-size:17px;line-height:1.52;margin:0}.sheet p+p,.sheet p+ul,.sheet ul+p,.sheet p+ol,.sheet p+.pill,.sheet .pill+p{margin-top:12px}
+.sheet ul,.sheet ol{margin:0;padding-left:20px}.sheet li+li{margin-top:6px}
+.sheet a:not(.pill){text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
+.sheet code{font:400 .86em var(--mono);background:rgba(11,11,16,.08);padding:1px 5px;border-radius:5px}
+.main,.sheet{min-width:0}
+.tw{overflow-x:auto;margin-top:14px;-webkit-overflow-scrolling:touch}
+.sheet table{width:100%;min-width:520px;border-collapse:collapse}
+.sheet th,.sheet td{text-align:left;vertical-align:top;font-size:14.5px;line-height:1.45;padding:11px 16px 11px 0;border-top:1.5px solid rgba(11,11,16,.14)}
+.sheet th{font:700 10px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;border-top:0;padding-top:0}
+.privacy .sheet section{margin-top:28px;padding-top:26px;border-top:1.5px solid rgba(11,11,16,.14)}
+/* Support: cards in two columns; the first one, how to reach him, across the top in ink */
+.cards{columns:2;column-gap:18px}
+.card{break-inside:avoid;margin:0 0 18px;padding:26px 28px;border-radius:28px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+.card p,.card li{font-size:16px}
+.card.dark{column-span:all;background:var(--ink);color:var(--paper);padding:30px 32px}.card.dark .lab{color:var(--hot)}.card.dark p{font-size:17px}
+@media(max-width:820px){
+ .nav{margin:12px 12px 0}
+ .wrap{grid-template-columns:minmax(0,1fr);gap:30px;padding:26px 16px calc(60px + env(safe-area-inset-bottom,0px))}
+ .side{position:static;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:end}
+ .side>.pill{justify-self:start;grid-column:1/-1}
+ .t1{font-size:clamp(58px,19vw,96px);margin-top:22px}
+ .icon{margin:0 6px 10px 0;width:62px;height:62px;border-radius:16px}
+ .row{grid-column:1/-1;margin-top:22px}
+ .sheet{padding:26px 22px;border-radius:26px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+ .sheet p,.sheet li{font-size:16px}
+ .cards{columns:1}.card{padding:22px 20px;border-radius:24px}.card.dark{padding:24px 22px}
 }
 
-@media (max-width: 767px) {
-  .app-hero { padding: 100px 22px 32px; }
-  .app-num { font-size: 10px; margin-bottom: 12px; }
-  .app-name { font-size: clamp(48px, 14vw, 72px); margin-bottom: 18px; word-break: keep-all; overflow-wrap: normal; hyphens: none; }
-  .app-name em { font-size: 0.55em; }
-  .privacy-back { font-size: 10px; padding: 7px 12px 7px 8px; margin-bottom: 18px; }
-}
-</style>
-</head>
-<body>
-<div class="app-hero">
-  <a href="/dummo/" class="privacy-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <span>Back to Dummo</span>
-  </a>
-  <div class="app-num">— Support · Dummo</div>
-  <h1 class="app-name">Support<br><em>center</em></h1>
-</div>
-
-<div class="privacy-body">
-  <section>
-    <h3>Need help?</h3>
-    <p><strong>Reddit is the best way to reach me.</strong> <strong>r/dummoapp</strong> is where I talk with the people who use my apps every day — questions, bugs, ideas, anything — and it's where I answer fastest.</p>
-    <a class="reddit-cta" href="https://www.reddit.com/r/dummoapp/" target="_blank" rel="noopener"><span>Write to me on r/dummoapp</span><span class="arr">&#8599;</span></a>
-    <p>You can also message me directly at <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">u/beretta51</a>, or email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Dummo is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
-  </section>
-
-  <section>
-    <h3>Getting started</h3>
-    <ul>
-      <li><strong>Import a recording.</strong> Make a screen recording on your iPhone or Mac, then drop it into a new Dummo project. Dummo does not record your screen itself — it works on the clips you bring in.</li>
-      <li><strong>Dress it up.</strong> Wrap it in an iPhone, iPad, or MacBook frame over any color, gradient, or image; add tap indicators, text, stickers, and auto-zoom.</li>
-      <li><strong>Export.</strong> Pick a preset (App Store preview, Reel, Story, or a standard ratio) and export. On iPhone you can save straight to Photos.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Dummo Pro</h3>
-    <p>Dummo is free. A one-time <strong>Dummo Pro</strong> purchase unlocks custom stickers, fonts, colors and gradients, connecting Claude on Mac, and watermark-free exports. Purchases are tied to your Apple Account — one purchase unlocks Pro on your Mac and iPhone. Use <em>Restore Purchases</em> in Settings if Pro doesn't show up on a new device, and <em>Redeem Code</em> if you have a promo code.</p>
-  </section>
-
-  <section>
-    <h3>iCloud sync</h3>
-    <p>Your projects, backgrounds, stickers, and fonts sync across your devices through your own private iCloud account whenever you're signed in to iCloud. There's nothing to configure. If something looks out of date, open Settings and tap <em>Sync now</em>.</p>
-  </section>
-
-  <section>
-    <h3>Editing with Claude (Mac)</h3>
-    <p>On the Mac, Dummo Pro can let Claude read and edit your open project through a local connection on your own machine. It’s off by default and you turn it on in Settings › Claude. To learn what it can access, see the <a href="/dummo/privacy/">Privacy Policy</a>.</p>
-  </section>
-
-  <section>
-    <h3>Privacy</h3>
-    <p>Dummo has no servers and collects no personal data. Read the full <a href="/dummo/privacy/">Dummo Privacy Policy</a>.</p>
-  </section>
-
-  <p class="privacy-updated">Dummo · <a href="/">pinilloslab.com</a></p>
-</div>
-</body>
-</html>
+.app .t1{font-size:clamp(50px,6.2vw,94px)}.app .t2{font-size:.62em;line-height:1.05;margin-top:.12em}.sheet h2.big{font:800 26px/1.15 var(--display);letter-spacing:-.02em;text-transform:none;margin:0 0 10px}</style></head>
+<body class="support">
+<div class="grain" aria-hidden="true"></div>
+<header class="nav"><a class="brand" href="/">Pinillos <i>LAB</i></a><a class="mbtn" href="/#menu">MENU</a></header>
+<main class="wrap">
+ <aside class="side">
+  <a class="pill" href="/#dummo">← Dummo</a>
+  <h1 class="t1">Support<span class="t2">center</span></h1>
+  <img class="icon" src="data:image/jpeg;base64,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" alt="" width="74" height="74">
+  <div class="row"><a class="pill k" href="https://apps.apple.com/app/id6779711252" target="_blank" rel="noopener">Get Dummo on the App Store ↗</a><a class="pill" href="/dummo/privacy/">Privacy policy →</a></div>
+ </aside>
+ <div class="main"><div class="cards"><section class="sheet card dark"><h2 class="lab">Need help?</h2><p><strong>Reddit is the best way to reach me.</strong> <strong>r/dummoapp</strong> is where I talk with the people who use my apps every day — questions, bugs, ideas, anything — and it's where I answer fastest.</p>
+<a class="pill h" href="https://www.reddit.com/r/dummoapp/" target="_blank" rel="noopener">Write to me on r/dummoapp ↗</a>
+<p>You can also message me directly at <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">u/beretta51</a>, or email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Dummo is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p></section><section class="sheet card"><h2 class="lab">— Getting started</h2><ul>
+<li><strong>Import a recording.</strong> Make a screen recording on your iPhone or Mac, then drop it into a new Dummo project. Dummo does not record your screen itself — it works on the clips you bring in.</li>
+<li><strong>Dress it up.</strong> Wrap it in an iPhone, iPad, or MacBook frame over any color, gradient, or image; add tap indicators, text, stickers, and auto-zoom.</li>
+<li><strong>Export.</strong> Pick a preset (App Store preview, Reel, Story, or a standard ratio) and export. On iPhone you can save straight to Photos.</li>
+</ul></section><section class="sheet card"><h2 class="lab">— Dummo Pro</h2><p>Dummo is free. A one-time <strong>Dummo Pro</strong> purchase unlocks custom stickers, fonts, colors and gradients, connecting Claude on Mac, and watermark-free exports. Purchases are tied to your Apple Account — one purchase unlocks Pro on your Mac and iPhone. Use <em>Restore Purchases</em> in Settings if Pro doesn't show up on a new device, and <em>Redeem Code</em> if you have a promo code.</p></section><section class="sheet card"><h2 class="lab">— iCloud sync</h2><p>Your projects, backgrounds, stickers, and fonts sync across your devices through your own private iCloud account whenever you're signed in to iCloud. There's nothing to configure. If something looks out of date, open Settings and tap <em>Sync now</em>.</p></section><section class="sheet card"><h2 class="lab">— Editing with Claude (Mac)</h2><p>On the Mac, Dummo Pro can let Claude read and edit your open project through a local connection on your own machine. It’s off by default and you turn it on in Settings › Claude. To learn what it can access, see the <a href="/dummo/privacy/">Privacy Policy</a>.</p></section><section class="sheet card"><h2 class="lab">— Privacy</h2><p>Dummo has no servers and collects no personal data. Read the full <a href="/dummo/privacy/">Dummo Privacy Policy</a>.</p></section></div></div>
+</main>
+</body></html>

@@ -32,6 +32,8 @@ The private travel planner built for people who actually travel. Plan trips day 
 ### Dimmly — Task manager & habit tracker (iOS, macOS)
 A task manager and habit tracker that fits your day. Color-coded lists for work, routines, groceries, or anything else. Set alarms, track daily habits with streaks, add notes and checklists inside tasks, keep score during game nights with the built-in Scoreboard. Free for 5 lists; one-time upgrade for unlimited.
 - Page: https://pinilloslab.com/dimmly/
+- Support: https://pinilloslab.com/dimmly/support/
+- Privacy policy: https://pinilloslab.com/dimmly/privacy/
 - App Store: https://apps.apple.com/app/id6761221806
 - Platform: iOS, macOS
 - Category: Productivity
@@ -39,6 +41,8 @@ A task manager and habit tracker that fits your day. Color-coded lists for work,
 ### Percha — Wardrobe OS (iOS)
 A quiet wardrobe OS. See what you own, what you wear, what you don't. Works entirely on-device — no account is required and no personal data is sent to external servers. Photos and item data live in your local storage and iCloud (if enabled).
 - Page: https://pinilloslab.com/percha/
+- Support: https://pinilloslab.com/percha/support/
+- Privacy policy: https://pinilloslab.com/percha/privacy/
 - App Store: https://apps.apple.com/app/id6761848999
 - Status: In progress, in beta
 - Platform: iOS
@@ -47,6 +51,8 @@ A quiet wardrobe OS. See what you own, what you wear, what you don't. Works enti
 ### Solid — Gym tracker (iOS)
 A gym tracker that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer. All data stays on device unless iCloud sync is enabled.
 - Page: https://pinilloslab.com/solid/
+- Support: https://pinilloslab.com/solid/support/
+- Privacy policy: https://pinilloslab.com/solid/privacy/
 - App Store: https://apps.apple.com/app/id6761683203
 - Platform: iOS
 - Category: Health & Fitness
@@ -54,13 +60,14 @@ A gym tracker that gets out of your way. No AI coach, no social feed, no subscri
 ### Gridborne — Turn-based strategy game (iOS)
 A turn-based strategy game played on a 7×7 grid. Quiet rules, deep tactics. Built for short, satisfying matches. Offline single-player against an AI opponent, with Game Center leaderboards and achievements.
 - Page: https://pinilloslab.com/gridborne/
+- Support: https://pinilloslab.com/gridborne/support/
+- Privacy policy: https://pinilloslab.com/gridborne/privacy/
 - App Store: https://apps.apple.com/app/id6761489335
 - Platform: iOS
 - Category: Games / Strategy
 
 ### Wealth Square — Net worth tracker (macOS, in development)
 A native Mac app for tracking your net worth. Currently in development — not yet released.
-- Page: https://pinilloslab.com/wealth-square/
 - Platform: macOS
 - Category: Finance
 - Status: Coming soon
@@ -68,6 +75,8 @@ A native Mac app for tracking your net worth. Currently in development — not y
 ### Dummo — Screen recording to promo video (iOS, macOS)
 Turn a plain screen recording into a polished promo video. Wrap it in a realistic device frame (iPhone 17 Pro, iPhone 17, iPhone 16 Pro, iPhone 16, MacBook Pro), design the canvas with backgrounds and stickers, drop animated tap indicators, and let the auto-zoom director choreograph pan-and-zoom moves from your taps. Add an intro and outro, then export ready-made sizes for App Store previews, Instagram Stories, Reels, and Posts. Projects sync across devices over iCloud; on the Mac you can connect Claude to edit a project for you. No data is collected. Free, with a one-time Dummo Pro upgrade ($14.99 lifetime) for custom stickers, fonts, colors, Claude editing on Mac, and watermark-free exports.
 - Page: https://pinilloslab.com/dummo/
+- Support: https://pinilloslab.com/dummo/support/
+- Privacy policy: https://pinilloslab.com/dummo/privacy/
 - App Store: https://apps.apple.com/app/id6779711252
 - Platform: iOS, macOS
 - Category: Photo & Video
@@ -75,6 +84,8 @@ Turn a plain screen recording into a polished promo video. Wrap it in a realisti
 ### TakeKit — Teleprompter camera (iOS)
 A teleprompter camera for creators, coaches, and founders. Write your script, hit record, and read from an on-screen guide that only you can see — the exported video is always clean. The guide scrolls automatically as you speak (on-device speech recognition) or at a fixed speed; the current line stays highlighted mid-screen, and eye-contact mode docks the text next to the front lens. Record unlimited takes grouped by script, resume from where you stopped, star your best take, watch a live mic meter, and record front and back cameras at once on supported devices. Crop to 9:16, 16:9, 1:1, or 4:5 and export up to 1080p. No account; scripts and takes sync privately over iCloud. Free for up to 5 scripts and 5 recordings with a small watermark; TakeKit Pro is a one-time purchase that unlocks unlimited scripts and takes, speech-paced auto-scroll, word-timed captions, automatic silence cutting, and watermark-free export.
 - Page: https://pinilloslab.com/takekit/
+- Support: https://pinilloslab.com/takekit/support/
+- Privacy policy: https://pinilloslab.com/takekit/privacy/
 - App Store: https://apps.apple.com/app/id6792025212
 - Platform: iOS
 - Category: Photo & Video

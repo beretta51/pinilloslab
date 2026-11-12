@@ -1,0 +1,75 @@
+/* Dimmly on the phone, in the app's own points (402 x 874). Every size, weight and colour here is read from the app's
+   SwiftUI source (Quadly: ListsView, ContentView, ItemRowView, DoneSectionView, ListPalette). */
+.dmx{position:relative;width:402px;height:874px;transform-origin:0 0;background:#000;color:#fff;overflow:hidden;font-family:ui-rounded,'SF Pro Rounded',-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-weight:600;line-height:1.2;-webkit-font-smoothing:antialiased}
+.dmx *{box-sizing:border-box}
+.dmx .sy{display:block;flex:none;background:currentColor;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.dmx .dm-sb{position:absolute;left:0;right:0;top:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 52px;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:17px;font-weight:600;z-index:40}
+.dmx .dm-sb span{display:flex;align-items:center;gap:6px}
+
+/* lists (ListsView): the logo, then one 70 pt row per list with its palette strip */
+.dmx .dm-home{position:absolute;left:0;top:0;width:402px;height:874px;background:#000}
+.dmx .dm-logo{position:absolute;left:20px;top:76px;height:44px;width:auto;display:block}
+.dmx .dm-rows{position:absolute;left:0;right:0;top:134px}
+.dmx .dm-lr{height:70px;display:flex;align-items:center;gap:12px;padding:0 20px}
+.dmx .dm-sw{display:flex;flex:none;border-radius:4px;overflow:hidden}
+.dmx .dm-sw i{display:block;width:10px;height:30px}
+.dmx .dm-lr b{flex:1;min-width:0;font-size:17px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dmx .dm-lr .pin{color:#FF9F0A}
+.dmx .dm-lr .md{color:rgba(235,235,245,.3)}
+.dmx .dm-lr em{font-style:normal;font-size:13px;font-weight:600;color:rgba(235,235,245,.6)}
+.dmx .dm-lr.hit{background:rgba(255,255,255,.08)}
+
+/* the floating glass buttons */
+.dmx .dm-glass{background:rgba(72,72,76,.5);-webkit-backdrop-filter:blur(16px) saturate(1.7);backdrop-filter:blur(16px) saturate(1.7);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.2),inset 0 1px 0 rgba(255,255,255,.14),0 6px 18px rgba(0,0,0,.28)}
+.dmx .dm-pill{position:absolute;bottom:32px;height:48px;border-radius:24px;display:flex;align-items:center;color:#fff;z-index:6}
+.dmx .dm-pill span{width:54px;height:48px;display:flex;align-items:center;justify-content:center}
+.dmx .dm-pill u{display:block;width:.5px;height:24px;background:rgba(160,160,170,.5)}
+.dmx .dm-add{position:absolute;right:16px;bottom:32px;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+
+/* one list (ContentView): the header in the palette's first colour, then 82 pt cards down the gradient */
+.dmx .dm-list{position:absolute;left:0;top:0;width:402px;height:874px;background:#000;transform:translateX(402px);transition:transform .46s cubic-bezier(.2,.86,.24,1)}
+.dmx .dm-list.on{transform:none}
+.dmx .dm-hd{position:absolute;left:0;right:0;top:0;height:120px}
+.dmx .dm-hd .bk{position:absolute;left:14px;top:73px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;opacity:.9}
+.dmx .dm-hd b{position:absolute;left:56px;top:62px;height:58px;display:flex;align-items:center;font-size:25px;font-weight:600;opacity:.9;white-space:nowrap}
+.dmx .dm-hd .sun{position:absolute;right:10px;top:69px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;opacity:.7}
+.dmx .dm-tb{position:absolute;left:0;right:0;top:120px;bottom:0;overflow:hidden}
+.dmx .dm-r{position:absolute;left:0;right:0;height:82px;background:#000;transition:top .36s cubic-bezier(.3,1,.4,1),opacity .18s ease}
+.dmx .dm-r .c{position:absolute;left:0;top:0;width:402px;height:82px;transition:background-color .32s ease;will-change:transform}
+.dmx .dm-hd{transition:background-color .32s ease}
+.dmx .dm-list.dimming .c,.dmx .dm-list.dimming .dm-hd{transition:none}
+.dmx .dm-r .t{position:absolute;left:20px;top:0;height:82px;display:flex;align-items:center;font-size:17px;font-weight:600;white-space:nowrap}
+.dmx .dm-r .tr{position:absolute;right:20px;top:0;height:82px;display:flex;align-items:center;gap:1px}
+.dmx .dm-r .tr.ck{right:21px;gap:4px;font-size:12px;font-weight:600}
+.dmx .dm-r .tr.ck>*{opacity:.7}
+.dmx .dm-r .tr.nt{right:10px;width:44px;justify-content:center}
+.dmx .dm-r .tr.nt>*{opacity:.7}
+.dmx .dm-r .bd{position:absolute;left:20px;bottom:7px;display:flex;align-items:center;gap:4px;opacity:.4}
+.dmx .dm-r .rv{position:absolute;left:0;top:0;height:82px;width:0;display:flex;align-items:center;justify-content:center;color:#30D158;overflow:hidden}
+.dmx .dm-r .rv .sy{transition:transform .2s cubic-bezier(.3,1.5,.5,1)}
+.dmx .dm-r .rv.hot .sy{transform:scale(1.3)}
+.dmx .sy.pop{animation:dm-pop .34s cubic-bezier(.3,1.6,.5,1)}
+@keyframes dm-pop{0%{transform:scale(.55)}100%{transform:none}}
+.dmx .dm-done{position:absolute;left:0;right:0;opacity:0;transition:top .36s cubic-bezier(.3,1,.4,1),opacity .3s ease}
+.dmx .dm-done.on{opacity:1}
+.dmx .dm-done .h{display:flex;align-items:center;gap:6px;padding:0 20px 4px;font-size:17px;font-weight:600;color:rgba(255,255,255,.35)}
+.dmx .dm-done .h span{color:rgba(255,255,255,.22);white-space:pre}
+.dmx .dm-done .h .sy{margin-left:auto;color:rgba(255,255,255,.3)}
+.dmx .dm-done .r{height:80px;margin-top:6px;transition:opacity .3s ease;padding-left:20px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.dmx .dm-done .r b{font-size:16px;font-weight:600;color:rgba(255,255,255,.3);text-decoration:line-through}
+.dmx .dm-done .r small{font-size:11px;font-weight:500;color:rgba(255,255,255,.2)}
+
+/* the dimmer (DimmerSlider): a glass capsule with a vertical slider, then the list's two glass buttons */
+.dmx .dm-dim{position:absolute;right:12px;top:132px;display:flex;flex-direction:column;align-items:center;gap:12px;transform:translateX(76px);opacity:0;transition:transform .42s cubic-bezier(.3,1.25,.5,1),opacity .22s ease;z-index:5}
+.dmx .dm-dim.on{transform:none;opacity:1}
+.dmx .dm-glassl{background:rgba(255,255,255,.2);-webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);box-shadow:inset 0 0 0 .5px rgba(255,255,255,.36),inset 0 1px 0 rgba(255,255,255,.2),0 8px 22px rgba(0,0,0,.16)}
+.dmx .dm-sl{width:48px;padding:14px 10px;border-radius:24px;display:flex;flex-direction:column;align-items:center;gap:10px;color:rgba(255,255,255,.6)}
+.dmx .dm-trk{position:relative;width:28px;height:200px}
+.dmx .dm-trk::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:6px;border-radius:3px;background:rgba(255,255,255,.3)}
+.dmx .dm-fill{position:absolute;left:11px;bottom:0;width:6px;border-radius:3px;background:rgba(255,255,255,.8)}
+.dmx .dm-knob{position:absolute;left:2px;top:0;width:24px;height:38px;border-radius:12px;background:#fff;box-shadow:0 .5px 4px rgba(0,0,0,.12),0 6px 13px rgba(0,0,0,.14);will-change:transform}
+.dmx .dm-gb{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+
+/* the finger */
+.dmx .dm-tch{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(120,120,128,.38);box-shadow:0 0 0 2px rgba(255,255,255,.85),0 2px 10px rgba(0,0,0,.25);z-index:50;opacity:0;transition:opacity .16s ease;will-change:transform}
+.dmx .dm-tch.on{opacity:1}

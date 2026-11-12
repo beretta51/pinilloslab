@@ -1,290 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TakeKit — Support</title>
-<meta name="description" content="TakeKit support. Get help with scripts, the on-screen guide, speech-paced auto-scroll, takes, exporting, TakeKit Pro, and iCloud sync.">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TakeKit · Support · Pinillos Lab</title><meta name="description" content="Help and support for TakeKit, an app by Pinillos Lab.">
 <link rel="canonical" href="https://pinilloslab.com/takekit/support/">
-<style>
-/* Bricolage Grotesque · latin-ext */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Bricolage Grotesque · latin */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Instrument Serif italic · latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Instrument Serif italic · latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* JetBrains Mono · latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* JetBrains Mono · latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-:root {
-  --yellow: #F1F332;
-  --black: #000;
-  --paper: #F2EFE6;
-  --paper-dark: #E8E4D6;
-  --ink: #0A0A0A;
-  --ink-soft: #6E6E6E;
-  --display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  width: 100%;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--display);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-a { color: inherit; text-decoration: none; }
-::selection { background: var(--yellow); color: var(--black); }
-
-.app-hero {
-  padding: 120px 28px 40px;
-  position: relative;
-  max-width: 872px;
-  margin: 0 auto;
-}
-@media (min-width: 768px) { .app-hero { padding: 160px 56px 60px; } }
-
-.privacy-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  text-decoration: none;
-  margin-bottom: 24px;
-  padding: 8px 14px 8px 10px;
-  background: var(--paper-dark);
-  border-radius: 999px;
-  transition: background 0.3s, color 0.3s, padding 0.3s var(--ease-out-expo);
-}
-.privacy-back:hover {
-  background: var(--ink);
-  color: var(--paper);
-  padding-left: 16px;
-}
-.privacy-back svg { transition: transform 0.3s var(--ease-out-expo); }
-.privacy-back:hover svg { transform: translateX(-2px); }
-
-.app-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-}
-.app-name {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(72px, 16vw, 200px);
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  margin-bottom: 24px;
-  font-variation-settings: "opsz" 96;
-}
-.app-name em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-
-.privacy-body {
-  padding: 0 28px 80px;
-  max-width: 760px;
-  margin: 0 auto;
-  font-family: var(--display);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-@media (min-width: 768px) { .privacy-body { padding: 0 56px 120px; } }
-.privacy-body section { display: flex; flex-direction: column; gap: 10px; }
-.privacy-body h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 4px;
-}
-.privacy-body p { font-size: 17px; line-height: 1.55; }
-.privacy-body ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0;
-}
-.privacy-body ul li {
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.5;
-}
-.privacy-body ul li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--ink-soft);
-}
-.privacy-body strong { font-weight: 700; }
-.privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.privacy-body a:hover { color: var(--ink-soft); }
-.privacy-body a.reddit-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  max-width: 480px;
-  margin: 8px 0 4px;
-  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
-}
-.privacy-body a.reddit-cta:hover { background: var(--ink); color: var(--yellow); }
-.privacy-body a.reddit-cta .arr { font-family: var(--mono); }
-@media (max-width: 767px) {
-  .privacy-body a.reddit-cta { padding: 17px 20px; font-size: 15px; }
-}
-.privacy-body .privacy-updated {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--paper-dark);
-  padding-top: 16px;
-  margin-top: 8px;
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/images/pinilloslab-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pinillos Lab">
+<meta property="og:url" content="https://pinilloslab.com/takekit/support/">
+<meta property="og:title" content="TakeKit · Support · Pinillos Lab">
+<meta property="og:description" content="Help and support for TakeKit, an app by Pinillos Lab.">
+<meta property="og:image" content="https://pinilloslab.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "TakeKit · Support · Pinillos Lab", "url": "https://pinilloslab.com/takekit/support/", "inLanguage": "en", "isPartOf": {"@id": "https://pinilloslab.com/#website"}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Pinillos Lab", "item": "https://pinilloslab.com/"}, {"@type": "ListItem", "position": 2, "name": "TakeKit", "item": "https://pinilloslab.com/takekit/"}, {"@type": "ListItem", "position": 3, "name": "Support", "item": "https://pinilloslab.com/takekit/support/"}]}}</script>
+<style>/* the site's own typefaces, served from this domain (see fonts/LICENSE.txt); nothing is fetched from anyone else */
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+:root{--app:#00C2FF;--on:#0B0B10}
+/* Privacy and Support, in the walk's look: the app's room colour, the title as on its wall, the words on paper */
+:root{--ink:#0B0B10;--paper:#F4F1E8;--hot:#E4FF3A;--display:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}html,body{margin:0}
+body{font-family:var(--display);color:var(--ink);background:var(--app);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.55'/></svg>")}
+/* the walk's top bar */
+.nav{position:sticky;top:calc(14px + env(safe-area-inset-top,0px));z-index:5;margin:14px 20px 0;height:52px;border-radius:99px;color:var(--ink);background:var(--paper);box-shadow:0 0 0 1.5px var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 22px}
+.brand{font-weight:800;font-size:19px;letter-spacing:-.3px;text-decoration:none}
+.brand i{font:700 10px var(--mono);font-style:normal;background:var(--hot);padding:3px 6px;border-radius:4px;margin-left:6px;letter-spacing:1px;vertical-align:2px}
+.mbtn{font:700 11px var(--mono);letter-spacing:2px;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:99px;text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;line-height:1.2;padding:11px 18px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);text-decoration:none}
+.pill.k{background:var(--ink);color:var(--paper);box-shadow:0 0 0 1.5px var(--paper)}
+.pill.h{background:var(--hot);box-shadow:none}
+.pill:hover,.pill:focus-visible{background:var(--hot);color:var(--ink)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* two columns: the title stays put at the left while the paper scrolls at the right */
+.wrap{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.25fr);gap:44px;padding:44px 56px 90px;align-items:start;max-width:1500px;margin:0 auto}
+.side{position:sticky;top:96px;color:var(--on)}
+.t1{font-weight:800;font-size:clamp(64px,8.6vw,124px);letter-spacing:-.045em;line-height:.86;margin:30px 0 0}
+.t2{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:.9em;letter-spacing:-.01em;line-height:.92}
+.icon{display:block;width:74px;height:74px;margin:34px 0 0 6px;border-radius:19px;box-shadow:0 0 0 1.5px var(--ink),5px 6px 0 rgba(11,11,16,.9);transform:rotate(-7deg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+.sheet{background:var(--paper);color:var(--ink);border-radius:34px;box-shadow:0 0 0 1.5px var(--ink),10px 12px 0 rgba(11,11,16,.9);padding:38px 42px}
+.lab,.sheet .lab{font:700 11px/1.4 var(--mono);letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}.sheet .lab.dim{opacity:.55;margin-bottom:0}
+.sheet p,.sheet li{font-size:17px;line-height:1.52;margin:0}.sheet p+p,.sheet p+ul,.sheet ul+p,.sheet p+ol,.sheet p+.pill,.sheet .pill+p{margin-top:12px}
+.sheet ul,.sheet ol{margin:0;padding-left:20px}.sheet li+li{margin-top:6px}
+.sheet a:not(.pill){text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
+.sheet code{font:400 .86em var(--mono);background:rgba(11,11,16,.08);padding:1px 5px;border-radius:5px}
+.main,.sheet{min-width:0}
+.tw{overflow-x:auto;margin-top:14px;-webkit-overflow-scrolling:touch}
+.sheet table{width:100%;min-width:520px;border-collapse:collapse}
+.sheet th,.sheet td{text-align:left;vertical-align:top;font-size:14.5px;line-height:1.45;padding:11px 16px 11px 0;border-top:1.5px solid rgba(11,11,16,.14)}
+.sheet th{font:700 10px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;border-top:0;padding-top:0}
+.privacy .sheet section{margin-top:28px;padding-top:26px;border-top:1.5px solid rgba(11,11,16,.14)}
+/* Support: cards in two columns; the first one, how to reach him, across the top in ink */
+.cards{columns:2;column-gap:18px}
+.card{break-inside:avoid;margin:0 0 18px;padding:26px 28px;border-radius:28px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+.card p,.card li{font-size:16px}
+.card.dark{column-span:all;background:var(--ink);color:var(--paper);padding:30px 32px}.card.dark .lab{color:var(--hot)}.card.dark p{font-size:17px}
+@media(max-width:820px){
+ .nav{margin:12px 12px 0}
+ .wrap{grid-template-columns:minmax(0,1fr);gap:30px;padding:26px 16px calc(60px + env(safe-area-inset-bottom,0px))}
+ .side{position:static;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:end}
+ .side>.pill{justify-self:start;grid-column:1/-1}
+ .t1{font-size:clamp(58px,19vw,96px);margin-top:22px}
+ .icon{margin:0 6px 10px 0;width:62px;height:62px;border-radius:16px}
+ .row{grid-column:1/-1;margin-top:22px}
+ .sheet{padding:26px 22px;border-radius:26px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+ .sheet p,.sheet li{font-size:16px}
+ .cards{columns:1}.card{padding:22px 20px;border-radius:24px}.card.dark{padding:24px 22px}
 }
 
-@media (max-width: 767px) {
-  .app-hero { padding: 100px 22px 32px; }
-  .app-num { font-size: 10px; margin-bottom: 12px; }
-  .app-name { font-size: clamp(48px, 14vw, 72px); margin-bottom: 18px; word-break: keep-all; overflow-wrap: normal; hyphens: none; }
-  .app-name em { font-size: 0.55em; }
-  .privacy-back { font-size: 10px; padding: 7px 12px 7px 8px; margin-bottom: 18px; }
-}
-</style>
-</head>
-<body>
-<div class="app-hero">
-  <a href="/takekit/" class="privacy-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <span>Back to TakeKit</span>
-  </a>
-  <div class="app-num">— Support · TakeKit</div>
-  <h1 class="app-name">Support<br><em>center</em></h1>
-</div>
-
-<div class="privacy-body">
-  <section>
-    <h3>Need help?</h3>
-    <p><strong>Reddit is the best way to reach me</strong> — it's where I talk with the people who use my apps every day, and it's where I answer fastest.</p>
-    <a class="reddit-cta" href="https://www.reddit.com/r/takekit/" target="_blank" rel="noopener"><span>Write to me on r/takekit</span><span class="arr">&#8599;</span></a>
-    <p>You can also email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. TakeKit is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
-  </section>
-
-  <section>
-    <h3>Getting started</h3>
-    <ul>
-      <li><strong>Write your script.</strong> Type it in TakeKit, paste it, or share text from any app straight into TakeKit as a new script.</li>
-      <li><strong>Hit record.</strong> Read from the on-screen guide — the current line stays highlighted mid-screen so you never get lost. The guide is only visible to you; it is never in your exported video.</li>
-      <li><strong>Export.</strong> Pick your best take, crop to 9:16, 16:9, 1:1, or 4:5, trim, and export in up to 1080p — ready for Reels, TikTok, Shorts, or YouTube.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Auto-scroll and speech recognition</h3>
-    <p>With speech-paced auto-scroll (Pro), the guide follows your voice as you speak. Recognition runs entirely on your iPhone — always, nothing is sent anywhere. If the guide isn't following you, check that TakeKit has microphone and speech recognition permissions in iOS Settings &rsaquo; Privacy. If on-device recognition isn't available for your device or language, TakeKit never falls back to servers: auto-scroll switches to fixed-speed scrolling and captions aren't generated. You can always use fixed-speed scrolling with instant speed control, or eye-contact mode to dock the text next to the front lens.</p>
-  </section>
-
-  <section>
-    <h3>Takes</h3>
-    <ul>
-      <li><strong>Record as many takes as you need</strong> — they're grouped by script, so nothing gets mixed up.</li>
-      <li><strong>Resume from where you stopped.</strong> No re-reading from the top after a flubbed line.</li>
-      <li><strong>Mark your best take with a star</strong>, rename takes, and compare attempts before exporting.</li>
-      <li><strong>Watch the live mic meter</strong> while you record so you never discover bad audio too late.</li>
-      <li><strong>Dual camera:</strong> record front and back at the same time on supported devices.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>TakeKit Pro</h3>
-    <p>TakeKit is free for up to 5 scripts and 5 recordings with a small watermark. <strong>TakeKit Pro</strong> is a single one-time purchase — no subscription, no renewal, ever. It unlocks unlimited scripts and takes, speech-paced auto-scroll, word-timed captions, automatic silence cutting, and watermark-free export. Purchases are tied to your Apple Account — use <em>Restore Purchases</em> in Settings if Pro doesn't show up on a new device.</p>
-  </section>
-
-  <section>
-    <h3>iCloud sync</h3>
-    <p>Your scripts and takes sync across your devices through your own private iCloud account whenever you're signed in to iCloud. There's nothing to configure and no account to create.</p>
-  </section>
-
-  <section>
-    <h3>Privacy</h3>
-    <p>TakeKit has no servers and collects no personal data. Speech recognition runs on your device. Read the full <a href="/takekit/privacy/">TakeKit Privacy Policy</a>.</p>
-  </section>
-
-  <p class="privacy-updated">TakeKit · <a href="/">pinilloslab.com</a></p>
-</div>
-</body>
-</html>
+.app .t1{font-size:clamp(50px,6.2vw,94px)}.app .t2{font-size:.62em;line-height:1.05;margin-top:.12em}.sheet h2.big{font:800 26px/1.15 var(--display);letter-spacing:-.02em;text-transform:none;margin:0 0 10px}</style></head>
+<body class="support">
+<div class="grain" aria-hidden="true"></div>
+<header class="nav"><a class="brand" href="/">Pinillos <i>LAB</i></a><a class="mbtn" href="/#menu">MENU</a></header>
+<main class="wrap">
+ <aside class="side">
+  <a class="pill" href="/#takekit">← TakeKit</a>
+  <h1 class="t1">Support<span class="t2">center</span></h1>
+  <img class="icon" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAhKADAAQAAAABAAAAhAAAAAD/wAARCACEAIQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIEAgIEBQQEBAUHBQUFBQcJBwcHBwcJCwkJCQkJCQsLCwsLCwsLDQ0NDQ0NDw8PDw8RERERERERERER/9sAQwEDAwMEBAQHBAQHEgwKDBISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIS/90ABAAJ/9oADAMBAAIRAxEAPwD8P6KK+3P2Iv2SNT/ae+IP2jWklg8I6NIkmr3S5UzMfmS0ib+/IPvEfcTJ6lcpu2rA+mv+CbP7GR8favb/ALQnxNtT/YenTb9Ds5Rxe3UTf8fDA9YYWHy9nkHopz/QOSScms7SdJ0vQdLttD0S3jtLKzhS3treFQscUUY2oiqOAFAwK0K55Su7mqVhCQoLMQABkk8AAdya/m//AOCiP7Zf/C7vEzfCP4c3OfCOjXGZ7iM8aleRkjzM94IjkR/3jl/7uPqr/gpX+2cfDtpdfs4fC27xqFzH5fiK+hbm3hcf8eSMOkkgOZSOVU7erHH4NAADArSnDqyJPoFdV4H8EeKPiR4u0/wL4KtHvtU1Sdbe1gTqzN1JPRVUZZmPCqCTwK5mKKWeVYIEaSSRgiIgLMzMcAADkkngAda/pc/4J+/sbRfs++ER8QvHtup8Za1APMRgCdOtXwwt1PaRuDMR3wnRTm5SshJXPoX9lT9mrwz+zD8L4fBmlFbrVLorc6zqIGDdXWMfLnkRRj5Y19Mk8sa+l6K4f4kfEXwj8JfA+o/EPx1dLZ6XpkJmmkPLMeixxr/FI7YVFHUmufVs0PKf2ov2kPCn7Mfwxn8b67tudQn3W+kaduw93dYyB6iNPvSN2XgfMQD/ACgePvHfin4neMtR8f8Aja6a81TVZ2uLmZuAWPAVR0VEUBUUcBQB2r1T9pf9ojxd+0v8Trnx94lLQWqZt9K08NlLO0ByqDsXb70jfxN7AAfPlbwjZGbdwr9Lf+Cev7Gr/HfxUvxR+IVsf+EP0W4GyKQEDU7uM5EI9YYzgynvwndsfO/7JX7MPiX9qH4mR+GLIyWuiWO241rUVHEEBPCITwZpcFYx25Y8Ka/qz8H+EPDXgDwtYeCvB1pHYaXpkC21rbRD5UjX9SSeWY8sSSeTSnK2iHFdTowAoCqAAOABwAKcAScCkr8sf+Ci/wC2d/wp/wAPyfBb4aXePFWrQf6ddQt82m2kg7EdLiZT8ndE+fqVrFK7si27HxR/wUI/ah8A6z+0C2k+FFk1RND06PSrq5gZREbqKeeSVYyfvBPMCFhxuBAyBmvhv/hoDSv+gbcf9/Er5x1P/Xr/ALv9TWdW/IiOZn//0Pyq/Z/+BPjP9or4mWXw38GptaY+be3jKTFZ2qkeZPJ9M4VerMQo61/WR8I/hR4N+CXw+074a+A7fyNP0+PAZseZNK3Mk0rD70kjcsfwGAAK8g/ZJ/Zd8M/sufDdfDVk0d7rd+Vn1nU1XBnmA+WNM8iGLJCKevLHljX1RWE5X2NErBXwR+3d+2DZ/s1eBh4d8KSxy+MtbhYafHw32OE5VryQf7JyIlP3n5+6pr3j9pT9obwh+zV8Mbr4geJyJrhswaZp4bEl5dkZWNe4Qfekb+FR6kA/yefEv4keL/i7451H4i+O7o3ep6nMZZn6Kg6JHGv8Mca4VFHQD1ohG+rCTscde3t5qV5NqOozSXFxcSNNNNKxZ5JHO5nZjyWYkkk9TVaiv0V/YB/Y3m/aG8Yf8J546t2XwZok484NkDUbpcMLVT3jXgzMO2EHLcbNpK5mkfU3/BND9jHebT9pX4pWnA/eeGbGZep6fbpFP/kAH/rp/cNfuDUcMMNtCltbIsccahERAFVVUYCqBwABwAOgqQAk4Fc8pNu5qlYr3d3aafaS6hqEqQW8EbSzSysFSNEG5mZjwFUAkk9BX8w/7eP7YV3+0n43HhnwjM8fgzRJmFinK/bZxlWvJF9CMiJT91OfvMa+ov8Agpb+2cNdubr9m34XXebKB9niO+hbieVTn7FGwPMaH/XEfeYbOitn8Ya0px6siT6BXo3wl+FXjL41/EDTvht4Dt/tGoajJtBOfLhjHMk0rD7sca8sfwGSQK4jS9L1LXNTt9F0a3ku7y8mS3t7eFS8ksshCoiKOSWJAAr+o39h/wDZG0z9mLwB9s11I5/F+sxo+rXK4YQJ95bOJv7kZ5cj7789AuLlKyElc9y/Z7+A3g39nL4Z2fw48HLv8v8AfX16y4lvLtgBJM/1xhF6KoAFe3UoBPSvKvjb8YvB3wC+HF/8S/HkpjtLNcRQrgS3U7f6uCEHq7n8FGWPANc+rZoeK/tkftV6F+y78N21OLyrrxLqivDolgxzukAw1xKOvkw5BP8AebCjqSP5W/EfiPXfF+v3virxRdS32o6jO9zd3Mx3PLLIcsxP9OgHA4FehfHH40+NPj/8SL/4l+OZd1zdtsgt0J8q1t1J8uCIHoqA9erMSx5JryOuiEbIzbuYmp/69f8Ad/qazq0dT/16/wC7/U1nVQj/0f28rkfHvjvwp8MvB2oePfG92ljpelwGe5nfso4CqOrO5IVFHLMQBX4Sa1/wWB+Md1kaB4T0CzHYzyXNwR+TxD9K+Of2hP2zfjf+0tpVp4f+INzaQaZZzG4Sy02FoInlxhXly7mQoM7MnC5JAyawVN9S3JGJ+1L+0n4r/ad+Js/jTWt9tpttut9H03dlbS2z37GWTAaRu54HyqK+baKK3RB9D/szfs/av+0T8SIPCcVzHpmkW2241jVJmVI7W1B5wXIUyyfdjXueT8oNf00+H/iT+y78D/B9h4C0fxT4a0fTNJgW3t7c6jbbgq9WbDlmdjlnYjLMST1r+Q8/Muw8g9R2pqoifdAH0FRKN+o07H9YGuft7/sg6AD9p8c6fcMP4bKOe5P4GKJh+tfE/wC1N/wU/wDAF38N7rwr+zhd3s+t6lm2fU5rZ7ZLOBh88kPmYZpmHyocAJkt1Ar8GaKFTSHzMVmZ2LuSzEkkk5JJ6kk9SaSiirJPXfgp8Z/EnwG8Zr8QfBtnptzq0MTRWs2pQG4FsX4aSJN6qJCuVDHOATjGa+i9c/4KR/th63kJ4oisAe1jY2sePoWjdv1r4XopWXUdz6L1v9rv9qLxDkar4+8QMG6rFePAv5Q7BXjHiDxn4x8Wur+K9X1DVCrblN9cy3G0njI8xmwcdxXN0U7CCiiigDE1P/Xr/u/1NZ1aOp/69f8Ad/qazqAP/9L8P6KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigDE1P/AF6/7v8AU1nVo6n/AK9f93+prOoA/9P8P6KKKACikPSv3f8Agv8A8Eyf2d/iX8K/DvjW+1zXft2qaTZ315Fa3VqUiluIldlC+QzKASQAxz9aTkluNK5+ENFfrp8Yf2Cfg34L/aE+Gnwi8Iavqt3Z+Lru9h1V5Li3kngS0VX/AHeyIBGwWzvU9K+ivHv/AASo+AmgeBde13w/rHiGW/03TLq6t45bi2ZDNDA0sauqwA4JAyMgkHg1POg5WfgDRX6qfsRfsO/Cj9pT4Lan8R/G9/q9re2epXFnHHYSwpEUigilUsJInOcuc89McVNY/sN/CbRv2IZf2mfHd/rEWs/2LNqkNrDLClsXlkaOyQq0TPh8xlvmycnGKfMtgsz8paK/f3wZ/wAEsf2dNb8A6L4t1vXPEFvJqGm2d5MftNqkSyXEKSMF3QcDc2ACSfrXw18Yf2S/hZ4E/aC1H4WeGNS1C70u00Wz1GOd5oZJTNcMyupdIwu0YGBjPqawxGKp0KUq1TZHflmWYjMcXTwWGS556K+nS/6H5z0V9f8Ahb9nzwrq2pa6mqXN5Ha6dfta27IyBmREV3ZyUIJG7sBXP6V8G/B+q/Cu58fRz3gmSK6liTemwiGR1TI2Z5UDPPX0rh/tvCXtd7pbdZK6PolwJm/LdxjtOXxdKbSk/vat3PmCivvC3/Zk+HdxEJYr2/cEDJWWIjOPUJXzJ8YPBWh+A/FMejaBPJPA9qkxaVlc7mZgRlQBjAFVg85wuKq+xot39DPOeCc1ynC/XMYo8l0tJX3PKqKKK9U+RMTU/wDXr/u/1NZ1aOp/69f93+prOoA//9T8P6KKKACv3F/4I2ACH4gY/v6V/K5r8Oq/cb/gjZ/qfiB/v6V/K5qJ/COO54z+y1oo1b/gqNrcxXIsNZ8SXh9ipmjB/OQV+0XhDW08V/Eb4m+C5DuWym062K+i3emISPxOa/LP9h3R/tv/AAUP+KWsEZFg2t4PoZ9SRB+gNfqz8OPhYngv4u+OPiMusLfHxdc6fO9gI1U2X2GDyANwdi+8c8quMY5rOb1LR8Q/8EqNNeL9m7xHozHYy+Jr+2J9CLaBP0rF/wCCoeqJ8M/2RdA+FWhoy217e2em7lGFFvp0BkCk+rMiEDvg+lesfsEaM3h74ffEzQVyhs/HuvQr2xsWMD9K89/axjT9ob/gm5a/EaAebd2Wm6fr24ckS2+ILv8AINLn6U/t3Doe7/Fn4Ia5+0T+xnovwq8O3ttp93eaVoU63F2HaJRbxwyMCIwWyQMDjrX45+GvgXrv7OXx01/4WeI7611G6ttKtLlrizDrEVuCHUASANkDrxX61/tBX/xY039hrSbv4JNqi+Il0zQBbnRld7vyykIl2iMFsbM7uOlfjx8NZfjNd/FbV9S+O66x/btxpVuxfW45I7l4EkKRnEqqxQbSAcY4Irys5/5F1b+uqPruAv8AkpMH6v8A9Jkd58QpV8I/DjX9QswTJMk8pI677ltmf+Ahh+VeaeDRj9mG4A/6B99/6HJXqCFPGug+JvC0x3NHdXdjz23oHjP4b/0rzLwijxfsy3UUowy2F+rD0IeQEV8jh9MPyS+L2kH8mnY/a8enPMnXp/w3hqqS7SU4835r7h/7Mn/JOL3/AK/pv/RSV8HP/rG+pr7y/Zk/5Jxe/wDX9N/6KSvg6T/WN9T/ADr6nKv9/wAb6r9T8o4v/wCSfyT/AAT/APbRlFFFfQH5yYmp/wCvX/d/qazq0dT/ANev+7/U1nUAf//V/D+iiigAr7d/Y7/bMuP2Sk19IPDya7/brWrHfdG28r7N5npFJu3eZ7Yx3zXxFRSavowPvT4Cftvv8DvjD44+LqeGE1OXxlPJN9ma8MItVkuXuCocRPv5YDOF6Z71Z+DX7d2qfCT48+OPjcfDyaifGju76e14YhbFp/OXEnlNv2jK/dXPXjpXwFRRyod2fqh8MP8AgpnN8M28XfZfBUdyvivxBea8VOoFPs7XkaI0Q/cHeFKE7uM5xjiuI+EP/BQGf4bfs6XH7O2u+FI9bsp7fUbP7U96YSINQLkp5fkuPkMjYO7n2r85qKXKguz9kfB//BXK/wDCXhHSvCq+BIp/7LsLax846mymT7PEsW/b9mON23OMnHrXzD8YP24Lr4s/Fr/hacnhtLFv7Gh0j7ILwyjEM0k3mb/KXr5mNu3tnNfBlFZVsNSrQdOorp7nZgMwxOBxEMXhZ8s47OydtLbO6Porw1+0Dd+HfEWta4NNWZNYuEufJMxXymVdpw2w7sjHYdKJvj4reDtQ8H22kLHHe/agJPPJ8v7U7OcLs527sDnmvnWiuR5RgnLndPXTq+mi69D2ocZZ3Cm6UcRp7y+GP23eWvLfV/d0se7/AA0+Nsnw68OTeH001bsTTvN5hmMeN6quMbG6bfWvCWO5i3qc0lFdVLC0qVSdWnGzlv5nk4vNsZi8PQwuIneFJNRVlona+yu9lvcKKKK6DzjE1P8A16/7v9TWdWjqf+vX/d/qazqAP//W/D+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAxNT/wBev+7/AFNZ1aOp/wCvX/d/qazqAP/X/D+iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAxNT/wBev+7/AFNZ1aOp/wCvX/d/qazqAP/Z" alt="" width="74" height="74">
+  <div class="row"><a class="pill k" href="https://apps.apple.com/app/id6792025212" target="_blank" rel="noopener">Get TakeKit on the App Store ↗</a><a class="pill" href="/takekit/privacy/">Privacy policy →</a></div>
+ </aside>
+ <div class="main"><div class="cards"><section class="sheet card dark"><h2 class="lab">Need help?</h2><p><strong>Reddit is the best way to reach me</strong> — it's where I talk with the people who use my apps every day, and it's where I answer fastest.</p>
+<a class="pill h" href="https://www.reddit.com/r/takekit/" target="_blank" rel="noopener">Write to me on r/takekit ↗</a>
+<p>You can also email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. TakeKit is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p></section><section class="sheet card"><h2 class="lab">— Getting started</h2><ul>
+<li><strong>Write your script.</strong> Type it in TakeKit, paste it, or share text from any app straight into TakeKit as a new script.</li>
+<li><strong>Hit record.</strong> Read from the on-screen guide — the current line stays highlighted mid-screen so you never get lost. The guide is only visible to you; it is never in your exported video.</li>
+<li><strong>Export.</strong> Pick your best take, crop to 9:16, 16:9, 1:1, or 4:5, trim, and export in up to 1080p — ready for Reels, TikTok, Shorts, or YouTube.</li>
+</ul></section><section class="sheet card"><h2 class="lab">— Auto-scroll and speech recognition</h2><p>With speech-paced auto-scroll (Pro), the guide follows your voice as you speak. Recognition runs entirely on your iPhone — always, nothing is sent anywhere. If the guide isn't following you, check that TakeKit has microphone and speech recognition permissions in iOS Settings &rsaquo; Privacy. If on-device recognition isn't available for your device or language, TakeKit never falls back to servers: auto-scroll switches to fixed-speed scrolling and captions aren't generated. You can always use fixed-speed scrolling with instant speed control, or eye-contact mode to dock the text next to the front lens.</p></section><section class="sheet card"><h2 class="lab">— Takes</h2><ul>
+<li><strong>Record as many takes as you need</strong> — they're grouped by script, so nothing gets mixed up.</li>
+<li><strong>Resume from where you stopped.</strong> No re-reading from the top after a flubbed line.</li>
+<li><strong>Mark your best take with a star</strong>, rename takes, and compare attempts before exporting.</li>
+<li><strong>Watch the live mic meter</strong> while you record so you never discover bad audio too late.</li>
+<li><strong>Dual camera:</strong> record front and back at the same time on supported devices.</li>
+</ul></section><section class="sheet card"><h2 class="lab">— TakeKit Pro</h2><p>TakeKit is free for up to 5 scripts and 5 recordings with a small watermark. <strong>TakeKit Pro</strong> is a single one-time purchase — no subscription, no renewal, ever. It unlocks unlimited scripts and takes, speech-paced auto-scroll, word-timed captions, automatic silence cutting, and watermark-free export. Purchases are tied to your Apple Account — use <em>Restore Purchases</em> in Settings if Pro doesn't show up on a new device.</p></section><section class="sheet card"><h2 class="lab">— iCloud sync</h2><p>Your scripts and takes sync across your devices through your own private iCloud account whenever you're signed in to iCloud. There's nothing to configure and no account to create.</p></section><section class="sheet card"><h2 class="lab">— Privacy</h2><p>TakeKit has no servers and collects no personal data. Speech recognition runs on your device. Read the full <a href="/takekit/privacy/">TakeKit Privacy Policy</a>.</p></section></div></div>
+</main>
+</body></html>

@@ -1,0 +1,135 @@
+/* TakeKit on the phone (402 x 874), in its current look. The Scripts screen is measured on the app's own 3x screenshot;
+   the camera and Edit take follow the SwiftUI source (Theme, CameraView, GuideOverlay, GuideSettings, EditTakeView) with
+   the app's screenshots as the visual check. Fonts are the app's: Anton, Space Grotesk, IBM Plex Mono. */
+.tkx{position:relative;width:402px;height:874px;transform-origin:0 0;background:#F2EFE7;color:#111;overflow:hidden;line-height:1.2;-webkit-font-smoothing:antialiased;
+ --paper:#F2EFE7;--ink:#111;--red:#E8442E;--redt:#C2321D;--tint:#FBE1DB;--sunk:#E9E4D8;--muted:#6B665C;--body2:#4A463E;--ctl:#262523;--odm:#A8A399;--odb:#D9D4C9;--trk:#2E2D2A;
+ --an:'Anton',Impact,sans-serif;--sg:'Space Grotesk','Helvetica Neue',Arial,sans-serif;--mo:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-family:var(--sg)}
+.tkx *{box-sizing:border-box}
+.tkx .sy{display:inline-block;flex:none;background:currentColor;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.tkx .mo{font-family:var(--mo)}
+.tkx .an{font-family:var(--an);font-weight:400}
+.tkx .tk-sb{position:absolute;left:0;right:0;top:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 52px;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:17px;font-weight:600;z-index:40;transition:color .3s ease}
+.tkx .tk-sb.w{color:#fff}
+.tkx .tk-sb span{display:flex;align-items:center;gap:6px}
+
+/* Scripts (ScriptsHomeView): the headline, today's slate, the script cards, the tab bar */
+.tkx .tk-home{position:absolute;left:0;top:0;width:402px;height:874px}
+.tkx .tk-home h1{position:absolute;left:20px;top:57px;margin:0;font-size:56px;line-height:84px;letter-spacing:.2px}
+.tkx .tk-home .pro{position:absolute;left:333px;top:104px;width:48px;height:30px;border-radius:15px;background:var(--sunk);display:flex;align-items:center;justify-content:center;font-size:12px}
+.tkx .slate{position:absolute;left:16px;top:163px;width:370px;height:294px;border-radius:28px;background:var(--ink);color:var(--paper);overflow:hidden}
+.tkx .slate .clap{position:absolute;right:0;top:0;width:188px;height:30px;background:repeating-linear-gradient(135deg,var(--paper) 0 9px,var(--ink) 9px 18px);-webkit-clip-path:polygon(26px 0,100% 0,100% 100%,0 100%);clip-path:polygon(26px 0,100% 0,100% 100%,0 100%)}
+.tkx .slate .kk{position:absolute;left:20px;top:11px;font-size:11px;font-weight:600;letter-spacing:2.2px;color:var(--red)}
+.tkx .slate h2{position:absolute;left:20px;top:44px;margin:0;font-size:30px;line-height:45px}
+.tkx .slate .ch{position:absolute;left:20px;top:98px;display:flex;gap:6px}
+.tkx .slate .ch span{height:28px;padding:0 10px;border-radius:14px;background:var(--ctl);display:flex;align-items:center;font-size:12px;color:var(--odb)}
+.tkx .slate .ls{position:absolute;left:20px;right:20px;top:138px;display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--odm)}
+.tkx .slate .ls b{font-size:11px;font-weight:600;color:var(--paper)}
+.tkx .slate .pg{position:absolute;left:20px;right:20px;top:167px;height:10px;border-radius:5px;background:var(--trk)}
+.tkx .slate .pg i{position:absolute;left:0;top:0;bottom:0;width:63%;border-radius:5px;background:var(--red)}
+.tkx .slate .pg u{position:absolute;left:63%;top:-3px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px var(--red) inset}
+.tkx .slate .en{position:absolute;left:20px;top:190px;font-size:15px;color:var(--odb)}
+.tkx .slate .go{position:absolute;left:20px;top:225px;width:177px;height:50px;border-radius:25px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;gap:9px;font-size:19px;letter-spacing:.5px}
+.tkx .slate .go i{width:11px;height:11px;border-radius:50%;background:#fff}
+.tkx .slate .st{position:absolute;left:206px;top:225px;width:144px;height:50px;border-radius:25px;background:var(--ctl);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:500}
+.tkx .tk-home .all{position:absolute;left:20px;top:486px;font-size:17px;font-weight:500;display:flex;align-items:baseline;gap:7px}
+.tkx .tk-home .all small{font-size:13px;color:var(--muted)}
+.tkx .tk-home .new{position:absolute;left:227px;top:475px;width:155px;height:44px;border-radius:22px;background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;gap:12px;font-size:16px;font-weight:500}
+.tkx .card{position:absolute;left:16px;width:370px;height:91px;border-radius:20px;background:#fff;box-shadow:0 1px 1px rgba(17,17,17,.06),0 6px 10px rgba(17,17,17,.06)}
+.tkx .card b{position:absolute;left:18px;top:14px;font-size:18px;font-weight:500}
+.tkx .card p{position:absolute;left:18px;top:40px;margin:0;font-size:14px;color:var(--body2)}
+.tkx .card small{position:absolute;left:18px;top:63px;font-size:12px;color:var(--muted)}
+.tkx .card small em{font-style:normal;font-weight:600;color:var(--redt)}
+.tkx .card .rec{position:absolute;right:10px;top:16px;width:59px;height:59px;border-radius:50%;background:var(--tint);display:flex;align-items:center;justify-content:center;transition:transform .14s ease}
+.tkx .card .rec.hit{transform:scale(.9)}
+.tkx .card .rec i{width:50px;height:50px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center}
+.tkx .card .rec i::after{content:'';width:14px;height:14px;border-radius:50%;background:#fff}
+.tkx .tabs{position:absolute;left:20px;top:772px;width:362px;height:63px;border-radius:32px;background:#fff;box-shadow:0 1px 1px rgba(17,17,17,.06),0 10px 15px rgba(17,17,17,.14);display:flex;align-items:center;padding:0 6px;font-size:15px;font-weight:500;color:var(--muted)}
+.tkx .tabs span{flex:1;height:51px;border-radius:26px;display:flex;align-items:center;justify-content:center;gap:8px}
+.tkx .tabs span.on{flex:none;width:114px;background:var(--ink);color:var(--paper)}
+
+/* Camera (CameraView): the preview, the guide docked by the lens, the top bar, the console */
+.tkx .tk-cam{position:absolute;left:0;top:0;width:402px;height:874px;background:#111 center/cover no-repeat;color:var(--paper);transform:translateY(880px);transition:transform .5s cubic-bezier(.2,.9,.25,1);z-index:10;overflow:hidden}
+.tkx .tk-cam.on{transform:none}
+.tkx .air{position:absolute;left:0;top:0;right:0;bottom:0;border-radius:55px;box-shadow:inset 0 0 0 4px var(--red);opacity:0;transition:opacity .3s ease;pointer-events:none;z-index:4}
+.tkx .air.on{opacity:1}
+.tkx .guide{position:absolute;left:52px;top:64px;width:298px;height:211px;border-radius:26px;background:rgba(17,17,17,.9);padding:12px 10px 10px}
+.tkx .guide .vp{position:relative;height:151px;overflow:hidden;-webkit-mask-image:linear-gradient(#000 0,#000 78%,transparent 100%);mask-image:linear-gradient(#000 0,#000 78%,transparent 100%)}
+.tkx .guide .band{position:absolute;left:0;right:0;top:50px;height:50.6px;border-radius:12px;background:rgba(242,239,231,.14)}
+.tkx .guide .tx{position:absolute;left:9px;right:9px;top:0;font-size:26px;font-weight:600;line-height:40.5px;letter-spacing:-.2px;transition:transform .32s cubic-bezier(.3,.9,.4,1);will-change:transform}
+.tkx .guide .tx span{color:rgba(255,255,255,.5);transition:color .12s linear}
+.tkx .guide .tx span.now{color:#fff}
+.tkx .guide .tx span.rd{color:var(--red)}
+.tkx .guide .ft{height:28px;margin-top:10px;padding:0 6px;display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;white-space:nowrap}
+.tkx .guide .ft b{flex:none;height:24px;padding:0 10px;border-radius:12px;background:var(--ctl);display:flex;align-items:center;gap:7px;font-weight:400;color:var(--odb)}
+.tkx .guide .ft b i{width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 3px rgba(232,68,46,.3)}
+.tkx .guide .ft em{min-width:0;overflow:hidden;font-style:normal;color:var(--odm)}
+.tkx .cap{position:absolute;left:0;right:0;top:283px;display:flex;justify-content:center;transition:opacity .3s ease}
+.tkx .cap span{height:28px;padding:0 12px;border-radius:14px;background:rgba(17,17,17,.7);display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500}
+.tkx .topb{position:absolute;left:16px;right:16px;top:321px;display:flex;gap:8px;transition:opacity .3s ease}
+.tkx .topb span{width:44px;height:44px;border-radius:50%;background:var(--ctl);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600}
+.tkx .topb span:first-child{margin-right:auto}
+.tkx .topb span.act{background:var(--paper);color:var(--ink)}
+.tkx .topb span.dis{opacity:.3}
+.tkx .off{opacity:0!important;pointer-events:none}
+.tkx .cons{position:absolute;left:10px;right:10px;bottom:10px;border-radius:36px 36px 45px 45px;background:rgba(17,17,17,.9);overflow:hidden}
+.tkx .cons .set{padding:14px 14px 20px;display:flex;flex-direction:column;gap:12px}
+.tkx .seg{height:44px;padding:3px;border-radius:22px;background:var(--ctl);display:flex;font-size:14px;font-weight:500;color:var(--odb)}
+.tkx .seg span{flex:1;border-radius:19px;display:flex;align-items:center;justify-content:center;white-space:nowrap}
+.tkx .seg span.on{background:var(--paper);color:var(--ink);font-weight:600}
+.tkx .cons .r1{display:flex;gap:8px}
+.tkx .cons .r1 .seg:first-child{flex:none;width:150.4px}
+.tkx .cons .r1 .seg:last-child{flex:1}
+.tkx .cons .r2{display:flex;align-items:center;margin-top:2px}
+.tkx .cons .r2>div{flex:1;display:flex}
+.tkx .cf{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;font-weight:500;color:var(--odm)}
+.tkx .cf>i{width:52px;height:52px;border-radius:50%;background:var(--ctl);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--sg);font-style:normal;font-size:19px;font-weight:600}
+.tkx .recb{position:relative;flex:none;width:84px;height:84px;display:flex;align-items:center;justify-content:center}
+.tkx .recb svg{position:absolute;left:0;top:0}
+.tkx .recb u{width:66px;height:66px;border-radius:33px;background:var(--red);transition:width .25s ease,height .25s ease,border-radius .25s ease,transform .12s ease}
+.tkx .recb.live u{width:30px;height:30px;border-radius:8px}
+.tkx .recb.hit u{transform:scale(.9)}
+.tkx .recb b{position:absolute;left:0;right:0;top:14px;text-align:center;font-size:38px;font-weight:400;color:#fff;opacity:0}
+.tkx .cons .liv{padding:22px;display:flex;flex-direction:column;gap:14px}
+.tkx .cons .pl{position:absolute;left:0;top:0;height:3px;background:var(--red)}
+.tkx .cons .qa{height:32px;display:flex;justify-content:flex-end}
+.tkx .cons .qa span{height:32px;padding:0 14px;border-radius:16px;background:var(--ctl);display:flex;align-items:center;gap:6px;font-size:15px;font-weight:600}
+.tkx .cons .qa span small{font-size:12px;font-weight:600}
+.tkx .cons .rb{display:flex;align-items:center;gap:8px}
+.tkx .cons .rb>div{flex:1}
+.tkx .clk b{display:flex;align-items:center;gap:9px;font-size:26px;font-weight:400;letter-spacing:.5px;line-height:34px}
+.tkx .clk b i{width:10px;height:10px;border-radius:50%;background:var(--red)}
+.tkx .clk small{display:block;margin-top:2px;font-size:10px;color:var(--odm)}
+.tkx .micm{display:flex;flex-direction:column;align-items:flex-end;gap:6px;font-size:10px;color:var(--odm)}
+.tkx .micm div{height:26px;display:flex;align-items:flex-end;gap:3px}
+.tkx .micm div i{width:4px;border-radius:2px;background:rgba(242,239,231,.35)}
+.tkx .saved{position:absolute;left:0;right:0;top:412px;display:flex;justify-content:center;opacity:0;transform:scale(.9);transition:opacity .2s ease,transform .25s cubic-bezier(.3,1.4,.5,1);z-index:6}
+.tkx .saved.on{opacity:1;transform:none}
+.tkx .saved span{height:52px;padding:0 22px 0 12px;border-radius:26px;background:rgba(17,17,17,.9);display:flex;align-items:center;gap:10px;font-size:17px;font-weight:600}
+.tkx .saved span i{width:28px;height:28px;border-radius:50%;background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:center}
+
+/* Edit take (EditTakeView): crop to a format, trim, export clean */
+.tkx .tk-edit{position:absolute;left:0;top:0;width:402px;height:874px;background:var(--ink);color:var(--paper);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s .3s;z-index:20}
+.tkx .tk-edit.on{opacity:1;visibility:inherit;transition:opacity .3s ease}
+.tkx .tk-edit .hd{position:absolute;left:20px;right:20px;top:68px;height:44px;display:flex;align-items:center;justify-content:space-between;font-size:17px;font-weight:500}
+.tkx .tk-edit .hd span{height:44px;padding:0 20px;border-radius:22px;background:var(--ctl);display:flex;align-items:center;font-size:15px;transition:transform .12s ease}
+.tkx .tk-edit .hd span.sv{background:var(--paper);color:var(--ink)}
+.tkx .tk-edit .hd span.hit{transform:scale(.93)}
+.tkx .pv{position:absolute;left:24px;top:124px;width:354px;height:332px;border-radius:20px;background:#222 50% 34%/cover no-repeat;overflow:hidden}
+.tkx .pv .fr{position:absolute;left:50%;top:50%;border-radius:6px;box-shadow:0 0 0 2px #fff,0 0 0 600px rgba(17,17,17,.6);transform:translate(-50%,-50%);transition:width .38s cubic-bezier(.3,1.1,.4,1),height .38s cubic-bezier(.3,1.1,.4,1);background:linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,.45)) 33.33% 0/1px 100% no-repeat,linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,.45)) 66.66% 0/1px 100% no-repeat,linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,.45)) 0 33.33%/100% 1px no-repeat,linear-gradient(rgba(255,255,255,.45),rgba(255,255,255,.45)) 0 66.66%/100% 1px no-repeat}
+.tkx .tk-edit .hint{position:absolute;left:0;right:0;top:466px;text-align:center;font-size:11px;color:var(--odm)}
+.tkx .tk-edit .seg{position:absolute;left:20px;right:20px;top:492px;font-family:var(--mo);font-size:13px}
+.tkx .tk-edit .seg span{transition:background-color .25s ease,color .2s ease}
+.tkx .tk-edit .seg span:last-child{font-family:var(--sg);font-size:14px}
+.tkx .trim{position:absolute;left:20px;right:20px;top:556px}
+.tkx .trim .l{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:500;color:var(--odb)}
+.tkx .trim .l small{font-size:11px;color:var(--odm)}
+.tkx .trim .fs{position:relative;margin-top:10px;height:56px;border-radius:12px;overflow:hidden;display:flex;box-shadow:inset 0 0 0 2px var(--paper)}
+.tkx .trim .fs i{flex:1;background:50% 30%/cover no-repeat}
+.tkx .trim .fs::before,.tkx .trim .fs::after{content:'';position:absolute;top:0;bottom:0;width:14px;background:var(--paper);z-index:1}
+.tkx .trim .fs::before{left:0;border-radius:12px 0 0 12px}
+.tkx .trim .fs::after{right:0;border-radius:0 12px 12px 0}
+.tkx .tk-edit .exp{position:absolute;left:20px;right:20px;top:774px;height:56px;border-radius:28px;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;letter-spacing:.5px}
+
+/* the finger */
+.tkx .tk-tch{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(120,120,128,.36);box-shadow:0 0 0 2px rgba(255,255,255,.9),0 2px 10px rgba(0,0,0,.3);z-index:50;opacity:0;transition:opacity .16s ease;will-change:transform}
+.tkx .tk-tch.on{opacity:1}

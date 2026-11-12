@@ -1,0 +1,102 @@
+{
+ "routes": {
+  "/about": {
+   "title": "About — Eduardo Pinillos · Independent product builder",
+   "description": "Eduardo Pinillos is an independent product builder based in Portugal, born in Lima. Building iOS and Mac apps alone, slow, on purpose since 2008."
+  },
+  "/dimmly": {
+   "title": "Dimmly — Task manager & habit tracker for iOS and Mac · Pinillos Lab",
+   "description": "Dimmly is a task manager and habit tracker for iOS and macOS. Color-coded lists, alarms, streaks, notes, checklists, and a built-in Scoreboard."
+  },
+  "/percha": {
+   "title": "Percha — Wardrobe OS for iOS · Pinillos Lab",
+   "description": "Percha is a quiet wardrobe OS for iOS. See what you own, what you wear, what you don’t. Works entirely on-device, no account required."
+  },
+  "/solid": {
+   "title": "Solid — Minimal gym tracker for iOS · Pinillos Lab",
+   "description": "Solid is a gym tracker for iOS that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer."
+  },
+  "/gridborne": {
+   "title": "Gridborne — Turn-based strategy game for iOS · Pinillos Lab",
+   "description": "Gridborne is a turn-based strategy game played on a 7×7 grid. Quiet rules, deep tactics. Built for short, satisfying matches."
+  },
+  "/wealth-square": {
+   "title": "Wealth Square — Native Mac net-worth tracker (coming soon) · Pinillos Lab",
+   "description": "Wealth Square is a native Mac app for tracking net worth. Currently in development — not ready to show yet."
+  },
+  "/dummo": {
+   "title": "Dummo — Turn screen recordings into promo videos for iOS and Mac · Pinillos Lab",
+   "description": "Dummo turns a plain screen recording into a polished promo video. Wrap it in a device frame, add taps and auto-zoom, then export App Store previews, Reels, and Stories. iOS and macOS."
+  },
+  "/takekit": {
+   "title": "TakeKit — Teleprompter camera for iOS · Pinillos Lab",
+   "description": "TakeKit is a teleprompter camera for creators, coaches, and founders. Write your script, hit record, and read from an on-screen guide only you can see — your exported video is always clean. No account, one-time Pro purchase."
+  },
+  "/contact": {
+   "title": "Contact — Pinillos Lab",
+   "description": "Get in touch with Eduardo Pinillos about a product idea, a collaboration, or feedback."
+  },
+  "/privacy": {
+   "title": "Privacy — Pinilloslab.com",
+   "description": "Privacy policy for pinilloslab.com. No cookies, no analytics, no trackers. Fonts and scripts are self-hosted."
+  },
+  "/dimmly/privacy": {
+   "title": "Dimmly — Privacy policy · Pinillos Lab",
+   "description": "Privacy policy for Dimmly. No accounts, no tracking, no analytics. Your tasks and habits stay on your device and sync privately through your iCloud account."
+  },
+  "/percha/privacy": {
+   "title": "Percha — Privacy policy · Pinillos Lab",
+   "description": "Privacy policy for Percha. No accounts, no tracking, no analytics. Your wardrobe data stays on your device and syncs privately through your iCloud account."
+  },
+  "/solid/privacy": {
+   "title": "Solid — Privacy policy · Pinillos Lab",
+   "description": "Privacy policy for Solid. No accounts, no tracking, no analytics. Your workout data stays on your device and syncs privately through your iCloud account."
+  },
+  "/gridborne/privacy": {
+   "title": "Gridborne — Privacy policy · Pinillos Lab",
+   "description": "Privacy policy for Gridborne. No data collection, no tracking. The game runs entirely on your device, offline."
+  },
+  "/dummo/privacy": {
+   "title": "Dummo — Privacy policy · Pinillos Lab",
+   "description": "Privacy policy for Dummo. No data collected, no tracking, no analytics. Your recordings and projects stay on your device and sync privately through your iCloud account."
+  },
+  "/takekit/privacy": {
+   "title": "TakeKit — Privacy policy · Pinillos Lab",
+   "description": "Privacy policy for TakeKit. No accounts, no tracking, no analytics. Speech recognition runs on your device; your scripts and takes stay on your device and sync privately through your iCloud account."
+  }
+ },
+ "apps": {
+  "trovelo": {
+   "about": "Private travel planner for iPhone, iPad and Mac. Plan trips day by day, track expenses in dual currency, keep your itinerary in your pocket. No account, no ads.",
+   "os": "iOS, iPadOS, macOS"
+  },
+  "dimmly": {
+   "about": "Task manager and habit tracker for iOS and macOS. Color-coded lists, alarms, streaks, notes, checklists, and a built-in Scoreboard. Free for 5 lists, one-time upgrade for unlimited.",
+   "os": "iOS, macOS"
+  },
+  "percha": {
+   "about": "Wardrobe OS for iOS. See what you own, what you wear, what you don't. Works entirely on-device — no account required.",
+   "os": "iOS"
+  },
+  "solid": {
+   "about": "Gym tracker for iOS that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer.",
+   "os": "iOS"
+  },
+  "gridborne": {
+   "about": "Turn-based strategy game played on a 7x7 grid. Quiet rules, deep tactics. Built for short, satisfying matches. Offline single-player with Game Center leaderboards.",
+   "os": "iOS"
+  },
+  "wealth-square": {
+   "about": "Native Mac app for tracking net worth. Currently in development.",
+   "os": "macOS"
+  },
+  "dummo": {
+   "about": "Turn a plain screen recording into a polished promo video. Wrap it in a realistic device frame, add tap indicators and auto-zoom, then export App Store previews, Reels, and Stories. Free with a one-time Dummo Pro upgrade.",
+   "os": "iOS, macOS"
+  },
+  "takekit": {
+   "about": "Teleprompter camera for iOS. Write your script, hit record, and read from an on-screen guide only you can see — the exported video is always clean. Speech-paced auto-scroll, takes grouped by script, clean crops for Reels, TikTok, Shorts. Free with a one-time TakeKit Pro upgrade.",
+   "os": "iOS"
+  }
+ }
+}

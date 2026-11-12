@@ -1,275 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dimmly — Support</title>
-<meta name="description" content="Dimmly support. Get help with lists, habits, alarms, the Scoreboard, the unlimited upgrade, and iCloud sync.">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dimmly · Support · Pinillos Lab</title><meta name="description" content="Help and support for Dimmly, an app by Pinillos Lab.">
 <link rel="canonical" href="https://pinilloslab.com/dimmly/support/">
-<style>
-/* Bricolage Grotesque · latin-ext */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Bricolage Grotesque · latin */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Instrument Serif italic · latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Instrument Serif italic · latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* JetBrains Mono · latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* JetBrains Mono · latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-:root {
-  --yellow: #F1F332;
-  --black: #000;
-  --paper: #F2EFE6;
-  --paper-dark: #E8E4D6;
-  --ink: #0A0A0A;
-  --ink-soft: #6E6E6E;
-  --display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  width: 100%;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--display);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-a { color: inherit; text-decoration: none; }
-::selection { background: var(--yellow); color: var(--black); }
-
-.app-hero {
-  padding: 120px 28px 40px;
-  position: relative;
-  max-width: 872px;
-  margin: 0 auto;
-}
-@media (min-width: 768px) { .app-hero { padding: 160px 56px 60px; } }
-
-.privacy-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  text-decoration: none;
-  margin-bottom: 24px;
-  padding: 8px 14px 8px 10px;
-  background: var(--paper-dark);
-  border-radius: 999px;
-  transition: background 0.3s, color 0.3s, padding 0.3s var(--ease-out-expo);
-}
-.privacy-back:hover {
-  background: var(--ink);
-  color: var(--paper);
-  padding-left: 16px;
-}
-.privacy-back svg { transition: transform 0.3s var(--ease-out-expo); }
-.privacy-back:hover svg { transform: translateX(-2px); }
-
-.app-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-}
-.app-name {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(72px, 16vw, 200px);
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  margin-bottom: 24px;
-  font-variation-settings: "opsz" 96;
-}
-.app-name em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-
-.privacy-body {
-  padding: 0 28px 80px;
-  max-width: 760px;
-  margin: 0 auto;
-  font-family: var(--display);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-@media (min-width: 768px) { .privacy-body { padding: 0 56px 120px; } }
-.privacy-body section { display: flex; flex-direction: column; gap: 10px; }
-.privacy-body h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 4px;
-}
-.privacy-body p { font-size: 17px; line-height: 1.55; }
-.privacy-body ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0;
-}
-.privacy-body ul li {
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.5;
-}
-.privacy-body ul li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--ink-soft);
-}
-.privacy-body strong { font-weight: 700; }
-.privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.privacy-body a:hover { color: var(--ink-soft); }
-.privacy-body a.reddit-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  max-width: 480px;
-  margin: 8px 0 4px;
-  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
-}
-.privacy-body a.reddit-cta:hover { background: var(--ink); color: var(--yellow); }
-.privacy-body a.reddit-cta .arr { font-family: var(--mono); }
-@media (max-width: 767px) {
-  .privacy-body a.reddit-cta { padding: 17px 20px; font-size: 15px; }
-}
-.privacy-body .privacy-updated {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--paper-dark);
-  padding-top: 16px;
-  margin-top: 8px;
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/images/pinilloslab-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pinillos Lab">
+<meta property="og:url" content="https://pinilloslab.com/dimmly/support/">
+<meta property="og:title" content="Dimmly · Support · Pinillos Lab">
+<meta property="og:description" content="Help and support for Dimmly, an app by Pinillos Lab.">
+<meta property="og:image" content="https://pinilloslab.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Dimmly · Support · Pinillos Lab", "url": "https://pinilloslab.com/dimmly/support/", "inLanguage": "en", "isPartOf": {"@id": "https://pinilloslab.com/#website"}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Pinillos Lab", "item": "https://pinilloslab.com/"}, {"@type": "ListItem", "position": 2, "name": "Dimmly", "item": "https://pinilloslab.com/dimmly/"}, {"@type": "ListItem", "position": 3, "name": "Support", "item": "https://pinilloslab.com/dimmly/support/"}]}}</script>
+<style>/* the site's own typefaces, served from this domain (see fonts/LICENSE.txt); nothing is fetched from anyone else */
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+:root{--app:#FF7A1A;--on:#0B0B10}
+/* Privacy and Support, in the walk's look: the app's room colour, the title as on its wall, the words on paper */
+:root{--ink:#0B0B10;--paper:#F4F1E8;--hot:#E4FF3A;--display:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}html,body{margin:0}
+body{font-family:var(--display);color:var(--ink);background:var(--app);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.55'/></svg>")}
+/* the walk's top bar */
+.nav{position:sticky;top:calc(14px + env(safe-area-inset-top,0px));z-index:5;margin:14px 20px 0;height:52px;border-radius:99px;color:var(--ink);background:var(--paper);box-shadow:0 0 0 1.5px var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 22px}
+.brand{font-weight:800;font-size:19px;letter-spacing:-.3px;text-decoration:none}
+.brand i{font:700 10px var(--mono);font-style:normal;background:var(--hot);padding:3px 6px;border-radius:4px;margin-left:6px;letter-spacing:1px;vertical-align:2px}
+.mbtn{font:700 11px var(--mono);letter-spacing:2px;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:99px;text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;line-height:1.2;padding:11px 18px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);text-decoration:none}
+.pill.k{background:var(--ink);color:var(--paper);box-shadow:0 0 0 1.5px var(--paper)}
+.pill.h{background:var(--hot);box-shadow:none}
+.pill:hover,.pill:focus-visible{background:var(--hot);color:var(--ink)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* two columns: the title stays put at the left while the paper scrolls at the right */
+.wrap{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.25fr);gap:44px;padding:44px 56px 90px;align-items:start;max-width:1500px;margin:0 auto}
+.side{position:sticky;top:96px;color:var(--on)}
+.t1{font-weight:800;font-size:clamp(64px,8.6vw,124px);letter-spacing:-.045em;line-height:.86;margin:30px 0 0}
+.t2{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:.9em;letter-spacing:-.01em;line-height:.92}
+.icon{display:block;width:74px;height:74px;margin:34px 0 0 6px;border-radius:19px;box-shadow:0 0 0 1.5px var(--ink),5px 6px 0 rgba(11,11,16,.9);transform:rotate(-7deg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+.sheet{background:var(--paper);color:var(--ink);border-radius:34px;box-shadow:0 0 0 1.5px var(--ink),10px 12px 0 rgba(11,11,16,.9);padding:38px 42px}
+.lab,.sheet .lab{font:700 11px/1.4 var(--mono);letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}.sheet .lab.dim{opacity:.55;margin-bottom:0}
+.sheet p,.sheet li{font-size:17px;line-height:1.52;margin:0}.sheet p+p,.sheet p+ul,.sheet ul+p,.sheet p+ol,.sheet p+.pill,.sheet .pill+p{margin-top:12px}
+.sheet ul,.sheet ol{margin:0;padding-left:20px}.sheet li+li{margin-top:6px}
+.sheet a:not(.pill){text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
+.sheet code{font:400 .86em var(--mono);background:rgba(11,11,16,.08);padding:1px 5px;border-radius:5px}
+.main,.sheet{min-width:0}
+.tw{overflow-x:auto;margin-top:14px;-webkit-overflow-scrolling:touch}
+.sheet table{width:100%;min-width:520px;border-collapse:collapse}
+.sheet th,.sheet td{text-align:left;vertical-align:top;font-size:14.5px;line-height:1.45;padding:11px 16px 11px 0;border-top:1.5px solid rgba(11,11,16,.14)}
+.sheet th{font:700 10px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;border-top:0;padding-top:0}
+.privacy .sheet section{margin-top:28px;padding-top:26px;border-top:1.5px solid rgba(11,11,16,.14)}
+/* Support: cards in two columns; the first one, how to reach him, across the top in ink */
+.cards{columns:2;column-gap:18px}
+.card{break-inside:avoid;margin:0 0 18px;padding:26px 28px;border-radius:28px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+.card p,.card li{font-size:16px}
+.card.dark{column-span:all;background:var(--ink);color:var(--paper);padding:30px 32px}.card.dark .lab{color:var(--hot)}.card.dark p{font-size:17px}
+@media(max-width:820px){
+ .nav{margin:12px 12px 0}
+ .wrap{grid-template-columns:minmax(0,1fr);gap:30px;padding:26px 16px calc(60px + env(safe-area-inset-bottom,0px))}
+ .side{position:static;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:end}
+ .side>.pill{justify-self:start;grid-column:1/-1}
+ .t1{font-size:clamp(58px,19vw,96px);margin-top:22px}
+ .icon{margin:0 6px 10px 0;width:62px;height:62px;border-radius:16px}
+ .row{grid-column:1/-1;margin-top:22px}
+ .sheet{padding:26px 22px;border-radius:26px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+ .sheet p,.sheet li{font-size:16px}
+ .cards{columns:1}.card{padding:22px 20px;border-radius:24px}.card.dark{padding:24px 22px}
 }
 
-@media (max-width: 767px) {
-  .app-hero { padding: 100px 22px 32px; }
-  .app-num { font-size: 10px; margin-bottom: 12px; }
-  .app-name { font-size: clamp(48px, 14vw, 72px); margin-bottom: 18px; word-break: keep-all; overflow-wrap: normal; hyphens: none; }
-  .app-name em { font-size: 0.55em; }
-  .privacy-back { font-size: 10px; padding: 7px 12px 7px 8px; margin-bottom: 18px; }
-}
-</style>
-</head>
-<body>
-<div class="app-hero">
-  <a href="/dimmly/" class="privacy-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <span>Back to Dimmly</span>
-  </a>
-  <div class="app-num">— Support · Dimmly</div>
-  <h1 class="app-name">Support<br><em>center</em></h1>
-</div>
-
-<div class="privacy-body">
-  <section>
-    <h3>Need help?</h3>
-    <p><strong>Reddit is the best way to reach me.</strong> <strong>r/dimmly</strong> is where I talk with the people who use my apps every day — questions, bugs, ideas, anything — and it's where I answer fastest.</p>
-    <a class="reddit-cta" href="https://www.reddit.com/r/dimmly/" target="_blank" rel="noopener"><span>Write to me on r/dimmly</span><span class="arr">&#8599;</span></a>
-    <p>You can also message me directly at <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">u/beretta51</a>, or email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Dimmly is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
-  </section>
-
-  <section>
-    <h3>Getting started</h3>
-    <ul>
-      <li><strong>Create lists.</strong> Make color-coded lists for work, routines, groceries, or anything else, and add tasks with notes and checklists inside them.</li>
-      <li><strong>Set alarms.</strong> Give a task an alarm so it pings you at the right moment.</li>
-      <li><strong>Track habits.</strong> Check off your daily habits and keep your streaks alive.</li>
-      <li><strong>Keep score.</strong> Use the built-in Scoreboard to keep score during game nights.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Free plan &amp; the unlimited upgrade</h3>
-    <p>Dimmly is free for up to 5 lists. A <strong>one-time purchase</strong> unlocks unlimited lists — no subscription. The purchase is tied to your Apple Account, so one purchase covers your iPhone and Mac. Use <em>Restore Purchases</em> in Settings if the upgrade doesn't show up on a new device.</p>
-  </section>
-
-  <section>
-    <h3>iCloud sync</h3>
-    <p>There are no accounts and no Dimmly servers. Your tasks and habits stay on your device and sync across your devices privately through your own iCloud account whenever you're signed in to iCloud. There's nothing to configure.</p>
-  </section>
-
-  <section>
-    <h3>Privacy</h3>
-    <p>Dimmly has no accounts, no tracking, and no analytics. Read the full <a href="/dimmly/privacy/">Dimmly Privacy Policy</a>.</p>
-  </section>
-
-  <p class="privacy-updated">Dimmly · <a href="/">pinilloslab.com</a></p>
-</div>
-</body>
-</html>
+.app .t1{font-size:clamp(50px,6.2vw,94px)}.app .t2{font-size:.62em;line-height:1.05;margin-top:.12em}.sheet h2.big{font:800 26px/1.15 var(--display);letter-spacing:-.02em;text-transform:none;margin:0 0 10px}</style></head>
+<body class="support">
+<div class="grain" aria-hidden="true"></div>
+<header class="nav"><a class="brand" href="/">Pinillos <i>LAB</i></a><a class="mbtn" href="/#menu">MENU</a></header>
+<main class="wrap">
+ <aside class="side">
+  <a class="pill" href="/#dimmly">← Dimmly</a>
+  <h1 class="t1">Support<span class="t2">center</span></h1>
+  <img class="icon" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAhKADAAQAAAABAAAAhAAAAAD/wAARCACEAIQDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIEAgIEBQQEBAUHBQUFBQcJBwcHBwcJCwkJCQkJCQsLCwsLCwsLDQ0NDQ0NDw8PDw8RERERERERERER/9sAQwEDAwMEBAQHBAQHEgwKDBISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhIS/90ABAAJ/9oADAMBAAIRAxEAPwD9/KKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA//Q/fyiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP/0f38rmNR8b+DNHvG0/V9X0+1uExuinuYo3GRkZVmBGRXT1+Fnwz+AHwv/aI/bo+L2hfFexk1C3sLmS4twk8sLK5mWPO6NlJAXgA8CmkB+5NnfWWo2y3unzRzwuMrJEwdGHswyDWH4X8a+D/G9rPe+DdUstVhtbh7WeSymSdY5o/vxsUJAYdwea/IHw94XvP2IP23fDXwr8BaleXHgvx5CFfTLuQyiGSRniBGeN0ciqQ+NxRirE4zXO/DL9sPw/8ABH9nvVviB8M/AemaQLjx82l3VpFc3EiSRSQGczbnLMJAibFUYjHUKBxTsB+41Fflrr/7d/xr+HfxL0zw98T/AIaS2Ol+J45D4cht7lZdQuJDhYI5ACY1d3ZFdDtMe8E7sc7/AIB/bX+LNp8Zb74J/HvwVb+H9VOk3WracLO689XW3gkuAkj/ADKwdI3AdCMMpBX0VgP0ror8e9M/4KGftDeJfgp/wujwr8OLS40vSZpE16+e7ZbdMONq26Z81tqMpkfDKpPTAOOg8cf8FC/i74e8M6T8bNM+HJHw61CWGD+0Ly7VbuWRgfM8uNCdihldI2dCJNucruAoswP1RTW9GfV38Ppd25v44hO9oJFMyxE4DmPO4KTwGxjNadfiF4p+JmqeGP28/HHxc8C2Q1We0+Hi6tZWkrFBLGLO0mAbbk4CEuVHJxgcnNfa0f7Zmnt+xef2pGtLf7aLQxnThIfK/tHzvs/k7vvbPM+b12UWA+56K8v+CnjXxD8R/hL4e8e+KrBNL1DWNOhvZ7SNiyxmZdy7S3OCpDAHkZweleoUgCiiigAooooAKKKKAP/S/fyvxH0bxL8Xf2bP2xfib8QF+HHiTxLY+Ibh47STTreTy2RpFlWQSiN1YEcYHIPWv24oppgfkv8AC74b/Hf9pn9qbTP2mfjP4cl8IaF4Xg8vRdKuyftMki7zHlWCvw8hkd2VASFVQRkj4Ym+Bfxm/wCGT7/Qv+EW1j7cfiaswtfskvnGIWbQ+aE27jH5hC78bc96/pPop8wH5p/tg+AvG3iP4+/AzVPD+lXl7a6Zrm6+nt4mkjtlWW1kLTMoIRdsbnLED5TXKfHj4b+P9d/b60bxPo+j31zpv/CFahAb2KFmtxKbW/jEbSgbA5eVAFJBO4V+q9FK4H41/Ar4ZfEXTv8AgmT4x8G6hoeo2+sXn9pyW+nS28iXUi/uwNsLAOc7GwMZOOM0nxh+GXxFvf8Agl54X8GWWh6jNrFqNPln06O3ke6RfOc5aEAuMB1JGMjPNfsrRRzAfkl8HPhV46sf27jrXiLQr2PSD8P7Czmup4GFsXFlawPCZCNhbejqUzng8Yr4rb4c+Ml+Mbf8E80VzoLeOhrvmA/MNN+z+Zgj0+z4b/fr+iLxVoI8U+GdQ8NG7urD7fay232uyk8q4h81SvmRPg7XXOVOODXzJ+z/APsbfDv4B+KdQ+IFvqGqeIvEWpRmGXVdamE06xsQWVMKOW2jcxJYgAZA4p8wH1na21vZW0dnaIscUSLHGijCqqjAAHYAVPRRUgFFFFABRRRQAUUUUAf/0/oH/hqv45f9BaP/AMBYP/iKP+Gq/jl/0Fo//AWD/wCIr52or+W/9Y84/wCguf8A4HL/ADP7V/1TyH/oApf+AR/yPon/AIar+OX/AEFo/wDwFg/+Io/4ar+OX/QWj/8AAWD/AOIr52oo/wBY84/6C5/+By/zD/VPIf8AoApf+AR/yPon/hqv45f9BaP/AMBYP/iKP+Gq/jl/0Fo//AWD/wCIr52oo/1jzj/oLn/4HL/MP9U8h/6AKX/gEf8AI+if+Gq/jl/0Fo//AAFg/wDiKP8Ahqv45f8AQWj/APAWD/4ivnaij/WPOP8AoLn/AOBy/wAw/wBU8h/6AKX/AIBH/I+if+Gq/jl/0Fo//AWD/wCIo/4ar+OX/QWj/wDAWD/4ivnaij/WPOP+guf/AIHL/MP9U8h/6AKX/gEf8j6J/wCGq/jl/wBBaP8A8BYP/iKP+Gq/jl/0Fo//AAFg/wDiK+dqKP8AWPOP+guf/gcv8w/1TyH/AKAKX/gEf8j6J/4ar+OX/QWj/wDAWD/4ij/hqv45f9BaP/wFg/8AiK+dqKP9Y84/6C5/+By/zD/VPIf+gCl/4BH/ACPon/hqv45f9BaP/wABYP8A4ij/AIar+OX/AEFo/wDwFg/+Ir52oo/1jzj/AKC5/wDgcv8AMP8AVPIf+gCl/wCAR/yPon/hqv45f9BaP/wFg/8AiKP+Gq/jl/0Fo/8AwFg/+Ir52oo/1jzj/oLn/wCBy/zD/VPIf+gCl/4BH/I//9T0f/hE9H9JP++qP+ET0f0k/wC+q6Wiv4h+s1v52f2R9cr/AM7Oa/4RPR/ST/vqj/hE9H9JP++q6Wij6zW/nYfXK/8AOzmv+ET0f0k/76o/4RPR/ST/AL6rpaKPrNb+dh9cr/zs5r/hE9H9JP8Avqj/AIRPR/ST/vquloo+s1v52H1yv/Ozmv8AhE9H9JP++qP+ET0f0k/76rpaKPrNb+dh9cr/AM7Oa/4RPR/ST/vqj/hE9H9JP++q6Wij6zW/nYfXK/8AOzmv+ET0f0k/76o/4RPR/ST/AL6rpaKPrNb+dh9cr/zs5r/hE9H9JP8Avqj/AIRPR/ST/vquloo+s1v52H1yv/Ozmv8AhE9H9JP++qP+ET0f0k/76rpaKPrNb+dh9cr/AM7P/9WD/hYuv/3YP++T/jR/wsXX/wC7B/3yf8a4Kiv0b/iFfBf/AEKqX/gJ/Of/ABF3jn/ob1f/AAI73/hYuv8A92D/AL5P+NH/AAsXX/7sH/fJ/wAa4Kij/iFfBf8A0KqX/gIf8Rd45/6G9X/wI73/AIWLr/8Adg/75P8AjR/wsXX/AO7B/wB8n/GuCoo/4hXwX/0KqX/gIf8AEXeOf+hvV/8AAjvf+Fi6/wD3YP8Avk/40f8ACxdf/uwf98n/ABrgqKP+IV8F/wDQqpf+Ah/xF3jn/ob1f/Ajvf8AhYuv/wB2D/vk/wCNH/Cxdf8A7sH/AHyf8a4Kij/iFfBf/Qqpf+Ah/wARd45/6G9X/wACO9/4WLr/APdg/wC+T/jR/wALF1/+7B/3yf8AGuCoo/4hXwX/ANCql/4CH/EXeOf+hvV/8CO9/wCFi6//AHYP++T/AI0f8LF1/wDuwf8AfJ/xrgqKP+IV8F/9Cql/4CH/ABF3jn/ob1f/AAI73/hYuv8A92D/AL5P+NH/AAsXX/7sH/fJ/wAa4Kij/iFfBf8A0KqX/gIf8Rd45/6G9X/wI73/AIWLr/8Adg/75P8AjR/wsXX/AO7B/wB8n/GuCoo/4hXwX/0KqX/gIf8AEXeOf+hvV/8AAj//1vEP+Ekl/wCeK/maP+Ekl/54r+ZrmqK/oeyP5O+rUf5Tpf8AhJJf+eK/maP+Ekl/54r+ZrmqKLIPq1H+U6X/AISSX/niv5mj/hJJf+eK/ma5qiiyD6tR/lOl/wCEkl/54r+Zo/4SSX/niv5muaoosg+rUf5Tpf8AhJJf+eK/maP+Ekl/54r+ZrmqKLIPq1H+U6X/AISSX/niv5mj/hJJf+eK/ma5qiiyD6tR/lOl/wCEkl/54r+Zo/4SSX/niv5muaoosg+rUf5Tpf8AhJJf+eK/maP+Ekl/54r+ZrmqKLIPq1H+U6X/AISSX/niv5mj/hJJf+eK/ma5qiiyD6tR/lP/1/muiiiv6IP5VCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooA/9k=" alt="" width="74" height="74">
+  <div class="row"><a class="pill k" href="https://apps.apple.com/app/id6761221806" target="_blank" rel="noopener">Get Dimmly on the App Store ↗</a><a class="pill" href="/dimmly/privacy/">Privacy policy →</a></div>
+ </aside>
+ <div class="main"><div class="cards"><section class="sheet card dark"><h2 class="lab">Need help?</h2><p><strong>Reddit is the best way to reach me.</strong> <strong>r/dimmly</strong> is where I talk with the people who use my apps every day — questions, bugs, ideas, anything — and it's where I answer fastest.</p>
+<a class="pill h" href="https://www.reddit.com/r/dimmly/" target="_blank" rel="noopener">Write to me on r/dimmly ↗</a>
+<p>You can also message me directly at <a href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">u/beretta51</a>, or email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Dimmly is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p></section><section class="sheet card"><h2 class="lab">— Getting started</h2><ul>
+<li><strong>Create lists.</strong> Make color-coded lists for work, routines, groceries, or anything else, and add tasks with notes and checklists inside them.</li>
+<li><strong>Set alarms.</strong> Give a task an alarm so it pings you at the right moment.</li>
+<li><strong>Track habits.</strong> Check off your daily habits and keep your streaks alive.</li>
+<li><strong>Keep score.</strong> Use the built-in Scoreboard to keep score during game nights.</li>
+</ul></section><section class="sheet card"><h2 class="lab">— Free plan & the unlimited upgrade</h2><p>Dimmly is free for up to 5 lists. A <strong>one-time purchase</strong> unlocks unlimited lists — no subscription. The purchase is tied to your Apple Account, so one purchase covers your iPhone and Mac. Use <em>Restore Purchases</em> in Settings if the upgrade doesn't show up on a new device.</p></section><section class="sheet card"><h2 class="lab">— iCloud sync</h2><p>There are no accounts and no Dimmly servers. Your tasks and habits stay on your device and sync across your devices privately through your own iCloud account whenever you're signed in to iCloud. There's nothing to configure.</p></section><section class="sheet card"><h2 class="lab">— Privacy</h2><p>Dimmly has no accounts, no tracking, and no analytics. Read the full <a href="/dimmly/privacy/">Dimmly Privacy Policy</a>.</p></section></div></div>
+</main>
+</body></html>

@@ -1,264 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gridborne — Support</title>
-<meta name="description" content="Gridborne support. Get help with the rules, matches, and playing offline.">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gridborne · Support · Pinillos Lab</title><meta name="description" content="Help and support for Gridborne, an app by Pinillos Lab.">
 <link rel="canonical" href="https://pinilloslab.com/gridborne/support/">
-<style>
-/* Bricolage Grotesque · latin-ext */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Bricolage Grotesque · latin */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Instrument Serif italic · latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Instrument Serif italic · latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* JetBrains Mono · latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* JetBrains Mono · latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-:root {
-  --yellow: #F1F332;
-  --black: #000;
-  --paper: #F2EFE6;
-  --paper-dark: #E8E4D6;
-  --ink: #0A0A0A;
-  --ink-soft: #6E6E6E;
-  --display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  width: 100%;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--display);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-a { color: inherit; text-decoration: none; }
-::selection { background: var(--yellow); color: var(--black); }
-
-.app-hero {
-  padding: 120px 28px 40px;
-  position: relative;
-  max-width: 872px;
-  margin: 0 auto;
-}
-@media (min-width: 768px) { .app-hero { padding: 160px 56px 60px; } }
-
-.privacy-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  text-decoration: none;
-  margin-bottom: 24px;
-  padding: 8px 14px 8px 10px;
-  background: var(--paper-dark);
-  border-radius: 999px;
-  transition: background 0.3s, color 0.3s, padding 0.3s var(--ease-out-expo);
-}
-.privacy-back:hover {
-  background: var(--ink);
-  color: var(--paper);
-  padding-left: 16px;
-}
-.privacy-back svg { transition: transform 0.3s var(--ease-out-expo); }
-.privacy-back:hover svg { transform: translateX(-2px); }
-
-.app-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-}
-.app-name {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(72px, 16vw, 200px);
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  margin-bottom: 24px;
-  font-variation-settings: "opsz" 96;
-}
-.app-name em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-
-.privacy-body {
-  padding: 0 28px 80px;
-  max-width: 760px;
-  margin: 0 auto;
-  font-family: var(--display);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-@media (min-width: 768px) { .privacy-body { padding: 0 56px 120px; } }
-.privacy-body section { display: flex; flex-direction: column; gap: 10px; }
-.privacy-body h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 4px;
-}
-.privacy-body p { font-size: 17px; line-height: 1.55; }
-.privacy-body ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0;
-}
-.privacy-body ul li {
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.5;
-}
-.privacy-body ul li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--ink-soft);
-}
-.privacy-body strong { font-weight: 700; }
-.privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.privacy-body a:hover { color: var(--ink-soft); }
-.privacy-body a.reddit-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  max-width: 480px;
-  margin: 8px 0 4px;
-  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
-}
-.privacy-body a.reddit-cta:hover { background: var(--ink); color: var(--yellow); }
-.privacy-body a.reddit-cta .arr { font-family: var(--mono); }
-@media (max-width: 767px) {
-  .privacy-body a.reddit-cta { padding: 17px 20px; font-size: 15px; }
-}
-.privacy-body .privacy-updated {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--paper-dark);
-  padding-top: 16px;
-  margin-top: 8px;
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/images/pinilloslab-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pinillos Lab">
+<meta property="og:url" content="https://pinilloslab.com/gridborne/support/">
+<meta property="og:title" content="Gridborne · Support · Pinillos Lab">
+<meta property="og:description" content="Help and support for Gridborne, an app by Pinillos Lab.">
+<meta property="og:image" content="https://pinilloslab.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Gridborne · Support · Pinillos Lab", "url": "https://pinilloslab.com/gridborne/support/", "inLanguage": "en", "isPartOf": {"@id": "https://pinilloslab.com/#website"}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Pinillos Lab", "item": "https://pinilloslab.com/"}, {"@type": "ListItem", "position": 2, "name": "Gridborne", "item": "https://pinilloslab.com/gridborne/"}, {"@type": "ListItem", "position": 3, "name": "Support", "item": "https://pinilloslab.com/gridborne/support/"}]}}</script>
+<style>/* the site's own typefaces, served from this domain (see fonts/LICENSE.txt); nothing is fetched from anyone else */
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+:root{--app:#FF5A3C;--on:#0B0B10}
+/* Privacy and Support, in the walk's look: the app's room colour, the title as on its wall, the words on paper */
+:root{--ink:#0B0B10;--paper:#F4F1E8;--hot:#E4FF3A;--display:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}html,body{margin:0}
+body{font-family:var(--display);color:var(--ink);background:var(--app);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.55'/></svg>")}
+/* the walk's top bar */
+.nav{position:sticky;top:calc(14px + env(safe-area-inset-top,0px));z-index:5;margin:14px 20px 0;height:52px;border-radius:99px;color:var(--ink);background:var(--paper);box-shadow:0 0 0 1.5px var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 22px}
+.brand{font-weight:800;font-size:19px;letter-spacing:-.3px;text-decoration:none}
+.brand i{font:700 10px var(--mono);font-style:normal;background:var(--hot);padding:3px 6px;border-radius:4px;margin-left:6px;letter-spacing:1px;vertical-align:2px}
+.mbtn{font:700 11px var(--mono);letter-spacing:2px;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:99px;text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;line-height:1.2;padding:11px 18px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);text-decoration:none}
+.pill.k{background:var(--ink);color:var(--paper);box-shadow:0 0 0 1.5px var(--paper)}
+.pill.h{background:var(--hot);box-shadow:none}
+.pill:hover,.pill:focus-visible{background:var(--hot);color:var(--ink)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* two columns: the title stays put at the left while the paper scrolls at the right */
+.wrap{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.25fr);gap:44px;padding:44px 56px 90px;align-items:start;max-width:1500px;margin:0 auto}
+.side{position:sticky;top:96px;color:var(--on)}
+.t1{font-weight:800;font-size:clamp(64px,8.6vw,124px);letter-spacing:-.045em;line-height:.86;margin:30px 0 0}
+.t2{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:.9em;letter-spacing:-.01em;line-height:.92}
+.icon{display:block;width:74px;height:74px;margin:34px 0 0 6px;border-radius:19px;box-shadow:0 0 0 1.5px var(--ink),5px 6px 0 rgba(11,11,16,.9);transform:rotate(-7deg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+.sheet{background:var(--paper);color:var(--ink);border-radius:34px;box-shadow:0 0 0 1.5px var(--ink),10px 12px 0 rgba(11,11,16,.9);padding:38px 42px}
+.lab,.sheet .lab{font:700 11px/1.4 var(--mono);letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}.sheet .lab.dim{opacity:.55;margin-bottom:0}
+.sheet p,.sheet li{font-size:17px;line-height:1.52;margin:0}.sheet p+p,.sheet p+ul,.sheet ul+p,.sheet p+ol,.sheet p+.pill,.sheet .pill+p{margin-top:12px}
+.sheet ul,.sheet ol{margin:0;padding-left:20px}.sheet li+li{margin-top:6px}
+.sheet a:not(.pill){text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
+.sheet code{font:400 .86em var(--mono);background:rgba(11,11,16,.08);padding:1px 5px;border-radius:5px}
+.main,.sheet{min-width:0}
+.tw{overflow-x:auto;margin-top:14px;-webkit-overflow-scrolling:touch}
+.sheet table{width:100%;min-width:520px;border-collapse:collapse}
+.sheet th,.sheet td{text-align:left;vertical-align:top;font-size:14.5px;line-height:1.45;padding:11px 16px 11px 0;border-top:1.5px solid rgba(11,11,16,.14)}
+.sheet th{font:700 10px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;border-top:0;padding-top:0}
+.privacy .sheet section{margin-top:28px;padding-top:26px;border-top:1.5px solid rgba(11,11,16,.14)}
+/* Support: cards in two columns; the first one, how to reach him, across the top in ink */
+.cards{columns:2;column-gap:18px}
+.card{break-inside:avoid;margin:0 0 18px;padding:26px 28px;border-radius:28px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+.card p,.card li{font-size:16px}
+.card.dark{column-span:all;background:var(--ink);color:var(--paper);padding:30px 32px}.card.dark .lab{color:var(--hot)}.card.dark p{font-size:17px}
+@media(max-width:820px){
+ .nav{margin:12px 12px 0}
+ .wrap{grid-template-columns:minmax(0,1fr);gap:30px;padding:26px 16px calc(60px + env(safe-area-inset-bottom,0px))}
+ .side{position:static;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:end}
+ .side>.pill{justify-self:start;grid-column:1/-1}
+ .t1{font-size:clamp(58px,19vw,96px);margin-top:22px}
+ .icon{margin:0 6px 10px 0;width:62px;height:62px;border-radius:16px}
+ .row{grid-column:1/-1;margin-top:22px}
+ .sheet{padding:26px 22px;border-radius:26px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+ .sheet p,.sheet li{font-size:16px}
+ .cards{columns:1}.card{padding:22px 20px;border-radius:24px}.card.dark{padding:24px 22px}
 }
 
-@media (max-width: 767px) {
-  .app-hero { padding: 100px 22px 32px; }
-  .app-num { font-size: 10px; margin-bottom: 12px; }
-  .app-name { font-size: clamp(48px, 14vw, 72px); margin-bottom: 18px; word-break: keep-all; overflow-wrap: normal; hyphens: none; }
-  .app-name em { font-size: 0.55em; }
-  .privacy-back { font-size: 10px; padding: 7px 12px 7px 8px; margin-bottom: 18px; }
-}
-</style>
-</head>
-<body>
-<div class="app-hero">
-  <a href="/gridborne/" class="privacy-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <span>Back to Gridborne</span>
-  </a>
-  <div class="app-num">— Support · Gridborne</div>
-  <h1 class="app-name">Support<br><em>center</em></h1>
-</div>
-
-<div class="privacy-body">
-  <section>
-    <h3>Need help?</h3>
-    <p><strong>Reddit is the best way to reach me</strong> — it's where I talk with the people who use my apps every day, and it's where I answer fastest.</p>
-    <a class="reddit-cta" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><span>Message me on Reddit — u/beretta51</span><span class="arr">&#8599;</span></a>
-    <p>You can also email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Gridborne is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
-  </section>
-
-  <section>
-    <h3>Getting started</h3>
-    <ul>
-      <li><strong>Learn as you play.</strong> The rules are quiet on purpose — place your units on the 7×7 board and the game teaches you the rest as you go.</li>
-      <li><strong>Short matches.</strong> Games are built to be short and satisfying, so a match fits in a coffee break.</li>
-      <li><strong>Fully offline.</strong> Gridborne runs entirely on your device — no internet connection needed, ever.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Privacy</h3>
-    <p>Gridborne collects no data and has no tracking — the game runs entirely on your device, offline. Read the full <a href="/gridborne/privacy/">Gridborne Privacy Policy</a>.</p>
-  </section>
-
-  <p class="privacy-updated">Gridborne · <a href="/">pinilloslab.com</a></p>
-</div>
-</body>
-</html>
+.app .t1{font-size:clamp(50px,6.2vw,94px)}.app .t2{font-size:.62em;line-height:1.05;margin-top:.12em}.sheet h2.big{font:800 26px/1.15 var(--display);letter-spacing:-.02em;text-transform:none;margin:0 0 10px}</style></head>
+<body class="support">
+<div class="grain" aria-hidden="true"></div>
+<header class="nav"><a class="brand" href="/">Pinillos <i>LAB</i></a><a class="mbtn" href="/#menu">MENU</a></header>
+<main class="wrap">
+ <aside class="side">
+  <a class="pill" href="/#gridborne">← Gridborne</a>
+  <h1 class="t1">Support<span class="t2">center</span></h1>
+  <img class="icon" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAhKADAAQAAAABAAAAhAAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgAhACEAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICBAICBAUEBAQFBwUFBQUHCQcHBwcHCQsJCQkJCQkLCwsLCwsLCw0NDQ0NDQ8PDw8PEREREREREREREf/bAEMBAwMDBAQEBwQEBxIMCgwSEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEhISEv/dAAQACf/aAAwDAQACEQMRAD8A+VP2ytWudU+KXh6wkZvKF9fXOCeP3QQIf5/nXFfDX4XfEf44+LE8GfDTT5L+6YBpZPuwW8ZOPMnlPyov15J4UE8V7V8Tvg946+OX7QHhTwR4MQTXMl1eQXE5BKW1uQjPcSY/gRQT7nCjlhX9BnwO+B3gX4A+BbfwP4GtwqqA93duB593PjDSysOpPYdFHA4rxMtppYSklskezm9WUsZUk+v+R8L/AAa/4JcfCzwxbQ6n8ZbybxNqOAz2sLPbWCH+6ApEsmPVmUH+6K++/B/wU+EHw/VB4K8MaRpjRjCyW1pEkv8A3827z+JryH9oz9sT4Rfs3QCx8SzvqOuSx+ZBo9jta4Kn7rSknbCh7Fzk/wAKtX5M+Of+Cqn7Qes6mkPgfSdH0O1kZtokje9nCjoWd2RO46RivQuloeVZs/oT6dKK/mxn/wCCkX7W9rE1xc6xpkcaDcztp8AAHua5qX/gpl+21qemtqvheexntPNWBLuXToI45ZnIVY4Q2DI5JwAuT6iqgud2iKXu7n9OdFfz53H7bX7cFnZW9vb3djfTtB+9mjsbZQs5Y7gVOMKo4U9+SewrjviD/wAFC/2xPh1o+n2+s6xpZ1K8iadlTT4SEjVtu7GADub5V9cE0+XW1yVK5/R7RX8y2k/8FHv2zblGk1zXLG13KCiQaXbMV/394GTjsCOa24f2+/23r058OeJtDv5AM/ZrjTYbWVvZScoT/wACqo0nJ2iEpKOsj+k6iv5mYv8Agpl+2DHqT6DrN9Z6fqMf3rW40yFWI9VOMMPpWx/w8e/a9xn+1tO/8F0P+FZy912kXFcyuj+jrV9D0XX7RtP16zt72BxhormJZUI91cEGvlL4j/sG/stfEqGU3nha10m6k5F5ov8AoMqn12xYib/gaNX48Wn/AAUt/a4sbgTXF7pN0oPMc2noFP4xsjfrX2F8GP8Agq/4f1W+i0X486KNF8whTq2ml5rVD6ywtmVF9WVpMegFJNPYOVo+cvih/wAE7Pif8CPiZofxK8A3DeJ/DWnXEr3TKgS/tI3jIzLEuRIg7vHyOpQDmvqTT/ElvrfgKK0A3FImIyfXrX6saB4g0PxVott4j8M3kGoafexLNbXVs6yxSxt0ZHUkEH2NfD37SHwfj8IwTfEjwTCIrIljqdpEMLGXP+vRR0Un74HAzu9a8TO8C69P2keiPayjMPYzVN97n5r3mp6npF7NY2srQoshwoAPXvVf/hJtb/5+n/75H+FUNT1i2n1GeQ4OXNUf7StfQflXiUatRU4ryR9pONOUmz//0P0t/ZA+G1po+h3/AMUL2ELqGuSGGNz1W1gYqAPTe4LH1AX0q/8AtpftPaZ+y58H5PFCvEdb1SX+z9Fhl5Q3DKSZXH/POFQWbsTtX+KvpPwRoX/CM+DtL8PkBWs7OGFwOm9UAY/i2TX5i/tw6NbfEf4s6f4Z1eEXOn6TYoskDgMha7Ys77SCMgBPwFeOpRweGjdaLQ74xli8Rq7XPxOe81jxrrFx4r8QXkmpX9/K1xc3cr+Y8sjnJZm5/LoBwOK5m78Q+FtI19odWvI4zD8mxQXK455Cg4ya+yvi/wDsk/CzRhoWgeD0ms/EXi+/+waakM0iQRLHh7i5kUE5SFOdoAySB71zfxE+E1v8OZtF+BhaODTriCfV9clihiFw+m2R+cvMV8wyXMg8tTnAbAAxxWuCqU8XHni2rkY+LwU+R2fp/W54t4W8DxeK44PGvje1knsLgltB0XJQXaocG8uyMEW+RhVGDIeBhQSfqL4TfC7VPH/xqsm1thLZeFNHm166BKQW9sGP2a0UZ2xxop8yTgAYTNa/w1tbvxp4k+3640USzyRxRRouIraBcJHEgHRI1wAPavpX4f8AwW1v4neHfjrYeCbyGK5n1/TtD0kzNsim/sKNJmhdwGIWV5CCcEA8kYzTr42Lm6FHSMVv+FzGOFlCmq1fWcunZdjvvhv8O/A3jq1ln8GajZ6gls6w3YgkSV4XbOPNHVQcEg4AOOK/KqTTdP8Ajz+0Pq2r6cDLpVjcyz2qgZUW8TeRZJjphtjSkdzz3r9OPCvw7+Pvwp8H/Fr9qf48z2llrV54XubO00+3mjlXeqZW4maDEQbcqLGq5PLEkFsV8/8A/BPPw54U0jSvEvjnX08yOLV7OxSNQDmGygG7/wAelP1xXJVrPD4epVUr7JerNsNRU60bni2r/CySzVpprfjODt4I/CvFNf8ACot2KohVux6fga/U74wa14X1LWLu90CMR2zliqkAY54A/X+VfDPi+3jlzKoHJYj8Dx/OubBYqpJ3keliKEUj561HV9M1Hw+3hnx/aT6lCmI9Nkt8C/trhjiMW8h5YM2B5bHB9qcnwk8V6boial4y8TwaaYYg06Q2f2jy8Do8m5Qz9jsBGehNe8fs/eB7bxp+0h4et9VmEFho1rqHiC8fbvIWxiCp8oBJw8oPTPHHNfQf7e/gvQPDngvwToPhRQ8/ji9do5fLMT+SqxiIMrYIO+4QkEDBXmvaWKhzxpzV3Y8SWHnf907an52eBfBXxj8e28knhXQf7VtPMK2+pu6WcEqgldwErAsMg5KZ9K+hPC37D/xB8QyjUPidcRrbAgiw0wkRN6iWZgGI9lH41+y3w0+BFh4M8P2ugJCkcFjBFa24fYZNkShRnaNo6fWvWr3wzpum2h+1SqSvJjUcY9ycV8XiOIMRKcoU4KK79bH1iy7BUVG8nOX4XPkD9lPxTffATXLf4cX7GPwxfSLBFG3EdpcMcI0Y/hRzgOOmTu6g5/VXULCz1Wxm0zUY1mt7iNoZY3GVdHG1lI9CDivxb+Ll9qWnWNzDrh88W7P5M8IGSmcrlRg5Hrg1+sHwV8Y/8LB+Evh3xmzFm1DTYJpGIIJk2AOcHnlga9zJ8X7am4Sd7HkZnhpU5qrayfY/nW+O2mXnwe+LuvfDy93sthdn7O7dXt5AJIW+pjZc++a8m/4Tpff86/Vz9uj9m3VfiZ8ZbbxXoduWEmj28czL3kjlmHP/AADaK+M/+GLvGP8Az7N+f/162eXxTtFaHdDN/dXNuf/R/fivyw+P/iPTdN/aP1K1vH2kW1mTlCQQYQeor9T6/CL9szxPc6L+1lq8cbIFFpp5w5PeBa8LNoylhrR7/wCZ62U04zxHLLsWdG+IllqX7XV74whaKW38F6FaabZRTfLGLjUmaW5fHB3bFVf92vkP4p+NNS8b/FXx54h1yZJpUvdM8PRsi7V+z2qvPOqLk7VacKxGa85TxxfWPxJ8YajE/lvPqMLsF6YSBdv6ZrhlHiSw8LWvxC1yGNNM8Wane6lFfJJvWJy3leRcAgeW/wC73oT8rK3BJDAduBwypUIS68tjhx0r4mUeil+TPsj4da7BpCoWxkAAn0Ocg19JfsZeM7yH4YSajA7Rf2p4n1rUi5PzF5LnYuT6bY8V+fng/wARTT2S3No6SbBt3D5lOPpwa9c+EfjmHwn8D/C6XM0kdlNrd5DqsttKIJY7cXVw7IkpB8ppWCIJMZUNwQSCOZUNZ3W7X6m2IneMeU+/P2vvFV/rf7MvjmK4mZWubC3hIUkK267gUAD6E1+eP7MvidvD/wAMSLfP+m3l3LMDnDHzmUHj2Fbt1481/wAZ/s5fEUa3NLPplrPE2i3Fw2+WW2iu4GZS+B53lsSolxlsHJJGa+evg3qssfgyO3tpSGinuEZR7TMen40VaH7hw6XX5E4OUlN37H1drviU3YaWbCKK+fvEOvG8vCkYwiAhT9P8TVfWvFmlaezyazeRwFRlTPIFB+gYimeHPCHxA+JkLan8N9CvtStFfEmoSp9i05ARku17c7LcAY5w5PPANRQw/L7zOupV7s2PgJ4uXw58doLm5nNsJ9HvYElBIO9ZbeQgY55CnivW/wBtX4ixeNrDwl4uNxPcyeHL6eWRnUqAHEMg25x/z7+g618heLNB1j4ba9a+Jta1K1vb3SLnzTbaUfOtVjbi4VrkhfNbYTjyxsyOppfF3jG68SWkmnzkGCYBguchlPII7YIPX3rv9ipSjJI4JTtK6P2jg+Ps9x4YeXw5NIxaIC182MqTvPDbvQZyeegrCufjRpHhvSPsdu8t1J96ae5LGSWQ/edup5PQdhgCvzV+F/xOvNW8FxeE7qRWv9CRLGVQWzJCv+pmGCMqy8E5+8DXXMmt6sQqq7qTz5YJAHuen5mvgJ5PUjXnCo7WfU/R6WKw9ShGrTSd1/X3G78X/itd+JTLGCAjZ+VcgY/Pn8a/br9jN2k/Ze8Fu3U6b/7Uev5y/H2s+GPCm+HxHqMcEpGVtV/eXDDsNq5wT78V/RR+xHepqX7KPgi+ijeFZNMyqScMB5r4zX1mVYNUINxR8nnmJjUainseqeOLpIdWjRow/wC4U5P+83tXG/b4/wDngP0/wrtPG7KNVjyf+WC/+hNXHb09RXr2Pnz/0v34r+a3/go54s1LRv2u9atU0cX0IsdOPmwy7JebdSRg5B744r+lKv5tP+ChvhXTPE/7YGvrLqd9DJFY6aHgtCiBM2y4JYgk569K45cvK+fbzOnDupzr2W58LaX4v8Kar43u4fLu7D+0raKNzfqqiO7jyEDMpwFkQ4BOOQPXNeheH/EOpaD4H+H1/ocxQyWN9bzrgPGxiu5FKSIwKOuG6MCOa6Dw78LvDtjoF7oN+bi+g1JxJI13gvlRgYYAHjseorwG7u7/AOHEep6PpLi/06w16SygtLkEtGXQHfHKPulsYYYwcA4zmtsFi6U4ToxWy3+4rM8DWjOlXm9ZPVeev+Z986V4M+EPjS4aTxV4YTS53j5uvDFzLpbF+PnMCl7ck9/kGar/AAnbw94a0/XPBuhCeSx0vXb6CD7eUmmaCXy5U80qArN85yQoB9K+e9E+P2m6VfT2viSzvNMe1IjuWVDOkTkYILJ0z6EA1t/D/wCI/gS58Ta5b2eqxSHVbi1urYSBoS5MRjlA8wDJBReM854rOMFbR6M55qcG1JWaPqX4jXsOtfCXxPpYUENosyxrGAoBjKOowP8Adrx34JfCP4OXvhHSvEGuWGsX9xc2qXF7BLqktvavcSEmTalqsTKmei7yfU1J4k8daLoOjXcOtXi2cdzbSwBpVYFiy42onLOc8cA15V8K/j74M8PeDk0nUrm5nvYtwFtbWkrsqbiy5bAXuR1pSg403qKlzSnaKuz760tvh74WtgPBPgzw3pVypGy7FkLy6AGePPvmuHBzzkEGvFviX4g8SeLr977W9Ru70ogQLJM7IoXsEzsAHsK+WPG/7VLWuqRWmkaTdpIQBELucQrl+N8kce5jgHgFgO+OlaeseEfjjf8Ai7RvB3iGUWX9vw3M6W+mZV0Ftt3BppgeMNk7cY4rjqVKdOPta0rKzfyW56GGwGIxFZUKMNW0vm9jmfHGpWeh3Ura6ywIzkgS8bgR2Xqc+wryLS/ENhZAWV9b3Q0dpxHaXIQGaLzOfLEedzR5zs7jpg17Vr/wUi8N/FDSdI1MzRtfaddszzSfapXmt181fmcnBYfLkdMV5N4ssUjs7meCRo5LIrdR7ThiYmDAj3xnHvXZg8VTxFJVaLumhY/AVsDipYXFaSi7OwXr+HLS/h1DwXdapJrTTfZ7JraBrZVlb+CR5wFOe6YOfavZrPwH4s1zT4X+IXiHV7i4ZQZbe1lWGFT/AHfkHOO54rs/iJoVg/7OsnjSKeZby3ktr2K3yNlu/mJJCEx1Pltgvn5yxY89O40otrNvDNe/uYnQM0UfMjEjJXPQY6E/zrxK2Ze2h7SEUrNrz0/4c+reRLAVfZSm5KUVJdFrdbJ+R4V/whHhfw5FI+lWiI5OTPIPMkY/775b9a/pR/YvVV/Zb8Fhen9m/wDtV6/FXWvCNsfDo1BIRAGiDRxuAXJPqTX7cfshWrWX7NXhC1Y5Kafgn/to9a5biXWlK54+dUI0oxUe/Q7nx1Js1eMeWG/cLz/wJq4vzv8ApiK73xrE76pGV/54j/0Jq5D7PL6V6+h88f/T/fivw5/ay8Gx+If2vNYdHWKR7LT8ggDzAsA4LDnjtmv3Gr8pvj5ZLd/tL6vHeKnlta2PlscBsiFc4brXhZtNxwrserlTSxF32PlPxF8Jdd0vSTIu5Y8ZA+VlPpyK+Bbrw7FrPwz8ba5ZwSTT6P4uj1O6O5AI7CGQW8z4YgsRJJGMLk85r9fPir/wkXhbwRdX0E63NkLKV3EijcmwdcjHIFflZ8LbqTwnF4Rk8TWy3+l+KbS7bX7VvvXNjqtw6OqntIoiV4z2ZRXNw1zTp4iT6JI9DiOuo/VdNbt/cfTT/Dn4c6fpnjXQPinEmmaV4/tLa40TxMEc29hqESkhbtoslIbj5cuVIUg7sZBPxP4H+GbeEPiDpfhXxHrGjazDfPqFnBZafcw6j5UYjWSOSSWDfGBMVOxN+4FSSoBr9Dvhl8WfC/wwtPGHw78Z6ymoeHfCeptodhe3duWubyJVzDAbfBaSYf6sbR82N3ArwL4oJ4fvvE2j+NdR8P6v4N0O3t5ZbTULU26yw3zOrRXE1vD5gUGMMm2UfxYOK8/CZtUwtb6ni46RdlK+9lpZbt2tsfQ5lk9HHweNwUrOolLl6K71u9krp76aGro3wO+GtheJPcSXUt4oARpWaeJOfuoWLEAewx6etfH8Xw81LSPGXivVIUvTpXh/VLaDVjZeWJfssjyK0iNIreXnYQJChRSfnwK+w9D13xTq/hOTV9O8XaA2mRMofVBYTDUViIOT5BkNsHHTLEDnO3ivMfCfxVtdB1fV9A+EWm3XiO71xG/tPVbx1M9y5DAB2bCCPLHIRQoB6mvTxea0lRk6fvPS99EtdbuVkvz8jzso4YxkcRGpiv3cdbO927reKjdv1WnmX/CnwR/Zf034kp4h1rVvF13C96LlPD91ock2oSWzDP2YzqWtndiQBcrIo2/MADjH6L+INH8bfF74iN8dPirpp8P2NlYCy8PaQJleW2tHbfM9yV48+chdwXhFVVBJya8Z8C+Kf2mfAPgPSvD1lYeDrs6VYwWaFxOLhgi4A84TFSyjC8JgkdK4n4r/ALQPiTxd8L/FGgakraJ4nsdMkma0aQfPECN81rKvyyALuBwAyk8gda+VxOcLNXLCYOrGSejcXdpXttvbvb7z6rK8np5fUjjq8XFwTaUrau19GtObtd38ivrd/wCG/F/jnUPifdQsfD/w3sb1TIhwNQ1a+QR29jEwOW8tTvlIPy9K+G9XNpPcgzJ8v3ZOOobr+lfYPxo8RJqHgzw14W8I6dDo3hey0a2utNsbcllZ5kBmnlkIDSyu2cu3PPqST8aajM3msHwP/rV9xlmFhhqMKNN3UVY/Oc5zCpmGLqYuqrOTvbstkvkjf8N+I7zxN4H0z4MRLM4s74rrsr5Km3t5AbWNGb++FHA6Ae9fo/8AAvwb4RhvFg1Qy3t+6qyW8Kg8H1J4GOpz0r8+fgb4K8XfEH4r3+h+FIcxPa239pSyErHBKoIRjjqSg6dc1+73wo+FWj/DDQ2WEefezxIk93IMyMF5wOyrnsPxzXzedujSqOhSlbW7S8+59FgsdWr4eNavq0lFN9o7Jf1ueBfFXS9PYvbrYOkcAwqgDDHuzN3HpzX6Ofs1qE+BfhpFUIBZ42jt87V8OfFMbreTd6Gvuj9nIg/BDw4V6fY//Z2rqyFayb7Hh5vNyil5nUeLY9+ooc4/dD/0Jq5jyR6mus8Vf8hBP+uQ/wDQmrma+jPDP//U/fivyv8A2hLSK+/aH1S3mDuptrMEZIA/cr0x/Ov1Qr8Y/wBpfVNWl/a91HSbSUQwRWtg8zliMKYAfXGTXhZs2sM2u/8AmenlkeavbyOn+I3ge2k+Eus6ZpjXC3eo2E9tDliyK0iEZbPSvyNt/EVrPong26MbRy6XaQ6NcwMOYrrTpXEiN7sHV/o1fuLomoaXrGjDw/BP5zzx+WpHzkHruJ9BjmvyF/aj8AXvwo8fXPj++Rm0vWbtZNQjjGTa3kWBHcgL/BKuUf1JzycV5XDWOp0qtTDP7e3qepnuAq1qEMRBXdO/3PdnDfCy1+2fGPxL491kmcR63dS2YJzGk5chpgp4LgcKe3Nex+Ivj22k6y/hHwfpz63fvlJIcblbJ5BBIBGTjkjJ6V4T8OtdtfD/AIHS8+/NdQtfNk5w0rM3NXPgP4H8W+J/Et/8RPD0lmhkvWtHN+JHjCKUbzAI2Vsq4I4IyCeRXzeOy/D5lmuIxeYfw4aRWttHp/mfqeAnVy7IcFg8tp3rVI3k7Jvu3r22O3n/AGe/2ifiZf8A/CQaV8MFgt5GHmB3EELnsCEbBx75xXsT/BH9sj4eadGkfgHRrO2xuDRXMWf+Bc5J+tfU+o/G/wAQ+HdIs/Dfjb4lad4etrbaYY9L0yAHK/dIN+bqRmH97d1rMvPiPH8SYo7fQ/ipL4le2JkW31LTrCSMEjBJFtHDJj8a9SpDLKmHtON4La/Pb8z56n/rLTxF6a5ZS3so3/I+GpPi18SfCXiO28MfFzS7bTjqDlbeaCTcUZOodByB6HHPbNJ8YNH03xb4bfzWb7ZErPDcofmUuMHB7hhww6EGux+IvwD1PxpPqmra9qOn21nbh7uBdOt5YXNyE+XaZZpmVA3zEZPPAwK8Q8D+KZNe8PIt+26aEeTKuP4kO0/qK+dxmBwlCrTzHK/dcXqle3lv369D7HLquLqUKmWZ1C/OtG7X6XTt2bVmaHhfxpP4o+Dei2GooRceGlk0W4zyCoO6M/8AfOMfWvHNZlnRkexgN1dXc32extwMmWdsYGP7q/eb2471rWnjax8C+JfEWkXNu89t4islazghQu/26F18sKBnG5WYE/Svs/8AZG/Zn1fxZ4kPxI8duizWir9mtY33RWqSAnylPd+8rD6Z5Nfo0syp0sIsXL7Sul59j8XxGU1I4+rg+kHa/l/wx9Jfse/DjXPAXgmDR4oUju9RK3t/dsN00txJkySuxHCDO2Mdce5r70a0Fpa+UjOwA5ZiST6kmqOi6VaaBZi2szkoB5kjdScd/Qeg9K5nxJrk1tGWu7wwwPnBiQHgepzXwtWu6lSVap8Unc91U04xpUvhirHgPxjvtThilazMMiDIKfxD6+tffP7M8z3HwH8MzOAC1lkgf9dGr8s/i/runyW8s1pdNKwHLOAC3scfzr9Pv2VZ/tX7PPhW44+axzx/10evqOH7tyb7HiZ1T5YR9T0HxY6rqKA/88h/6E1cx5qVreN51i1WNWz/AKhTx/vNXHfbI/8Aar6Sx8/of//V/enStTsda0y21nTJBLbXcKXEMi9HjkUMrD2IINfhT+2fHcWH7Yuoy3UjRWs+m6fcnBI3KsXlgf8AfSGv0z/Ya8cx+P8A9lHwTqvmeZPaaRb6dcc5IktEEXPuUVW/GvjX/gqn8N76z0LR/j9pCOY9LH9l6sYkLssMr7raQheyysyE+rrXnYui6lOVNbndgaypVlNnJfBLx/bprTPENy8RhD1x1/Wpf2gLHS/iJ4J8VmQK01rpFy0KAAlpSh2IPXBA47mvz5+AfxHn1K3e507ImuZmQGVsNG0ZxuOO+OcV9neF/GGmXdrqVjLMHJj8oueSXUZDfic18TXwksPiOZLVH29KrGtRunuj8ftC16JfDlppNg6z3V1BHBHEDyCo5Leir1P0r618CaZD4T8NLYaJezQb413fdIMzdXG4HBY9ap/Hn4W6O1vba74Ds7SyvbSSa6kECLGLhzjejkYwWXOO2R7mvA4fig8enLLGP3lmVM0DgrIgBw2R7DNXmmDrYinGWCbs22/Xpfy7H03Dmc0aMp/XbKUIpR/w/at59/RH3d4a03RNCu47+7VL28mdQ090olkcjnOWBI6dBjArb8SvpGsTBfssUExDOJbdRE+ehwUAx16V8x6V8TUu/skjuoQKXRufTjNa2rfEZAiSwOGZWx3HB681+dVcnxzxCnJvm9T9DjmGDkr3TR2dxc3NvaSaUdQujsLKzMyFiueMMVLdOM5r598WQw+A9YOuaNG0ljOM3MacsjqAC4HcMMbh1yM1ka98TFi8QQ2gdQZt24HhdgGefbIwK5S41HWPiVeyaF4eYGBflubv/llCrdh/eYgHAH8q+1yvKsc6kPbO8Gtb7W/rY+Xz3PsDGjUVOa54v3bb37fjqdl8K7yw+I3x38NR6Pukht55XuXjB+SJkKjt1ZiAB3Jr98vCdhZ+B9EhsbCJYYLaBQyf7o5yR1JPU+tfBv7PWj+FfBFjoNpFbQ+cqrtlKqHJAOCxAG4gYxnoTX0H41+JdlbWFxYzXGzzptr45wpAwo+vU+1dOYcspxw9FPljovPU+Fi6taU8TiLc09XbRbI93tvGCW/hq91TUWCPeOWiz0CgYz+AGa8M1r4uaXdaZLpt7JkH5d3lngjjqvH515b42+ITjwiLBZAypGUjb/ZOO/fj9K/Ojxt8TfFY8Yro/hyCG7ElvJcyxPL5LAB8AhyQMnsO9PB5Y8Qnd7GVavCg0krt9juvj94obREuNW0+R7iJWJaOOQqMbgCfbg5r+hf9i+G9h/ZW8CnUI2ilk0aKYo5ywEpaRcn3Vga/mT8GeFvH/wAf/Hmn/CPSNIngvNenW1ebzFkjgiJBmnbBJ2xRhmP0x1Nf13eGfD+m+EvDen+FdGXZZ6ZaQ2Vup7RQII0H/fKivtMDQVKil1Pkc2rynV5XdLtt+Z88fG34l6T4N8VW+mXysXkskmGATwZJF7f7tePf8L48O/3H/wC+W/wr5w/ax8eXXiP406hb6NPiDSo49OyOheLLyfk7sv4V82/2tr//AD8GuSpm9KE3DsbUsjxFSnGajurn/9bov+Cf3xTk+BXjd/gnr9211oF0qWov3IEcV8hwj/7McuTHzyMISeDX7f6/oGjeKdEu/DXiK2jvLC+he3ubeUbkkjkG1lYehBr8DvDPhCxg8OQEKGeVVlkJGdzN1zX238Fv2wrPwbAvg/42T+RY2ybbbWnyVjjXAC3PfA7Sdh97+9Xy2AzuNetKnU0u9P8AI+54h4ZqYZRqYdX5VZ/LqfnB+0H+wZ8Sf2WvE174x+FltfeIvA1wWuM24ae+05hk7Z40G+SPHAlQHgfOF6n5F+HPxm1U3t9Y6nEtrLMokhj53GE9D/vKfvfX2r+vbStW0vXdNg1nQ7mG8s7lBLBcW7rLFIjdGR1JVgexBxXkXjf9m34B/EjUU1nxv4Q0fUL1CSt3JbIs+T1/eoFc59zXsV8PTqpqS1Z8vh8dUpWV9EfzO23xK06+vb3SryVXcjzGj/iUuMg49/5182fFt9G1e107VdI2NcSzTRSSRnBdVUfKxHoQR+Nf1Sr+wR+x+l4dRTwJponLMxkDz5Jbrn97z9OlVYv+CfX7GkLiSPwDpgIyR89wevXrLU0cLGlLmgzWvmLrR5ZI/lXsRcPp8Vz4QkM9sqhZLO5cCSFwPmVX4/DParkC+J9dDWdlb/YwOHnuWwFPfaoOWPv0r+qyz/YP/ZE0+Z57PwLpsbSLtfDTYI68jzMfjWhF+xJ+ypA4ki8FacCOR80x/nJWNTBJy5klf5/0z1aPEHLS9nKUktrK34dV8vkfynatY+E/DGnHTry2XWtXkHmFpyfkJ4DOVI2oM8Ln5q3/AIPalJY6HqjS7WYXoL7Vxn5R0A6ADoPSv6g4/wBhH9kaJpHTwNp26Vi8jFpyWY9yTISaZD+wb+yJbpLHb+BtPRZyDIFkuBuI6dJa2jQfI4N7/wBfI8+vmcKlWNWMLW0sv892/Nn8+Phf4w2a+LIoZbgefZgERgH92h4AA9u461i/E741X8t+bHRozd6hcOfs0ROABnmR+RgdhzzX9EFp+wH+x3Yzi6tPAempIM/OHnzz1yfN5/GtLT/2Gv2TNL1B9UsfA+mpcSHLSFpmY/8AfUhrH+zqSn7SK1BZtOUeSd0uttz+am6+OsEvh6LzGeSZ1ZEslP70TdChHbnqfStL4QfBP4o/EnXmPhbSrjWNY1R0klNuv7m3X+FXlbCRovdmYA44z3/pOs/2Jf2T7HWT4gh8CaO14TkyyxtLk+u2RmX9K+j9F0DQvDdgul+HbK3sLZPuw2sSxRj6KgA/SreEXLyR0T3HSzb2U/apc0ltfZefqfH/AOyD+yBon7OOjS69rjxah4r1KIJd3aD93bxZB+z2+QDtyAXcgFyBwAAK9o+P3xZj+Efw/udYshHNq90rW+lWznHmXDDhm/2I/vP7DHUiuf8Ajt+1H8KvgFYvB4kvUutaeEy22i2zq13KOAGZf+WceSMu+B6ZPFfli/xO8UfHbxQPHvi+Rd0ihba1jJ8m1izkRoD7/eY8seT2A5cxxsMFR5Yb9P8AM68ryvE5rXeJq6xW/n5ehS0H4TeM9a08atqF1C9xcu0szNvYs7ncxJ7kkk1s/wDCk/E//Pxb/k1e+6TEYbFEiYhfStL97/fP518C8ZJu599y4paK33H/17/gS6mudAtWmOSYYyfxFYHxU0+0ufDd3HMgIaEqR7EjNa3w+/5F+0/64R/yqt8TP+Rfuv8Arn/WvyDDf7x8z+mcfCLWqPj/APZ0+OfxY+Cuia9ZfDrW7qytdK1OaKC1Yia3Kbs4aGQMh5J5AB96/ZH9lH9rv4o/GO7j0zxjb6Z12mW3hkjc8Dk/vSv5KK/BXwV/yCvGH/YXmr9Rf+Cfn/IeT/eP8hX6DSnL61ON9P8AgH4zmdCkstpVFBX11truz9z6KB0or0z48KKKKACiiigAooooA8r+L/jnVvh/4OufEOjRwSzQqSq3CsyceoVlP61+Dnxt/wCCgf7SuvW+o6TpeqW+hQxK4B0mHypDjj/WyNJIp91YV+2H7TH/ACTG+/65n+Vfy8fEf/j61b6SfzrkxUpLlsz6HIqNOo5c8U/VHO2z3J8eeHNWup5rm61C/EF3PcSNLJMLgfvDI7EszE8gk9QK+8fhZdS2GrtYQf6sruwecEelfB0P/I2eEP8AsK29fdPw5/5GM/8AXM/zr5nP9cPTb8/zP0rhRL6ziI9Lx/JH2lYahcC1TBHSrf8AaNz61jWP/Hqn0q3XxVkfZunC70P/2Q==" alt="" width="74" height="74">
+  <div class="row"><a class="pill k" href="https://apps.apple.com/app/id6761489335" target="_blank" rel="noopener">Get Gridborne on the App Store ↗</a><a class="pill" href="/gridborne/privacy/">Privacy policy →</a></div>
+ </aside>
+ <div class="main"><div class="cards"><section class="sheet card dark"><h2 class="lab">Need help?</h2><p><strong>Reddit is the best way to reach me</strong> — it's where I talk with the people who use my apps every day, and it's where I answer fastest.</p>
+<a class="pill h" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">Message me on Reddit — u/beretta51 ↗</a>
+<p>You can also email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Gridborne is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p></section><section class="sheet card"><h2 class="lab">— Getting started</h2><ul>
+<li><strong>Learn as you play.</strong> The rules are quiet on purpose — place your units on the 7×7 board and the game teaches you the rest as you go.</li>
+<li><strong>Short matches.</strong> Games are built to be short and satisfying, so a match fits in a coffee break.</li>
+<li><strong>Fully offline.</strong> Gridborne runs entirely on your device — no internet connection needed, ever.</li>
+</ul></section><section class="sheet card"><h2 class="lab">— Privacy</h2><p>Gridborne collects no data and has no tracking — the game runs entirely on your device, offline. Read the full <a href="/gridborne/privacy/">Gridborne Privacy Policy</a>.</p></section></div></div>
+</main>
+</body></html>

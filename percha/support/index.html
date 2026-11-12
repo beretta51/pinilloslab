@@ -1,274 +1,97 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Percha — Support</title>
-<meta name="description" content="Percha support. Get help cataloguing your wardrobe, tracking what you wear, and iCloud sync.">
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Percha · Support · Pinillos Lab</title><meta name="description" content="Help and support for Percha, an app by Pinillos Lab.">
 <link rel="canonical" href="https://pinilloslab.com/percha/support/">
-<style>
-/* Bricolage Grotesque · latin-ext */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Bricolage Grotesque · latin */
-@font-face {
-  font-family: 'Bricolage Grotesque';
-  font-style: normal;
-  font-weight: 200 800;
-  font-stretch: 75% 100%;
-  font-display: swap;
-  src: url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* Instrument Serif italic · latin-ext */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* Instrument Serif italic · latin */
-@font-face {
-  font-family: 'Instrument Serif';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* JetBrains Mono · latin-ext */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin-ext.woff2) format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* JetBrains Mono · latin */
-@font-face {
-  font-family: 'JetBrains Mono';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/fonts/jetbrains-mono-normal-400-latin.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-
-:root {
-  --yellow: #F1F332;
-  --black: #000;
-  --paper: #F2EFE6;
-  --paper-dark: #E8E4D6;
-  --ink: #0A0A0A;
-  --ink-soft: #6E6E6E;
-  --display: 'Bricolage Grotesque', 'Helvetica Neue', sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body {
-  width: 100%;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--display);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-a { color: inherit; text-decoration: none; }
-::selection { background: var(--yellow); color: var(--black); }
-
-.app-hero {
-  padding: 120px 28px 40px;
-  position: relative;
-  max-width: 872px;
-  margin: 0 auto;
-}
-@media (min-width: 768px) { .app-hero { padding: 160px 56px 60px; } }
-
-.privacy-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  text-decoration: none;
-  margin-bottom: 24px;
-  padding: 8px 14px 8px 10px;
-  background: var(--paper-dark);
-  border-radius: 999px;
-  transition: background 0.3s, color 0.3s, padding 0.3s var(--ease-out-expo);
-}
-.privacy-back:hover {
-  background: var(--ink);
-  color: var(--paper);
-  padding-left: 16px;
-}
-.privacy-back svg { transition: transform 0.3s var(--ease-out-expo); }
-.privacy-back:hover svg { transform: translateX(-2px); }
-
-.app-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 16px;
-}
-.app-name {
-  font-family: var(--display);
-  font-weight: 800;
-  font-size: clamp(72px, 16vw, 200px);
-  letter-spacing: -0.05em;
-  line-height: 0.9;
-  margin-bottom: 24px;
-  font-variation-settings: "opsz" 96;
-}
-.app-name em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-
-.privacy-body {
-  padding: 0 28px 80px;
-  max-width: 760px;
-  margin: 0 auto;
-  font-family: var(--display);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-@media (min-width: 768px) { .privacy-body { padding: 0 56px 120px; } }
-.privacy-body section { display: flex; flex-direction: column; gap: 10px; }
-.privacy-body h3 {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 4px;
-}
-.privacy-body p { font-size: 17px; line-height: 1.55; }
-.privacy-body ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 0;
-}
-.privacy-body ul li {
-  padding-left: 18px;
-  position: relative;
-  line-height: 1.5;
-}
-.privacy-body ul li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--ink-soft);
-}
-.privacy-body strong { font-weight: 700; }
-.privacy-body a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
-.privacy-body a:hover { color: var(--ink-soft); }
-.privacy-body a.reddit-cta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 20px 24px;
-  background: #fff;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-  max-width: 480px;
-  margin: 8px 0 4px;
-  transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
-}
-.privacy-body a.reddit-cta:hover { background: var(--ink); color: var(--yellow); }
-.privacy-body a.reddit-cta .arr { font-family: var(--mono); }
-@media (max-width: 767px) {
-  .privacy-body a.reddit-cta { padding: 17px 20px; font-size: 15px; }
-}
-.privacy-body .privacy-updated {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  border-top: 1px solid var(--paper-dark);
-  padding-top: 16px;
-  margin-top: 8px;
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/images/pinilloslab-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pinillos Lab">
+<meta property="og:url" content="https://pinilloslab.com/percha/support/">
+<meta property="og:title" content="Percha · Support · Pinillos Lab">
+<meta property="og:description" content="Help and support for Percha, an app by Pinillos Lab.">
+<meta property="og:image" content="https://pinilloslab.com/images/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "name": "Percha · Support · Pinillos Lab", "url": "https://pinilloslab.com/percha/support/", "inLanguage": "en", "isPartOf": {"@id": "https://pinilloslab.com/#website"}, "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Pinillos Lab", "item": "https://pinilloslab.com/"}, {"@type": "ListItem", "position": 2, "name": "Percha", "item": "https://pinilloslab.com/percha/"}, {"@type": "ListItem", "position": 3, "name": "Support", "item": "https://pinilloslab.com/percha/support/"}]}}</script>
+<style>/* the site's own typefaces, served from this domain (see fonts/LICENSE.txt); nothing is fetched from anyone else */
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Bricolage Grotesque';font-style:normal;font-weight:200 800;font-stretch:75% 100%;font-display:swap;src:url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-italic-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face {font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/instrument-serif-normal-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 700;font-display:swap;src:url(/fonts/jetbrains-mono-normal-400-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+:root{--app:#FF4FA3;--on:#0B0B10}
+/* Privacy and Support, in the walk's look: the app's room colour, the title as on its wall, the words on paper */
+:root{--ink:#0B0B10;--paper:#F4F1E8;--hot:#E4FF3A;--display:"Bricolage Grotesque",system-ui,-apple-system,sans-serif;--serif:"Instrument Serif",Georgia,serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}html,body{margin:0}
+body{font-family:var(--display);color:var(--ink);background:var(--app);-webkit-font-smoothing:antialiased;min-height:100vh;min-height:100dvh}
+a{color:inherit}
+.grain{position:fixed;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .5 0'/></filter><rect width='220' height='220' filter='url(%23n)' opacity='.55'/></svg>")}
+/* the walk's top bar */
+.nav{position:sticky;top:calc(14px + env(safe-area-inset-top,0px));z-index:5;margin:14px 20px 0;height:52px;border-radius:99px;color:var(--ink);background:var(--paper);box-shadow:0 0 0 1.5px var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 22px}
+.brand{font-weight:800;font-size:19px;letter-spacing:-.3px;text-decoration:none}
+.brand i{font:700 10px var(--mono);font-style:normal;background:var(--hot);padding:3px 6px;border-radius:4px;margin-left:6px;letter-spacing:1px;vertical-align:2px}
+.mbtn{font:700 11px var(--mono);letter-spacing:2px;background:var(--ink);color:var(--paper);padding:12px 18px;border-radius:99px;text-decoration:none}
+.pill{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:15px;line-height:1.2;padding:11px 18px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);text-decoration:none}
+.pill.k{background:var(--ink);color:var(--paper);box-shadow:0 0 0 1.5px var(--paper)}
+.pill.h{background:var(--hot);box-shadow:none}
+.pill:hover,.pill:focus-visible{background:var(--hot);color:var(--ink)}
+a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+/* two columns: the title stays put at the left while the paper scrolls at the right */
+.wrap{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(0,1.25fr);gap:44px;padding:44px 56px 90px;align-items:start;max-width:1500px;margin:0 auto}
+.side{position:sticky;top:96px;color:var(--on)}
+.t1{font-weight:800;font-size:clamp(64px,8.6vw,124px);letter-spacing:-.045em;line-height:.86;margin:30px 0 0}
+.t2{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:.9em;letter-spacing:-.01em;line-height:.92}
+.icon{display:block;width:74px;height:74px;margin:34px 0 0 6px;border-radius:19px;box-shadow:0 0 0 1.5px var(--ink),5px 6px 0 rgba(11,11,16,.9);transform:rotate(-7deg)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:30px}
+.sheet{background:var(--paper);color:var(--ink);border-radius:34px;box-shadow:0 0 0 1.5px var(--ink),10px 12px 0 rgba(11,11,16,.9);padding:38px 42px}
+.lab,.sheet .lab{font:700 11px/1.4 var(--mono);letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}.sheet .lab.dim{opacity:.55;margin-bottom:0}
+.sheet p,.sheet li{font-size:17px;line-height:1.52;margin:0}.sheet p+p,.sheet p+ul,.sheet ul+p,.sheet p+ol,.sheet p+.pill,.sheet .pill+p{margin-top:12px}
+.sheet ul,.sheet ol{margin:0;padding-left:20px}.sheet li+li{margin-top:6px}
+.sheet a:not(.pill){text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1.5px}
+.sheet code{font:400 .86em var(--mono);background:rgba(11,11,16,.08);padding:1px 5px;border-radius:5px}
+.main,.sheet{min-width:0}
+.tw{overflow-x:auto;margin-top:14px;-webkit-overflow-scrolling:touch}
+.sheet table{width:100%;min-width:520px;border-collapse:collapse}
+.sheet th,.sheet td{text-align:left;vertical-align:top;font-size:14.5px;line-height:1.45;padding:11px 16px 11px 0;border-top:1.5px solid rgba(11,11,16,.14)}
+.sheet th{font:700 10px/1.4 var(--mono);letter-spacing:1.5px;text-transform:uppercase;border-top:0;padding-top:0}
+.privacy .sheet section{margin-top:28px;padding-top:26px;border-top:1.5px solid rgba(11,11,16,.14)}
+/* Support: cards in two columns; the first one, how to reach him, across the top in ink */
+.cards{columns:2;column-gap:18px}
+.card{break-inside:avoid;margin:0 0 18px;padding:26px 28px;border-radius:28px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+.card p,.card li{font-size:16px}
+.card.dark{column-span:all;background:var(--ink);color:var(--paper);padding:30px 32px}.card.dark .lab{color:var(--hot)}.card.dark p{font-size:17px}
+@media(max-width:820px){
+ .nav{margin:12px 12px 0}
+ .wrap{grid-template-columns:minmax(0,1fr);gap:30px;padding:26px 16px calc(60px + env(safe-area-inset-bottom,0px))}
+ .side{position:static;display:grid;grid-template-columns:1fr auto;column-gap:14px;align-items:end}
+ .side>.pill{justify-self:start;grid-column:1/-1}
+ .t1{font-size:clamp(58px,19vw,96px);margin-top:22px}
+ .icon{margin:0 6px 10px 0;width:62px;height:62px;border-radius:16px}
+ .row{grid-column:1/-1;margin-top:22px}
+ .sheet{padding:26px 22px;border-radius:26px;box-shadow:0 0 0 1.5px var(--ink),6px 7px 0 rgba(11,11,16,.9)}
+ .sheet p,.sheet li{font-size:16px}
+ .cards{columns:1}.card{padding:22px 20px;border-radius:24px}.card.dark{padding:24px 22px}
 }
 
-@media (max-width: 767px) {
-  .app-hero { padding: 100px 22px 32px; }
-  .app-num { font-size: 10px; margin-bottom: 12px; }
-  .app-name { font-size: clamp(48px, 14vw, 72px); margin-bottom: 18px; word-break: keep-all; overflow-wrap: normal; hyphens: none; }
-  .app-name em { font-size: 0.55em; }
-  .privacy-back { font-size: 10px; padding: 7px 12px 7px 8px; margin-bottom: 18px; }
-}
-</style>
-</head>
-<body>
-<div class="app-hero">
-  <a href="/percha/" class="privacy-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M11 3L3 11M3 11H9.5M3 11V4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-    <span>Back to Percha</span>
-  </a>
-  <div class="app-num">— Support · Percha</div>
-  <h1 class="app-name">Support<br><em>center</em></h1>
-</div>
-
-<div class="privacy-body">
-  <section>
-    <h3>Need help?</h3>
-    <p><strong>Reddit is the best way to reach me</strong> — it's where I talk with the people who use my apps every day, and it's where I answer fastest.</p>
-    <a class="reddit-cta" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener"><span>Message me on Reddit — u/beretta51</span><span class="arr">&#8599;</span></a>
-    <p>You can also email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Percha is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p>
-  </section>
-
-  <section>
-    <h3>Getting started</h3>
-    <ul>
-      <li><strong>Catalogue your wardrobe.</strong> Add the pieces you own so you can finally see everything in one place.</li>
-      <li><strong>Track what you wear.</strong> Log wears to learn which pieces earn their spot and which never leave the closet.</li>
-      <li><strong>Decide with data.</strong> Use what you learn to buy less, wear more, and let go of what you don't use.</li>
-    </ul>
-  </section>
-
-  <section>
-    <h3>Beta</h3>
-    <p>Percha is in beta and actively evolving — feedback is especially welcome.</p>
-  </section>
-
-  <section>
-    <h3>iCloud sync</h3>
-    <p>There are no accounts and no Percha servers. Your wardrobe data stays on your device and syncs across your devices privately through your own iCloud account whenever you're signed in to iCloud. There's nothing to configure.</p>
-  </section>
-
-  <section>
-    <h3>Privacy</h3>
-    <p>Percha has no accounts, no tracking, and no analytics. Read the full <a href="/percha/privacy/">Percha Privacy Policy</a>.</p>
-  </section>
-
-  <p class="privacy-updated">Percha · <a href="/">pinilloslab.com</a></p>
-</div>
-</body>
-</html>
+.app .t1{font-size:clamp(50px,6.2vw,94px)}.app .t2{font-size:.62em;line-height:1.05;margin-top:.12em}.sheet h2.big{font:800 26px/1.15 var(--display);letter-spacing:-.02em;text-transform:none;margin:0 0 10px}</style></head>
+<body class="support">
+<div class="grain" aria-hidden="true"></div>
+<header class="nav"><a class="brand" href="/">Pinillos <i>LAB</i></a><a class="mbtn" href="/#menu">MENU</a></header>
+<main class="wrap">
+ <aside class="side">
+  <a class="pill" href="/#percha">← Percha</a>
+  <h1 class="t1">Support<span class="t2">center</span></h1>
+  <img class="icon" src="data:image/jpeg;base64,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" alt="" width="74" height="74">
+  <div class="row"><a class="pill k" href="https://apps.apple.com/app/id6761848999" target="_blank" rel="noopener">Get Percha on the App Store ↗</a><a class="pill" href="/percha/privacy/">Privacy policy →</a></div>
+ </aside>
+ <div class="main"><div class="cards"><section class="sheet card dark"><h2 class="lab">Need help?</h2><p><strong>Reddit is the best way to reach me</strong> — it's where I talk with the people who use my apps every day, and it's where I answer fastest.</p>
+<a class="pill h" href="https://www.reddit.com/user/beretta51/" target="_blank" rel="noopener">Message me on Reddit — u/beretta51 ↗</a>
+<p>You can also email <a href="mailto:nocion.exento_8u@icloud.com">nocion.exento_8u@icloud.com</a>. Percha is made by an independent developer, Eduardo Pinillos — a real person reads every message.</p></section><section class="sheet card"><h2 class="lab">— Getting started</h2><ul>
+<li><strong>Catalogue your wardrobe.</strong> Add the pieces you own so you can finally see everything in one place.</li>
+<li><strong>Track what you wear.</strong> Log wears to learn which pieces earn their spot and which never leave the closet.</li>
+<li><strong>Decide with data.</strong> Use what you learn to buy less, wear more, and let go of what you don't use.</li>
+</ul></section><section class="sheet card"><h2 class="lab">— Beta</h2><p>Percha is in beta and actively evolving — feedback is especially welcome.</p></section><section class="sheet card"><h2 class="lab">— iCloud sync</h2><p>There are no accounts and no Percha servers. Your wardrobe data stays on your device and syncs across your devices privately through your own iCloud account whenever you're signed in to iCloud. There's nothing to configure.</p></section><section class="sheet card"><h2 class="lab">— Privacy</h2><p>Percha has no accounts, no tracking, and no analytics. Read the full <a href="/percha/privacy/">Percha Privacy Policy</a>.</p></section></div></div>
+</main>
+</body></html>

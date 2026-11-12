@@ -1,0 +1,80 @@
+/* Gridborne on the phone (402 x 874). The game is drawn by SpriteKit, so there is no layout code to copy: the board's
+   colours, tile ratio, unit bases, overlays, stats and timings come from the game's source (BoardScene, Unit,
+   CombatResolver, UnitSpriteBuilder); the HUD's sizes and colours are measured on the game's own screenshot; the
+   characters and portraits are the game's own art. Its font is Changa One. */
+.gbx{position:relative;width:402px;height:874px;transform-origin:0 0;background:#1D3013;color:#fff;overflow:hidden;font-family:'Changa One','Arial Black',Impact,sans-serif;font-weight:400;line-height:1.1;-webkit-font-smoothing:antialiased;
+ --gold:#EDB120;--pl:#2E75DE;--op:#DE3838}
+.gbx *{box-sizing:border-box}
+.gbx .gm{display:block;flex:none;background-size:100% 100%;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.gbx .ol{text-shadow:0 1.2px 0 #000,1px 0 0 #000,-1px 0 0 #000,0 -1px 0 #000,.8px .8px 0 #000,-.8px .8px 0 #000,.8px -.8px 0 #000,-.8px -.8px 0 #000}
+
+/* the HUD: brown bars, the turn label or the selected unit's panel, the turn timer */
+.gbx .hud{position:absolute;left:0;right:0;top:0;height:130px;background:#4E342E}
+.gbx .bar{position:absolute;left:0;right:0;top:787px;bottom:0;background:#4E342E}
+.gbx .turn{position:absolute;left:0;right:0;top:76px;text-align:center;transition:opacity .15s ease}
+.gbx .turn b{display:block;font-weight:400;font-size:18px;letter-spacing:.5px;color:var(--gold)}
+.gbx .turn b.op{color:var(--op)}
+.gbx .turn small{display:block;margin-top:3px;font-size:11px;color:rgba(255,255,255,.85)}
+.gbx .info{position:absolute;left:92px;top:72px;width:219px;height:48px;border-radius:8px;background:#191923;box-shadow:inset 0 0 0 1.5px #33334A,0 2px 0 rgba(0,0,0,.35);text-align:center;opacity:0;transition:opacity .15s ease}
+.gbx .info.on{opacity:1}
+.gbx .info b{display:block;margin-top:5px;font-weight:400;font-size:14px;color:var(--gold)}
+.gbx .info small{display:block;margin-top:1px;font-size:9.5px;letter-spacing:.2px;white-space:nowrap}
+.gbx .info i{position:absolute;left:10px;bottom:6px;width:199px;height:4px;border-radius:2px;background:rgba(0,0,0,.5);overflow:hidden}
+.gbx .info i u{display:block;height:100%;border-radius:2px;background:#26CC40;transition:width .3s ease,background-color .3s ease}
+.gbx .tmr{position:absolute;left:344px;top:72px;width:48px;height:48px}
+.gbx .tmr svg{position:absolute;left:0;top:0}
+.gbx .tmr b{position:absolute;left:0;right:0;top:13px;text-align:center;font-weight:400;font-size:19px}
+.gbx .endt{position:absolute;left:242px;top:796px;width:119px;height:38px;border-radius:7px;background:#327436;box-shadow:inset 0 0 0 1.5px #1C4420,inset 0 -3px 0 rgba(0,0,0,.18),0 2px 0 rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:15px;transition:transform .12s ease,opacity .2s ease}
+.gbx .endt.hit{transform:scale(.94)}
+.gbx .endt.off{opacity:.45}
+.gbx .xbtn{position:absolute;left:201px;top:798px;width:33px;height:33px;border-radius:6px;background:#751C22;box-shadow:inset 0 0 0 1.5px #A02830,0 2px 0 rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-family:-apple-system,system-ui,sans-serif;font-size:17px;font-weight:300}
+
+/* the two rosters: a portrait and its HP for every unit */
+.gbx .ros{position:absolute;left:3.5px;display:flex;gap:4px}
+.gbx .ros div{position:relative;width:53px;height:64px;border-radius:7px;background:#17131F;overflow:hidden;transition:opacity .3s ease,box-shadow .15s ease}
+.gbx .ros.t div{box-shadow:inset 0 0 0 1.6px #C23A36}
+.gbx .ros.b div{box-shadow:inset 0 0 0 1.6px #3B78D8}
+.gbx .ros div.sel{box-shadow:inset 0 0 0 2.4px var(--gold)}
+.gbx .ros div.dead{opacity:.3}
+.gbx .ros img{position:absolute;left:3px;top:3px;width:47px;height:44px;border-radius:5px;object-fit:cover;object-position:50% 20%;display:block}
+.gbx .ros i{position:absolute;left:4px;right:4px;bottom:4px;height:13px;border-radius:4px;background:#23232C;overflow:hidden}
+.gbx .ros i u{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:#28CB3E;transition:width .3s ease,background-color .3s ease}
+.gbx .ros span{position:absolute;left:0;right:0;bottom:5px;text-align:center;font-size:9px}
+
+/* the board: 7 x 7 tiles in the game's 80 : 94 ratio, overlays, units on their team bases */
+.gbx .brd{position:absolute;left:9px;top:234px;width:384px;height:448px}
+.gbx .brd::before{content:'';position:absolute;left:-3px;top:-3px;right:-3px;bottom:-3px;border-radius:4px;background:#385C21;box-shadow:0 0 0 1px #254014,0 4px 0 2px rgba(0,0,0,.4)}
+.gbx .cell{position:absolute;width:54.86px;height:64px;border-radius:3px;box-shadow:inset 0 0 0 .5px #457D20}
+.gbx .ov{position:absolute;width:54.86px;height:64px;border-radius:3px;opacity:0;pointer-events:none}
+.gbx .ov.mv{background:rgba(51,166,242,.45);box-shadow:inset 0 0 0 1.7px rgba(255,255,255,.9);animation:gb-p1 .9s ease-in-out infinite alternate;transform:scale(.95)}
+.gbx .ov.sl{background:rgba(255,215,0,.6);box-shadow:inset 0 0 0 1.7px #FFD700;opacity:1}
+.gbx .ov.at{background:rgba(242,51,38,.5);box-shadow:inset 0 0 0 1.7px #fff;animation:gb-p2 .6s ease-in-out infinite alternate;transform:scale(.95)}
+.gbx .ov.af{background:rgba(242,51,38,.2);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);opacity:1;transform:scale(.95)}
+@keyframes gb-p1{from{opacity:.65}to{opacity:.35}}
+@keyframes gb-p2{from{opacity:.7}to{opacity:.4}}
+.gbx .un{position:absolute;left:0;top:0;width:0;height:0;will-change:transform}
+.gbx .un .sh{position:absolute;left:-21.3px;top:11px;width:42.6px;height:17.8px;border-radius:50%;background:rgba(0,0,0,.3)}
+.gbx .un .bs{position:absolute;left:-21.3px;top:8.9px;width:42.6px;height:17.8px;border-radius:50%}
+.gbx .un.p .bs{background:rgba(26,115,255,.7);box-shadow:inset 0 0 0 1.7px #4DA6FF}
+.gbx .un.o .bs{background:rgba(255,51,38,.7);box-shadow:inset 0 0 0 1.7px #FF664D}
+.gbx .un svg{position:absolute;left:-24.7px;top:5.5px;overflow:visible}
+.gbx .un svg .f{transition:stroke-dasharray .3s ease,stroke .3s ease}
+.gbx .un .sp{position:absolute;left:-25.3px;top:-45.2px;width:50.7px;height:66.5px;transform-origin:50% 100%;transition:opacity .25s ease}
+.gbx .un .sp .gm{position:absolute;left:0;top:0;width:100%;height:100%;animation:gb-idle .9s ease-in-out infinite alternate}
+.gbx .un.core .sp .gm{animation:gb-core 1.6s ease-in-out infinite alternate}
+.gbx .un.dim .sp{opacity:.5}
+.gbx .un.dim .sp .gm{animation:none}
+.gbx .un.hit .sp{filter:brightness(2.2)}
+@keyframes gb-idle{from{transform:translateY(0)}to{transform:translateY(-2px)}}
+@keyframes gb-core{from{transform:scale(1)}to{transform:scale(1.06)}}
+.gbx .arw{position:absolute;left:0;top:0;width:24px;height:3px;margin:-1.5px 0 0 -12px;border-radius:2px;background:linear-gradient(90deg,#6B4A2A 0,#8B6234 70%,#E8E8EE 70%);opacity:0;z-index:90;will-change:transform}
+.gbx .fire{position:absolute;left:0;top:0;width:24px;height:32px;margin:-16px 0 0 -12px;opacity:0;z-index:90;will-change:transform;filter:drop-shadow(0 0 6px rgba(255,140,0,.9))}
+.gbx .fl{position:absolute;left:0;top:0;width:0;height:0;z-index:95;opacity:0;will-change:transform}
+.gbx .fl span{position:absolute;left:-60px;width:120px;top:-8px;text-align:center;font-size:11px;white-space:nowrap}
+.gbx .fl.sm span{font-size:10.3px;color:#FFD23A}
+.gbx .dot{position:absolute;left:0;top:0;width:5.5px;height:5.5px;margin:-2.75px;border-radius:50%;background:var(--op);opacity:0;z-index:92;will-change:transform}
+.gbx .cut{position:absolute;left:0;top:130px;right:0;bottom:87px;background:#1D3013;opacity:0;z-index:99;pointer-events:none}
+
+/* the finger */
+.gbx .gb-tch{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(40,40,45,.35);box-shadow:0 0 0 2px rgba(255,255,255,.9),0 2px 10px rgba(0,0,0,.35);z-index:120;opacity:0;transition:opacity .16s ease;will-change:transform}
+.gbx .gb-tch.on{opacity:1}

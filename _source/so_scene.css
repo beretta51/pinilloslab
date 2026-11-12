@@ -1,0 +1,129 @@
+/* Solid on the phone, in the app's own points (402 x 874). Sizes, fonts, colours and copy are read from the app's
+   SwiftUI source (HomeView, BodyweightView, WorkoutView, SetsCard, LogSetButton, CollapsedExerciseRow, SessionTimerCard).
+   Its three type families are the app's own: Anton (display), Archivo (UI), Space Mono (labels). */
+.sox{position:relative;width:402px;height:874px;transform-origin:0 0;background:#0A0A0A;color:#fff;overflow:hidden;line-height:normal;-webkit-font-smoothing:antialiased;
+ --acc:#C8FF00;--bg:#0A0A0A;--card:#1A1A1A;--sub:#888;--dim:#444;--muted:#6A6A6E;--bd:#232326;
+ --an:'Anton',Impact,'Arial Narrow',sans-serif;--ar:'Archivo','Helvetica Neue',Arial,sans-serif;--mo:'Space Mono',ui-monospace,Menlo,monospace}
+.sox *{box-sizing:border-box}
+.sox .sy{display:inline-block;flex:none;background:currentColor;-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.sox .mo{font-family:var(--mo);font-weight:700;text-transform:uppercase}
+.sox .an{font-family:var(--an);font-weight:400}
+.sox .so-sb{position:absolute;left:0;right:0;top:0;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 52px;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;font-size:17px;font-weight:600;z-index:40}
+.sox .so-sb span{display:flex;align-items:center;gap:6px}
+
+/* Today (HomeView.TodayTab): kicker and title, the training heat map, body metrics, today's work, the bottom bar */
+.sox .so-home{position:absolute;left:0;top:0;width:402px;height:874px;padding-top:62px;overflow:hidden}
+.sox .so-home .hd{padding:18px 22px 14px}
+.sox .so-home .kk{display:flex;gap:6px;font-size:11px;transform:translateY(8px)}
+.sox .so-home .kk b{font-weight:700;letter-spacing:3px;color:var(--acc)}
+.sox .so-home .kk span{letter-spacing:2px;color:var(--sub)}
+.sox .so-home .tt{margin-top:1px;font-size:56px;white-space:nowrap}
+.sox .strip{margin:0 22px 14px;padding:14px;border-radius:16px;background:var(--card)}
+.sox .strip .r{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:2px;color:var(--sub)}
+.sox .strip .r em{font-style:normal;color:var(--acc);display:flex;align-items:center;gap:4px}
+.sox .heat{margin-top:10px;height:81px;display:flex;justify-content:flex-end;gap:3px}
+.sox .heat span{display:flex;flex-direction:column;gap:3px}
+.sox .heat i{display:block;width:9px;height:9px;border-radius:2px}
+.sox .band{margin:0 22px;display:flex;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1)}
+.sox .band>div{flex:1;min-width:0;padding:14px;display:flex;flex-direction:column;gap:6px}
+.sox .band>div+div{border-left:1px solid rgba(255,255,255,.1)}
+.sox .band small{font-size:11px;letter-spacing:1.5px;white-space:nowrap}
+.sox .band b{font-size:32px;font-weight:400;white-space:nowrap}
+.sox .band b u{text-decoration:none;font-family:var(--mo);font-weight:700;font-size:10px;color:var(--sub)}
+.sox .band svg{display:block;width:100%;height:24px;overflow:visible}
+.sox .tw{display:flex;justify-content:space-between;align-items:center;padding:28px 22px 4px;font-size:10px;letter-spacing:2.5px;color:var(--sub)}
+.sox .tw em{font-style:normal;font-size:11px;letter-spacing:0}
+.sox .so-rows{padding:4px 22px 0}
+.sox .so-row{display:flex;align-items:center;gap:14px;padding:15px 0;border-top:1px solid rgba(255,255,255,.07)}
+.sox .so-row.up{padding:16px 0;border-top:0}
+.sox .so-row .ix{width:24px;font-size:17px;color:rgba(255,255,255,.2)}
+.sox .so-row.up .ix{color:var(--acc)}
+.sox .so-row .br{width:3px;height:26px;border-radius:2px;flex:none}
+.sox .so-row.up .br{width:4px;height:34px;background:var(--acc)!important}
+.sox .so-row .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sox .so-row.up .tx{gap:3px}
+.sox .so-row .tx b{font-family:var(--ar);font-weight:800;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sox .so-row.up .tx b{font-size:19px}
+.sox .so-row .tx small{font-family:var(--mo);font-weight:400;font-size:9px;letter-spacing:.5px;color:var(--sub);text-transform:uppercase}
+.sox .so-row.up .tx small{font-weight:700;letter-spacing:2px;color:var(--acc);order:-1}
+.sox .so-row .rt{flex:none;font-size:18px;white-space:nowrap}
+.sox .so-row .rt u{text-decoration:none;font-family:var(--mo);font-size:12px;color:var(--dim);white-space:pre}
+.sox .so-row .rt.mn{font-family:var(--mo);font-weight:700;font-size:13px}
+.sox .so-row .cv{color:rgba(255,255,255,.18)}
+.sox .so-row.up .cv{color:rgba(200,255,0,.7)}
+.sox .so-bar{position:absolute;left:16px;right:16px;top:756px;height:56px;display:flex;gap:12px;z-index:5}
+.sox .so-bar .tg{position:relative;width:112px;height:56px;border-radius:16px;background:#111;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);display:flex}
+.sox .so-bar .tg i.th{position:absolute;left:4px;top:4px;width:48px;height:48px;border-radius:12px;background:var(--acc)}
+.sox .so-bar .tg span{position:relative;width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.35)}
+.sox .so-bar .tg span:first-of-type{color:#000}
+.sox .so-bar .go{flex:1;height:56px;border-radius:16px;background:var(--acc);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--ar);font-weight:800;font-size:15px;letter-spacing:1px;transition:transform .14s ease}
+.sox .so-bar .go.hit{transform:scale(.96)}
+
+/* Workout (WorkoutView): header with the session clock, the open exercise (SetsCard), the rest collapsed */
+.sox .so-wk{position:absolute;left:0;top:0;width:402px;height:874px;background:var(--bg);transform:translateY(880px);transition:transform .5s cubic-bezier(.2,.9,.25,1);z-index:10}
+.sox .so-wk.on{transform:none}
+.sox .so-wk .hd{position:absolute;left:16px;right:16px;top:68px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.sox .so-wk .hd .cb{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:var(--sub)}
+.sox .so-wk .hd .tb{background:var(--acc);color:#000;transition:opacity .25s ease}
+.sox .so-wk .hd .tb.off{opacity:0}
+.sox .so-wk .hd .mid{display:flex;flex-direction:column;align-items:center;gap:2px}
+.sox .so-wk .hd .mid small{font-size:10px;letter-spacing:2px;color:var(--sub)}
+.sox .so-wk .hd .mid b{font-size:26px;font-weight:400;line-height:32px}
+.sox .so-list{position:absolute;left:16px;right:16px;top:136px;display:flex;flex-direction:column;gap:8px}
+.sox .so-open{display:flex;flex-direction:column;gap:10px}
+.sox .so-cw{position:relative;height:244px}
+.sox .so-cw .rvl{position:absolute;left:4px;right:4px;top:0;bottom:0;border-radius:26px;background:rgba(200,255,0,.3);color:var(--acc);display:flex;align-items:center;padding-left:20px;opacity:0}
+.sox .so-cd{position:absolute;left:0;top:0;right:0;bottom:0;border-radius:26px;background:var(--card);box-shadow:inset 0 0 0 1px var(--bd);will-change:transform}
+.sox .so-cd .ch{height:43px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--bd);font-size:11px}
+.sox .so-cd .ch b{letter-spacing:3px;color:#39FF14}
+.sox .so-cd .ch span{font-weight:400;color:var(--muted)}
+.sox .so-cd .nm{padding:13px 20px 0;font-family:var(--ar);font-weight:800;font-size:24px;letter-spacing:-.5px;white-space:nowrap}
+.sox .so-cd .pl{display:flex;gap:10px;height:86px;margin:13px 20px}
+.sox .so-cd .pl>div{position:relative;padding:8px 14px 6px;border-radius:18px;display:flex;flex-direction:column;justify-content:space-between}
+.sox .so-cd .pl .w{width:180.8px;background:var(--acc);color:#000;-webkit-clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%);clip-path:polygon(0 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%)}
+.sox .so-cd .pl .r{flex:1;background:#131315;box-shadow:inset 0 0 0 1px var(--bd);color:#D9D9DD}
+.sox .so-cd .pl small{display:flex;align-items:center;gap:4px;font-size:10px;letter-spacing:1.5px;color:rgba(0,0,0,.65)}
+.sox .so-cd .pl .r small{color:var(--muted)}
+.sox .so-cd .pl b{font-size:58px;font-weight:400;line-height:58px;display:flex;align-items:baseline;gap:3px}
+.sox .so-cd .pl b u{text-decoration:none;font-family:var(--mo);font-weight:700;font-size:14px;color:rgba(0,0,0,.65)}
+.sox .so-cd .sp{padding:0 20px 18px}
+.sox .so-cd .sp small{display:block;font-size:12px;letter-spacing:1px;margin-bottom:8px}
+.sox .so-cd .sp div{display:flex;gap:4px}
+.sox .so-cd .sp i{flex:1;height:7px;border-radius:3.5px;background:rgba(255,255,255,.1);transition:background-color .3s ease,box-shadow .3s ease}
+.sox .so-cd .sp i.dn{background:var(--acc)}
+.sox .so-cd .sp i.lv{background:transparent;box-shadow:inset 0 0 0 1.5px var(--acc)}
+.sox .so-log{display:flex;flex-direction:column;align-items:center;gap:7px}
+.sox .so-log div{width:100%;height:52px;border-radius:16px;background:var(--acc);color:#000;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--ar);font-weight:800;font-size:15px;letter-spacing:1px}
+.sox .so-log small{font-size:10px;letter-spacing:1.5px;color:var(--dim)}
+.sox .so-col{height:62px;padding:0 14px;border-radius:20px;background:var(--card);box-shadow:inset 0 0 0 1px var(--bd);display:flex;align-items:center;gap:13px}
+.sox .so-col .br{width:4px;height:34px;border-radius:2px;flex:none}
+.sox .so-col .tx{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.sox .so-col .tx b{font-family:var(--ar);font-weight:700;font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sox .so-col .tx small{font-family:var(--mo);font-weight:400;font-size:11px;color:var(--muted)}
+.sox .so-col .dt{display:flex;gap:5px}
+.sox .so-col .dt i{width:7px;height:7px;border-radius:50%;background:#5A5A5E}
+
+/* Rest (SessionTimerCard): the huge countdown; it turns orange and beats in the last ten seconds */
+.sox .so-rest{position:absolute;left:16px;right:16px;top:136px;height:540px;border-radius:28px;background:var(--acc);color:#000;box-shadow:0 10px 24px rgba(200,255,0,.5);transform:translateY(-720px);opacity:0;transition:transform .55s cubic-bezier(.3,1.18,.4,1),opacity .3s ease,background-color .4s ease,box-shadow .4s ease;z-index:12}
+.sox .so-rest.on{transform:none;opacity:1}
+.sox .so-rest.hot{background:#FF6A00;box-shadow:0 10px 24px rgba(255,106,0,.5)}
+.sox .so-rest .lb{position:absolute;left:0;right:0;top:28px;text-align:center;font-size:12px;letter-spacing:8px;text-indent:8px;color:rgba(0,0,0,.5)}
+.sox .so-rest .ct{position:absolute;left:0;right:0;top:64px;text-align:center;font-size:150px;line-height:226px;will-change:transform}
+.sox .so-rest .nx{position:absolute;left:44px;right:44px;top:296px;display:flex;flex-direction:column;align-items:center;gap:3px}
+.sox .so-rest .nx small{font-size:10px;letter-spacing:2px;color:rgba(0,0,0,.45)}
+.sox .so-rest .nx b{font-family:var(--ar);font-weight:800;font-size:19px}
+.sox .so-rest .nx .bs{width:100%;display:flex;gap:4px;margin-top:4px}
+.sox .so-rest .nx .bs i{flex:1;height:5px;border-radius:3px;background:rgba(0,0,0,.18)}
+.sox .so-rest .nx .bs i.dn{background:#000}
+.sox .so-rest .nx .ft{width:100%;display:flex;justify-content:space-between;margin-top:1px;font-size:11px;color:rgba(0,0,0,.55)}
+.sox .so-rest .qc{position:absolute;left:16px;right:16px;top:400px;height:42px;display:flex;gap:10px}
+.sox .so-rest .qc span{flex:1;border-radius:12px;background:rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center;font-family:var(--ar);font-weight:800;font-size:14px;letter-spacing:1px;transition:background-color .12s ease}
+.sox .so-rest .qc span.hit{background:rgba(0,0,0,.3)}
+.sox .so-rest .ctl{position:absolute;left:16px;right:16px;top:456px;height:64px;display:flex;gap:12px}
+.sox .so-rest .ctl span{width:64px;border-radius:16px;background:rgba(0,0,0,.12);display:flex;align-items:center;justify-content:center}
+.sox .so-rest .ctl div{flex:1;border-radius:16px;background:#000;color:var(--acc);display:flex;align-items:center;justify-content:center;gap:9px;font-family:var(--ar);font-weight:800;font-size:15px;letter-spacing:1px;transition:color .4s ease}
+.sox .so-rest.hot .ctl div{color:#FF6A00}
+
+/* the finger */
+.sox .so-tch{position:absolute;left:0;top:0;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:rgba(200,200,205,.3);box-shadow:0 0 0 2px rgba(255,255,255,.85),0 2px 10px rgba(0,0,0,.4);z-index:50;opacity:0;transition:opacity .16s ease;will-change:transform}
+.sox .so-tch.on{opacity:1}
