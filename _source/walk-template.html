@@ -26,7 +26,9 @@ body{background:var(--ink);color:var(--ink);font-family:var(--display);overflow:
 .scr .isl{position:absolute;left:138px;top:12px;width:126px;height:37px;border-radius:19px;background:#000;z-index:60}
 #dim{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;display:none}
 .mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-.ui{position:fixed;inset:0;pointer-events:none;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top,0px)) var(--gr) calc(12px + env(safe-area-inset-bottom,0px)) var(--gl)}
+.ui{position:fixed;inset:0;pointer-events:none;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top,0px)) var(--gr) calc(12px + env(safe-area-inset-bottom,0px)) var(--gl);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+/* tapping a control twice in a row is two taps, never the browser's zoom */
+.ui,.ui *,#menu,#menu *,#hot *{touch-action:manipulation}
 .nav{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);color:var(--ink);border-radius:99px;box-shadow:0 0 0 1.5px var(--ink);padding:8px 8px 8px 20px;max-width:1200px;width:100%;margin:0 auto}
 .brand{font-size:19px;font-weight:800;letter-spacing:-.03em;display:flex;align-items:center;gap:8px}
 .brand i{font-family:var(--mono);font-style:normal;font-size:10px;font-weight:700;letter-spacing:.1em;background:var(--hot);padding:2px 6px;border-radius:3px}
@@ -52,6 +54,7 @@ body{background:var(--ink);color:var(--ink);font-family:var(--display);overflow:
 .ctas .more a,.ctas .more button{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);color:var(--ink);font-size:15px;padding:13px 18px;box-shadow:none}
 .ctas .more a:hover,.ctas .more button:hover,.ctas .more a:focus-visible,.ctas .more button:focus-visible{background:var(--hot)}
 .ctas .more i{font-style:normal;font-weight:400}
+.ar{display:inline-block;width:1.2em;height:1.2em;fill:currentColor;vertical-align:-.26em;pointer-events:none}
 @media(max-width:520px){.ctas>a,.ctas>button{font-size:15px;padding:12px 15px}.ctas [data-more] .w{display:none}.ctas [data-more] .d{display:inline;letter-spacing:1px}}
 .ctas a:focus-visible,.ctas button:focus-visible,.rail button:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;display:none}
@@ -90,14 +93,16 @@ body.mo .ctas>*{pointer-events:none}
 .railrow .rail{flex:1;min-width:0;width:auto;margin:0}
 .arw{all:unset;box-sizing:border-box;display:none;pointer-events:auto;cursor:pointer;flex:none;width:40px;height:40px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);place-items:center;font:700 17px var(--display);-webkit-tap-highlight-color:transparent;transition:opacity .2s,background-color .2s}
 .arw.nx{background:var(--hot)}
-.arw:disabled{opacity:.38;background:var(--paper);cursor:default}
+.arw.off{opacity:.38;background:var(--paper);cursor:default}
+.arw svg{display:block;pointer-events:none}
 .arw:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
 @media (max-width:820px),(pointer:coarse){.arw{display:grid}}
-.arw.nx.nudge:not(:disabled){animation:nudge 1.7s ease-in-out infinite}
+.arw.nx.nudge:not(.off){animation:nudge 1.7s ease-in-out infinite}
 @keyframes nudge{0%,55%,100%{transform:none}28%{transform:translateX(5px)}}
 @media (prefers-reduced-motion:reduce){.arw.nx.nudge{animation:none}}
 body.mo .arw{opacity:0;pointer-events:none}
 #nogl[hidden]{display:none}
+.ui :is(a,button),#menu :is(a,button),#hot :is(a,button){touch-action:manipulation}
 #nogl{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;color:var(--paper);text-align:center}
 </style>
 
@@ -117,7 +122,7 @@ body.mo .arw{opacity:0;pointer-events:none}
 <div class="ui">
   <div class="nav"><span class="brand">Pinillos <i>LAB</i></span><button class="mbtn" id="mbtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button></div>
   <div class="ctas" id="ctas"></div>
-  <div class="railrow"><button class="arw" id="prev" type="button" aria-label="Previous stop">←</button><nav class="rail" aria-label="Stops"><div class="rscroll" id="rscroll"><div class="strip" id="strip"></div></div></nav><button class="arw nx" id="next" type="button" aria-label="Next stop">→</button></div>
+  <div class="railrow"><button class="arw" id="prev" type="button" aria-label="Previous stop"><svg viewBox="-5.95 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M3.55,12l7.35,7.35q0.38,0.38 0.36,0.88T10.88,21.1T10,21.48T9.13,21.1l-7.7-7.68q-0.3-0.3-0.45-0.67T0.83,12t0.15-0.75t0.45-0.68l7.7-7.7Q9.5,2.5 10.01,2.51T10.9,2.9t0.38,0.88T10.9,4.65L3.55,12Z"/></svg></button><nav class="rail" aria-label="Stops"><div class="rscroll" id="rscroll"><div class="strip" id="strip"></div></div></nav><button class="arw nx" id="next" type="button" aria-label="Next stop"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M14.48,12L7.13,4.65Q6.75,4.27 6.76,3.76T7.15,2.88T8.04,2.5T8.93,2.88l7.68,7.7q0.3,0.3 0.45,0.68T17.2,12t-0.15,0.75T16.6,13.43l-7.7,7.7Q8.53,21.5 8.03,21.49T7.15,21.1T6.78,20.21t0.38-0.89L14.48,12Z"/></svg></button></div>
 </div>
 <div id="nogl" hidden>This browser could not start the 3D graphics.</div><!--__STATIC__-->
 
@@ -126,6 +131,8 @@ body.mo .arw{opacity:0;pointer-events:none}
 <script>
 const ICON=__ICONS__, SHOT=__SHOTS__, AV=__AVATAR__;
 const INK='#0B0B10',PAPER='#F4F1E8';
+/* the arrows of the interface are drawn ones (Material Symbols, Apache 2.0), one look everywhere: ico() swaps each arrow character of a label for its drawing */
+const ARW=__ARROWS__,ico=t=>t.replace(/[→←↗↓↑]/g,c=>'<svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="'+ARW[c]+'"/></svg>');
 const HOME=[
  {big:"Hi, I’m Edu.",small:'Independent product builder · since 2008',txt:'I build privacy-first, native tools that feel like home on your device. Walk with me.',c:'#E4FF3A',o:INK,label:'Hi',act:'wave',ctas:[{t:'About me ↓',go:'about'},{t:'Contact →',go:'end',alt:1}]},
  {app:1,big:'Trovelo',small:'iOS · iPadOS · macOS',tag:'travel app',k:'trovelo',ui:'trovelo',c:'#2D6BFF',o:'#FFFFFF',act:'suitcase',u:'https://apps.apple.com/app/id6760258252'},
@@ -509,14 +516,23 @@ let X=0,goal=0,vx=0,lastIn=-1e9,face=0,amt=0,phi=0,still=0,act=0,zone=0,cur=-1,l
 const maxX=()=>stopX(ST.length-1),touch=t=>{lastIn=t};
 const strip=$('#strip'),rsc=$('#rscroll'),ctas=$('#ctas'),dimEl=$('#dim'),fadeEl=$('#fade');let tabs=[],tint='',tintN=0,fadeOn=false;
 const TINT=new THREE.Color(),themeMeta=document.createElement('meta');themeMeta.name='theme-color';document.head.append(themeMeta);
-let railSet=false;function rail(){railSet=false;strip.innerHTML=(WORLD==='about'?'<button data-go="home">↑ Apps</button>':'')+ST.map((s,i)=>'<button data-i="'+i+'">'+s.label+'</button>').join('');tabs=[...strip.querySelectorAll('[data-i]')]}
+let railSet=false;function rail(){railSet=false;strip.innerHTML=(WORLD==='about'?'<button data-go="home">'+ico('↑')+' Apps</button>':'')+ST.map((s,i)=>'<button data-i="'+i+'">'+s.label+'</button>').join('');tabs=[...strip.querySelectorAll('[data-i]')]}
 rail();
 function setWorld(k){WORLD=k;ST=k==='about'?ABOUT:HOME;build();rail();cur=-1}
 function go(k){if(tr||menuOpen)return;touch(performance.now());if(k==='about'||k==='home'){if(k!==WORLD)tr={to:k,t:0,sw:false,lift:WORLD==='about'&&k==='home'}}else if(k==='end')goal=maxX();else if(k==='hi')goal=0}
 window.__go=go;
 /* the rail's arrows: one stop back, one stop on. The yellow one beckons until he has moved for the first time */
 const prevB=$('#prev'),nextB=$('#next');let seen=0;nextB.classList.add('nudge');
-const step=d=>{if(tr||menuOpen)return;goal=stopX(clamp(Math.round(goal/PW)+d,0,ST.length-1));touch(performance.now())};prevB.onclick=()=>step(-1);nextB.onclick=()=>step(1);
+const step=d=>{if(tr||menuOpen)return;goal=stopX(clamp(Math.round(goal/PW)+d,0,ST.length-1));touch(performance.now())};
+/* a tap is one stop; kept pressed, he takes the skateboard and rides on until it is let go, then glides to the stop ahead */
+let press=0;const letGo=()=>{if(!press)return;vx*=.45;/* he brakes as it is let go, so he stops at the next stop or the one after, not three rooms on */const d=press,reach=X+d*Math.abs(vx)/3.3*.9;press=0;let i=-1;if(d>0)i=ST.findIndex((s,k)=>stopX(k)>=reach);else for(let k=ST.length-1;k>=0;k--)if(stopX(k)<=reach){i=k;break}
+ goal=stopX(i<0?(d>0?ST.length-1:0):i);touch(performance.now())};
+[[prevB,-1],[nextB,1]].forEach(([b,d])=>{let down=false,tm=0;const up=()=>{if(!down)return;down=false;clearTimeout(tm);if(press)letGo();else if(!b.classList.contains('off'))step(d)};
+ b.addEventListener('pointerdown',e=>{if(b.classList.contains('off')||tr||menuOpen)return;down=true;try{b.setPointerCapture(e.pointerId)}catch(_){}clearTimeout(tm);tm=setTimeout(()=>{if(down&&!tr&&!menuOpen){press=d;goal=d>0?maxX():0;touch(performance.now())}},300)});
+ b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);b.addEventListener('lostpointercapture',up);
+ b.addEventListener('click',e=>{if(!e.detail&&!b.classList.contains('off'))step(d)});/* the keyboard's Enter and Space */
+ b.addEventListener('touchend',e=>e.preventDefault(),{passive:false});b.addEventListener('contextmenu',e=>e.preventDefault())});
+addEventListener('blur',letGo);document.addEventListener('visibilitychange',letGo);
 strip.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||tr||menuOpen)return;if(b.dataset.go)return go(b.dataset.go);goal=+b.dataset.i*PW;touch(performance.now())});
 const setMore=on=>{const m=ctas.querySelector('.more'),b=ctas.querySelector('[data-more]');if(!m||m.classList.contains('on')===on)return;m.classList.toggle('on',on);b.setAttribute('aria-expanded',on)};
 ctas.addEventListener('click',e=>{if(e.target.closest('[data-more]')){setMore(!ctas.querySelector('.more').classList.contains('on'));return}const b=e.target.closest('[data-go]');if(b){setMore(false);go(b.dataset.go)}else if(e.target.closest('.more a'))setMore(false)});
@@ -524,7 +540,7 @@ addEventListener('pointerdown',e=>{if(!e.target.closest||!e.target.closest('#cta
 /* ---------- the menu: the black hole is the way to everywhere ---------- */
 const menuEl=$('#menu'),mbtn=$('#mbtn');let menuOpen=false,mHold=false,mBusy=false,mo=0;
 $('#mgrid').innerHTML=HOME.map((s,i)=>s.k?'<button class="mi" type="button" data-i="'+i+'"><img src="'+ICON[s.k]+'" alt=""><span>'+s.big+'</span></button>':'').join('');
-$('#mlinks').innerHTML='<button type="button" data-i="0">Hi</button><button type="button" data-go="about">About me</button><button type="button" data-i="'+(HOME.length-1)+'">Contact</button><a href="privacy.html">Privacy →</a>';
+$('#mlinks').innerHTML='<button type="button" data-i="0">Hi</button><button type="button" data-go="about">About me</button><button type="button" data-i="'+(HOME.length-1)+'">Contact</button><a href="privacy.html">Privacy '+ico('→')+'</a>';
 const mItems=()=>[...menuEl.querySelectorAll('.mi,.mlinks>*')];
 function holeTf(el,spin){V1.set(X,(WORLD==='about'?hgt(X):0)+.02,.6).project(cam);const r=el.getBoundingClientRect(),hx=(V1.x*.5+.5)*cv.clientWidth,hy=(-V1.y*.5+.5)*cv.clientHeight;return'translate('+(hx-r.left-r.width/2).toFixed(1)+'px,'+(hy-r.top-r.height/2).toFixed(1)+'px) scale(.06) rotate('+spin+'deg)'}
 function openMenu(){if(tr||menuOpen||mBusy)return;menuOpen=true;goal=Math.round(X/PW)*PW;document.body.classList.add('mo');mbtn.textContent='Close';mbtn.setAttribute('aria-expanded','true');menuEl.hidden=false;
@@ -553,17 +569,17 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  if(!tr&&!menuOpen){if(keys.r){goal+=5.2*dt;touch(t)}if(keys.l){goal-=5.2*dt;touch(t)}}goal=clamp(goal,0,maxX());
  /* a goal that names a room exactly (the rail, the menu, a link) means that room's spot; otherwise he settles on the nearest spot once left alone */
  {const gi=clamp(Math.round(goal/PW),0,n-1);if(Math.abs(goal-gi*PW)<1e-6)goal=stopX(gi);else if(!drag&&t-lastIn>420)goal+=(stopX(gi)-goal)*Math.min(1,dt*6)}
- const ride=WORLD==='about',far=Math.abs(goal-X);if(far>2.4*PW)skOn=true;else if(far<.5*PW)skOn=false;const offSnow=ride&&X>(ABOUT.length-2.24)*PW,onCourt=ride&&X>(ABOUT.length-1.5)*PW,skT=tr?(tr.lift?1:0):ride&&!offSnow?1:skOn?1:0;if((onCourt&&!tr)!==shortsOn)setShorts(onCourt&&!tr);sk+=(skT-sk)*Math.min(1,dt*(skT?5:7));
- const vmax=ride?6.6+3.2*sk:6.6+11.4*sk,want=clamp((goal-X)*3.3,-vmax,vmax);vx+=(want-vx)*Math.min(1,dt*(7-3*sk));X+=vx*dt;const sp=Math.abs(vx),gy=ride?hgt(X):0;
+ const ride=WORLD==='about',far=Math.abs(goal-X);if(far>2.4*PW)skOn=true;else if(far<.5*PW)skOn=false;const offSnow=ride&&X>(ABOUT.length-2.24)*PW,onCourt=ride&&X>(ABOUT.length-1.5)*PW,skT=tr?(tr.lift?1:0):ride&&!offSnow?1:skOn||press&&!ride?1:0;if(press&&(tr||menuOpen))letGo();if((onCourt&&!tr)!==shortsOn)setShorts(onCourt&&!tr);sk+=(skT-sk)*Math.min(1,dt*(skT?5:7));
+ const vmax=ride?6.6+3.2*sk+(press?3.4:0):6.6+11.4*sk,want=clamp((goal-X)*3.3,-vmax,vmax);vx+=(want-vx)*Math.min(1,dt*(7-3*sk));X+=vx*dt;const sp=Math.abs(vx),gy=ride?hgt(X):0;
  amt+=((sp>.1?Math.min(1,.5+sp/6):0)-amt)*Math.min(1,dt*9);phi+=sp*dt*4.1;
  const idx=clamp(Math.round(X/PW),0,n-1),s=ST[idx],off=Math.abs(X-stopX(idx));camO+=(stopX(idx)-idx*PW-camO)*Math.min(1,dt*4);still=(off<.3&&sp<.14)?still+dt:0;
  act+=((still>.28?1:0)-act)*Math.min(1,dt*5);zone+=((off<PW*.42?1:0)-zone)*Math.min(1,dt*6);
  const ft=sp>.16?Math.sign(vx)*(1.04-.8*sk):(still>.12?0:face);face+=(ft-face)*Math.min(1,dt*8);
- if(idx!==cur){cur=idx;prevB.disabled=idx===0;nextB.disabled=idx===n-1;if(seen++===1)nextB.classList.remove('nudge');tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];rsc.scrollTo({left:b.offsetLeft+b.offsetWidth/2-rsc.clientWidth/2,behavior:railSet?'smooth':'auto'});railSet=true;
+ if(idx!==cur){cur=idx;prevB.classList.toggle('off',idx===0);nextB.classList.toggle('off',idx===n-1);prevB.setAttribute('aria-disabled',idx===0);nextB.setAttribute('aria-disabled',idx===n-1);if(seen++===1)nextB.classList.remove('nudge');tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];rsc.scrollTo({left:b.offsetLeft+b.offsetWidth/2-rsc.clientWidth/2,behavior:railSet?'smooth':'auto'});railSet=true;
   scene.background=C(s.c);const L=s.ctas||(s.app?[s.u?{t:'Get '+s.big+' on the App Store ↗',u:s.u}:{t:s.big+' · coming soon'}]:[]);
-  ctas.innerHTML=L.map(c=>c.u?'<a href="'+c.u+'" target="_blank" rel="noopener"'+(c.alt?' class="alt"':'')+'>'+c.t+'</a>':c.go?'<button type="button" data-go="'+c.go+'"'+(c.alt?' class="alt"':'')+'>'+c.t+'</button>':'<span>'+c.t+'</span>').join('')
+  ctas.innerHTML=L.map(c=>c.u?'<a href="'+c.u+'" target="_blank" rel="noopener"'+(c.alt?' class="alt"':'')+'>'+ico(c.t)+'</a>':c.go?'<button type="button" data-go="'+c.go+'"'+(c.alt?' class="alt"':'')+'>'+ico(c.t)+'</button>':'<span>'+c.t+'</span>').join('')
    +(s.app&&s.k?'<button type="button" class="alt" data-more aria-expanded="false" aria-controls="more" aria-label="More links for '+s.big+'"><b class="w">More</b><b class="d">•••</b></button><div class="more" id="more">'
-    +moreRows(s).map(r=>r.u?'<a href="'+r.u+'"'+(r.in?'':' target="_blank" rel="noopener"')+'>'+r.t+'<i>'+(r.in?'→':'↗')+'</i></a>':'<button type="button" data-go="'+r.go+'">'+r.t+'<i>→</i></button>').join('')+'</div>':'');spin=0;shirtT=0}
+    +moreRows(s).map(r=>r.u?'<a href="'+r.u+'"'+(r.in?'':' target="_blank" rel="noopener"')+'>'+r.t+'<i>'+ico(r.in?'→':'↗')+'</i></a>':'<button type="button" data-go="'+r.go+'">'+r.t+'<i>'+ico('→')+'</i></button>').join('')+'</div>':'');spin=0;shirtT=0}
  {const on=act>.6&&!tr&&!!ctas.firstChild;ctas.classList.toggle('on',on);if(!on)setMore(false)}if(ride)skyAt(X,scene.background);
  /* the browser's own bars (above and below the page on a phone) take the page's colour: keep it the room's, never black */
  if(!(tintN++%3)){const hx=TINT.copy(scene.background).convertLinearToSRGB().getHexString();if(hx!==tint){tint=hx;const c='#'+hx;document.documentElement.style.backgroundColor=document.body.style.backgroundColor=c;themeMeta.content=c}}

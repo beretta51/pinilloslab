@@ -50,3 +50,4 @@ a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
  .sheet p,.sheet li{font-size:16px}
  .cards{columns:1}.card{padding:22px 20px;border-radius:24px}.card.dark{padding:24px 22px}
 }
+.ar{display:inline-block;flex:none;width:1.2em;height:1.2em;fill:currentColor;vertical-align:-.26em}

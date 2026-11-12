@@ -148,7 +148,7 @@ parts = {k: v for k, v in av.items() if isinstance(v, dict) and 'p' in v}
 # The prototype alone keeps a safety net: if its own copy of the engine failed to load in the viewer, it would fetch the public one. The site proper must not have it.
 GUARD = '<script>window.THREE||document.write(\'<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\\/script>\')</script>' if not SITE else ''
 t = t.replace('/*__FONTS__*/', rd('fonts.css')).replace('<!--__THREEGUARD__-->', GUARD)
-first = t.replace('__ICONS__', json.dumps(ic)).replace('__SHOTS__', json.dumps(sh)).replace('__AVATAR__', json.dumps({k: v for k, v in av.items() if k not in parts}))
+first = t.replace('__ARROWS__', rd('arrows.json')).replace('__ICONS__', json.dumps(ic)).replace('__SHOTS__', json.dumps(sh)).replace('__AVATAR__', json.dumps({k: v for k, v in av.items() if k not in parts}))
 avatar = '<script>window.__av&&__av(' + json.dumps(parts) + ')</script>\n'
 body = first + avatar + ''.join(blocks)
 
@@ -171,6 +171,7 @@ else:
     e = lambda s: html.escape(s, quote=True)
     body = once(body, "const pageURL=(k,p)=>k+'-'+p+'.html'", "const pageURL=(k,p)=>'/'+k+'/'+p+'/'")
     body = once(body, "{u:'privacy.html',in:1}", "{u:'/privacy/',in:1}")
+    body = once(body, '<a href="privacy.html">', '<a href="/privacy/">')   # the menu's own link to the policy
     body = once(body, '<title>Pinillos Lab · El recorrido</title>\n<meta name="claude:viewport-fit-sides" content="cover">\n', '')
     body = once(body, '<script src="three.min.js">', '<script src="/three.min.js">')
     body = body.replace('url(fonts/', 'url(/fonts/')

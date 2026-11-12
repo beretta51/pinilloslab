@@ -22,6 +22,9 @@ url = (lambda k, p: f'{k}-{p}.html') if PROTO else (lambda k, p: f'/{k}/{p}/')
 home = (lambda k: f'./#{k}') if PROTO else (lambda k: f'/#{k}')
 ROOT = './' if PROTO else '/'
 esc = lambda s: html.escape(s, quote=True)
+# the arrows are drawn ones, the same as in the walk (arrows.json): ico() swaps each arrow character of a button's label for its drawing
+ARW = json.load(open(f'{S}/arrows.json', encoding='utf-8'))
+ico = lambda s: re.sub('[→←↗↓↑]', lambda m: '<svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="' + ARW[m.group(0)] + '"/></svg>', s)
 
 
 def clean(inner):
@@ -106,6 +109,8 @@ def extra(path, title, desc, go=None, ld=None):
 
 
 def write(rel, doc):
+    # arrows only ever appear in buttons (pills): the policies' own words are left as written
+    doc = re.sub(r'<a class="pill[^>]*>.*?</a>', lambda m: ico(m.group(0)), doc, flags=re.S)
     f = f'{OUT}/{rel}'
     os.makedirs(os.path.dirname(f), exist_ok=True)
     open(f, 'w', encoding='utf-8').write(doc)
