@@ -254,7 +254,7 @@
   color-scheme:light;
 }
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%;transition:background-color .3s linear}
 body{background:var(--ink);color:var(--ink);font-family:var(--display);overflow:hidden;padding-left:var(--gl);padding-right:var(--gr)}
 #gl{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
 #gl.drag{cursor:grabbing}
@@ -264,7 +264,7 @@ body{background:var(--ink);color:var(--ink);font-family:var(--display);overflow:
 #scr .tvx .ip{position:absolute;left:0;top:0;transform:none;border-radius:0;transition:opacity .4s ease}
 #scr .tvx .ip.off{opacity:0}
 .scr .isl{position:absolute;left:138px;top:12px;width:126px;height:37px;border-radius:19px;background:#000;z-index:60}
-#dim{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none}
+#dim{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;display:none}
 .mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
 .ui{position:fixed;inset:0;pointer-events:none;display:flex;flex-direction:column;padding:calc(14px + env(safe-area-inset-top,0px)) var(--gr) calc(12px + env(safe-area-inset-bottom,0px)) var(--gl)}
 .nav{pointer-events:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--paper);color:var(--ink);border-radius:99px;box-shadow:0 0 0 1.5px var(--ink);padding:8px 8px 8px 20px;max-width:1200px;width:100%;margin:0 auto}
@@ -294,11 +294,11 @@ body{background:var(--ink);color:var(--ink);font-family:var(--display);overflow:
 .ctas .more i{font-style:normal;font-weight:400}
 @media(max-width:520px){.ctas>a,.ctas>button{font-size:15px;padding:12px 15px}.ctas [data-more] .w{display:none}.ctas [data-more] .d{display:inline;letter-spacing:1px}}
 .ctas a:focus-visible,.ctas button:focus-visible,.rail button:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
-#fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none}
+#fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;display:none}
 .mbtn{border:0;cursor:pointer}
 .mbtn:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
-#mdim{position:fixed;inset:0;background:#0B0B10;opacity:0;pointer-events:none;transition:opacity .35s}
-body.mo #mdim{opacity:.42}
+#mdim{position:fixed;inset:0;background:#0B0B10;opacity:0;pointer-events:none;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+body.mo #mdim{opacity:.42;visibility:visible;transition:opacity .35s}
 .mpanel{display:flex;flex-direction:column;align-items:center;gap:20px;max-width:100%;padding:22px 18px;border-radius:30px;background:rgba(11,11,16,.84);opacity:0;transition:opacity .3s}
 body.mo .mpanel{opacity:1}
 #menu{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;padding:calc(84px + env(safe-area-inset-top,0px)) var(--gr) 0 var(--gl);pointer-events:none}
@@ -320,7 +320,9 @@ body.mo .ctas>*{pointer-events:none}
 #hot a:hover,#hot button:hover,#hot a:active,#hot button:active{background:rgba(228,255,58,.2);box-shadow:0 0 0 2px rgba(228,255,58,.75)}
 #hot a:focus-visible,#hot button:focus-visible{outline:2px solid var(--hot);outline-offset:1px}
 .rail{pointer-events:auto;position:relative;height:40px;background:var(--paper);border-radius:99px;box-shadow:0 0 0 1.5px var(--ink);overflow:hidden;max-width:1200px;width:100%;margin:0 auto}
-.rail .strip{position:absolute;left:50%;top:0;height:100%;display:flex;align-items:center;gap:6px;white-space:nowrap;will-change:transform}
+.rscroll{height:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-x;-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}
+.rscroll::-webkit-scrollbar{display:none}
+.rail .strip{position:relative;height:100%;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:0 calc(50% - 34px)}
 .rail button{all:unset;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;border-radius:99px;color:var(--soft)}
 .rail button.on{background:var(--ink);color:var(--paper);font-weight:700}
 #nogl[hidden]{display:none}
@@ -345,7 +347,7 @@ body.mo .ctas>*{pointer-events:none}
 <div class="ui">
   <div class="nav"><span class="brand">Pinillos <i>LAB</i></span><button class="mbtn" id="mbtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button></div>
   <div class="ctas" id="ctas"></div>
-  <nav class="rail" aria-label="Stops"><div class="strip" id="strip"></div></nav>
+  <nav class="rail" aria-label="Stops"><div class="rscroll" id="rscroll"><div class="strip" id="strip"></div></div></nav>
 </div>
 <div id="nogl" hidden>This browser could not start the 3D graphics.</div><main id="txt"><h1>Pinillos Lab</h1><p><strong>Hi, I’m Edu.</strong> Independent product builder · since 2008. I build privacy-first, native tools that feel like home on your device.</p><h2>Apps</h2><ul><li><h3><a href="https://troveloapp.com/">Trovelo</a>, travel app</h3><p>iOS · iPadOS · macOS · Private travel planner for iPhone, iPad and Mac. Plan trips day by day, track expenses in dual currency, keep your itinerary in your pocket. No account, no ads.</p><p><a href="https://apps.apple.com/app/id6760258252">App Store</a> · <a href="https://troveloapp.com/support/">Support</a> · <a href="https://troveloapp.com/privacy/">Privacy policy</a></p></li><li><h3><a href="/dimmly/">Dimmly</a>, to-do with a twist</h3><p>iOS · macOS · Task manager and habit tracker for iOS and macOS. Color-coded lists, alarms, streaks, notes, checklists, and a built-in Scoreboard. Free for 5 lists, one-time upgrade for unlimited.</p><p><a href="https://apps.apple.com/app/id6761221806">App Store</a> · <a href="/dimmly/support/">Support</a> · <a href="/dimmly/privacy/">Privacy policy</a></p></li><li><h3><a href="/percha/">Percha</a>, wardrobe OS</h3><p>iOS · in beta · Wardrobe OS for iOS. See what you own, what you wear, what you don&#x27;t. Works entirely on-device — no account required.</p><p><a href="https://apps.apple.com/app/id6761848999">App Store</a> · <a href="/percha/support/">Support</a> · <a href="/percha/privacy/">Privacy policy</a></p></li><li><h3><a href="/solid/">Solid</a>, minimal gym workout</h3><p>iOS · Gym tracker for iOS that gets out of your way. No AI coach, no social feed, no subscription. Just your routine, your sets, and a rest timer.</p><p><a href="https://apps.apple.com/app/id6761683203">App Store</a> · <a href="/solid/support/">Support</a> · <a href="/solid/privacy/">Privacy policy</a></p></li><li><h3><a href="/gridborne/">Gridborne</a>, strategy game</h3><p>iOS · Turn-based strategy game played on a 7x7 grid. Quiet rules, deep tactics. Built for short, satisfying matches. Offline single-player with Game Center leaderboards.</p><p><a href="https://apps.apple.com/app/id6761489335">App Store</a> · <a href="/gridborne/support/">Support</a> · <a href="/gridborne/privacy/">Privacy policy</a></p></li><li><h3><a href="/dummo/">Dummo</a>, promo videos</h3><p>iOS · macOS · Turn a plain screen recording into a polished promo video. Wrap it in a realistic device frame, add tap indicators and auto-zoom, then export App Store previews, Reels, and Stories. Free with a one-time Dummo Pro upgrade.</p><p><a href="https://apps.apple.com/app/id6779711252">App Store</a> · <a href="/dummo/support/">Support</a> · <a href="/dummo/privacy/">Privacy policy</a></p></li><li><h3><a href="/takekit/">TakeKit</a>, teleprompter camera</h3><p>iOS · Teleprompter camera for iOS. Write your script, hit record, and read from an on-screen guide only you can see — the exported video is always clean. Speech-paced auto-scroll, takes grouped by script, clean crops for Reels, TikTok, Shorts. Free with a one-time TakeKit Pro upgrade.</p><p><a href="https://apps.apple.com/app/id6792025212">App Store</a> · <a href="/takekit/support/">Support</a> · <a href="/takekit/privacy/">Privacy policy</a></p></li></ul><h2><a href="/about/">About me</a></h2><p>Eduardo Pinillos · designer &amp; developer. Eighteen years making digital things, from Lima to a small desk in Portugal.</p><ul><li><strong>2008 · Lima · Perú.</strong> Started in Lima, building digital things when nobody in the room knew what that meant.</li><li><strong>2012 · San Francisco · USA.</strong> Won Startup World in San Francisco. Realised software could travel further than I could.</li><li><strong>2015 · Madrid — Barcelona.</strong> Crossed the ocean. Venture-backed teams, big rooms, fast nights.</li><li><strong>2022 · On my own.</strong> Got tired of committee design. Quit to make things alone, the way I wanted to.</li><li><strong>Now · Portugal.</strong> Small desk by a window. Shipping apps alone, slow, on purpose.</li></ul><h2>Recognition</h2><ul><li>2025 · Winner — Startup of the Year, Food &amp; Beverages, HackerNoon, USA</li><li>2019 · Winner — Best Startup, Finnovista, Mexico</li><li>2018 · Winner — Startup Peru, Lima, Peru</li><li>2015 · Winner — Modev, Washington DC, USA</li><li>2013 · Winner — Creatividad Empresarial, Lima, Peru</li><li>2012 · Finalist — Alpha · Web Summit, Dublin, IE</li><li>2012 · Finalist — Festival of Media LATAM, Miami, USA</li><li>2012 · Winner — Startup World, TNW, San Francisco, USA</li></ul><h2><a href="/contact/">Contact</a></h2><p>Got an idea? <a href="https://www.reddit.com/user/beretta51">Reddit me</a>.</p><p><a href="/privacy/">Privacy policy</a></p></main>
 
@@ -361,7 +363,7 @@ const HOME=[
  {app:1,big:'Percha',small:'iOS · in beta',tag:'wardrobe OS',k:'percha',c:'#FF4FA3',o:INK,act:'outfit',ui:'percha',u:'https://apps.apple.com/app/id6761848999'},
  {app:1,big:'Solid',small:'iOS',tag:'minimal gym workout',k:'solid',c:'#D4F02B',o:INK,act:'curl',ui:'solid',u:'https://apps.apple.com/app/id6761683203'},
  {app:1,big:'Gridborne',small:'iOS',tag:'strategy game',k:'gridborne',c:'#FF5A3C',o:INK,act:'sword',ui:'gridborne',u:'https://apps.apple.com/app/id6761489335'},
-  {app:1,big:'Dummo',small:'iOS · macOS',tag:'promo videos',k:'dummo',c:'#8E6BFF',o:'#FFFFFF',act:'phone',ui:'dummo',u:'https://apps.apple.com/app/id6779711252'},
+  {app:1,big:'Dummo',small:'iOS · macOS',tag:'promo videos',k:'dummo',wide:1,c:'#8E6BFF',o:'#FFFFFF',act:'phone',ui:'dummo',u:'https://apps.apple.com/app/id6779711252'},
  {app:1,big:'TakeKit',small:'iOS',tag:'teleprompter camera',k:'takekit',c:'#00C2FF',o:INK,act:'selfie',ui:'takekit',u:'https://apps.apple.com/app/id6792025212'},
  {foot:1,big:'Got an idea?',small:'The end of the walk',c:'#0B0B10',o:PAPER,label:'Contact',act:'wave',ctas:[{t:'Reddit me ↗',u:'https://www.reddit.com/user/beretta51'},{t:'About me ↓',go:'about',alt:1}]}
 ];
@@ -534,6 +536,9 @@ const SHIRTS=['#F6F3EC','#0B0B10','#E4FF3A','#2D6BFF','#FF4B33','#12D18E'];
 
 /* ---------- the walls ---------- */
 let PW=5.4,WH=4.3,Pm=false,dist=7,lookY=1.6,S=240;const YB=-.3;
+/* on a phone: TOP is the highest point of the wall that shows under the top bar; CK (compact) says the screen is too short for the
+   title to sit above everything, as it is in Safari on any iPhone. Then he stands at the right and the words go where there is room. */
+let TOP=9,CK=false;
 /* a matte, lit finish for walls and floors: light from above, shaded side edges, fine grain and the same speckle as the clay */
 const GRAIN=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),d=x.createImageData(128,128);for(let k=0;k<d.data.length;k+=4){const v=Math.random()<.5?255:0;d.data[k]=d.data[k+1]=d.data[k+2]=v;d.data[k+3]=Math.random()*22}x.putImageData(d,0,0);return c})();
 function finish(x,W,H,dk,lx,ly,ed){let g=x.createRadialGradient(lx,ly,0,lx,ly,Math.max(W,H)*.8);g.addColorStop(0,'rgba(255,255,255,'+(dk?.1:.22)+')');g.addColorStop(.55,'rgba(255,255,255,0)');g.addColorStop(1,'rgba(0,0,0,'+(dk?.28:.1)+')');x.fillStyle=g;x.fillRect(0,0,W,H);
@@ -553,6 +558,13 @@ function hot(){hotEl.innerHTML='';ST.forEach((s,i)=>(s.hits||[]).forEach(h=>{con
 /* the court's awards, fixed: on a wide screen one pennant each, hung from the top rail right across the back (yellow for a win, paper for a final);
    on a phone, where eight will not fit side by side, the same pennants lying down as a list */
 function courtWall(x,s,W,Y,U){const HOT='#E4FF3A',n=AWARDS.length,line=Math.max(1.5,.012*U);
+ /* a short phone: he stands at the left of the court and the pennants hang at his right, the title above them; a long name takes two lines, a finalist says so under its name */
+ if(CK){const x0=(-.22+PW/2)*U,lw=(1.17+PW/2)*U-x0,yw=.3*U,nx=x0+yw+.03*U,tip=.08*U,fn=.082*U,av=lw-yw-.03*U-tip-.04*U;x.fillStyle=s.o;const tf=fitFont(x,s.big,'800',DISP,.34*U,lw);let py=Y(TOP-.04-.74*tf/U);x.fillText(s.big,x0-tf*.03,py);py+=.1*U;
+  AWARDS.forEach(a=>{const win=a[1]==='Winner';x.font='800 '+fn+'px '+DISP;const q=a[2].split(' ');let l1=a[2],l2='';if(x.measureText(l1).width>av){l1='';while(q.length&&x.measureText((l1?l1+' ':'')+q[0]).width<=av)l1=(l1?l1+' ':'')+q.shift();l2=q.join(' ')}
+   const two=!!l2||!win,h=(two?.245:.152)*U;x.beginPath();x.moveTo(x0,py);x.lineTo(x0+lw,py);x.lineTo(x0+lw-tip,py+h/2);x.lineTo(x0+lw,py+h);x.lineTo(x0,py+h);x.closePath();x.fillStyle=win?HOT:PAPER;x.fill();x.strokeStyle=INK;x.lineWidth=line;x.stroke();
+   x.fillStyle=INK;x.font='700 '+(.066*U)+'px '+MONO;x.fillText(a[0],x0+.045*U,py+.1*U);x.font='800 '+fn+'px '+DISP;x.fillText(l1,nx,py+.102*U);
+   if(l2)x.fillText(l2,nx,py+.196*U);else if(!win){x.font='700 '+(.044*U)+'px '+MONO;x.globalAlpha=.7;x.fillText('FINALIST',nx,py+.19*U);x.globalAlpha=1}py+=h+.034*U});
+  x.fillStyle=s.o;return}
  if(Pm){const px=.26*U,lw=W-2*px,yw=.36*U,nx=px+yw+.06*U,tip=.1*U;x.fillStyle=s.o;const tf=fitFont(x,s.big,'800',DISP,.62*U,lw);x.fillText(s.big,px-tf*.04,Y(3.9));
   let fn=.086*U;AWARDS.forEach(a=>{fn=Math.min(fn,fitFont(x,a[2],'800',DISP,fn,lw-yw-.06*U-tip-(a[1]==='Winner'?.08:.5)*U))});
   AWARDS.forEach((a,i)=>{const win=a[1]==='Winner',yt=Y(3.62-i*.19),h=.152*U;x.beginPath();x.moveTo(px,yt);x.lineTo(px+lw,yt);x.lineTo(px+lw-tip,yt+h/2);x.lineTo(px+lw,yt+h);x.lineTo(px,yt+h);x.closePath();x.fillStyle=win?HOT:PAPER;x.fill();x.strokeStyle=INK;x.lineWidth=line;x.stroke();
@@ -570,7 +582,9 @@ function footWall(x,s,num,W,Y,U){const SM=['About','Trovelo','Dimmly','Percha','
  const lab=(t,X,y,f)=>{x.fillStyle=HOT;x.font='700 '+(f*U)+'px '+MONO;x.fillText(t,X,Y(y));x.fillStyle=s.o};
  const link=(t,X,y,px,act)=>{x.fillText(t,X,Y(y));const w=x.measureText(t).width;x.save();x.globalAlpha=.42;x.fillRect(X,Y(y)+px*.22,w,Math.max(1.5,px*.07));x.restore();s.hits.push(Object.assign({t,x:X,y:Y(y)-px*.95,w,h:px*1.32},act))};
  const to=t=>t==='About'?{go:'about'}:t==='Privacy'?{u:'/privacy/',in:1}:{i:HOME.findIndex(h=>h.big===t)};
- if(Pm){const px=.26*U,mw=W-2*px;
+ if(CK){const px=.28*U,f=fitFont(x,'Got an idea?','800',DISP,.5*U,W-2*px),b=TOP-.04-.74*f/U;x.fillText('Got an idea?',px-f*.03,Y(b));x.font='italic 400 '+(.3*U)+'px '+SER;x.fillText('Reddit me.',px,Y(b-.31));
+  lab('SITEMAP',px,b-.57,.07);x.font='400 '+(.108*U)+'px '+MONO;SM.forEach((t,k)=>link(t,px,b-.75-k*.158,.108*U,to(t)))}
+ else if(Pm){const px=.26*U,mw=W-2*px;
   const f=fitFont(x,'Got an idea?','800',DISP,.5*U,mw);x.fillText('Got an idea?',px-f*.03,Y(3.96));x.font='italic 400 '+(.34*U)+'px '+SER;x.fillText('Reddit me.',px,Y(3.62));
   lab('SITEMAP',px,3.3,.07);x.font='400 '+(.108*U)+'px '+MONO;SM.forEach((t,k)=>link(t,px+(k%2)*mw*.52,3.13-Math.floor(k/2)*.17,.108*U,to(t)))}
  else{const px=.38*U,half=W/2,lw=half-.8*U-px,rx=half+.75*U,rw=W-rx-.4*U;
@@ -584,7 +598,13 @@ function blankWall(s,ed){const c=document.createElement('canvas');c.width=Math.r
 function wall(s,i){const c=document.createElement('canvas');c.width=Math.round(PW*S);c.height=Math.round(WH*S);const x=c.getContext('2d'),W=c.width,Y=u=>(WH-(u-YB))*S,U=S;
  if(WORLD!=='about'){x.fillStyle=s.c;x.fillRect(0,0,W,c.height);finish(x,W,c.height,s.o!==INK,W*.5,c.height*.3,i===0?1:i===ST.length-1?2:0);const ag=x.createLinearGradient(0,Y(.32),0,Y(0));ag.addColorStop(0,'rgba(0,0,0,0)');ag.addColorStop(1,'rgba(0,0,0,.2)');x.fillStyle=ag;x.fillRect(0,Y(.32),W,Y(0)-Y(.32)+4)}x.fillStyle=s.o;x.textBaseline='alphabetic';
  const num=String(i+1).padStart(2,'0')+' / '+String(ST.length).padStart(2,'0');
- if(s.foot)footWall(x,s,num,W,Y,U);else if(s.court)courtWall(x,s,W,Y,U);else if(Pm){const px=.26*U,mw=W-2*px;
+ if(s.foot)footWall(x,s,num,W,Y,U);else if(s.court)courtWall(x,s,W,Y,U);
+ else if(CK){const px=.2*U,XW=u=>(u+PW/2)*U;
+  /* an app: its name and line at the right of its upright device, above his head (under a wide device: at the left, beside him) */
+  if(s.app){const x0=XW(s.wide?-.97:.13),cw=(s.wide?.82:.84)*U,f=fitFont(x,s.big,'800',DISP,.32*U,cw),b=s.wide?1.6:TOP-.04-.74*f/U;x.fillText(s.big,x0-f*.03,Y(b));x.font='italic 400 '+(.16*U)+'px '+SER;wrap(x,s.tag,x0,Y(b-.2),cw,.172*U,3)}
+  /* a stop that is only words: the title across the top, the words down the left, beside him */
+  else{const f=fitFont(x,s.big,'800',DISP,.5*U,W-2*px),b=TOP-.04-.74*f/U;x.fillText(s.big,px-f*.04,Y(b));x.font='italic 400 '+(.165*U)+'px '+SER;wrap(x,s.txt,px,Y(b-.27),.92*U,.196*U,9)}}
+ else if(Pm){const px=.26*U,mw=W-2*px;
   if(s.app){const f=fitFont(x,s.big,'800',DISP,.54*U,mw);x.fillText(s.big,px-f*.03,Y(3.94));fitFont(x,s.tag,'italic 400',SER,.22*U,mw);x.fillText(s.tag,px,Y(3.66));
    if(!(s.sm&&s.sm.naturalWidth)){x.font='italic 400 '+(.34*U)+'px '+SER;x.globalAlpha=.8;x.fillText('In the workshop.',px,Y(2.7));x.globalAlpha=1}}
   else{const f=fitFont(x,s.big,'800',DISP,.8*U,mw);x.fillText(s.big,px-f*.04,Y(3.7));x.font='italic 400 '+(.2*U)+'px '+SER;wrap(x,s.txt,px,Y(3.36),mw,.235*U,5)}}
@@ -679,7 +699,7 @@ function mountain(){const n=ABOUT.length,x0=-1.7*PW,x1=(n+.7)*PW,nx=Math.ceil((x
   if(a)for(let r=0;r<3;r++){const p=(a-1)*4+r,q=a*4+r;I.push(p,q,p+1,q,q+1,p+1)}}
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('color',new THREE.Float32BufferAttribute(K,3));g.setIndex(I);g.computeVertexNormals();
  const snow=new THREE.Mesh(g,snowM);snow.receiveShadow=true;mtn.add(snow);
- ABOUT.forEach((s,i)=>{const w=new THREE.Mesh(new THREE.PlaneGeometry(PW,WH),new THREE.MeshBasicMaterial({map:wall(s,i),transparent:true,depthWrite:false}));w.position.set(i*PW,WH/2+YB+hgt(i*PW),-1.5);w.userData.own=1;mtn.add(w)});
+ ABOUT.forEach((s,i)=>{const w=new THREE.Mesh(new THREE.PlaneGeometry(PW,WH),new THREE.MeshBasicMaterial({map:wall(s,i),transparent:true,depthWrite:false}));w.position.set(i*PW,WH/2+YB+hgt(CK?stopX(i):i*PW),-1.5);w.userData.own=1;w.userData.st=s.court?-1:i;mtn.add(w)});
  const np=Math.round(n*1.3)+2;for(let k=0;k<np;k++){const x=x0+(x1-x0)*(k+.5)/np+(rnd(k)-.5)*PW*.5,hh=6+rnd(k+9)*5,m=new THREE.Mesh(new THREE.ConeGeometry(2.6+rnd(k+3)*2,hh,5),peakM);m.position.set(x,hgt(x)-1.4+hh/2,-13-rnd(k+5)*6);m.rotation.y=rnd(k+7)*3;mtn.add(m)}
  const tree=(x,z,s)=>{const t=new THREE.Group(),add=(geo,mat,y)=>{const m=new THREE.Mesh(geo,mat);m.position.y=y*s;m.castShadow=true;t.add(m)};
   add(new THREE.CylinderGeometry(.07*s,.09*s,.4*s,8),trunkM,.2);add(new THREE.ConeGeometry(.5*s,1.0*s,7),treeM,.8);add(new THREE.ConeGeometry(.37*s,.8*s,7),treeM,1.32);add(new THREE.ConeGeometry(.2*s,.34*s,7),capM,1.62);
@@ -694,31 +714,32 @@ function mountain(){const n=ABOUT.length,x0=-1.7*PW,x1=(n+.7)*PW,nx=Math.ceil((x
   chairs=[];if(!Pm)for(let k=0;k<4;k++){const c=mkChair();c.userData.x=xa+(xb-xa)*(k+.35)/4;c.position.set(c.userData.x,cy(c.userData.x),LIFTZ);mtn.add(c);chairs.push(c)}}}
 const junk=g=>{g.traverse(o=>{if(o.material){if(o.material.map)o.material.map.dispose();o.material.dispose();o.geometry.dispose()}});scene.remove(g)};
 /* a room's floating device: its recreation if that has arrived, its stand-in shot until then */
-function mkDev(s,i){const dom=s.ui&&UIDOM[s.ui]||null,ok=s.sm&&s.sm.naturalWidth;if(!dom&&!ok)return null;const a=ok?s.sm.naturalWidth/s.sm.naturalHeight:dom.a||402/874,side=Pm&&a<=1.2;let h=Pm?(side?2.2:1.36):2.5;const mw=Pm?PW*.8:a>1.2?PW*.385:PW*.34;if(h*a>mw)h=mw/a;const dv=device(s.shots,h,a>1.2,s.v,dom),g=dv.g;g.position.set(i*PW+(Pm?(side?-.5:0):PW*(a>1.2?.283:.29)),Pm?(side?2.17:2.62):a>1.2?1.82:1.74,a>1.2&&!Pm?-.84:-.42);scene.add(g);return{g,i,y:g.position.y,ry:Pm?(side?.2:-.16):a>1.2?-.03:-.3,sw:a>1.2&&!Pm?.025:.06,tn:a>1.2&&!Pm?.07:.35,k:0,phone:1,dev:dv}}
+function mkDev(s,i){const dom=s.ui&&UIDOM[s.ui]||null,ok=s.sm&&s.sm.naturalWidth;if(!dom&&!ok)return null;const a=ok?s.sm.naturalWidth/s.sm.naturalHeight:dom.a||402/874,side=Pm&&a<=1.2;let h=Pm?(side?2.2:1.36):2.5;const mw=Pm?PW*.8:a>1.2?PW*.385:PW*.34;if(h*a>mw)h=mw/a;if(CK&&side)h=Math.min(h,TOP-1.07);const dv=device(s.shots,h,a>1.2,s.v,dom),g=dv.g;g.position.set(i*PW+(Pm?(side?-.5:0):PW*(a>1.2?.283:.29)),Pm?Math.min(side?2.17:2.62,CK?TOP-.02-h/2:9):a>1.2?1.82:1.74,a>1.2&&!Pm?-.84:-.42);scene.add(g);return{g,i,y:g.position.y,ry:Pm?(side?.2:-.16):a>1.2?-.03:-.3,sw:a>1.2&&!Pm?.025:.06,tn:a>1.2&&!Pm?.07:.35,k:0,phone:1,dev:dv}}
 /* a recreation has just arrived: its room's device is made again around it (elsewhere than home, the next build picks it up) */
 function attach(n){if(WORLD!=='home')return;const i=ST.findIndex(s=>s.ui===n);if(i<0)return;const k=extras.findIndex(e=>e.phone&&e.i===i),old=k>=0?extras[k]:null;if(old)junk(old.g);const e=mkDev(ST[i],i);if(old){if(e){e.k=old.k;extras[k]=e}else extras.splice(k,1)}else if(e)extras.push(e)}
 function build(){for(const k in UIDOM)if(UIDOM[k])UIDOM[k].mesh=null;extras.forEach(e=>junk(e.g));extras=[];while(world.children.length){const m=world.children.pop();if(m.material.map)m.material.map.dispose();m.material.dispose();m.geometry.dispose()}
  mtn.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.userData.own){o.material.map.dispose();o.material.dispose()}});mtn.clear();if(WORLD==='about'){mountain();hot();return}
  ST.forEach((s,i)=>{const w=new THREE.Mesh(new THREE.PlaneGeometry(PW,WH),new THREE.MeshBasicMaterial({map:wall(s,i)}));w.position.set(i*PW,WH/2+YB,-1);world.add(w);
-  const f=new THREE.Mesh(new THREE.PlaneGeometry(PW,9),new THREE.MeshBasicMaterial({map:floorTex(s,i===0?1:i===ST.length-1?2:0)}));f.rotation.x=-Math.PI/2;f.position.set(i*PW,0,3.5);world.add(f);{const e=mkDev(s,i);if(e)extras.push(e)}if(s.im&&s.im.naturalWidth){const g=slab(s.im,Pm?.4:.52,.23);g.position.set(i*PW+(Pm?(tallDev(s)?-.84:.84):-PW/2+.66),Pm?.6:.95,Pm?.7:-.45);scene.add(g);extras.push({g,i,y:g.position.y,ry:Pm?-.3:.28,k:0})}});
+  const f=new THREE.Mesh(new THREE.PlaneGeometry(PW,9),new THREE.MeshBasicMaterial({map:floorTex(s,i===0?1:i===ST.length-1?2:0)}));f.rotation.x=-Math.PI/2;f.position.set(i*PW,0,3.5);world.add(f);{const e=mkDev(s,i);if(e)extras.push(e)}if(s.im&&s.im.naturalWidth){const g=slab(s.im,Pm?.4:.52,.23);g.position.set(i*PW+(Pm?(CK||tallDev(s)?-.84:.84):-PW/2+.66),Pm?.6:.95,Pm?.7:-.45);scene.add(g);extras.push({g,i,y:g.position.y,ry:Pm?-.3:.28,k:0})}});
  /* the walk has two ends: one more stretch of wall and floor on each, in that room's colour and finish */
  [[-1,ST[0],2],[ST.length,ST[ST.length-1],1]].forEach(([i,s,ed])=>{const w=new THREE.Mesh(new THREE.PlaneGeometry(PW,WH),new THREE.MeshBasicMaterial({map:blankWall(s,ed)}));w.position.set(i*PW,WH/2+YB,-1);world.add(w);
   const f=new THREE.Mesh(new THREE.PlaneGeometry(PW,9),new THREE.MeshBasicMaterial({map:floorTex(s,ed)}));f.rotation.x=-Math.PI/2;f.position.set(i*PW,0,3.5);world.add(f)});hot()}
-function fit(){const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));renderer.setSize(w,h,false);cam.aspect=w/h;const wasP=Pm,oldPW=PW,tan=Math.tan(14*Math.PI/180)*2;Pm=h>w*1.12;
- if(Pm){const vw=2.55,vh=vw/cam.aspect;dist=vh/tan;lookY=vh/2-.5;PW=2.5;WH=Math.max(6,vh+1.2);S=250}else{const vh=3.55;dist=vh/tan;lookY=1.56;PW=clamp(vh*cam.aspect*.97,4.4,8);WH=4.4;S=PW>6.5?200:236}
- cam.updateProjectionMatrix();if(wasP!==Pm||Math.abs(oldPW-PW)>.02||(!world.children.length&&!mtn.children.length)){const k=oldPW?PW/oldPW:1;X*=k;goal*=k;build()}}
+function fit(){const w=cv.clientWidth,h=cv.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(2,devicePixelRatio||1));renderer.setSize(w,h,false);cam.aspect=w/h;const wasP=Pm,oldPW=PW,oldTOP=TOP,tan=Math.tan(14*Math.PI/180)*2;Pm=h>w*1.12;
+ if(Pm){const vw=2.55,vh=vw/cam.aspect;dist=vh/tan;lookY=vh/2-.5;PW=2.5;WH=Math.max(6,vh+1.2);S=250;TOP=vh-.5-(($('.nav').getBoundingClientRect().bottom||62)+9)/h*vh;CK=TOP<4.35}else{TOP=9;CK=false;const vh=3.55;dist=vh/tan;lookY=1.56;PW=clamp(vh*cam.aspect*.97,4.4,8);WH=4.4;S=PW>6.5?200:236}
+ cam.updateProjectionMatrix();if(wasP!==Pm||Math.abs(oldPW-PW)>.02||Math.abs(oldTOP-TOP)>.03||(!world.children.length&&!mtn.children.length)){const k=oldPW?PW/oldPW:1;X*=k;goal*=k;build()}}
 
 /* ---------- motion ---------- */
 /* on a phone, a room with an upright device keeps the device (larger) at the left and his spot at the right; the camera stays on the room's middle.
    tallDev: does this room have an upright device · stopX: where he stands in room i · camO: how far the camera sits to his left, eased */
 const EO=.42,tallDev=s=>{if(!s||!s.app)return false;const d=s.ui&&UIDOM[s.ui],a=s.sm&&s.sm.naturalWidth?s.sm.naturalWidth/s.sm.naturalHeight:d?(d.a||402/874):0;return a>0&&a<=1.2},
- courtOff=()=>Pm?-.3:.06*PW,stopX=i=>i*PW+(Pm&&WORLD==='home'&&tallDev(ST[i])?EO:0)+(ST[i]&&ST[i].court?courtOff():0);let camO=0;
+ courtOff=()=>Pm?(CK?-.7:-.3):.06*PW,stopX=i=>i*PW+(Pm&&ST[i]&&(CK?!ST[i].court:WORLD==='home'&&tallDev(ST[i]))?EO:0)+(ST[i]&&ST[i].court?courtOff():0);let camO=0;
 /* the court, along the walk: its middle, where he stands, the far glass, where he meets the ball, the net, where the ball lands, its near edge */
 const courtX=()=>{const cx=(ABOUT.length-1)*PW,st=cx+courtOff(),end=cx+(Pm?1.03:.46*PW),hit=st+.88;return{cx,st,end,hit,net:hit+.38*(end-hit),bnc:hit+.72*(end-hit),left:cx-(Pm?.5:.47)*PW}};
 let X=0,goal=0,vx=0,lastIn=-1e9,face=0,amt=0,phi=0,still=0,act=0,zone=0,cur=-1,last=0,drag=null,keys={},spin=0,shirt=0,shirtT=0,blink=0,tr=null,homeAt=0,sk=0,skOn=false,lc=0,gg=0;
 const maxX=()=>stopX(ST.length-1),touch=t=>{lastIn=t};
-const strip=$('#strip'),ctas=$('#ctas'),dimEl=$('#dim'),fadeEl=$('#fade');let tabs=[];
-function rail(){strip.innerHTML=(WORLD==='about'?'<button data-go="home">↑ Apps</button>':'')+ST.map((s,i)=>'<button data-i="'+i+'">'+s.label+'</button>').join('');tabs=[...strip.querySelectorAll('[data-i]')]}
+const strip=$('#strip'),rsc=$('#rscroll'),ctas=$('#ctas'),dimEl=$('#dim'),fadeEl=$('#fade');let tabs=[],tint='',tintN=0,fadeOn=false;
+const TINT=new THREE.Color(),themeMeta=document.createElement('meta');themeMeta.name='theme-color';document.head.append(themeMeta);
+let railSet=false;function rail(){railSet=false;strip.innerHTML=(WORLD==='about'?'<button data-go="home">↑ Apps</button>':'')+ST.map((s,i)=>'<button data-i="'+i+'">'+s.label+'</button>').join('');tabs=[...strip.querySelectorAll('[data-i]')]}
 rail();
 function setWorld(k){WORLD=k;ST=k==='about'?ABOUT:HOME;build();rail();cur=-1}
 function go(k){if(tr||menuOpen)return;touch(performance.now());if(k==='about'||k==='home'){if(k!==WORLD)tr={to:k,t:0,sw:false,lift:WORLD==='about'&&k==='home'}}else if(k==='end')goal=maxX();else if(k==='hi')goal=0}
@@ -765,12 +786,16 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  const idx=clamp(Math.round(X/PW),0,n-1),s=ST[idx],off=Math.abs(X-stopX(idx));camO+=(stopX(idx)-idx*PW-camO)*Math.min(1,dt*4);still=(off<.3&&sp<.14)?still+dt:0;
  act+=((still>.28?1:0)-act)*Math.min(1,dt*5);zone+=((off<PW*.42?1:0)-zone)*Math.min(1,dt*6);
  const ft=sp>.16?Math.sign(vx)*(1.04-.8*sk):(still>.12?0:face);face+=(ft-face)*Math.min(1,dt*8);
- if(idx!==cur){cur=idx;tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];strip.style.transform='translateX('+(-(b.offsetLeft+b.offsetWidth/2)).toFixed(1)+'px)';strip.style.transition='transform .6s cubic-bezier(.19,1,.22,1)';
+ if(idx!==cur){cur=idx;tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];rsc.scrollTo({left:b.offsetLeft+b.offsetWidth/2-rsc.clientWidth/2,behavior:railSet?'smooth':'auto'});railSet=true;
   scene.background=C(s.c);const L=s.ctas||(s.app?[s.u?{t:'Get '+s.big+' on the App Store ↗',u:s.u}:{t:s.big+' · coming soon'}]:[]);
   ctas.innerHTML=L.map(c=>c.u?'<a href="'+c.u+'" target="_blank" rel="noopener"'+(c.alt?' class="alt"':'')+'>'+c.t+'</a>':c.go?'<button type="button" data-go="'+c.go+'"'+(c.alt?' class="alt"':'')+'>'+c.t+'</button>':'<span>'+c.t+'</span>').join('')
    +(s.app&&s.k?'<button type="button" class="alt" data-more aria-expanded="false" aria-controls="more" aria-label="More links for '+s.big+'"><b class="w">More</b><b class="d">•••</b></button><div class="more" id="more">'
     +moreRows(s).map(r=>r.u?'<a href="'+r.u+'"'+(r.in?'':' target="_blank" rel="noopener"')+'>'+r.t+'<i>'+(r.in?'→':'↗')+'</i></a>':'<button type="button" data-go="'+r.go+'">'+r.t+'<i>→</i></button>').join('')+'</div>':'');spin=0;shirtT=0}
  {const on=act>.6&&!tr&&!!ctas.firstChild;ctas.classList.toggle('on',on);if(!on)setMore(false)}if(ride)skyAt(X,scene.background);
+ /* the browser's own bars (above and below the page on a phone) take the page's colour: keep it the room's, never black */
+ if(!(tintN++%3)){const hx=TINT.copy(scene.background).convertLinearToSRGB().getHexString();if(hx!==tint){tint=hx;const c='#'+hx;document.documentElement.style.backgroundColor=document.body.style.backgroundColor=c;themeMeta.content=c}}
+ if(CK&&ride)mtn.children.forEach(m=>{if(m.userData.st>=0)m.material.opacity=clamp(2.25-Math.abs(X-stopX(m.userData.st))/(PW*.45),0,1)});
+ {const o=+fadeEl.style.opacity>0;if(o!==fadeOn){fadeOn=o;fadeEl.style.display=o?'block':'none'}}
  /* body */
  const sn=Math.sin(phi),cs=Math.cos(phi),a=amt*(1-sk),run=clamp((sp-3.6)/2.6,0,1)*(1-sk),kind=s.act||'none',P=POSE[kind]||POSE.none,hold=kind==='suitcase'?zone:act;
  if(moving&&sp<.3)sv=-.55;moving=sp>.7;sv+=(-sq*95-sv*11)*dt;sq+=sv*dt;
@@ -812,7 +837,7 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  suit.visible=kind==='suitcase'&&zone>.05;suit.scale.setScalar(Math.max(.001,zone));suit.rotation.x=-.12*a;
  if(kind==='outfit'&&act>.5){spin=Math.min(Math.PI*2,spin+dt*7);shirtT+=dt;if(shirtT>.75){shirtT=0;shirt=(shirt+1)%SHIRTS.length;tee.color.copy(C(SHIRTS[shirt]));teeS.color.copy(tee.color)}}
  else if(kind!=='outfit'&&shirt!==0){shirt=0;tee.color.copy(C(SHIRTS[0]));teeS.color.copy(tee.color)}
- dimEl.style.opacity=(kind==='dim'?act*(UIDOM.dimmly?.5*(1-UIDOM.dimmly.k):.62):0).toFixed(3);
+ dimEl.style.opacity=(kind==='dim'?act*(UIDOM.dimmly?.5*(1-UIDOM.dimmly.k):.62):0).toFixed(3);dimEl.style.display=+dimEl.style.opacity>.004?'block':'none';
  blink-=dt;if(blink<-.12)blink=2+Math.random()*3;eyes.forEach(e=>e.scale.y=blink<0?.12:1);
  /* riding: a skateboard on long trips at home, a snowboard all the way down the mountain */
  {const bd=ride?sboard:board,BH=ride?.04:.1,AB=ride?.36:.3;board.visible=!ride&&sk>.02;sboard.visible=ride&&sk>.02;gog.visible=ride&&sk>.02;if(gog.visible){gg+=((!tr&&sp>.6?1:0)-gg)*Math.min(1,dt*7);gog.rotation.x=-.63*(1-gg);gog.userData.gf.position.z=.03*(1-gg);gog.scale.setScalar(Math.max(.001,sk))}blob.visible=!tr&&!ride&&av.visible;shF.visible=shW.visible=!ride;av.position.y=gy;
@@ -840,7 +865,7 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
   else if(tr.to==='about'){
    if(q<.5){const u=q/.5;hole.visible=true;hole.position.set(X,.012,.6);hole.scale.setScalar(Math.max(.001,1-Math.pow(1-u,3)));av.position.y=Math.sin(u*Math.PI)*.14}
    else if(q<1.2){const u=(q-.5)/.7;av.position.y=(tr.deep?-1.22:0)-5.4*u*u;av.rotation.z=u*.7;av.rotation.y+=u*2.4;av.scale.setScalar(.855*(1-.3*u));hole.scale.setScalar((tr.deep?1.25:1)+u*.5);fadeEl.style.opacity=clamp((q-.9)/.3,0,1)}
-   else if(!tr.sw){tr.sw=true;homeAt=X/PW;fadeEl.style.opacity=1;hole.visible=false;setWorld('about');X=goal=0;vx=0;av.position.y=7;av.scale.setScalar(.855);av.rotation.z=0}
+   else if(!tr.sw){tr.sw=true;homeAt=X/PW;fadeEl.style.opacity=1;hole.visible=false;setWorld('about');X=goal=stopX(0);vx=0;av.position.y=7;av.scale.setScalar(.855);av.rotation.z=0}
    else if(q<1.4)av.position.y=7;
    else if(q<2.05){const u=(q-1.4)/.65;fadeEl.style.opacity=clamp(1-u*1.8,0,1);av.position.y=7*(1-u*u)}
    else{av.position.y=0;fadeEl.style.opacity=0;sv=-1.9;tr=null}}
