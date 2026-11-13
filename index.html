@@ -288,6 +288,8 @@ body{background:var(--ink);color:var(--ink);font-family:var(--display);overflow:
 /* More: the app's other links (feedback, support, privacy) in a small panel that opens above the buttons */
 .ctas{position:relative}
 .ctas [data-more] .d{display:none}
+/* a call to action may have a short wording for a phone (ts): the room's wall already says the app's name there */
+.ctas .lg,.ctas .sm{font-weight:inherit}.ctas .sm{display:none}
 .ctas [data-more][aria-expanded=true]{background:var(--hot)}
 .ctas .more{position:absolute;left:50%;bottom:calc(100% + 10px);width:min(320px,calc(100vw - 32px));box-sizing:border-box;display:flex;flex-direction:column;gap:6px;padding:8px;border-radius:28px;background:rgba(11,11,16,.9);box-shadow:0 0 0 1.5px var(--paper);opacity:0;visibility:hidden;transform:translate(-50%,10px);transition:opacity .18s,transform .35s var(--expo),visibility 0s .18s}
 .ctas .more.on{opacity:1;visibility:visible;transform:translate(-50%,0);transition:opacity .18s,transform .35s var(--expo)}
@@ -295,7 +297,7 @@ body{background:var(--ink);color:var(--ink);font-family:var(--display);overflow:
 .ctas .more a:hover,.ctas .more button:hover,.ctas .more a:focus-visible,.ctas .more button:focus-visible{background:var(--hot)}
 .ctas .more i{font-style:normal;font-weight:400}
 .ar{display:inline-block;width:1.2em;height:1.2em;fill:currentColor;vertical-align:-.26em;pointer-events:none}
-@media(max-width:520px){.ctas>a,.ctas>button{font-size:15px;padding:12px 15px}.ctas [data-more] .w{display:none}.ctas [data-more] .d{display:inline;letter-spacing:1px}}
+@media(max-width:520px){.ctas .lg{display:none}.ctas .sm{display:inline}.ctas>a,.ctas>button{font-size:15px;padding:12px 15px}.ctas [data-more] .w{display:none}.ctas [data-more] .d{display:inline;letter-spacing:1px}}
 .ctas a:focus-visible,.ctas button:focus-visible,.rail button:focus-visible{outline:2px solid var(--hot);outline-offset:2px}
 #fade{position:fixed;inset:0;background:#000;opacity:0;pointer-events:none;display:none}
 .mbtn{border:0;cursor:pointer}
@@ -829,8 +831,8 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  act+=((still>.28?1:0)-act)*Math.min(1,dt*5);zone+=((off<PW*.42?1:0)-zone)*Math.min(1,dt*6);
  const ft=sp>.16?Math.sign(vx)*(1.04-.8*sk):(still>.12?0:face);face+=(ft-face)*Math.min(1,dt*8);
  if(idx!==cur){cur=idx;prevB.classList.toggle('off',idx===0);nextB.classList.toggle('off',idx===n-1);prevB.setAttribute('aria-disabled',idx===0);nextB.setAttribute('aria-disabled',idx===n-1);if(seen++===1)nextB.classList.remove('nudge');tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];rsc.scrollTo({left:b.offsetLeft+b.offsetWidth/2-rsc.clientWidth/2,behavior:railSet?'smooth':'auto'});railSet=true;
-  scene.background=C(s.c);const L=s.ctas||(s.app?[s.u?{t:'Get '+s.big+' on the App Store ↗',u:s.u}:{t:s.big+' · coming soon'}]:[]);
-  ctas.innerHTML=L.map(c=>c.u?'<a href="'+c.u+'" target="_blank" rel="noopener"'+(c.alt?' class="alt"':'')+'>'+ico(c.t)+'</a>':c.go?'<button type="button" data-go="'+c.go+'"'+(c.alt?' class="alt"':'')+'>'+ico(c.t)+'</button>':'<span>'+c.t+'</span>').join('')
+  scene.background=C(s.c);const L=s.ctas||(s.app?[s.u?{t:'Get '+s.big+' on the App Store ↗',ts:'Get the app ↗',u:s.u}:{t:s.big+' · coming soon'}]:[]);
+  ctas.innerHTML=L.map(c=>c.u?'<a href="'+c.u+'" target="_blank" rel="noopener"'+(c.alt?' class="alt"':'')+(c.ts?' aria-label="'+c.t.replace(/\s*↗$/,'')+'"':'')+'>'+(c.ts?'<b class="lg">'+ico(c.t)+'</b><b class="sm">'+ico(c.ts)+'</b>':ico(c.t))+'</a>':c.go?'<button type="button" data-go="'+c.go+'"'+(c.alt?' class="alt"':'')+'>'+ico(c.t)+'</button>':'<span>'+c.t+'</span>').join('')
    +(s.app&&s.k?'<button type="button" class="alt" data-more aria-expanded="false" aria-controls="more" aria-label="More links for '+s.big+'"><b class="w">More</b><b class="d">•••</b></button><div class="more" id="more">'
     +moreRows(s).map(r=>r.u?'<a href="'+r.u+'"'+(r.in?'':' target="_blank" rel="noopener"')+'>'+r.t+'<i>'+ico(r.in?'→':'↗')+'</i></a>':'<button type="button" data-go="'+r.go+'">'+r.t+'<i>'+ico('→')+'</i></button>').join('')+'</div>':'');spin=0;shirtT=0}
  {const on=act>.6&&!tr&&!!ctas.firstChild;ctas.classList.toggle('on',on);if(!on)setMore(false)}if(ride)skyAt(X,scene.background);
