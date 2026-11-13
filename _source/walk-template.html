@@ -82,15 +82,19 @@ body.mo .ctas>*{pointer-events:none}
 #hot a,#hot button{all:unset;box-sizing:border-box;position:absolute;pointer-events:auto;cursor:pointer;border-radius:6px}
 #hot a:hover,#hot button:hover,#hot a:active,#hot button:active{background:rgba(228,255,58,.2);box-shadow:0 0 0 2px rgba(228,255,58,.75)}
 #hot a:focus-visible,#hot button:focus-visible{outline:2px solid var(--hot);outline-offset:1px}
-.rail{pointer-events:auto;position:relative;height:40px;background:var(--paper);border-radius:99px;box-shadow:0 0 0 1.5px var(--ink);overflow:hidden;max-width:1200px;width:100%;margin:0 auto}
-.rscroll{height:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-x;-webkit-mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,transparent,#000 26px,#000 calc(100% - 26px),transparent)}
+/* the rail of stops: a capsule the size of its words, in the buttons' own type; the stop he is at wears its room's colour (--c, --o: set on each stop by rail()) */
+.rail{pointer-events:auto;position:relative;height:46px;background:var(--paper);border-radius:99px;box-shadow:0 0 0 1.5px var(--ink);overflow:hidden}
+.rscroll{height:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-x}
 .rscroll::-webkit-scrollbar{display:none}
-.rail .strip{position:relative;height:100%;display:inline-flex;align-items:center;gap:6px;white-space:nowrap;padding:0 calc(50% - 34px)}
-.rail button{all:unset;cursor:pointer;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px;border-radius:99px;color:var(--soft)}
-.rail button.on{background:var(--ink);color:var(--paper);font-weight:700}
+.rail .strip{position:relative;height:100%;display:inline-flex;align-items:center;gap:2px;white-space:nowrap;padding:0 5px}
+.rail button{all:unset;cursor:pointer;font:700 14.5px var(--display);letter-spacing:-.01em;padding:8px 14px;border-radius:99px;color:var(--ink);transition:background-color .2s,color .2s}
+.rail button.on{background:var(--c,var(--ink));color:var(--o,var(--paper));box-shadow:0 0 0 1.5px var(--ink)}
 /* on a phone (any touch screen): an arrow at each end of the rail, to the stop before and the stop after; the way on is the yellow one */
-.railrow{display:flex;align-items:center;gap:8px;max-width:1200px;width:100%;margin:0 auto}
-.railrow .rail{flex:1;min-width:0;width:auto;margin:0}
+.railrow{display:flex;align-items:center;justify-content:center;gap:8px;max-width:1200px;width:100%;margin:0 auto}
+.railrow .rail{flex:0 1 auto;min-width:0}
+/* on a narrow screen the capsule fills the row between the arrows and scrolls under a finger, its ends fading out; the room at each end can still come to the middle */
+@media (max-width:820px){.railrow .rail{flex:1;height:44px}.rail .strip{padding:0 calc(50% - 34px)}.rail button{font-size:14px;padding:7px 12px}
+ .rscroll{-webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent)}}
 .arw{all:unset;box-sizing:border-box;display:none;pointer-events:auto;cursor:pointer;flex:none;width:40px;height:40px;border-radius:99px;background:var(--paper);color:var(--ink);box-shadow:0 0 0 1.5px var(--ink);place-items:center;font:700 17px var(--display);-webkit-tap-highlight-color:transparent;transition:opacity .2s,background-color .2s}
 .arw.nx{background:var(--hot)}
 .arw.off{opacity:.38;background:var(--paper);cursor:default}
@@ -516,7 +520,7 @@ let X=0,goal=0,vx=0,lastIn=-1e9,face=0,amt=0,phi=0,still=0,act=0,zone=0,cur=-1,l
 const maxX=()=>stopX(ST.length-1),touch=t=>{lastIn=t};
 const strip=$('#strip'),rsc=$('#rscroll'),ctas=$('#ctas'),dimEl=$('#dim'),fadeEl=$('#fade');let tabs=[],tint='',tintN=0,fadeOn=false;
 const TINT=new THREE.Color(),themeMeta=document.createElement('meta');themeMeta.name='theme-color';document.head.append(themeMeta);
-let railSet=false;function rail(){railSet=false;strip.innerHTML=(WORLD==='about'?'<button data-go="home">'+ico('↑')+' Apps</button>':'')+ST.map((s,i)=>'<button data-i="'+i+'">'+s.label+'</button>').join('');tabs=[...strip.querySelectorAll('[data-i]')]}
+let railSet=false;function rail(){railSet=false;strip.innerHTML=(WORLD==='about'?'<button data-go="home">'+ico('↑')+' Apps</button>':'')+ST.map((s,i)=>'<button data-i="'+i+'" style="--c:'+s.c+';--o:'+s.o+'">'+s.label+'</button>').join('');tabs=[...strip.querySelectorAll('[data-i]')]}
 rail();
 function setWorld(k){WORLD=k;ST=k==='about'?ABOUT:HOME;build();rail();cur=-1}
 function go(k){if(tr||menuOpen)return;touch(performance.now());if(k==='about'||k==='home'){if(k!==WORLD)tr={to:k,t:0,sw:false,lift:WORLD==='about'&&k==='home'}}else if(k==='end')goal=maxX();else if(k==='hi')goal=0}
