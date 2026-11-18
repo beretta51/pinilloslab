@@ -389,7 +389,7 @@ const ARW={
 }
 ,ico=t=>t.replace(/[→←↗↓↑]/g,c=>'<svg class="ar" viewBox="0 0 24 24" aria-hidden="true"><path d="'+ARW[c]+'"/></svg>');
 const HOME=[
- {big:"Hi, I’m Edu.",small:'Independent product builder · since 2008',txt:'I build privacy-first, native tools that feel like home on your device. Walk with me.',c:'#E4FF3A',o:INK,label:'Hi',act:'wave',ctas:[{t:'About me ↓',go:'about'},{t:'Contact →',go:'end',alt:1}]},
+ {big:"Hi, I’m Edu.",small:'Independent product builder · since 2008',txt:'I build privacy-first, native tools that feel like home on your device. Walk with me.',c:'#E4FF3A',o:INK,label:'Hi',act:'wave',say:['Hi!','¡Hola!','Olá!'],ctas:[{t:'About me ↓',go:'about'},{t:'Contact →',go:'end',alt:1}]},
  {app:1,big:'Trovelo',small:'iOS · iPadOS · macOS',tag:'travel app',k:'trovelo',ui:'trovelo',c:'#2D6BFF',o:'#FFFFFF',act:'suitcase',fit:6,u:'https://apps.apple.com/app/id6760258252'},
  {app:1,big:'Dimmly',small:'iOS · macOS',tag:'to-do with a twist',k:'dimmly',c:'#FF7A1A',o:INK,act:'dim',ui:'dimmly',u:'https://apps.apple.com/app/id6761221806'},
  {app:1,big:'Percha',small:'iOS · in beta',tag:'wardrobe OS',k:'percha',c:'#FF4FA3',o:INK,act:'outfit',ui:'percha',u:'https://apps.apple.com/app/id6761848999'},
@@ -636,6 +636,16 @@ function dress(i){const f=FITS[i],put=(m,h)=>m.color.copy(C(h||SKIN));look=i;put
  [lA,lB].forEach(l=>{l.cf.visible=!!f.cuff});put(shoeS,f.shoe);put(shoe,f.shoe);put(soleS,f.sole);put(sole,f.sole);capBits.forEach(m=>{m.visible=!!f.cap});hairTop.visible=!f.cap;
  const on=[].concat(f.wear||[]);for(const k in WEAR)WEAR[k].forEach(m=>{m.visible=on.includes(k)});deco.visible=!!f.art;if(f.art)deco.material.map=art(f.art)}
 av.traverse(o=>{if(o.isMesh)o.castShadow=true});
+/* ---------- Hi: he says hello in the three languages of his life. A speech bubble by his head goes Hi! → ¡Hola! → Olá!, each one popping in.
+   It is a flat picture that always faces us: paper, an ink outline and the hard shadow of the site's own buttons; `tail` says where its point leaves it (0–1 across) ---------- */
+const sayG=new THREE.Group(),sayM=new THREE.Mesh(new THREE.PlaneGeometry(.8,.55),new THREE.MeshBasicMaterial({transparent:true,depthWrite:false})),sayTx={};let sayT=0,sayKey='';
+{const c=document.createElement('canvas');c.width=c.height=2;sayM.material.map=new THREE.CanvasTexture(c);sayG.add(sayM);sayG.visible=false;av.add(sayG)}
+function sayTex(t,tail){const key=t+tail;if(sayTx[key])return sayTx[key];const W=480,H=330,c=document.createElement('canvas');c.width=W;c.height=H;const x=c.getContext('2d'),bw=W-40,bh=H-96,R=62,tx=tail*W,
+  shape=(dx,dy,col)=>{x.fillStyle=col;x.beginPath();if(x.roundRect)x.roundRect(14+dx,10+dy,bw,bh,R);else x.rect(14+dx,10+dy,bw,bh);x.fill();x.beginPath();x.moveTo(tx-30+dx,bh+6+dy);x.lineTo(tx+(tail>.6?26:6)+dx,H-22+dy);x.lineTo(tx+30+dx,bh+6+dy);x.fill()};
+ shape(9,10,'#0B0B10');shape(0,0,'#F4F1E8');x.strokeStyle='#0B0B10';x.lineWidth=7;x.lineJoin='round';x.beginPath();if(x.roundRect)x.roundRect(14,10,bw,bh,R);else x.rect(14,10,bw,bh);x.stroke();
+ x.beginPath();x.moveTo(tx-30,bh+8);x.lineTo(tx+(tail>.6?26:6),H-22);x.lineTo(tx+30,bh+8);x.stroke();x.fillStyle='#F4F1E8';x.fillRect(tx-25,bh+2,50,11);
+ x.fillStyle='#0B0B10';x.textAlign='center';x.textBaseline='middle';const fs=fitFont(x,t,'800',DISP,150,bw-76);x.fillText(t,14+bw/2,10+bh/2+fs*.04);
+ const m=new THREE.CanvasTexture(c);m.encoding=THREE.sRGBEncoding;m.anisotropy=4;return sayTx[key]=m}
 const blob=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),g=x.createRadialGradient(64,64,6,64,64,62);g.addColorStop(0,'rgba(0,0,0,.3)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,128,128);
  const m=new THREE.Mesh(new THREE.PlaneGeometry(.9,.55),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));m.rotation.x=-Math.PI/2;m.position.set(0,.012,.6);scene.add(m);return m})();
 let mx=0,my=0,hy=0,hx=0,sq=0,sv=0,moving=false;
@@ -984,6 +994,10 @@ camO+=(stopX(idx)-idx*PW-camO)*Math.min(1,dt*4);still=(off<.3&&sp<.14)?still+dt:
    cueLn.forEach((g,i)=>{g.position.y=.15-i*.085+sh*.085;g.userData.w.forEach((m,k)=>{const said=i===0?1:i===1?sm((u-.2-k*.21)/.08):0,now=i===1?sm((u-.02-k*.21)/.08):0;
      m.material.color.copy(cWht).lerp(cRed,said);m.material.opacity=(i===0?1-sm(sh*1.5):i===4?sh:1)*Math.max(.5+.5*now,said)})})}
   else if(cueT){cueT=0;cueN=-1}}
+ /* Hi: the bubble sits over his head (beside it on a tall, narrow screen, where the words fill the wall above him) */
+ {const on=!!s.say&&act>.05&&!tr;sayG.visible=on;if(on){sayT+=dt;if(window.__sayu!=null)sayT=window.__sayu;const per=2.4,u=sayT%per,t=s.say[Math.floor(sayT/per)%s.say.length],P=Pm?(CK?[.1,2.92,.42]:[-.76,2.2,.84]):[-.15,2.95,.56],v=u/.24-1,
+   k=Math.min(1,act*1.4)*(u<.24?1+2.7*v*v*v+1.7*v*v:u>per-.13?1-sm((u-(per-.13))/.13):1),key=t+P[2];sayG.position.set(P[0],P[1]+Math.sin(T*1.6)*.012,.06);sayG.rotation.y=-av.rotation.y;sayG.scale.setScalar(Math.max(.001,k));
+   if(key!==sayKey){sayKey=key;sayM.material.map=sayTex(t,P[2])}}else sayT=0}
  bal.visible=kind==='balloons'&&zone>.03&&!tr;if(bal.visible){const k=sm(zone),P=balL.geometry.attributes.position.array;aA.hand.getWorldPosition(balV);balT+=dt;if(window.__balu!=null)balT=BALC*window.__balu;balLag+=(clamp(vx*.05,-.4,.4)-balLag)*Math.min(1,dt*3);
   const u=balT%BALC,gone=Math.floor(balT/BALC)%balB.length;balB.forEach((g,i)=>{const o=BALO[i];let x=o[0]+(Pm?0:-.3)/* on a wide screen the bunch leans in over his head, clear of the sitemap at his right */-balLag*o[1]+Math.sin(T*1.1+i*1.7)*.035,y=o[1]+Math.sin(T*1.5+i)*.02,z=o[2]+Math.cos(T*.9+i*2.3)*.03,sc=k,str=1;
    if(i===gone&&k>.9){if(u<1.6){const e=u/1.6;y+=2.6*e*e;x+=Math.sin(e*5+i)*.12*e;str=0}else if(u<2.5){const q=sm((u-1.6)/.9);x*=q;y*=q;z*=q;sc=q}}
