@@ -445,6 +445,8 @@ function box(w,h,d,mat,x,y,z){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d
 function cap(r1,r2,len,mat){const g=new THREE.Group(),c=new THREE.Mesh(new THREE.CylinderGeometry(r1,r2,len,24,1,true),mat);c.position.y=-len/2;g.add(c);g.add(ball(r1,mat));g.add(ball(r2,mat,1,1,1,0,-len,0));return g}
 const skin=M('#EBBB99',.6),hair=M('#2C1F19',.85),tee=M('#F7F4EC',.8),teeD=M('#E7E2D6',.8),jeans=M('#2E3B5E',.86),cuff=M('#5A6C9C',.86),shoe=M('#FFFFFF',.55),sole=M('#E4FF3A',.6),dark=M('#17171C',.6),gold=M('#F5B700',.4),steel=M('#C9CCD3',.4);
 gold.metalness=.45;steel.metalness=.5;
+/* what an outfit may cover or bare: upper arms, forearms, shins (skin or cloth) */
+const armU=M('#EBBB99',.6),armF=M('#EBBB99',.6),shinM=M('#2E3B5E',.86);
 function b64(s,T){const b=atob(s),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return new T(u.buffer)}
 /* a sculpted part: points packed in 16 bits, one byte of shade per point (three where the part is tinted), faces as quads */
 function sculptGeo(m){const q=b64(m.p,Int16Array),qa=b64(m.a,Uint8Array),n=q.length/3,ch=qa.length/n,P=new Float32Array(n*3),K=new Float32Array(n*3);
@@ -457,11 +459,17 @@ const PARTS=[];let avIn=AV.head?1:0;
 function sculpt(name,mat,then){const mesh=new THREE.Mesh(new THREE.BufferGeometry(),mat),fill=()=>{mesh.geometry.dispose();mesh.geometry=sculptGeo(AV[name]);if(then)then(mesh.geometry)};if(AV[name])fill();else PARTS.push([name,fill]);return mesh}
 window.__av=d=>{Object.assign(AV,d);for(let k=PARTS.length-1;k>=0;k--)if(AV[PARTS[k][0]]){PARTS[k][1]();PARTS.splice(k,1)}if(!PARTS.length)av.visible=true};
 const VM=(c,r)=>{const m=M(c,r);m.vertexColors=true;return m};
-const skinS=VM('#EBBB99',.58),hairS=VM('#4E3A2E',.9),teeS=VM('#F7F4EC',.82),shoeS=VM('#FFFFFF',.55),soleS=VM('#E4FF3A',.6),capF=VM('#F4F1E8',.9),capK=VM('#3D8BF2',.85),ropeS=VM('#E4FF3A',.7);
+const skinS=VM('#EBBB99',.58),hairS=VM('#4E3A2E',.9),teeS=VM('#F7F4EC',.82),shoeS=VM('#FFFFFF',.55),soleS=VM('#E4FF3A',.6),capF=VM('#F4F1E8',.9),capK=VM('#3D8BF2',.85),ropeS=VM('#E4FF3A',.7),handS=VM('#EBBB99',.58);
 const av=new THREE.Group(),hips=new THREE.Group();hips.position.y=.92;av.add(hips);av.scale.setScalar(.855);av.position.z=.6;av.visible=!!AV.head;scene.add(av);
 hips.add(ball(.186,jeans,1.14,.8,.88,0,-.01,0));
 const torso=new THREE.Group();torso.position.y=.05;hips.add(torso);
-torso.add(sculpt('tee',teeS));
+/* a second skin over the tee, for what an outfit draws on it (a tie, a collar, a number): the tee's own shape a hair's breadth out,
+   painted straight on from the front (left half of the picture) and from the back (right half) */
+const deco=new THREE.Mesh(new THREE.BufferGeometry(),new THREE.MeshStandardMaterial({roughness:.82,metalness:0,alphaTest:.5}));deco.visible=false;
+torso.add(sculpt('tee',teeS,g=>{const P=g.attributes.position.array,N=g.attributes.normal.array,I=g.index.array,n=I.length,p=new Float32Array(n*3),q=new Float32Array(n*3),uv=new Float32Array(n*2);
+ for(let t=0;t<n;t+=3){const front=N[I[t]*3+2]+N[I[t+1]*3+2]+N[I[t+2]*3+2]>0;for(let k=0;k<3;k++){const v=I[t+k]*3,o=(t+k)*3;for(let a=0;a<3;a++){p[o+a]=P[v+a]+N[v+a]*.0045;q[o+a]=N[v+a]}
+  uv[(t+k)*2]=front?(P[v]+.32)/1.28:.5+(.32-P[v])/1.28;uv[(t+k)*2+1]=(P[v+1]+.06)/.64}}
+ const d=new THREE.BufferGeometry();d.setAttribute('position',new THREE.BufferAttribute(p,3));d.setAttribute('normal',new THREE.BufferAttribute(q,3));d.setAttribute('uv',new THREE.BufferAttribute(uv,2));deco.geometry.dispose();deco.geometry=d}));torso.add(deco);
 
 const neck=new THREE.Mesh(new THREE.CylinderGeometry(.062,.07,.3,22),skin);neck.position.y=.62;torso.add(neck);torso.add(ball(.1,skin,1,.46,.84,0,.5,.002));
 const head=new THREE.Group();head.position.y=.745;head.scale.setScalar(1.8);torso.add(head);
@@ -474,6 +482,8 @@ head.add(sculpt('head',skinS));head.add(sculpt('hair',hairS));head.add(sculpt('b
  lx.fillStyle='#0B0B10';lx.beginPath();if(lx.roundRect)lx.roundRect(2,2,124,124,28);else lx.rect(2,2,124,124);lx.fill();lx.fillStyle='#E4FF3A';lx.beginPath();if(lx.roundRect)lx.roundRect(9,9,110,110,22);else lx.rect(9,9,110,110);lx.fill();
  lx.fillStyle='#0B0B10';lx.font='800 92px "Bricolage Grotesque", "Arial Black", Arial, sans-serif';lx.textAlign='center';lx.textBaseline='middle';lx.fillText('P',64,70);
  const lt=new THREE.CanvasTexture(lc);lt.encoding=THREE.sRGBEncoding;const logo=new THREE.Mesh(new THREE.PlaneGeometry(.082,.082),new THREE.MeshBasicMaterial({map:lt,transparent:true}));logo.position.set(0,AV.cap.logo[0],AV.cap.logo[1]);logo.rotation.x=AV.cap.logo[2];g.add(logo)}
+/* the cap's pieces, to take it off; and the hair it hides, for when it is off */
+const capBits=head.children.slice(3),hairTop=new THREE.Mesh(new THREE.SphereGeometry(1,32,14,0,Math.PI*2,0,1.22).rotateX(-.3),M('#3B2A21',.9));hairTop.scale.set(.182,.197,.19);hairTop.position.set(0,.172,-.004);hairTop.visible=false;head.add(hairTop);
 const eyeK=M('#0E0E13',.18);
 const eyes=[-1,1].map(s=>{const e=new THREE.Group();e.position.set(s*.07,.168,.16);e.add(ball(.0215,eyeK,1,1.3,.6));e.add(ball(.0064,B('#FFFFFF'),1,1,.25,.007,.0128,.0104));e.add(ball(.0027,B('#FFFFFF'),1,1,.3,-.006,-.0096,.0112));head.add(e);return e});
 head.add(sculpt('teeth',VM('#FFFFFF',.34)));head.add(ball(.05,B('#2A0E0E'),1.7,.9,.7,0,.07,.118));head.add(ball(.03,M('#D4636C',.5),1,.5,.52,0,AV.tongue[0],AV.tongue[1]));
@@ -494,9 +504,9 @@ const gog=new THREE.Group();gog.position.set(0,.168,-.004);{
  const rg=new THREE.BufferGeometry();rg.setAttribute('position',new THREE.Float32BufferAttribute(P,3));rg.setIndex(I);rg.computeVertexNormals();const rimM=M(NAVY,.6);rimM.side=THREE.DoubleSide;gf.add(new THREE.Mesh(rg,rimM));
  gog.add(gf);gog.userData.gf=gf;
  const strapM=M('#E4FF3A',.75);strapM.side=THREE.DoubleSide;const st=new THREE.Mesh(new THREE.CylinderGeometry(.191,.191,.052,44,1,true),strapM);st.scale.z=.97;gog.add(st);gog.visible=false;head.add(gog)}
-function arm(side){const sh=new THREE.Group();sh.position.set(side*.262,.49,0);torso.add(sh);sh.add(cap(.088,.08,.13,tee));const hem=new THREE.Mesh(new THREE.TorusGeometry(.079,.011,8,22),teeD);hem.rotation.x=Math.PI/2;hem.position.y=-.14;sh.add(hem);sh.add(cap(.058,.052,.27,skin));
- const el=new THREE.Group();el.position.y=-.27;sh.add(el);el.add(cap(.052,.045,.24,skin));const hand=new THREE.Group();hand.position.y=-.262;hand.scale.setScalar(1.2);el.add(hand);const hm=sculpt('hand',skinS);hm.scale.x=side;hand.add(hm);const fm=sculpt('fist',skinS);fm.scale.x=side;fm.visible=false;hand.add(fm);return{sh,el,hand,open:hm,fist:fm}}
-function leg(side){const th=new THREE.Group();th.position.set(side*.1,-.02,0);hips.add(th);th.add(cap(.104,.088,.4,jeans));const kn=new THREE.Group();kn.position.y=-.4;th.add(kn);const shin=cap(.087,.07,.38,jeans);kn.add(shin);
+function arm(side){const sh=new THREE.Group();sh.position.set(side*.262,.49,0);torso.add(sh);sh.add(cap(.088,.08,.13,tee));const hem=new THREE.Mesh(new THREE.TorusGeometry(.079,.011,8,22),teeD);hem.rotation.x=Math.PI/2;hem.position.y=-.14;sh.add(hem);sh.add(cap(.058,.052,.27,armU));
+ const el=new THREE.Group();el.position.y=-.27;sh.add(el);el.add(cap(.052,.045,.24,armF));const hand=new THREE.Group();hand.position.y=-.262;hand.scale.setScalar(1.2);el.add(hand);const hm=sculpt('hand',handS);hm.scale.x=side;hand.add(hm);const fm=sculpt('fist',handS);fm.scale.x=side;fm.visible=false;hand.add(fm);return{sh,el,hand,open:hm,fist:fm}}
+function leg(side){const th=new THREE.Group();th.position.set(side*.1,-.02,0);hips.add(th);th.add(cap(.104,.088,.4,jeans));const kn=new THREE.Group();kn.position.y=-.4;th.add(kn);const shin=cap(.087,.07,.38,shinM);kn.add(shin);
  const cf=new THREE.Mesh(new THREE.TorusGeometry(.071,.02,10,22),cuff);cf.rotation.x=Math.PI/2;cf.position.y=-.365;kn.add(cf);
  const ft=new THREE.Group();ft.position.y=-.4;kn.add(ft);[sculpt('shoe',shoeS),sculpt('sole',soleS)].forEach(m=>{m.scale.set(1.12,1,1.12);ft.add(m)});return{th,kn,ft,shin,cf}}
 const aA=arm(1),aB=arm(-1),lA=leg(1),lB=leg(-1);
@@ -529,7 +539,7 @@ const dstrip=[0,1,2,3,4].map(()=>{const g=new THREE.Group(),m=new THREE.Mesh(new
 let dimT=0,dimN=-1;const DIMC=2.5;
 /* padel, on the court at the foot of the mountain: shorts (bare shins), a racket, a ball that goes over the net, off the floor, off the far glass and back */
 let shortsOn=false,padT=0;const PADC=2.2;
-function setShorts(on){shortsOn=on;[lA,lB].forEach(l=>{l.shin.traverse(o=>{if(o.isMesh)o.material=on?skin:jeans});l.cf.visible=!on})}
+function setShorts(on){shortsOn=on;shinM.color.copy(on?skin.color:jeans.color);[lA,lB].forEach(l=>{l.cf.visible=!on})}
 const pball=ball(.05,M('#E4FF3A',.5));pball.castShadow=true;pball.visible=false;scene.add(pball);
 /* TakeKit: the script floats beside the phone he films himself with, drawn as the app's guide draws it: the word being said is white,
    the words already said turn red, the rest wait at half strength; when a line is done the lines move up one */
@@ -541,6 +551,52 @@ cue.add(new THREE.Mesh(new THREE.ShapeGeometry(rrShape(.46,.52,.055),10),B('#111
 const cueDot=new THREE.Mesh(new THREE.CircleGeometry(.011,18),B('#E8442E'));cueDot.position.set(-.172,-.205,.008);cue.add(cueDot);
 const cueLn=[0,1,2,3,4].map(()=>{const g=new THREE.Group();g.userData.w=[0,1,2].map(()=>{const m=new THREE.Mesh(CUEG[0],new THREE.MeshBasicMaterial({color:0xffffff,transparent:true}));g.add(m);return m});g.position.z=.008;cue.add(g);return g});
 let cueT=0,cueN=-1;const CUEC=1.7;
+/* ---------- Percha: his whole wardrobe. He twirls, and comes round dressed in something else from head to foot ----------
+   FITS: each look's colours (top, sleeve hem, arms, hands, legs, shins, cuffs, shoes, soles; 0 = bare skin, null = none), whether the cap stays on,
+   the pieces it adds (WEAR) and what it paints on the tee (ART, drawn in the tee's own measures: x across, y up, the collar at y=.55). */
+const WEAR={},wear=(name,parent,...m)=>{m.forEach(o=>{o.visible=false;parent.add(o);(WEAR[name]=WEAR[name]||[]).push(o)})},
+ ring=(R,r,mat,x,y,z,rx)=>{const m=new THREE.Mesh(new THREE.TorusGeometry(R,r,10,30),mat);m.position.set(x||0,y||0,z||0);m.rotation.x=rx==null?Math.PI/2:rx;return m},
+ tube=(r1,r2,h,mat,x,y,z,open)=>{const m=new THREE.Mesh(new THREE.CylinderGeometry(r1,r2,h,30,1,!!open),mat);m.position.set(x||0,y||0,z||0);return m},
+ dome=(a,mat,sx,sy,sz)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(1,32,14,0,Math.PI*2,0,a).rotateX(-.3),mat);m.scale.set(sx,sy,sz);m.position.set(0,.172,-.004);return m},HT=-(Math.PI/2+.3);
+{const white=M('#F7F4EC',.8),lime=M('#E4FF3A',.7),ink=M('#17171C',.6);
+ /* sport: a sweatband, wristbands, long socks */
+ wear('sport',head,ring(.168,.025,white,0,.262,-.004,HT));[aA,aB].forEach(a=>wear('sport',a.el,ring(.05,.017,lime,0,-.19,0)));[lA,lB].forEach(l=>wear('sport',l.kn,tube(.083,.076,.16,white,0,-.3,0)));
+ /* kimono: the robe down to the ankles, its hanging sleeves, the sash and its knot behind */
+ const kim=M('#27367A',.86),sash=M('#FF4B33',.8);kim.side=THREE.DoubleSide;
+ {const robe=tube(.222,.27,.8,kim,0,-.37,0,true);robe.scale.z=.84;const ob=tube(1,1,.13,sash,0,.1,.008,true);ob.scale.set(.21,1,.158);wear('kimono',hips,robe);wear('kimono',torso,ob,box(.21,.14,.07,sash,0,.11,-.172));
+  [[aA,1],[aB,-1]].forEach(([a,sd])=>wear('kimono',a.el,box(.15,.27,.1,kim,-sd*.085,-.1,0)))}
+ /* the beach: sunglasses and a straw hat */
+ {const gl=new THREE.MeshStandardMaterial({color:C('#111114'),roughness:.18,metalness:.3}),sun=new THREE.Group();[-1,1].forEach(sd=>{sun.add(ball(.039,gl,1,.82,.22,sd*.07,.17,.176));sun.add(box(.008,.01,.17,gl,sd*.112,.178,.1))});sun.add(box(.05,.01,.01,gl,0,.182,.186));
+  const straw=M('#E3C07A',.9),hat=new THREE.Group();hat.add(tube(.31,.31,.014,straw));hat.add(tube(.166,.178,.12,straw,0,.06,0));hat.add(tube(.18,.182,.034,M('#FF4B33',.8),0,.022,0));hat.position.set(0,.305,-.012);hat.rotation.x=-.22;wear('beach',head,sun,hat)}
+ /* winter: a bobble hat and a scarf */
+ {const red=M('#E63946',.9),dk=M('#B82632',.9),sc=M('#E4FF3A',.85);wear('winter',head,dome(1.34,red,.191,.207,.199),ring(.17,.03,dk,0,.25,-.004,HT),ball(.05,white,1,1,1,0,.372,-.064));
+  const r=ring(.108,.05,sc,0,.57,.004);r.scale.set(1,.92,1);wear('winter',torso,r,box(.085,.2,.04,sc,.075,.45,.158))}}
+const SKIN='#EBBB99',FITS=[
+ {top:'#F7F4EC',hem:'#E7E2D6',arm:0,fore:0,hand:0,leg:'#2E3B5E',shin:'#2E3B5E',cuff:'#5A6C9C',shoe:'#FFFFFF',sole:'#E4FF3A',cap:1},
+ {top:'#FF4B33',hem:'#FFFFFF',arm:0,fore:0,hand:0,leg:'#17171C',shin:0,cuff:null,shoe:'#E4FF3A',sole:'#17171C',wear:'sport',art:'sport'},
+ {top:'#27367A',hem:'#27367A',arm:'#27367A',fore:'#27367A',hand:0,leg:'#27367A',shin:'#27367A',cuff:null,shoe:'#F7F4EC',sole:'#3A2A20',wear:'kimono',art:'kimono'},
+ {top:'#23252F',hem:'#23252F',arm:'#23252F',fore:'#23252F',hand:0,leg:'#23252F',shin:'#23252F',cuff:'#23252F',shoe:'#111114',sole:'#111114',art:'suit'},
+ {top:'#12B8C4',hem:'#0E9AA5',arm:0,fore:0,hand:0,leg:'#FFD60A',shin:0,cuff:null,shoe:'#FF4FA3',sole:'#FFFFFF',wear:'beach',art:'aloha'},
+ {top:'#FF8500',hem:'#D96B00',arm:'#FF8500',fore:'#FF8500',hand:'#E63946',leg:'#3B3F4C',shin:'#3B3F4C',cuff:'#3B3F4C',shoe:'#6B4A32',sole:'#2A1E16',wear:'winter',art:'puffer'}];
+const ART={
+ sport(x,back){x.fillStyle='#FFFFFF';x.fillRect(-.21,-.06,.035,.5);x.fillRect(.175,-.06,.035,.5);x.save();x.translate(0,back?.2:.22);x.scale(1,-1);x.font='800 '+(back?.26:.2)+'px "Bricolage Grotesque", "Arial Black", Arial, sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText('83',0,0);x.restore()},
+ kimono(x,back){const band=(a,b,c,d)=>{x.beginPath();x.moveTo(a,b);x.lineTo(c,d);x.stroke()};x.lineCap='butt';if(back){x.strokeStyle='#F4F1E8';x.lineWidth=.05;band(-.11,.535,.11,.535);return}
+  x.strokeStyle='#F4F1E8';x.lineWidth=.05;band(-.085,.57,.13,.14);x.strokeStyle='#1B2658';x.lineWidth=.066;band(.085,.57,-.14,.12);x.strokeStyle='#F4F1E8';x.lineWidth=.05;band(.085,.57,-.14,.12)},
+ suit(x,back){if(back)return;x.fillStyle='#F7F4EC';x.beginPath();x.moveTo(-.08,.58);x.lineTo(.08,.58);x.lineTo(0,.26);x.fill();
+  x.strokeStyle='#3A3D4B';x.lineWidth=.03;x.lineJoin='round';x.beginPath();x.moveTo(-.088,.58);x.lineTo(-.004,.25);x.moveTo(.088,.58);x.lineTo(.004,.25);x.stroke();
+  x.fillStyle='#E8442E';x.beginPath();x.moveTo(-.022,.51);x.lineTo(.022,.51);x.lineTo(.013,.47);x.lineTo(.03,.34);x.lineTo(0,.295);x.lineTo(-.03,.34);x.lineTo(-.013,.47);x.fill();
+  x.fillStyle='#0B0B10';[.19,.1].forEach(y=>{x.beginPath();x.arc(0,y,.013,0,7);x.fill()});x.fillStyle='#F7F4EC';x.fillRect(.095,.37,.06,.022)},
+ aloha(x,back){const fl=(cx,cy,r,c)=>{x.fillStyle=c;for(let k=0;k<5;k++){const a=k*1.2566+cx*40;x.beginPath();x.ellipse(cx+Math.cos(a)*r*.55,cy+Math.sin(a)*r*.55,r*.5,r*.3,a,0,7);x.fill()}x.fillStyle='#FFD60A';x.beginPath();x.arc(cx,cy,r*.22,0,7);x.fill()};
+  [[-.13,.42,.05,'#FFFFFF'],[.12,.33,.055,'#FF4FA3'],[-.1,.16,.055,'#FF4FA3'],[.13,.07,.05,'#FFFFFF'],[-.19,.28,.04,'#FFD60A'],[.19,.2,.04,'#FFFFFF'],[.03,.02,.045,'#FFFFFF'],[-.02,.3,.04,'#FFD60A'],[.06,.47,.04,'#FFFFFF']].forEach(q=>{if(back||Math.abs(q[0])>.05)fl(...q)});
+  if(back)return;x.fillStyle=SKIN;x.beginPath();x.moveTo(-.05,.58);x.lineTo(.05,.58);x.lineTo(0,.44);x.fill();x.fillStyle='#0E9AA5';x.fillRect(-.007,-.06,.014,.5);x.fillStyle='#FFFFFF';[.36,.26,.16,.06].forEach(y=>{x.beginPath();x.arc(0,y,.012,0,7);x.fill()})},
+ puffer(x,back){x.fillStyle='#D96B00';for(let y=-.02;y<.5;y+=.095)x.fillRect(-.32,y,.64,.011);if(back)return;x.fillStyle='#C9CCD3';x.fillRect(-.007,-.06,.014,.62);x.fillRect(-.014,.5,.028,.04)}};
+const artTx={},art=k=>{if(artTx[k])return artTx[k];const c=document.createElement('canvas');c.width=1024;c.height=512;const x=c.getContext('2d');[0,1].forEach(b=>{x.save();x.beginPath();x.rect(b*512,0,512,512);x.clip();x.setTransform(800,0,0,-800,b*512+256,464);ART[k](x,b);x.restore()});
+ const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=4;return artTx[k]=t};
+deco.material.map=art('suit');
+let look=0,lookT=0;const FITC=2.3;
+function dress(i){const f=FITS[i],put=(m,h)=>m.color.copy(C(h||SKIN));look=i;put(teeS,f.top);put(tee,f.top);put(teeD,f.hem);put(armU,f.arm);put(armF,f.fore);put(handS,f.hand);put(jeans,f.leg);put(shinM,f.shin);if(f.cuff)put(cuff,f.cuff);
+ [lA,lB].forEach(l=>{l.cf.visible=!!f.cuff});put(shoeS,f.shoe);put(shoe,f.shoe);put(soleS,f.sole);put(sole,f.sole);capBits.forEach(m=>{m.visible=!!f.cap});hairTop.visible=!f.cap;
+ for(const k in WEAR)WEAR[k].forEach(m=>{m.visible=k===f.wear});deco.visible=!!f.art;if(f.art)deco.material.map=art(f.art)}
 av.traverse(o=>{if(o.isMesh)o.castShadow=true});
 const blob=(()=>{const c=document.createElement('canvas');c.width=c.height=128;const x=c.getContext('2d'),g=x.createRadialGradient(64,64,6,64,64,62);g.addColorStop(0,'rgba(0,0,0,.3)');g.addColorStop(1,'rgba(0,0,0,0)');x.fillStyle=g;x.fillRect(0,0,128,128);
  const m=new THREE.Mesh(new THREE.PlaneGeometry(.9,.55),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));m.rotation.x=-Math.PI/2;m.position.set(0,.012,.6);scene.add(m);return m})();
@@ -564,7 +620,6 @@ const hole=new THREE.Group();{const c=document.createElement('canvas');c.width=c
  const sw=new THREE.Mesh(new THREE.PlaneGeometry(2.3,2.3),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false}));sw.rotation.x=-Math.PI/2;hole.add(sw);hole.userData.sw=sw;
  const disc=new THREE.Mesh(new THREE.CircleGeometry(.72,48),new THREE.MeshBasicMaterial({color:0x000000}));disc.rotation.x=-Math.PI/2;disc.position.y=.002;hole.add(disc);hole.visible=false;scene.add(hole)}
 addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
-const SHIRTS=['#F6F3EC','#0B0B10','#E4FF3A','#2D6BFF','#FF4B33','#12D18E'];
 
 /* ---------- the walls ---------- */
 let PW=5.4,WH=4.3,Pm=false,dist=7,lookY=1.6,S=240;const YB=-.3;
@@ -767,7 +822,7 @@ const EO=.42,tallDev=s=>{if(!s||!s.app)return false;const d=s.ui&&UIDOM[s.ui],a=
  courtOff=()=>Pm?(CK?-.7:-.3):.06*PW,stopX=i=>i*PW+(Pm&&ST[i]&&(CK?!ST[i].court:WORLD==='home'&&tallDev(ST[i]))?EO:0)+(ST[i]&&ST[i].court?courtOff():0);let camO=0;
 /* the court, along the walk: its middle, where he stands, the far glass, where he meets the ball, the net, where the ball lands, its near edge */
 const courtX=()=>{const cx=(ABOUT.length-1)*PW,st=cx+courtOff(),end=cx+(Pm?1.03:.46*PW),hit=st+.88;return{cx,st,end,hit,net:hit+.38*(end-hit),bnc:hit+.72*(end-hit),left:cx-(Pm?.5:.47)*PW}};
-let X=0,goal=0,vx=0,lastIn=-1e9,face=0,amt=0,phi=0,still=0,act=0,zone=0,cur=-1,last=0,drag=null,keys={},spin=0,shirt=0,shirtT=0,blink=0,tr=null,homeAt=0,sk=0,skOn=false,lc=0,gg=0;
+let X=0,goal=0,vx=0,lastIn=-1e9,face=0,amt=0,phi=0,still=0,act=0,zone=0,cur=-1,last=0,drag=null,keys={},spin=0,blink=0,tr=null,homeAt=0,sk=0,skOn=false,lc=0,gg=0;
 const maxX=()=>stopX(ST.length-1),touch=t=>{lastIn=t};
 const strip=$('#strip'),rsc=$('#rscroll'),ctas=$('#ctas'),dimEl=$('#dim'),fadeEl=$('#fade');let tabs=[],tint='',tintN=0,fadeOn=false;
 const TINT=new THREE.Color(),themeMeta=document.createElement('meta');themeMeta.name='theme-color';document.head.append(themeMeta);
@@ -834,7 +889,7 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
   scene.background=C(s.c);const L=s.ctas||(s.app?[s.u?{t:'Get '+s.big+' on the App Store ↗',ts:'Get the app ↗',u:s.u}:{t:s.big+' · coming soon'}]:[]);
   ctas.innerHTML=L.map(c=>c.u?'<a href="'+c.u+'" target="_blank" rel="noopener"'+(c.alt?' class="alt"':'')+(c.ts?' aria-label="'+c.t.replace(/\s*↗$/,'')+'"':'')+'>'+(c.ts?'<b class="lg">'+ico(c.t)+'</b><b class="sm">'+ico(c.ts)+'</b>':ico(c.t))+'</a>':c.go?'<button type="button" data-go="'+c.go+'"'+(c.alt?' class="alt"':'')+'>'+ico(c.t)+'</button>':'<span>'+c.t+'</span>').join('')
    +(s.app&&s.k?'<button type="button" class="alt" data-more aria-expanded="false" aria-controls="more" aria-label="More links for '+s.big+'"><b class="w">More</b><b class="d">•••</b></button><div class="more" id="more">'
-    +moreRows(s).map(r=>r.u?'<a href="'+r.u+'"'+(r.in?'':' target="_blank" rel="noopener"')+'>'+r.t+'<i>'+ico(r.in?'→':'↗')+'</i></a>':'<button type="button" data-go="'+r.go+'">'+r.t+'<i>'+ico('→')+'</i></button>').join('')+'</div>':'');spin=0;shirtT=0}
+    +moreRows(s).map(r=>r.u?'<a href="'+r.u+'"'+(r.in?'':' target="_blank" rel="noopener"')+'>'+r.t+'<i>'+ico(r.in?'→':'↗')+'</i></a>':'<button type="button" data-go="'+r.go+'">'+r.t+'<i>'+ico('→')+'</i></button>').join('')+'</div>':'');spin=0;lookT=0}
  {const on=act>.6&&!tr&&!!ctas.firstChild;ctas.classList.toggle('on',on);if(!on)setMore(false)}if(ride)skyAt(X,scene.background);
  /* the browser's own bars (above and below the page on a phone) take the page's colour: keep it the room's, never black */
  if(!(tintN++%3)){const hx=TINT.copy(scene.background).convertLinearToSRGB().getHexString();if(hx!==tint){tint=hx;const c='#'+hx;document.documentElement.style.backgroundColor=document.body.style.backgroundColor=c;themeMeta.content=c}}
@@ -879,8 +934,10 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
      m.material.color.copy(cWht).lerp(cRed,said);m.material.opacity=(i===0?1-sm(sh*1.5):i===4?sh:1)*Math.max(.5+.5*now,said)})})}
   else if(cueT){cueT=0;cueN=-1}}
  suit.visible=kind==='suitcase'&&zone>.05;suit.scale.setScalar(Math.max(.001,zone));suit.rotation.x=-.12*a;
- if(kind==='outfit'&&act>.5){spin=Math.min(Math.PI*2,spin+dt*7);shirtT+=dt;if(shirtT>.75){shirtT=0;shirt=(shirt+1)%SHIRTS.length;tee.color.copy(C(SHIRTS[shirt]));teeS.color.copy(tee.color)}}
- else if(kind!=='outfit'&&shirt!==0){shirt=0;tee.color.copy(C(SHIRTS[0]));teeS.color.copy(tee.color)}
+ /* Percha: each look is held a moment, then he twirls; the clothes change at the half turn, while his back is to us. As soon as he walks on he is in his own again */
+ if(kind==='outfit'&&act>.5&&window.__look!=null){spin=window.__turn||0;if(look!==window.__look)dress(window.__look)}/* to look at one outfit while working on it */
+ else if(kind==='outfit'&&act>.5){lookT+=dt;const u=lookT%FITC,tw=(u-(FITC-.7))/.7,w=(Math.floor(lookT/FITC)+(tw>=.5?1:0))%FITS.length;spin=tw>0?sm(tw)*Math.PI*2:0;if(w!==look)dress(w)}
+ else{spin=0;lookT=0;if(look)dress(0)}
  dimEl.style.opacity=(kind==='dim'?act*(UIDOM.dimmly?.5*(1-UIDOM.dimmly.k):.62):0).toFixed(3);dimEl.style.display=+dimEl.style.opacity>.004?'block':'none';
  blink-=dt;if(blink<-.12)blink=2+Math.random()*3;eyes.forEach(e=>e.scale.y=blink<0?.12:1);
  /* riding: a skateboard on long trips at home, a snowboard all the way down the mountain */
