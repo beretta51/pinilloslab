@@ -382,7 +382,7 @@ const ART={
 const artTx={},art=k=>{if(artTx[k])return artTx[k];const c=document.createElement('canvas');c.width=1024;c.height=512;const x=c.getContext('2d');[0,1].forEach(b=>{x.save();x.beginPath();x.rect(b*512,0,512,512);x.clip();x.setTransform(800,0,0,-800,b*512+256,464);ART[k](x,b);x.restore()});
  const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=4;return artTx[k]=t};
 deco.material.map=art('suit');
-let look=0,lookT=0,popK=0;const FITC=2.3;
+let look=0,lookT=0;const FITC=2.3;
 function dress(i){const f=FITS[i],put=(m,h)=>m.color.copy(C(h||SKIN));look=i;put(teeS,f.top);put(tee,f.sleeve===undefined?f.top:f.sleeve);put(teeD,f.hem);put(armU,f.arm);put(armF,f.fore);put(handS,f.hand);put(jeans,f.leg);put(shinM,f.shin);if(f.cuff)put(cuff,f.cuff);
  [lA,lB].forEach(l=>{l.cf.visible=!!f.cuff});put(shoeS,f.shoe);put(shoe,f.shoe);put(soleS,f.sole);put(sole,f.sole);capBits.forEach(m=>{m.visible=!!f.cap});hairTop.visible=!f.cap;
  const on=[].concat(f.wear||[]);for(const k in WEAR)WEAR[k].forEach(m=>{m.visible=on.includes(k)});deco.visible=!!f.art;if(f.art)deco.material.map=art(f.art)}
@@ -758,9 +758,9 @@ camO+=(stopX(idx)-idx*PW-camO)*Math.min(1,dt*4);still=(off<.3&&sp<.14)?still+dt:
  /* Percha: each look is held a moment, then he twirls; the clothes change at the half turn, while his back is to us. As soon as he walks on he is in his own again */
  if(kind==='outfit'&&act>.5&&window.__look!=null){spin=window.__turn||0;if(look!==window.__look)dress(window.__look)}/* to look at one outfit while working on it */
  else if(kind==='outfit'&&act>.5){lookT+=dt;const u=lookT%FITC,tw=(u-(FITC-.7))/.7,w=(Math.floor(lookT/FITC)+(tw>=.5?1:0))%LOOKS;spin=tw>0?sm(tw)*Math.PI*2:0;if(w!==look)dress(w)}
- /* the rooms that have clothes of their own for him (fit) put them on as he walks up to his spot, with a little bounce, and take them off as he leaves; riding past, he stays as he is */
- else{spin=0;lookT=0;const w=window.__look!=null&&kind!=='outfit'?window.__look:s.fit&&zone>.5&&sk<.5&&!tr?s.fit:0;if(w!==look){dress(w);popK=1}}
- if(popK>0){popK=Math.max(0,popK-dt*4.5);if(!tr)av.scale.setScalar(.855*(1+.07*Math.sin(popK*Math.PI)))}
+ /* the rooms that have clothes of their own for him (fit) put them on as he walks up to his spot and take them off as he leaves; riding past, he stays as he is.
+    The change is plain: a bounce here read as a jump between rooms */
+ else{spin=0;lookT=0;const w=window.__look!=null&&kind!=='outfit'?window.__look:s.fit&&zone>.5&&sk<.5&&!tr?s.fit:0;if(w!==look)dress(w)}
  dimEl.style.opacity=(kind==='dim'?act*(UIDOM.dimmly?.5*(1-UIDOM.dimmly.k):.62):0).toFixed(3);dimEl.style.display=+dimEl.style.opacity>.004?'block':'none';
  blink-=dt;if(blink<-.12)blink=2+Math.random()*3;eyes.forEach(e=>e.scale.y=blink<0?.12:1);
  /* riding: a skateboard on long trips at home, a snowboard all the way down the mountain */
