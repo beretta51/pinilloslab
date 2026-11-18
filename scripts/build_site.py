@@ -15,6 +15,7 @@ Where things are written once:
 
 What it makes (never edit these by hand):
   index.html                               the walk
+  ui/<app>.js                              each app's live screen, fetched by the walk as he gets near its room
   <app>/privacy/, <app>/support/, privacy/ the pages, in the walk's look
   <app>/, about/, contact/, wealth-square/ plain text pages at the old addresses: search engines read them, browsers are
                                            sent on to that room of the walk (/#dimmly, /#about …)

@@ -199,10 +199,13 @@ gold.metalness=.45;steel.metalness=.5;
 /* what an outfit may cover or bare: upper arms, forearms, shins (skin or cloth) */
 const armU=M('#EBBB99',.6),armF=M('#EBBB99',.6),shinM=M('#2E3B5E',.86);
 function b64(s,T){const b=atob(s),u=new Uint8Array(b.length);for(let i=0;i<b.length;i++)u[i]=b.charCodeAt(i);return new T(u.buffer)}
-/* a sculpted part: points packed in 16 bits, one byte of shade per point (three where the part is tinted), faces as quads */
-function sculptGeo(m){const q=b64(m.p,Int16Array),qa=b64(m.a,Uint8Array),n=q.length/3,ch=qa.length/n,P=new Float32Array(n*3),K=new Float32Array(n*3);
- for(let v=0;v<n;v++){for(let a=0;a<3;a++){P[v*3+a]=m.bmin[a]+(q[v*3+a]+32768)/65535*(m.bmax[a]-m.bmin[a]);K[v*3+a]=Math.pow(qa[ch===3?v*3+a:v]/255,1.5)}}
- const Q=b64(m.q,m.wide?Uint32Array:Uint16Array),I=new (m.wide?Uint32Array:Uint16Array)(Q.length/4*6);for(let t=0,o=0;t<Q.length;t+=4){I[o++]=Q[t];I[o++]=Q[t+1];I[o++]=Q[t+2];I[o++]=Q[t];I[o++]=Q[t+2];I[o++]=Q[t+3]}
+/* a sculpted part, as build_walk.py packs it (m.d): its points in 16 bits, a byte of shade per point (three where the part is tinted), its faces as quads.
+   Everything is stored as the difference from the value before, low bytes apart from high ones: the same shape to the last bit, but it travels in two thirds of the size */
+function sculptGeo(m){const B=b64(m.d,Uint8Array),n=m.n,nq=m.nq,ch=m.ch,P=new Float32Array(n*3),K=new Float32Array(n*3);let o=0;
+ for(let a=0;a<3;a++){const sc=(m.bmax[a]-m.bmin[a])/65535;for(let v=0,acc=0;v<n;v++){acc=(acc+B[o+v]+(B[o+n+v]<<8))&65535;P[v*3+a]=m.bmin[a]+(acc^32768)*sc}o+=2*n}
+ for(let c=0;c<ch;c++){for(let v=0,acc=0;v<n;v++){acc=(acc+B[o+v])&255;const k=Math.pow(acc/255,1.5);if(ch===3)K[v*3+c]=k;else K[v*3]=K[v*3+1]=K[v*3+2]=k}o+=n}
+ const I=new (n>65535?Uint32Array:Uint16Array)(nq*6),qb=m.qb,rd=(j,i)=>{const b=o+j*qb*nq,u=B[b+i]|B[b+nq+i]<<8|(qb>2?B[b+2*nq+i]<<16:0);return (u>>>1)^-(u&1)};
+ for(let i=0,p=0,t=0;i<nq;i++){const q0=p+rd(0,i),q1=q0+rd(1,i),q2=q0+rd(2,i),q3=q0+rd(3,i);p=q0;I[t++]=q0;I[t++]=q1;I[t++]=q2;I[t++]=q0;I[t++]=q2;I[t++]=q3}
  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(P,3));g.setAttribute('color',new THREE.BufferAttribute(K,3));g.setIndex(new THREE.BufferAttribute(I,1));g.computeVertexNormals();return g}
 /* the avatar's sculpted parts come in a block of their own, after the rooms: until then each mesh is empty and the avatar stays hidden.
    `then` is run on a part's geometry once it exists (the cap's back paints its mesh pattern from it). */
@@ -503,6 +506,9 @@ function domScreen(el,PW0,PH0){PW0=PW0||402;PH0=PH0||874;const inner=el.firstChi
   if(!vis){vis=true;el.style.visibility='visible'}}}
 /* ---------- the recreations: each arrives in its own block further down the page, once the walk has started, and is fitted to its device then ---------- */
 const UIDOM={},LATER=[];window.__ui=(name,make)=>{LATER.push([name,make])};
+/* on the site each recreation is a file of its own (UISRC), asked for only once he is there and it is the room he is in, the next one either way, or the one
+   he is heading for: nobody downloads the screens of rooms they never walk to. In a one-file prototype UISRC is empty and they follow in the page itself */
+const UISRC=__UISRC__,UIW={},wantUI=k=>{if(!k||UIW[k]||!UISRC[k])return;UIW[k]=1;const e=document.createElement('script');e.src=UISRC[k];e.async=true;e.onerror=()=>{UIW[k]=0;e.remove()};document.head.append(e)};
 /* the device: a real phone body (or a laptop for wide shots) whose screen plays the slides */
 function rrShape(w,h,r){const s=new THREE.Shape(),x=-w/2,y=-h/2;s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);return s}
 function device(imgs,h,wide,vsrc,dom){const a=dom?(dom.a||402/874):imgs[0].naturalWidth/imgs[0].naturalHeight,w=h*a,g=new THREE.Group(),bz=wide?.024:.034,D=wide?.026:.085,R=wide?.045:w*.19,
@@ -668,7 +674,9 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  const ride=WORLD==='about',far=Math.abs(goal-X);if(far>2.4*PW)skOn=true;else if(far<.5*PW)skOn=false;const offSnow=ride&&X>(ABOUT.length-2.24)*PW,onCourt=ride&&X>(ABOUT.length-1.5)*PW,skT=tr?(tr.lift?1:0):ride&&!offSnow?1:skOn||press&&!ride?1:0;if(press&&(tr||menuOpen))letGo();if((onCourt&&!tr)!==shortsOn)setShorts(onCourt&&!tr);sk+=(skT-sk)*Math.min(1,dt*(skT?5:7));
  const vmax=ride?6.6+3.2*sk+(press?3.4:0):6.6+11.4*sk,want=clamp((goal-X)*3.3,-vmax,vmax);vx+=(want-vx)*Math.min(1,dt*(7-3*sk));X+=vx*dt;const sp=Math.abs(vx),gy=ride?hgt(X):0;
  amt+=((sp>.1?Math.min(1,.5+sp/6):0)-amt)*Math.min(1,dt*9);phi+=sp*dt*4.1;
- const idx=clamp(Math.round(X/PW),0,n-1),s=ST[idx],off=Math.abs(X-stopX(idx));camO+=(stopX(idx)-idx*PW-camO)*Math.min(1,dt*4);still=(off<.3&&sp<.14)?still+dt:0;
+ const idx=clamp(Math.round(X/PW),0,n-1),s=ST[idx],off=Math.abs(X-stopX(idx));
+ if(WORLD==='home'&&av.visible){wantUI(ST[clamp(Math.round(goal/PW),0,n-1)].ui);if(sk<.5)for(let k=idx-1;k<=idx+1;k++)wantUI(ST[k]&&ST[k].ui)}
+camO+=(stopX(idx)-idx*PW-camO)*Math.min(1,dt*4);still=(off<.3&&sp<.14)?still+dt:0;
  act+=((still>.28?1:0)-act)*Math.min(1,dt*5);zone+=((off<PW*.42?1:0)-zone)*Math.min(1,dt*6);
  const ft=sp>.16?Math.sign(vx)*(1.04-.8*sk):(still>.12?0:face);face+=(ft-face)*Math.min(1,dt*8);
  if(idx!==cur){cur=idx;prevB.classList.toggle('off',idx===0);nextB.classList.toggle('off',idx===n-1);prevB.setAttribute('aria-disabled',idx===0);nextB.setAttribute('aria-disabled',idx===n-1);if(seen++===1)nextB.classList.remove('nudge');tabs.forEach((b,i)=>b.classList.toggle('on',i===idx));const b=tabs[idx];rsc.scrollTo({left:b.offsetLeft+b.offsetWidth/2-rsc.clientWidth/2,behavior:railSet?'smooth':'auto'});railSet=true;

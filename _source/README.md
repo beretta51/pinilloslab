@@ -19,7 +19,11 @@ Then commit and push. GitHub Pages serves the repository as it is (this folder, 
 | An app's live recreation on its phone | `<xx>_scene.css` / `<xx>_scene.js` (and its pieces in `dm/ pc/ so/ gb/ du/ tk/`) |
 | The avatar's sculpted shape | `sculpt.js`, then `node sculpt.js` (writes `avatar.json`) |
 
-`build_walk.py` makes `../index.html`; `build_pages.py` makes every other page; `sitedata.py` reads what both need.
+`build_walk.py` makes `../index.html` and `../ui/<app>.js`; `build_pages.py` makes every other page; `sitedata.py` reads what both need.
+
+The home is kept light on purpose: the page itself carries the rooms and the avatar (his sculpted parts packed by `pack()` in `build_walk.py`,
+unpacked by `sculptGeo()` in the page), and each app's live screen is a file of its own under `../ui/`, fetched only when he is in that room,
+next to it, or heading for it.
 
 ## Trying a change before it goes live
 

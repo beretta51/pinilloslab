@@ -2,7 +2,7 @@
 #   SITE=1 python3 -I build_walk.py   writes ../index.html: the real page, with the site's head (head.html) and its text version
 #   python3 -I build_walk.py          writes out/pinilloslab-recorrido.html: a prototype to try things before they go live
 # Run it through scripts/build_site.py, which also makes the other pages.
-import base64, html, json, os, re, subprocess, sys
+import array, base64, hashlib, html, json, os, re, subprocess, sys
 S = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, S)
 import sitedata
@@ -108,7 +108,7 @@ J = lambda o: json.dumps(o).replace('</', '<\\/')
 # ---------- the recreations: one block each at the end of the page, in the order of the walk. The opening script (the rooms and the
 # avatar) comes first in the file, so it can start while these are still arriving; each block hands its recreation over when it lands. ----------
 def block(name, consts, js, ret):
-    return '<script>window.__ui&&__ui(' + json.dumps(name) + ',function(domScreen){' + consts + '\n' + js + '\nreturn ' + ret + '})</script>\n'
+    return (name, 'window.__ui&&__ui(' + json.dumps(name) + ',function(domScreen){' + consts + '\n' + js + '\nreturn ' + ret + '})')
 
 
 # Gridborne: the game's sprites (cut-outs by garm.swift, whole canvas) and portraits; its font, Changa One, comes from Google Fonts
@@ -143,14 +143,61 @@ blocks.append(block('takekit', 'const TKCSS=' + J(rd('tk_scene.css')) + ',TKSYM=
 # the avatar: its few measurements go in the opening script; its sculpted parts follow in a block of their own, so the room and its words
 # are on screen while he is still arriving
 av = json.loads(rd('avatar.json'))
-parts = {k: v for k, v in av.items() if isinstance(v, dict) and 'p' in v}
+
+
+def pack(v):
+    """A sculpted part as sculpt.js writes it (points p, shades a, quads q), packed for the journey: each value as its difference from the one
+    before, low bytes and high bytes in runs of their own. Nothing is lost; gzip then finds a third less to send. sculptGeo() in the page undoes it."""
+    p = array.array('h'); p.frombytes(base64.b64decode(v['p']))
+    a = base64.b64decode(v['a'])
+    q = array.array('I' if v.get('wide') else 'H'); q.frombytes(base64.b64decode(v['q']))
+    n, nq = len(p) // 3, len(q) // 4
+    ch = len(a) // n
+    out = bytearray()
+    for c in range(3):
+        lo, hi, prev = bytearray(n), bytearray(n), 0
+        for i in range(n):
+            x = p[i * 3 + c] & 0xFFFF; d = (x - prev) & 0xFFFF; prev = x; lo[i] = d & 255; hi[i] = d >> 8
+        out += lo + hi
+    for c in range(ch):
+        pl, prev = bytearray(n), 0
+        for i in range(n):
+            x = a[i * ch + c]; pl[i] = (x - prev) & 255; prev = x
+        out += pl
+    prev = 0
+    cols = [[0] * nq for _ in range(4)]
+    for i in range(nq):
+        q0 = q[i * 4]; cols[0][i] = q0 - prev; prev = q0
+        for j in (1, 2, 3):
+            cols[j][i] = q[i * 4 + j] - q0
+    us = [[(x << 1) if x >= 0 else ((-x) << 1) - 1 for x in col] for col in cols]
+    qb = 2 if max(map(max, us)) < 1 << 16 else 3   # bytes per face index: two are enough unless a part is huge
+    assert max(map(max, us)) < 1 << 24
+    for u in us:
+        for k in range(qb):
+            out += bytes((x >> 8 * k) & 255 for x in u)
+    return {'bmin': v['bmin'], 'bmax': v['bmax'], 'n': n, 'nq': nq, 'ch': ch, 'qb': qb, 'd': base64.b64encode(bytes(out)).decode()}
+
+
+raw = {k: v for k, v in av.items() if isinstance(v, dict) and 'p' in v}
+parts = {k: pack(v) for k, v in raw.items()}
 # Typefaces and the 3D engine are files of the site itself (fonts/, three.min.js): the page asks nobody else for anything.
 # The prototype alone keeps a safety net: if its own copy of the engine failed to load in the viewer, it would fetch the public one. The site proper must not have it.
 GUARD = '<script>window.THREE||document.write(\'<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\\/script>\')</script>' if not SITE else ''
 t = t.replace('/*__FONTS__*/', rd('fonts.css')).replace('<!--__THREEGUARD__-->', GUARD)
-first = t.replace('__ARROWS__', rd('arrows.json')).replace('__ICONS__', json.dumps(ic)).replace('__SHOTS__', json.dumps(sh)).replace('__AVATAR__', json.dumps({k: v for k, v in av.items() if k not in parts}))
+# the recreations: in the page itself for a prototype; on the site, files of their own under /ui/, named in UISRC and fetched as he gets near
+uisrc = {}
+if SITE:
+    os.makedirs(f'{ROOT}/ui', exist_ok=True)
+    for old in os.listdir(f'{ROOT}/ui'):
+        os.remove(f'{ROOT}/ui/{old}')
+    for name, js in blocks:
+        open(f'{ROOT}/ui/{name}.js', 'w', encoding='utf-8').write(js + '\n')
+        uisrc[name] = f'/ui/{name}.js?v=' + hashlib.sha1(js.encode('utf-8')).hexdigest()[:8]
+inline = '' if SITE else ''.join('<script>' + js + '</script>\n' for _, js in blocks)
+first = t.replace('__UISRC__', json.dumps(uisrc)).replace('__ARROWS__', rd('arrows.json')).replace('__ICONS__', json.dumps(ic)).replace('__SHOTS__', json.dumps(sh)).replace('__AVATAR__', json.dumps({k: v for k, v in av.items() if k not in parts}))
 avatar = '<script>window.__av&&__av(' + json.dumps(parts) + ')</script>\n'
-body = first + avatar + ''.join(blocks)
+body = first + avatar + inline
 
 
 def once(doc, a, b):
@@ -200,4 +247,4 @@ else:
     out = head + body[:cut] + '</head>\n<body>\n' + body[cut:] + '</body>\n</html>\n'
     open(f'{ROOT}/index.html', 'w', encoding='utf-8').write(out)
     print('site built', len(out), '→ index.html')
-print('room', len(first), 'avatar', len(avatar), 'then', [len(x) // 1024 for x in blocks])
+print('room', len(first), 'avatar', len(avatar), 'recreations', [len(js) // 1024 for _, js in blocks], 'KB', 'as files' if SITE else 'in the page')
