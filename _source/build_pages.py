@@ -100,7 +100,7 @@ def extra(path, title, desc, go=None, ld=None):
     u = sitedata.SITE + path
     x = (f'<link rel="canonical" href="{u}">\n<link rel="icon" type="image/svg+xml" href="/favicon.svg">\n<link rel="apple-touch-icon" href="/images/pinilloslab-logo.png">\n'
          f'<meta property="og:type" content="website">\n<meta property="og:site_name" content="Pinillos Lab">\n<meta property="og:url" content="{u}">\n<meta property="og:title" content="{esc(title)}">\n'
-         f'<meta property="og:description" content="{esc(desc)}">\n<meta property="og:image" content="{sitedata.SITE}/images/og.png">\n<meta name="twitter:card" content="summary_large_image">\n')
+         f'<meta property="og:description" content="{esc(desc)}">\n<meta property="og:image" content="{sitedata.SITE}/images/og.jpg">\n<meta name="twitter:card" content="summary_large_image">\n')
     if ld:
         x += '<script type="application/ld+json">' + json.dumps(ld, ensure_ascii=False).replace('</', '<\\/') + '</script>\n'
     if go is not None:

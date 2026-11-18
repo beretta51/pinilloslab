@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:Bri;src:url(/fonts/bricolage-grotesque-normal-200-800-latin.woff2);font-weight:200 800}
+@font-face{font-family:Mono;src:url(/fonts/jetbrains-mono-normal-400-700-latin.woff2);font-weight:400 700}
+html,body{margin:0;background:#222}canvas{display:block;width:1200px;height:630px}</style></head><body><canvas id="c" width="1200" height="630"></canvas>
+<script>
+/* The picture shown when the site's link is shared: seven stripes, one for each app in its room's colour, Edu dressed for each; the lab's mark on top.
+   Each stripe is cut from a capture of that room (1200x1260, him at the middle); `off` slides the cut so that he and what he holds sit well in it. */
+const R=[['trovelo',12],['dimmly',52],['percha',0],['solid',24],['gridborne',-30],['dummo',44],['takekit',54]],W=1200,H=630,c=document.getElementById('c'),x=c.getContext('2d');
+const load=n=>new Promise((ok,no)=>{const i=new Image();i.onload=()=>ok(i);i.onerror=no;i.src='../out/og/'+n+'.png?'+Date.now()});
+(async()=>{await Promise.all([document.fonts.load('800 56px Bri'),document.fonts.load('700 24px Mono')]);const im=await Promise.all(R.map(r=>load(r[0])));
+ const w=W/R.length;x.imageSmoothingQuality='high';im.forEach((g,i)=>{const sw=w*2,sx=g.width/2+R[i][1]-sw/2;x.drawImage(g,sx,0,sw,g.height,Math.round(i*w),0,Math.ceil(w)+1,H)});
+ /* the mark: the nav's own pill, larger */
+ x.font='800 58px Bri';const t='Pinillos',tw=x.measureText(t).width;x.font='700 25px Mono';const lw=x.measureText('LAB').width+26,pw=40+tw+16+lw+34,ph=96,px=(W-pw)/2,py=40,rr=(X,Y,w,h,r)=>{x.beginPath();x.roundRect(X,Y,w,h,r)};
+ x.fillStyle='#0B0B10';rr(px+7,py+8,pw,ph,ph/2);x.fill();x.fillStyle='#F4F1E8';rr(px,py,pw,ph,ph/2);x.fill();x.lineWidth=3.5;x.strokeStyle='#0B0B10';x.stroke();
+ x.fillStyle='#0B0B10';x.font='800 58px Bri';x.textBaseline='alphabetic';x.fillText(t,px+38,py+67);x.fillStyle='#E4FF3A';rr(px+38+tw+16,py+28,lw,42,8);x.fill();
+ x.fillStyle='#0B0B10';x.font='700 25px Mono';x.fillText('LAB',px+38+tw+16+13,py+58);
+ c.toBlob(b=>fetch('/save?name=og.jpg',{method:'POST',body:b}).then(()=>{document.title='saved '+b.size}),'image/jpeg',.9)})();
+</script></body></html>
