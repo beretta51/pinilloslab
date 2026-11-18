@@ -148,7 +148,7 @@ const HOME=[
  {app:1,big:'Gridborne',small:'iOS',tag:'strategy game',k:'gridborne',c:'#FF5A3C',o:INK,act:'sword',ui:'gridborne',u:'https://apps.apple.com/app/id6761489335'},
   {app:1,big:'Dummo',small:'iOS · macOS',tag:'promo videos',k:'dummo',wide:1,c:'#8E6BFF',o:'#FFFFFF',act:'direct',ui:'dummo',u:'https://apps.apple.com/app/id6779711252'},
  {app:1,big:'TakeKit',small:'iOS',tag:'teleprompter camera',k:'takekit',c:'#00C2FF',o:INK,act:'selfie',ui:'takekit',u:'https://apps.apple.com/app/id6792025212'},
- {foot:1,big:'Got an idea?',small:'The end of the walk',c:'#0B0B10',o:PAPER,label:'Contact',act:'wave',ctas:[{t:'Reddit me ↗',u:'https://www.reddit.com/user/beretta51'},{t:'About me ↓',go:'about',alt:1}]}
+ {foot:1,big:'Got an idea?',small:'The end of the walk',c:'#0B0B10',o:PAPER,label:'Contact',act:'balloons',ctas:[{t:'Reddit me ↗',u:'https://www.reddit.com/user/beretta51'},{t:'About me ↓',go:'about',alt:1}]}
 ];
 /* the awards, as his present site lists them: year, result, award, where */
 const AWARDS=[[2025,'Winner','Startup of the Year, Food & Beverages','HackerNoon · USA'],[2019,'Winner','Best Startup','Finnovista · Mexico'],[2018,'Winner','Startup Peru','Lima · Peru'],[2015,'Winner','Modev','Washington DC · USA'],
@@ -302,6 +302,12 @@ cue.add(new THREE.Mesh(new THREE.ShapeGeometry(rrShape(.46,.52,.055),10),B('#111
 const cueDot=new THREE.Mesh(new THREE.CircleGeometry(.011,18),B('#E8442E'));cueDot.position.set(-.172,-.205,.008);cue.add(cueDot);
 const cueLn=[0,1,2,3,4].map(()=>{const g=new THREE.Group();g.userData.w=[0,1,2].map(()=>{const m=new THREE.Mesh(CUEG[0],new THREE.MeshBasicMaterial({color:0xffffff,transparent:true}));g.add(m);return m});g.position.z=.008;cue.add(g);return g});
 let cueT=0,cueN=-1;const CUEC=1.7;
+/* ---------- Contact: a bunch of seven balloons, one for each app in its room's colour, on strings from his fist. They sway, trail behind him
+   when he moves, and every few seconds one slips away, floats up out of sight, and another grows in its place ---------- */
+const BALC=4.4,BALO=[[.02,.86,0],[-.18,.75,.06],[.23,.77,-.05],[-.24,.56,-.06],[.31,.58,.05],[-.01,.6,.15],[.13,.56,-.15]],bal=new THREE.Group(),balV=new THREE.Vector3();let balT=0,balLag=0;
+const balB=HOME.filter(h=>h.app).map((h,i)=>{const g=new THREE.Group(),mat=new THREE.MeshStandardMaterial({color:C(h.c),roughness:.26,metalness:0}),b=ball(.15,mat,1,1.17,1);b.castShadow=true;g.add(b);
+ const k=new THREE.Mesh(new THREE.ConeGeometry(.024,.04,10),mat);k.position.y=-.185;g.add(k);bal.add(g);return g});
+const balL=new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(new Float32Array(balB.length*6),3)),new THREE.LineBasicMaterial({color:0xF4F1E8,transparent:true,opacity:.75}));balL.frustumCulled=false;bal.add(balL);bal.visible=false;scene.add(bal);
 /* ---------- Dummo: he is the director. A folding director's chair comes up under him as he sits; in his hand a megaphone, that he calls "action!" through ---------- */
 const dchair=new THREE.Group();{const wood=M('#C99560',.7),W=.3,D=.21,SY=.44,L=Math.hypot(W*2,SY),A=Math.atan2(W*2,SY);
  [D,-D].forEach(z=>[-1,1].forEach(sd=>{const b=box(.036,L,.036,wood,0,SY/2,z+sd*.019);b.rotation.z=sd*A;dchair.add(b)}));                        /* the crossed legs, front and back */
@@ -639,7 +645,7 @@ cv.addEventListener('pointerup',e=>{if(!tapAt||tr||menuOpen)return;if(Math.hypot
 const up=()=>{drag=null;cv.classList.remove('drag')};cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
 addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='d')keys.r=1;if(e.key==='ArrowLeft'||e.key==='a')keys.l=1});
 addEventListener('keyup',e=>{if(e.key==='ArrowRight'||e.key==='d')keys.r=0;if(e.key==='ArrowLeft'||e.key==='a')keys.l=0});
-const POSE={none:[0,.1,-.15],wave:[-2.75,.45,-.5],trophy:[-1.35,.3,-.42],phone:[-.85,.05,-1.45],selfie:[-1.9,.32,-.3],curl:[-.25,.1,-1.2],sword:[-1.0,.14,-.78],coins:[-.75,.15,-1.3],direct:[-0.123,-0.344,-1.818],dim:[-1.7,.16,-.2],padel:[-.5,.6,-.9],outfit:[0,.9,-.1],suitcase:[.38,.12,-.05]};
+const POSE={none:[0,.1,-.15],wave:[-2.75,.45,-.5],trophy:[-1.35,.3,-.42],phone:[-.85,.05,-1.45],selfie:[-1.9,.32,-.3],curl:[-.25,.1,-1.2],sword:[-1.0,.14,-.78],coins:[-.75,.15,-1.3],balloons:[-2.35,.42,-.55],direct:[-0.123,-0.344,-1.818],dim:[-1.7,.16,-.2],padel:[-.5,.6,-.9],outfit:[0,.9,-.1],suitcase:[.38,.12,-.05]};
 function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/1000||.016);last=t;const T=t/1000,n=ST.length;
  if(!tr&&!menuOpen){if(keys.r){goal+=5.2*dt;touch(t)}if(keys.l){goal-=5.2*dt;touch(t)}}goal=clamp(goal,0,maxX());
  /* a goal that names a room exactly (the rail, the menu, a link) means that room's spot; otherwise he settles on the nearest spot once left alone */
@@ -661,7 +667,7 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  if(CK&&ride)mtn.children.forEach(m=>{if(m.userData.st>=0)m.material.opacity=clamp(2.25-Math.abs(X-stopX(m.userData.st))/(PW*.45),0,1)});
  {const o=+fadeEl.style.opacity>0;if(o!==fadeOn){fadeOn=o;fadeEl.style.display=o?'block':'none'}}
  /* body */
- const sn=Math.sin(phi),cs=Math.cos(phi),a=amt*(1-sk),run=clamp((sp-3.6)/2.6,0,1)*(1-sk),kind=s.act||'none',P=POSE[kind]||POSE.none,hold=kind==='suitcase'?zone:act;
+ const sn=Math.sin(phi),cs=Math.cos(phi),a=amt*(1-sk),run=clamp((sp-3.6)/2.6,0,1)*(1-sk),kind=s.act||'none',P=POSE[kind]||POSE.none,hold=kind==='suitcase'||kind==='balloons'?zone:act;
  if(moving&&sp<.3)sv=-.55;moving=sp>.7;sv+=(-sq*95-sv*11)*dt;sq+=sv*dt;
  av.position.x=X;if(avIn<1&&av.visible){avIn=Math.min(1,avIn+dt*3);hips.scale.setScalar(Math.max(.001,1-Math.pow(1-avIn,3)))}blob.position.x=X;sun.position.set(X-2.4,5.8+gy,5.4);sun.target.position.set(X,1.2+gy,0);shF.position.x=X;shW.position.x=X;
  av.rotation.y=face+(kind==='outfit'?spin:0)+(kind==='padel'?.5*act:0)+(Pm?-.4:.45)*sm(sit);
@@ -674,6 +680,8 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  lA.ft.rotation.x=-(lA.th.rotation.x+lA.kn.rotation.x)*.55-Math.max(0,sn)*.34*a;lB.ft.rotation.x=-(lB.th.rotation.x+lB.kn.rotation.x)*.55-Math.max(0,-sn)*.34*a;
  const sw=.5+.25*run,eb=.2+.42*a+.85*run,sway=Math.sin(T*.8)*.03*(1-a);
  aB.sh.rotation.x=-sn*sw*a+sway;aB.sh.rotation.z=-.12-.04*a-(kind==='outfit'?.8*act:0);aB.el.rotation.x=-(eb+Math.max(0,sn)*.3*a);
+ /* Contact: the balloons are in one hand, so he waves with the other */
+ if(kind==='balloons'){aB.sh.rotation.x=lerp(aB.sh.rotation.x,-2.75,act);aB.sh.rotation.z=lerp(aB.sh.rotation.z,-(.45+Math.sin(T*7)*.28),act);aB.el.rotation.x=lerp(aB.el.rotation.x,-.5,act)}
  let px=P[0],pz=P[1],pe=P[2];if(window.__pose)[px,pz,pe]=window.__pose;/* to try an arm pose while working on it */
  if(kind==='wave')pz+=Math.sin(T*7)*.28;if(kind==='curl')pe=-1.25+Math.sin(T*3.2)*.95;if(kind==='sword')px+=Math.sin(T*2.4)*.16;if(kind==='trophy')px+=Math.sin(T*3)*.05;
  if(kind==='padel'){const u=padT/PADC%1,KF=[[0,-.75,1.05,-.15],[.16,-1.6,.5,-.6],[.5,-.5,.6,-.9],[.82,.35,.8,-.5],[1,-.75,1.05,-.15]];let i=0;while(i<KF.length-2&&u>=KF[i+1][0])i++;const a=KF[i],b=KF[i+1],t=sm((u-a[0])/(b[0]-a[0]));px=lerp(a[1],b[1],t);pz=lerp(a[2],b[2],t);pe=lerp(a[3],b[3],t)}
@@ -681,7 +689,7 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
  /* Dummo: the megaphone waits in front of his chest; every few seconds it goes up to his mouth for the call, and down again */
  let meg=0;if(kind==='direct'){megT=act>.5?megT+dt:MEGC*.78;if(window.__megu!=null)megT=MEGC*window.__megu;const u=megT/MEGC%1;meg=sm(u/.1)*(1-sm((u-.46)/.12));px=lerp(px,SHOUT[0],meg);pz=lerp(pz,SHOUT[1],meg);pe=lerp(pe,SHOUT[2],meg)}
  aA.sh.rotation.x=lerp(sn*sw*a-sway,px,hold);aA.sh.rotation.z=lerp(.12+.04*a,pz,hold);aA.el.rotation.x=lerp(-(eb+Math.max(0,-sn)*.3*a),pe,hold);
- const grip=hold>.5&&(kind==='curl'||kind==='sword'||kind==='trophy'||kind==='suitcase'||kind==='selfie'||kind==='padel'||kind==='direct');aA.open.visible=!grip;aA.fist.visible=grip;aA.hand.rotation.y=(kind==='sword'||kind==='trophy'||kind==='selfie'||kind==='padel')?hold*Math.PI/2:0;
+ const grip=hold>.5&&(kind==='curl'||kind==='sword'||kind==='trophy'||kind==='suitcase'||kind==='selfie'||kind==='padel'||kind==='direct'||kind==='balloons');aA.open.visible=!grip;aA.fist.visible=grip;aA.hand.rotation.y=(kind==='sword'||kind==='trophy'||kind==='selfie'||kind==='padel')?hold*Math.PI/2:0;
  for(const k in props){const on=(k===kind||(k==='phone'&&kind==='selfie')||(k==='dumbbell'&&kind==='curl'))&&act>.04;props[k].visible=on;if(on)props[k].scale.setScalar(Math.min(1,act*1.2))}
  if(props.direct.visible){const g=props.direct;aA.hand.getWorldQuaternion(Q1).invert();av.getWorldQuaternion(Q2);g.quaternion.copy(Q1).multiply(Q2).multiply(Pm?QMEGP:QMEG);const on=meg>.9;g.userData.call.visible=on;g.userData.q.rotation.z=on?Math.sin(T*46)*.03:0;if(on)g.userData.call.scale.setScalar(.8+.5*(T*3.2%1))}
  if(props.coins.visible)props.coins.userData.c.forEach((c,i)=>{const p=(T*1.3+i/3)%1;c.position.set((i-1)*.07,-.1-Math.sin(p*Math.PI)*.42,.02);c.rotation.x=p*12.6;c.rotation.z=i});
@@ -701,6 +709,11 @@ function frame(t){requestAnimationFrame(frame);const dt=Math.min(.05,(t-last)/10
    cueLn.forEach((g,i)=>{g.position.y=.15-i*.085+sh*.085;g.userData.w.forEach((m,k)=>{const said=i===0?1:i===1?sm((u-.2-k*.21)/.08):0,now=i===1?sm((u-.02-k*.21)/.08):0;
      m.material.color.copy(cWht).lerp(cRed,said);m.material.opacity=(i===0?1-sm(sh*1.5):i===4?sh:1)*Math.max(.5+.5*now,said)})})}
   else if(cueT){cueT=0;cueN=-1}}
+ bal.visible=kind==='balloons'&&zone>.03&&!tr;if(bal.visible){const k=sm(zone),P=balL.geometry.attributes.position.array;aA.hand.getWorldPosition(balV);balT+=dt;if(window.__balu!=null)balT=BALC*window.__balu;balLag+=(clamp(vx*.05,-.4,.4)-balLag)*Math.min(1,dt*3);
+  const u=balT%BALC,gone=Math.floor(balT/BALC)%balB.length;balB.forEach((g,i)=>{const o=BALO[i];let x=o[0]+(Pm?0:-.3)/* on a wide screen the bunch leans in over his head, clear of the sitemap at his right */-balLag*o[1]+Math.sin(T*1.1+i*1.7)*.035,y=o[1]+Math.sin(T*1.5+i)*.02,z=o[2]+Math.cos(T*.9+i*2.3)*.03,sc=k,str=1;
+   if(i===gone&&k>.9){if(u<1.6){const e=u/1.6;y+=2.6*e*e;x+=Math.sin(e*5+i)*.12*e;str=0}else if(u<2.5){const q=sm((u-1.6)/.9);x*=q;y*=q;z*=q;sc=q}}
+   g.position.set(balV.x+x*k,balV.y+y*k,balV.z+z*k);g.scale.setScalar(Math.max(.001,sc));g.rotation.z=-x*.25;const a=i*6;P[a]=balV.x;P[a+1]=balV.y-.05;P[a+2]=balV.z;P[a+3]=str?g.position.x:balV.x;P[a+4]=str?g.position.y-.2*sc:balV.y-.05;P[a+5]=str?g.position.z:balV.z});
+  balL.geometry.attributes.position.needsUpdate=true}else balT=0;
  suit.visible=kind==='suitcase'&&zone>.05;suit.scale.setScalar(Math.max(.001,zone));suit.rotation.x=-.12*a;
  /* Percha: each look is held a moment, then he twirls; the clothes change at the half turn, while his back is to us. As soon as he walks on he is in his own again */
  if(kind==='outfit'&&act>.5&&window.__look!=null){spin=window.__turn||0;if(look!==window.__look)dress(window.__look)}/* to look at one outfit while working on it */
